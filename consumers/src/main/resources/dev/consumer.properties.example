@@ -1,7 +1,0 @@
-disco.dbURL=jdbc:postgresql://nif-db.crbs.ucsd.edu:5432/disco_crawler/searchpath=dv
-disco.user=
-disco.password=
-
-cache.root=/var/data/foundry-es/cache/data
-staging.root=/var/data/foundry-es/cache/data/staging
-ingest.cache.db.file=/var/data/foundry-es/cache/ingestion_map.db
