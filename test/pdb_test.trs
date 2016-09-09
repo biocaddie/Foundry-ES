@@ -1,0 +1,2 @@
+transform column "$..'PDBx:entryCategory'.'PDBx:entry'.'@id'" to "datasetDistribution[0].accessURL" apply {{ result='https://files.rcsb.org/download/' + value + '.xml.gz' }};
+transform column "$..'PDBx:entryCategory'.'PDBx:entry'.'@id'" to "datasetDistribution[1].accessURL" apply {{ result='https://files.rcsb.org/download/' + value + '.pdb.gz' }};

@@ -1,0 +1,45 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <span ng-hide="updateMode">New User</span>
+        <span ng-show="updateMode">Update User {{user.username}}</span>
+    </div>
+    <div class="panel-body">
+        <form role="form" ng-submit="saveUser()">
+            <div class="form-group">
+                <label for="username" class="control-label">Username:</label>
+                <input ng-model="user.username" type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">Password:</label>
+                <input ng-model="user.password" type="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+                <label for="email" class="control-label">Email:</label>
+                <input ng-model="user.email" type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="firstName" class="control-label">First Name:</label>
+                <input ng-model="user.firstName" type="text" class="form-control" id="firstName">
+            </div>
+            <div class="form-group">
+                <label for="middleName" class="control-label">Middle Name:</label>
+                <input ng-model="user.middleName" type="text" class="form-control" id="middleName">
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="control-label">Last Name:</label>
+                <input ng-model="user.lastName" type="text" class="form-control" id="lastName">
+            </div>
+            <div class="form-group">
+                <label for="role" class="control-label">Role:</label>
+                <select class="form-control" name="role" id="role" ng-model="user.role">
+                    <option value="curator">curator</option>
+                    <option value="admin">admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="button" ng-click="cancel()" class="btn btn-primary">Cancel</button>
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-header">Foundry Manager Login</h3>
+    </div>
+    <div class="modal-body" id="loginPanel" >
+        <div class="form-group">
+        <label for="loginId">Username</label>
+        <input ng-model="_loginId" class="form-control" type="text" id="loginId"
+        name="loginId" placeholder="User">
+        </div>
+
+        <div class="form-group">
+        <label for="password">Password</label>
+        <input ng-model="_password" class="form-control" id="password" type="password"
+        name="password" placeholder="Password"/>
+        </div>
+   </div>
+   <div class="modal-footer">
+       <button class="btn btn-primary" ng-enter="ok(_loginId, _password)" ng-click="ok(_loginId, _password)" id="loginBut">Submit</button>
+       <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+   </div>
+</div>

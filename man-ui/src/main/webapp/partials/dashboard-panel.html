@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Source Processing Status</div>
+    <div class="panel-body">
+        <table st-table="rowList" class="table table-striped">
+             <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Total</th>
+                    <th>Finished</th>
+                    <th>Error</th>
+                    <th>Status</th>
+                    <th>Ingest Start</th>
+                </tr>
+             </thead>
+            <tbody>
+            <tr ng-repeat="row in rowList">
+                <td>{{row.Source}}</td>
+                <td>{{row.Total}}</td>
+                <td>{{row.Finished}}</td>
+                <td>{{row.Error}}</td>
+                <td>{{row.status}}</td>
+                <td>{{row.ingestStart | date: 'MM/dd/yyyy HH:mm:ss'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

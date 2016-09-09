@@ -1,0 +1,36 @@
+{
+  "record": {
+    "header": {
+      "identifier": {"_$": "oai:datadryad.org:10255/dryad.149"},
+      "datestamp": {"_$": "2012-03-05T21:35:19Z"},
+      "setSpec": {"_$": "hdl_10255_dryad.148"},
+      "repository": {"_$": "Dryad Data Repository"},
+      "setName": {"_$": "BIRDD"},
+      "fetchURL": {"_$": "http://www.datadryad.org/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=hdl_10255_dryad.148"},
+      "recNum": {"_$": "0"}
+    },
+    "metadata": {"oai_dc:dc": {
+      "dc:title": {"_$": "Morphological Measurements of Galapagos Finches"},
+      "dc:creator": {"_$": "Lack, David L."},
+      "dc:subject": [
+        {"_$": "Darwin's finches"},
+        {"_$": "beak"}
+      ],
+      "dc:description": {"_$": "Over 6500 specimens that were measured by David Lack. These data were transcribed from records deposited at the California Academy of Sciences."},
+      "dc:date": [
+        {"_$": "2008-05-30T02:38:06Z"},
+        {"_$": "2008-05-30T02:38:06Z"},
+        {"_$": "1999"}
+      ],
+      "dc:type": {"_$": "Dataset"},
+      "dc:identifier": [
+        {"_$": "doi:10.5061/dryad.150/1"},
+        {"_$": "http://hdl.handle.net/10255/dryad.149"}
+      ],
+      "dc:relation": {"_$": "http://hdl.handle.net/10255/dryad.150"},
+      "dc:rights": {"_$": "http://datadryad.org/bitstream/handle/10255/dryad.149/license.txt?sequence=2"}
+    }}
+  },
+  "_@default": "http://www.openarchives.org/OAI/2.0/",
+  "_@xml": "http://www.w3.org/XML/1998/namespace"
+}

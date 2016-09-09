@@ -1,0 +1,57 @@
+/* Can we transform into CURIE? */
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:title'.'_$'" to "citation.title";
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:year'.'_$'" to "citation.year";
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:journal_abbrev'.'_$'" to "citation.journal";
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:journal_id_ISSN'.'_$'" to "citation.journalISSN";
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:page_first'.'_$'" to "citation.firstPage";
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:page_last'.'_$'" to "citation.lastPage";
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:pdbx_database_id_PubMed'.'_$'" to "citation.PMID" apply {{ result = 'pmid:' + value }};
+transform column "$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:pdbx_database_id_DOI'.'_$'" to "citation.DOI" apply {{ result = 'doi:' + value }};
+/* Can we convert IDs to pmid:##### doi:#### */
+transform column "$..'PDBx:citation_author'[?(@.'@citation_id'='primary')].'@name'" to "citation.author.name[]";
+
+
+transform column "$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:formula'.'_$'" to "materialEntity[].formula";
+transform column "$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:formula_weight'.'_$'" to "materialEntity[].weight";
+transform column "$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:name'.'_$'" to "materialEntity[].name";
+transform column "$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:type'.'_$'" to "materialEntity[].type";
+transform column "$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:name'.'_$'" to "materialEntity[].role" apply {{ result = 'chemical component' }};
+/* Can we add role of chemical component "materialEntity[].role = chemical component" */
+
+transform column "$..'PDBx:entryCategory'.'PDBx:entry'.'@id'" to "dataItem.ID";
+transform column "$..'PDBx:struct'.'PDBx:title'.'_$'" to "dataItem.title";
+transform column "$..'PDBx:struct'.'PDBx:pdbx_descriptor'.'_$'" to "dataItem.description";
+transform column "$..'PDBx:database_PDB_revCategory'.'PDBx:database_PDB_rev'[?(@.'@num' = '1')].'PDBx:date'.'_$'" to "dataItem.releaseDate";
+transform column "$..'PDBx:database_PDB_revCategory'.'PDBx:database_PDB_rev'[?(@.'@num' = '1')].'PDBx:date_original'.'_$'" to "dataItem.depositionDate";
+transform columns "$..'PDBx:struct_keywords'.'PDBx:pdbx_keywords'.'_$'", "$..'PDBx:struct_keywords'.'PDBx:text'.'_$'" to "dataItem.keywords[]" apply {{
+arr=re.split("\s*,\s*",value1,)
+arr.extend(re.split("\s*,\s*",value2))
+result=arr
+}};
+
+/*
+transform column "$.'PDBx:datablock'.'PDBx:database_2Category'.'PDBx:database_2'[*].'@database_code'" to "identifiers[].ID";
+transform column "$.'PDBx:datablock'.'PDBx:database_2Category'.'PDBx:database_2'[*].'@database_id'" to "identifiers[].Source";
+*/
+
+transform columns "$.'PDBx:datablock'.'PDBx:database_2Category'.'PDBx:database_2'[*].'@database_id'",
+ "$.'PDBx:datablock'.'PDBx:database_2Category'.'PDBx:database_2'[*].'@database_code'"  to "identifiers[].ID" apply {{
+result = value1.lower() + ':' + value2
+}};
+/* Can we transform into CURIE? */
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:gene_src_genus'.'_$'" to "organism.source[].genus";
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:gene_src_species'.'_$'" to "organism.source[].species";
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:gene_src_strain'.'_$'" to "organism.source[].strain";
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'pdbx_gene_src_ncbi_taxonomy_id'.'_$'" to "organism.source[].ncbiID" apply {{ result = 'ncbitax:' + value }};
+/* Can we convert into CURIE ncbitax: */
+
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'pdbx_gene_src_scientific_name'.'_$'" to "organism.source[].scientificName";
+/* ==> Can we add role: natural organism from which the gene was obtained */
+
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:host_org_genus'.'_$'" to "organism.host[].genus";
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:host_org_species'.'_$'" to "organism.host[].species";
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_host_org_strain'.'_$'" to "organism.host[].strain";
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'pdbx_host_org_ncbi_taxonomy_id'.'_$'" to "organism.host[].ncbiID" apply {{ result = 'ncbitax:' + value }};
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'pdbx_host_org_scientific_name'.'_$'" to "organism.host[].scientificName";
+/* Can we add role: organism that served as host for the production of the entity */
+transform column "$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'pdbx_gene_src_gene'.'_$'" to "gene[].name";

@@ -1,0 +1,10 @@
+{
+  "name": "rss",
+  "params": [
+    {
+      "name": "ingestURL",
+      "desc": "The URL for the RSS feed",
+      "required": "true"
+    }
+  ]
+}

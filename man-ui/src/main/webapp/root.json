@@ -1,0 +1,372 @@
+{
+  "id": 1,
+  "text": "",
+  "children": [{
+    "id": 2,
+    "text": "web-app",
+    "children": [
+      {
+        "id": 3,
+        "text": "servlet[]",
+        "children": [
+          {
+            "id": 4,
+            "text": "0",
+            "children": [
+              {
+                "id": 5,
+                "text": "servlet-name : cofaxCDS"
+              },
+              {
+                "id": 6,
+                "text": "servlet-class : org.cofax.cds.CDSServlet"
+              },
+              {
+                "id": 7,
+                "text": "init-param",
+                "children": [
+                  {
+                    "id": 8,
+                    "text": "configGlossary:installationAt : Philadelphia, PA"
+                  },
+                  {
+                    "id": 9,
+                    "text": "configGlossary:adminEmail : ksm@pobox.com"
+                  },
+                  {
+                    "id": 10,
+                    "text": "configGlossary:poweredBy : Cofax"
+                  },
+                  {
+                    "id": 11,
+                    "text": "configGlossary:poweredByIcon : /images/cofax.gif"
+                  },
+                  {
+                    "id": 12,
+                    "text": "configGlossary:staticPath : /content/static"
+                  },
+                  {
+                    "id": 13,
+                    "text": "templateProcessorClass : org.cofax.WysiwygTemplate"
+                  },
+                  {
+                    "id": 14,
+                    "text": "templateLoaderClass : org.cofax.FilesTemplateLoader"
+                  },
+                  {
+                    "id": 15,
+                    "text": "templatePath : templates"
+                  },
+                  {
+                    "id": 16,
+                    "text": "templateOverridePath : "
+                  },
+                  {
+                    "id": 17,
+                    "text": "defaultListTemplate : listTemplate.htm"
+                  },
+                  {
+                    "id": 18,
+                    "text": "defaultFileTemplate : articleTemplate.htm"
+                  },
+                  {
+                    "id": 19,
+                    "text": "useJSP : false"
+                  },
+                  {
+                    "id": 20,
+                    "text": "jspListTemplate : listTemplate.jsp"
+                  },
+                  {
+                    "id": 21,
+                    "text": "jspFileTemplate : articleTemplate.jsp"
+                  },
+                  {
+                    "id": 22,
+                    "text": "cachePackageTagsTrack : 200"
+                  },
+                  {
+                    "id": 23,
+                    "text": "cachePackageTagsStore : 200"
+                  },
+                  {
+                    "id": 24,
+                    "text": "cachePackageTagsRefresh : 60"
+                  },
+                  {
+                    "id": 25,
+                    "text": "cacheTemplatesTrack : 100"
+                  },
+                  {
+                    "id": 26,
+                    "text": "cacheTemplatesStore : 50"
+                  },
+                  {
+                    "id": 27,
+                    "text": "cacheTemplatesRefresh : 15"
+                  },
+                  {
+                    "id": 28,
+                    "text": "cachePagesTrack : 200"
+                  },
+                  {
+                    "id": 29,
+                    "text": "cachePagesStore : 100"
+                  },
+                  {
+                    "id": 30,
+                    "text": "cachePagesRefresh : 10"
+                  },
+                  {
+                    "id": 31,
+                    "text": "cachePagesDirtyRead : 10"
+                  },
+                  {
+                    "id": 32,
+                    "text": "searchEngineListTemplate : forSearchEnginesList.htm"
+                  },
+                  {
+                    "id": 33,
+                    "text": "searchEngineFileTemplate : forSearchEngines.htm"
+                  },
+                  {
+                    "id": 34,
+                    "text": "searchEngineRobotsDb : WEB-INF/robots.db"
+                  },
+                  {
+                    "id": 35,
+                    "text": "useDataStore : true"
+                  },
+                  {
+                    "id": 36,
+                    "text": "dataStoreClass : org.cofax.SqlDataStore"
+                  },
+                  {
+                    "id": 37,
+                    "text": "redirectionClass : org.cofax.SqlRedirection"
+                  },
+                  {
+                    "id": 38,
+                    "text": "dataStoreName : cofax"
+                  },
+                  {
+                    "id": 39,
+                    "text": "dataStoreDriver : com.microsoft.jdbc.sqlserver.SQLServerDriver"
+                  },
+                  {
+                    "id": 40,
+                    "text": "dataStoreUrl : jdbc:microsoft:sqlserver://LOCALHOST:1433;DatabaseName=goon"
+                  },
+                  {
+                    "id": 41,
+                    "text": "dataStoreUser : sa"
+                  },
+                  {
+                    "id": 42,
+                    "text": "dataStorePassword : dataStoreTestQuery"
+                  },
+                  {
+                    "id": 43,
+                    "text": "dataStoreTestQuery : SET NOCOUNT ON;select test='test';"
+                  },
+                  {
+                    "id": 44,
+                    "text": "dataStoreLogFile : /usr/local/tomcat/logs/datastore.log"
+                  },
+                  {
+                    "id": 45,
+                    "text": "dataStoreInitConns : 10"
+                  },
+                  {
+                    "id": 46,
+                    "text": "dataStoreMaxConns : 100"
+                  },
+                  {
+                    "id": 47,
+                    "text": "dataStoreConnUsageLimit : 100"
+                  },
+                  {
+                    "id": 48,
+                    "text": "dataStoreLogLevel : debug"
+                  },
+                  {
+                    "id": 49,
+                    "text": "maxUrlLength : 500"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "text": "1",
+            "children": [
+              {
+                "id": 51,
+                "text": "servlet-name : cofaxEmail"
+              },
+              {
+                "id": 52,
+                "text": "servlet-class : org.cofax.cds.EmailServlet"
+              },
+              {
+                "id": 53,
+                "text": "init-param",
+                "children": [
+                  {
+                    "id": 54,
+                    "text": "mailHost : mail1"
+                  },
+                  {
+                    "id": 55,
+                    "text": "mailHostOverride : mail2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 56,
+            "text": "2",
+            "children": [
+              {
+                "id": 57,
+                "text": "servlet-name : cofaxAdmin"
+              },
+              {
+                "id": 58,
+                "text": "servlet-class : org.cofax.cds.AdminServlet"
+              }
+            ]
+          },
+          {
+            "id": 59,
+            "text": "3",
+            "children": [
+              {
+                "id": 60,
+                "text": "servlet-name : fileServlet"
+              },
+              {
+                "id": 61,
+                "text": "servlet-class : org.cofax.cds.FileServlet"
+              }
+            ]
+          },
+          {
+            "id": 62,
+            "text": "4",
+            "children": [
+              {
+                "id": 63,
+                "text": "servlet-name : cofaxTools"
+              },
+              {
+                "id": 64,
+                "text": "servlet-class : org.cofax.cms.CofaxToolsServlet"
+              },
+              {
+                "id": 65,
+                "text": "init-param",
+                "children": [
+                  {
+                    "id": 66,
+                    "text": "templatePath : toolstemplates/"
+                  },
+                  {
+                    "id": 67,
+                    "text": "log : 1"
+                  },
+                  {
+                    "id": 68,
+                    "text": "logLocation : /usr/local/tomcat/logs/CofaxTools.log"
+                  },
+                  {
+                    "id": 69,
+                    "text": "logMaxSize : "
+                  },
+                  {
+                    "id": 70,
+                    "text": "dataLog : 1"
+                  },
+                  {
+                    "id": 71,
+                    "text": "dataLogLocation : /usr/local/tomcat/logs/dataLog.log"
+                  },
+                  {
+                    "id": 72,
+                    "text": "dataLogMaxSize : "
+                  },
+                  {
+                    "id": 73,
+                    "text": "removePageCache : /content/admin/remove?cache=pages&id="
+                  },
+                  {
+                    "id": 74,
+                    "text": "removeTemplateCache : /content/admin/remove?cache=templates&id="
+                  },
+                  {
+                    "id": 75,
+                    "text": "fileTransferFolder : /usr/local/tomcat/webapps/content/fileTransferFolder"
+                  },
+                  {
+                    "id": 76,
+                    "text": "lookInContext : 1"
+                  },
+                  {
+                    "id": 77,
+                    "text": "adminGroupID : 4"
+                  },
+                  {
+                    "id": 78,
+                    "text": "betaServer : true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 79,
+        "text": "servlet-mapping",
+        "children": [
+          {
+            "id": 80,
+            "text": "cofaxCDS : /"
+          },
+          {
+            "id": 81,
+            "text": "cofaxEmail : /cofaxutil/aemail/*"
+          },
+          {
+            "id": 82,
+            "text": "cofaxAdmin : /admin/*"
+          },
+          {
+            "id": 83,
+            "text": "fileServlet : /static/*"
+          },
+          {
+            "id": 84,
+            "text": "cofaxTools : /tools/*"
+          }
+        ]
+      },
+      {
+        "id": 85,
+        "text": "taglib",
+        "children": [
+          {
+            "id": 86,
+            "text": "taglib-uri : cofax.tld"
+          },
+          {
+            "id": 87,
+            "text": "taglib-location : /WEB-INF/tlds/cofax.tld"
+          }
+        ]
+      }
+    ]
+  }]
+}

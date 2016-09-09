@@ -1,0 +1,63 @@
+{
+  "name": "rsync",
+  "params": [
+    {
+      "name": "rsyncSource",
+      "desc": "Original source rsync URL e.g. rsync.wwpdb.org::ftp_data/structures/divided/XML-noatom/ for PDB",
+      "required": "true"
+    },
+    {
+      "name": "rsyncDest",
+      "desc": "Destination directory where the remote directory structure will be synced e.g. /var/temp/pdb_rsync",
+      "required": "true"
+    },
+    {
+      "name": "port",
+      "desc": "The port number on which the remote rsync server listens",
+      "required": "true"
+    },
+    {
+      "name": "rsyncIncludePattern",
+      "desc": "File suffix pattern to rsync only files with the provided suffix (e.g *.xml)",
+      "required": "false"
+    },
+    {
+       "name":"preprocessCommand",
+       "desc":"Name of the preprocessing command to be applied to the files of a record. (Currently only 'combine' is supported).",
+       "required":"false"
+    },
+    {
+      "name": "surroundingTag",
+      "desc": "The XML element tag name for the root element of the combined record XML file generated from individual raw XML files using the preprocessCommand 'combine'. This is required if you have set preprocessCommand to 'combine'.",
+      "required": "false"
+    },
+    {
+      "name": "filenamePattern",
+      "desc": "Regular expression to be used to select files to be ingested/processed after rsync e.g. \".+\\.xml\\.gz$\"",
+      "required": "true"
+    },
+    {
+      "name": "fullSet",
+      "desc": "If true regardless what is changed during the rsync all local files are processed",
+      "required": "true",
+      "default": "false"
+    },
+    {
+      "name": "largeRecords",
+      "desc": "If records are very large as in PDB case setting this option true allow the original record stored via GridFS instead of as a subdocument",
+      "required": "true",
+      "default": "false"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record",
+      "required": "true"
+    },
+    {
+      "name": "topElement",
+      "desc": "The XML element surrounding the records (i.e. parent of the documentElement)",
+      "required": "false"
+    }
+    
+  ]
+}

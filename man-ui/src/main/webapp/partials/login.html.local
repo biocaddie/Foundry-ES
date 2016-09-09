@@ -1,0 +1,20 @@
+<form name="loginForm" ng-controller="LoginController as loginCtrl" ng-submit="loginCtrl.login()">
+    <div id="loginPanel" style="width:400px; margin-left:auto; margin-right: auto;">
+        <div class="jumbotron" style="padding:10px;">
+            <form role="form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginId">Username</label>
+                    <input ng-model="loginCtrl.user.loginId" class="form-control" type="text" id="loginId"
+                           name="loginId" placeholder="User">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input ng-model="loginCtrl.user.password" class="form-control" id="password" type="password"
+                           name="password" placeholder="Password"/>
+                </div>
+                <button class="btn btn-default" id="loginBut">Submit</button>
+            </form>
+        </div>
+    </div>
+</form>

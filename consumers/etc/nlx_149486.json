@@ -1,0 +1,37 @@
+{
+    "SourceInformation": {
+      "ResourceID": "nlx_149486",
+      "Name": "Dryad",
+      "DataSource": "Dryad OAI"
+    },
+    
+    "IngestConfiguration": {
+      "IngestMethod": "OAI",
+      "IngestURL": "http://www.datadryad.org/oai/request",
+      "allowDuplicates": "False",
+      
+      "CrawlFrequency": {
+        "CrawlType": "Frequency",
+        "Hours": "48",
+        "Minutes": "0",
+        "StartDays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "StartTime": "0:00",
+        "OperationEndTime": "24:00" 
+      }  
+    },
+        
+    "ContentSpecification": {
+      "KeepMissing": "false",
+      "TopElement": "ListRecords",
+      "DocumentElement": "record",
+      "Locale": "en_US"
+    },
+    
+    "PrimaryKey": {
+      "Fields": ["$.record.header.identifier.'_$'"],
+      "Delimiter": [":"],
+      "Method": "Value"
+    },
+      
+    "DocumentProcessing": ["UUID Generation", "Index"]     
+}

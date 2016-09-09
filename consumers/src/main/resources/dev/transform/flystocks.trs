@@ -1,0 +1,14 @@
+transform columns "$.Donor","$.'Donor\'s source'" to "Donor's Source" apply {{result=value1 if not value2 else value2}};
+transform columns "$.'Donor'","$.'Donor\'s source'" to "Donor" apply {{result=value2 if not value2 and not value1 else ''}};
+transform column "$.'Stk #'" to "ID" apply {{result='BDSC:' + value}};
+transform column "$.'Stk #'" to "CatalogID";
+transform column "$.'Stk #'" to "Stocknumber";
+transform column "$.'Stk #'" to "URL" apply {{result='http://flystocks.bio.indiana.edu/Reports/' + value + '.html'}};
+transform column "$.'Breakpts/Insertion'" to "breakpoints";
+transform column "$.'Stk #'" to "Species" apply {{result='Fruit Fly'}};
+transform column "$.'Genotype'" to "Name";
+transform column "$.'Comments'" to "Notes";
+transform column "$.'Date added'" to "Date Added";
+transform column "$.'Stk #'" to "CURIE" apply {{result='BDSC:' + value}};
+transform column "$.'Ch # all'" to "Background" apply {{result='Wild Type' if value.lower() == 'wt' else 'Mutant'}};
+transform column "$.'Ch # all'" to "Affected Gene" apply {{result='Chromosome:' + 'NULL' if value.lower() == 'wt' else value}};

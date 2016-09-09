@@ -1,0 +1,50 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0009",
+    "name": "ArrayExpress",
+    "dataSource": "biocaddie-0009",
+    "description": "",
+    "repositoryID":"nif-0000-30123"
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform column \"$.'experiment'.'id'.'_$'\" to \"dataItem.ID\";\ntransform column \"$.'experiment'.'name'.'_$'\" to \"dataItem.title\";\ntransform column \"$.'experiment'.'description'.'text'.'_$'\" to \"dataItem.description\";\n\ntransform column \"$.'experiment'.'experimenttype'.'_$'\" to \"dataItem.experimentType\";\n\ntransform column \"$.'experiment'.'species'.'_$'\" to \"organism.experiment.species\";\n\ntransform column \"$.'experiment'.'releasedate'.'_$'\" to \"dataItem.releaseDate\";\ntransform column \"$.'experiment'.'submissiondate'.'_$'\" to \"dataItem.submissionDate\";\ntransform column \"$.'experiment'.'lastupdatedate'.'_$'\" to \"dataItem.lastUpdateDate\";\n\ntransform column \"$.'experiment'.'id'.'_$'\" to \"citation.count\" apply {{ result = '0' }};",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "XML",
+    "ingestURL": "http://www.ebi.ac.uk/arrayexpress/xml/v2/experiments",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "topElement": "experiments",
+    "documentElement": "experiment"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.experiment.id"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

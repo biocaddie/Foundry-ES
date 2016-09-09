@@ -1,0 +1,8 @@
+<common-cfg>
+    <mongo-config db="discotest">
+        <servers>
+            <server host="burak.crbs.ucsd.edu" port="27017"/>
+            <server host="burak.crbs.ucsd.edu" port="27018"/>
+        </servers>
+    </mongo-config>
+</common-cfg>

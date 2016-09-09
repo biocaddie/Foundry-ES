@@ -1,0 +1,14 @@
+{
+  "data": {
+    "l2_nif_0000_00006_data_nif_neuron": {
+      "region1": "Medulla",
+      "region2": "Tectum",
+      "region3": "Layer 1",
+    },
+    "l2_nif_0000_00006_data_allpublications": {
+      "brain_region": "Hipocampus",
+      "cell_type": "Purkinje cells",
+      "system_used": "NeuronJ"
+    }
+  }
+}

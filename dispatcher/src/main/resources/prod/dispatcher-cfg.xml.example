@@ -1,0 +1,46 @@
+<dispatcher-cfg>
+    <mongo-config db="discotest" collection="nifRecords">
+        <servers>
+            <server host="porthos.neuinfo.org" port="27017"/>
+            <server host="aramis.neuinfo.org" port="27017"/>
+        </servers>
+    </mongo-config>
+    <activemq-config>
+        <brokerURL>tcp://cliff.neuinfo.org:61616</brokerURL>
+    </activemq-config>
+    <checkpoint-file>/var/data/foundry/mongo-dispatcher-cp.xml</checkpoint-file>
+    <queues>
+        <queue name="foundry.indexCheckpoint" headerFields="History.batchId,SourceInfo.SourceID"></queue>
+    </queues>
+    <wf-mappings>
+        <wf-mapping name="NIF Workflow" ingestorOutStatus="new.1" updateOutStatus="id_assigned.1">
+            <step>UUID Generation</step>
+            <step>Index</step>
+        </wf-mapping>
+    </wf-mappings>
+    <workflows>
+        <workflow name="NIF workflow">
+            <routes>
+                <route>
+                    <condition>
+                        <predicate name="processing.status" op="eq" value="new.1"/>
+                    </condition>
+                    <to>foundry.uuid.1</to>
+                </route>
+                <route>
+                    <condition>
+                        <predicate name="processing.status" op="eq" value="id_assigned.1"/>
+                    </condition>
+                    <to>foundry.transform.1</to>
+                </route>
+                <route>
+                    <condition>
+                        <predicate name="processing.status" op="eq" value="transformed.1"/>
+                    </condition>
+                    <to>foundry.index.1</to>
+                </route>
+            </routes>
+        </workflow>
+    </workflows>
+</dispatcher-cfg>
+

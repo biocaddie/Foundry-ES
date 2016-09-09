@@ -1,0 +1,59 @@
+{
+  "name": "web",
+  "params": [
+    {
+      "name": "ingestURL",
+      "desc": "The URL to the data download site",
+      "required": "true"
+    },
+    {
+      "name": "cacheFilename",
+      "desc": "The prefix of the local cache file name(s)",
+      "required": "true"
+    },
+    {
+      "name": "filenamePattern",
+      "desc": "Regular expression to be used to select files to be ingested/processed after web download e.g. \"\\w.+\\.xml\"",
+      "required": "false"
+    },
+    {
+      "name": "parserType",
+      "desc": "The response format of the raw data (currently xml or json)",
+      "required":"true",
+      "default": "xml",
+      "choices": ["xml","json"]
+
+    },
+    {
+      "name": "topElement",
+      "desc": "The XML element under which the records are contained. This is not used for JSON response format.",
+      "required": "false"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record or for JSON documents the name of JSON array containing the records.",
+      "required": "true"
+    },
+    {
+      "name": "limitParam",
+      "desc": "URL query parameter name to set a limit on how many items will be returned per call",
+      "required": "false"
+    },
+    {
+      "name": "limitValue",
+      "desc": "The maximum number of records that will be returned at each call to the original resource",
+      "required": "false"
+    },
+    {
+      "name": "offsetParam",
+      "desc": "URL query parameter name to specify from which record to start in subsequent calls to the original resource",
+      "required": "false"
+    },
+    {
+      "name": "useCache",
+      "desc": "If set true and cached data exists from previous ingestion that will be used",
+      "required": "false",
+      "default": "true"
+    }
+  ]
+}

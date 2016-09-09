@@ -1,0 +1,26 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Help</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Python Scripting examples for Transformation Rules</h4>
+        <p>For single source path transformations, (i.e. transformation rules like below)</p>
+        <pre>transform column "$..'PDBx:struct'.'PDBx:title'.'_$'" to "dataItem.title";</pre>
+        The matching source paths value in the current document is provided to the Python script in the
+        <code>APPLY</code> section of the transformation rule as the predefined variable <code>value</code>.
+        Each <code>APPLY</code> Python code block needs to assign the new transformed value to the Python
+        variable <code>result</code> and return it.
+        <pre>result = 'doi:' + value </pre>
+        <p>For multiple source path transformations, for each source path the matching values are provided as
+            <code>value1</code>,<code>value2</code> etc for the first, second and so on source path.
+        </p>
+    <pre>
+arr=re.split("\s*,\s*",value1,)
+arr.extend(re.split("\s*,\s*",value2))
+result=arr
+    </pre>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+    </div>
+</div>

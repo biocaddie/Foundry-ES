@@ -1,0 +1,54 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0002",
+    "name": "LINCS Cells",
+    "dataSource": "biocaddie-0002",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "/* identity transformation script for LINCS cells */\ntransform column \"$.'Cell HMS LINCS ID'\" to \"'Cell HMS LINCS ID'\";\ntransform column \"$.'Cell Name'\" to \"'Cell Name'\";\ntransform column \"$.'LINCS ID'\" to \"'LINCS ID'\";\ntransform column \"$.'Reference Source'\" to \"'Reference Source'\";\ntransform column \"$.'Reference Source ID'\" to \"'Reference Source ID'\";\ntransform column \"$.'Datarecord ID'\" to \"'Datarecord ID'\";\ntransform column \"$.'Alternative Names'\" to \"'Alternative Names'\";\ntransform column \"$.'Organism'\" to \"'Organism'\";\ntransform column \"$.'Organ'\" to \"'Organ'\";\ntransform column \"$.'Tissue'\" to \"'Tissue'\";\ntransform column \"$.'Cell Type'\" to \"'Cell Type'\";\ntransform column \"$.'Cell Type Detail'\" to \"'Cell Type Detail'\";\ntransform column \"$.'Disease'\" to \"'Disease'\";\ntransform column \"$.'Disease Detail'\" to \"'Disease Detail'\";\ntransform column \"$.'Growth Properties'\" to \"'Growth Properties'\";\ntransform column \"$.'Genetic Modification'\" to \"'Genetic Modification'\";\ntransform column \"$.'Recommended Culture Conditions'\" to \"'Recommended Culture Conditions'\";\ntransform column \"$.'Verification Reference Profile'\" to \"'Verification Reference Profile'\";\ntransform column \"$.'Known Mutations'\" to \"'Known Mutations'\";\ntransform column \"$.'Citation Information for Mutations'\" to \"'Citation Information for Mutations'\";\ntransform column \"$.'Reference Source URL'\" to \"'Reference Source URL'\";\ntransform column \"$.'Donor Sex'\" to \"'Donor Sex'\";\ntransform column \"$.'Donor Age'\" to \"'Donor Age'\";\ntransform column \"$.'Donor Ethnicity'\" to \"'Donor Ethnicity'\";\ntransform column \"$.'Donor Health Status'\" to \"'Donor Health Status'\";\ntransform column \"$.'Relevant Citations'\" to \"'Relevant Citations'\";\ntransform column \"$.'Usage Note'\" to \"'Usage Note'\";\ntransform column \"$.'Date Publicly Available'\" to \"'Date Publicly Available'\";\ntransform column \"$.'Most Recent Update'\" to \"'Most Recent Update'\";",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "CSV",
+    "ingestURL": "http://lincs.hms.harvard.edu/db/cells/?search=&output_type=.csv",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "escapeCharacter": "&#092;",
+    "locale": "en_US",
+    "ignoreLines": "1",
+    "delimiter": ",",
+    "textQuote": "&#034;",
+    "headerLine": "1",
+    "keepMissing": "false"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'Cell Name'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

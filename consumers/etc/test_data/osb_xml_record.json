@@ -1,0 +1,153 @@
+{
+  "project": {
+    "id": {"_$": "123"},
+    "name": {"_$": "3D Olfactory Bulb - Migliore et al. 2014"},
+    "identifier": {"_$": "miglioreetal14_olfactorybulb3d"},
+    "description": {"_$": "github:README.md"},
+    "status": {"_$": "1"},
+    "custom_fields": {
+      "@type": "array",
+      "custom_field": [
+        {
+          "@id": "1",
+          "@name": "Original format",
+          "value": {"_$": "NEURON"}
+        },
+        {
+          "@id": "6",
+          "@name": "NeuroML version",
+          "value": {"_$": "v2.x"}
+        },
+        {
+          "@id": "7",
+          "@name": "ModelDB reference",
+          "value": {"_$": "151681"}
+        },
+        {
+          "@id": "12",
+          "@name": "Category",
+          "value": {"_$": "Project"}
+        },
+        {
+          "@id": "14",
+          "@name": "GitHub repository",
+          "value": {"_$": "https://github.com/OpenSourceBrain/MiglioreEtAl14_OlfactoryBulb3D.git"}
+        },
+        {
+          "@id": "15",
+          "@name": "NeuroML v1.x support",
+          "value": {"_$": "-1"}
+        },
+        {
+          "@id": "16",
+          "@name": "NEURON support",
+          "value": {"_$": "1"}
+        },
+        {
+          "@id": "17",
+          "@name": "GENESIS 2 support",
+          "value": {"_$": "0"}
+        },
+        {
+          "@id": "18",
+          "@name": "MOOSE support",
+          "value": {"_$": "0"}
+        },
+        {
+          "@id": "19",
+          "@name": "NeuroML v2.x support",
+          "value": {"_$": "1"}
+        },
+        {
+          "@id": "21",
+          "@name": "Status info",
+          "value": {"_$": "Conversion of the model to NeuroML2 has begun"}
+        },
+        {
+          "@id": "22",
+          "@name": "Spine classification",
+          "value": {"_$": "Vertebrate"}
+        },
+        {
+          "@id": "23",
+          "@name": "Family",
+          "value": {"_$": "Mammalian"}
+        },
+        {
+          "@id": "25",
+          "@name": "Specie",
+          "value": {"_$": "Rodent"}
+        },
+        {
+          "@id": "24",
+          "@name": "Brain region",
+          "value": {"_$": "Olfactory bulb"}
+        },
+        {
+          "@id": "26",
+          "@name": "Cell type",
+          "value": {"_$": "Network model"}
+        },
+        {
+          "@id": "27",
+          "@name": "Bitbucket repository",
+          "value": {}
+        },
+        {
+          "@id": "28",
+          "@name": "PSICS support",
+          "value": {"_$": "-1"}
+        },
+        {
+          "@id": "29",
+          "@name": "NEST support",
+          "value": {"_$": "-1"}
+        },
+        {
+          "@id": "30",
+          "@name": "PyNN support",
+          "value": {"_$": "-1"}
+        },
+        {
+          "@id": "31",
+          "@name": "Brian support",
+          "value": {"_$": "-1"}
+        },
+        {
+          "@id": "33",
+          "@name": "NeuroLex Ids: Cells",
+          "value": {"_$": "nifext_120"}
+        },
+        {
+          "@id": "34",
+          "@name": "Curation level",
+          "value": {"_$": "1"}
+        },
+        {
+          "@id": "35",
+          "@name": "Endorsement",
+          "value": {"_$": "1"}
+        },
+        {
+          "@id": "38",
+          "@name": "CNO Ids",
+          "value": {}
+        },
+        {
+          "@id": "42",
+          "@name": "Metadata",
+          "value": {}
+        },
+        {
+          "@id": "43",
+          "@name": "Tags",
+          "value": {"_$": "Olfaction,Olfactory system"}
+        }
+      ]
+    },
+    "created_on": {"_$": "2015-03-02T10:57:52Z"},
+    "updated_on": {"_$": "2015-03-02T11:04:14Z"}
+  },
+  "_@default": "",
+  "_@xml": "http://www.w3.org/XML/1998/namespace"
+}

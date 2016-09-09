@@ -1,0 +1,7 @@
+<common-cfg>
+  <mongo-config db="discotest" collection="nifRecords">
+    <servers>
+      <server host="localhost" port="27017" />
+    </servers>
+  </mongo-config>
+</common-cfg>

@@ -1,0 +1,171 @@
+<div ng-controller="SourcesController as sourcesCtrl">
+
+    <nav class="navbar navbar-default" id="mainNavBar" style="display: none; padding-right:10px;">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-default navbar-btn navbar-right" id="logoutBut">Logout</button>
+        </div>
+    </nav>
+    <ul class="nav nav-tabs" role="tablist" id="navTabs" style="display: none">
+        <li role="presentation" class="active"><a id="siTabLink" href="#sourceIngestion" role="tab" data-toggle="tab">Source
+            Ingestion Description</a></li>
+        <li role="presentation"><a id="trTabLink" href="#transformations" role="tab"
+                                   data-toggle="tab">Transformation</a>
+        </li>
+    </ul>
+    <!-- tab panels -->
+    <div class="tab-content" style="display: none" id="tabContent">
+        <div role="tabpanel" class="tab-pane active" id="sourceIngestion">
+            <h3><span class="label label-primary">Source Ingestion Description</span></h3>
+
+            <div class="row" style="margin-bottom: 5px; margin-top: 5px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-1" for="siSourceCB">Source</label>
+
+                        <div class="col-md-7">
+                            <select id="siSourceCB" class="form-control input-sm">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-sm" id="updateSourceBut">Update</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="newSourceBut">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;New Source</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="form-horizontal" id="sdForm">
+                <input type="hidden" id="source" name="source" value=""/>
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="sourceID">Source ID</label>
+
+                            <div class="col-md-8">
+                                <input type="text" class="form-control input-sm validate[required]" id="sourceID"
+                                       size="15"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="sourceName">Resource Name</label>
+
+                            <div class="col-md-8">
+                                <input type="text" class="form-control input-sm validate[required]" id="sourceName"
+                                       size="15"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="dataSource">Data Source</label>
+
+                            <div class="col-md-8">
+                                <input type="text" class="form-control input-sm" id="dataSource" size="15"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ingestorTypeCB">Ingestors</label>
+
+                            <div class="col-md-8">
+                                <select id="ingestorTypeCB" class="form-control input-sm">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">`
+                    <div class="col-mod-12">
+                        <fieldset class="params-border" id="paramsPanel">
+                            <legend class="params-border">Parameters</legend>
+
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:5px; margin-bottom: 5px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary" id="saveSourceBut">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="transformations">
+            <br/>
+
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="sourceCB">Source</label>
+
+                            <div class="col-md-8">
+                                <select id="sourceCB" class="form-control input-sm">
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-primary" id="sampleDataBut">Sample Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mainPanel">
+                    <div class="row">
+                        <div class="col-mod-12">
+                            <fieldset class="params-border" id="pkPanel">
+                                <legend class="params-border">Primary Key Definition</legend>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">PK Field</label>
+
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control input-sm" id="pkLocInput"/>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="#" class="btn btn-primary " id="pkFieldAddBut">
+                                                <span class="glyphicon glyphicon-plus"></span> Add Field</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="trEditPanel" style="width:800px;">
+                        <div id="trsPanel">/* transformation script goes here */</div>
+                        <div class="row" style="margin-top:5px; margin-bottom: 5px;">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary" id="testTrScriptBut">Test
+                                            Transformation Script
+                                        </button>
+                                        &nbsp;
+                                        <button type="button" class="btn btn-primary" id="updateResourceBut">Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="trResultPanel" style="display: none; margin-top:5px;"></div>
+                        <div id="docTreePanel" class="dtpanel"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

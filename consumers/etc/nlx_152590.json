@@ -1,0 +1,37 @@
+{
+    "sourceInformation": {
+      "resourceID": "nlx_152590",
+      "name": "Open Source Brain",
+      "dataSource": "OSB Projects"
+    },
+    
+    "ingestConfiguration": {
+      "ingestMethod": "XML",
+      "ingestURL": "http://www.opensourcebrain.org/projects.xml?limit=1000",
+      "allowDuplicates": "False",
+      
+      "crawlFrequency": {
+        "crawlType": "Frequency",
+        "hours": "48",
+        "minutes": "0",
+        "startDays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "startTime": "0:00",
+        "operationEndTime": "24:00" 
+      }  
+    },
+        
+    "contentSpecification": {
+      "keepMissing": "false",
+      "topElement": "projects",
+      "documentElement": "project",
+      "locale": "en_US"
+    },
+    
+    "originalRecordIdentifierSpec": {
+      "fields": ["$..id.'_$'"],
+      "delimiter": [":"],
+      "method": "Value"
+    },
+      
+    "documentProcessing": ["UUID Generation", "Index"]     
+}

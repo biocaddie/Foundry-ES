@@ -1,0 +1,28 @@
+{
+  "record": {
+    "header": {
+      "identifier": {"_$": "oai:eddi.cvrgrid.org:11614/646"},
+      "datestamp": {"_$": "2015-07-17T20:51:13Z"},
+      "setSpec": [
+        {"_$": "com_11614_1"},
+        {"_$": "col_11614_2"}
+      ],
+      "repository": {"_$": "Electrophysiology Data Discovery Index"},
+      "setName": {"_$": "ECG"},
+      "fetchURL": {"_$": "https://eddi.cvrgrid.org/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=com_11614_1"},
+      "recNum": {"_$": "0"}
+    },
+    "metadata": {"oai_dc:dc": {
+      "@schemaLocation": "http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+      "dc:title": {"_$": "MIT-BIH Arrhythmia Database"},
+      "dc:date": [
+        {"_$": "2015-01-14T16:56:21Z"},
+        {"_$": "2015-01-14T16:56:21Z"},
+        {"_$": "2005-05"}
+      ],
+      "dc:identifier": {"_$": "http://hdl.handle.net/11614/646"}
+    }}
+  },
+  "_@default": "http://www.openarchives.org/OAI/2.0/",
+  "_@xml": "http://www.w3.org/XML/1998/namespace"
+}

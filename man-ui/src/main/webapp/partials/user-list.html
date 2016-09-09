@@ -1,0 +1,23 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Users</div>
+    <div class="panel-body">
+        <button type="button" ng-click="showAddUser()" class="btn btn-sm btn-primary">
+            <i class="glyphicon glyphicon-plus"></i>New User</button>
+        <table st-table="userList" class="table table-striped">
+            <thead>
+               <tr>
+                   <th>Username</th>
+                   <th>Role</th>
+                   <th>Email</th>
+               </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in userList" ng-dblclick="showUser(user)">
+                    <td>{{user.username}}</td>
+                    <td>{{user.role}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

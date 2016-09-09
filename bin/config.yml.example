@@ -1,0 +1,24 @@
+pluginDir: "/var/data/foundry-es/consumer_plugins/plugins"
+database:
+    host: localhost
+    port: 27017
+    db: discotest
+    collection: nifRecords
+mq:
+    brokerURL: "tcp://localhost:61616"
+
+workflow:
+    "NIF Workflow":
+        - uuidGen
+        - transform
+
+consumers:
+    - uuidGen:
+         class: org.neuinfo.foundry.consumers.jms.consumers.plugins.DocIDAssigner
+         status: id_assigned
+    - transform:
+         class: org.neuinfo.foundry.consumers.jms.consumers.plugins.TransformationEnhancer
+         status: transformed
+         addResourceInfo: true
+
+

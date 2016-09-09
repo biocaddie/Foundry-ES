@@ -1,0 +1,54 @@
+{
+  "name": "aspera",
+  "params": [
+    {
+      "name": "source",
+      "desc": "Original source rsync URL e.g. anonftp@ftp.ncbi.nlm.nih.gov:/geo/datasets/",
+      "required": "true"
+    },
+    {
+      "name": "dest",
+      "desc": "Destination directory where the remote directory structure will be downloaded by Aspera client e.g. /var/data/geo",
+      "required": "true"
+    },
+    {
+      "name": "args",
+      "desc": "The arguments to be passed to the aspera client e.g. -k1 -Tr -l200m",
+      "required": "true",
+      "default": "-k1 -Tr -l200m"
+    },
+    {
+      "name": "publicKeyFile",
+      "desc": "The path to the Aspera client's publicKeyFile /var/home/bozyurt/.aspera/connect/etc/asperaweb_id_dsa.openssh",
+      "required": "true"
+    },
+    {
+      "name": "parserType",
+      "desc": "The type of parser to be used to extract fields from the data file (Only geo is supported currently.)",
+      "required": "true",
+      "default": "geo"
+    },
+    {
+      "name": "fileNamePattern",
+      "desc": "Regular expression to be used to select files to be ingested/processed after download via Aspera e.g. \".soft\\.gz$\"",
+      "required": "true"
+    },
+    {
+      "name": "fullSet",
+      "desc": "If true regardless what is changed during the rsync all local files are processed",
+      "required": "true",
+      "default": "false"
+    },
+    {
+      "name": "largeRecords",
+      "desc": "If records are very large as in PDB case setting this option true allow the original record stored via GridFS instead of as a subdocument",
+      "required": "true",
+      "default": "false"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record",
+      "required": "true"
+    }
+  ]
+}

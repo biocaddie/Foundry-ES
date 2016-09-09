@@ -1,0 +1,6 @@
+<consumers>
+    <consumer-cfg name="ingestor" type="native" listeningQueueName="foundry.dispatcher"
+           successMessageQueueName="foundry.new" failureMessageQueueName="foundry.error" >
+    </consumer-cfg>
+
+</consumers>

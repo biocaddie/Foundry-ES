@@ -1,0 +1,54 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0003",
+    "name": "LINCS Small Molecules",
+    "dataSource": "biocaddie-0003",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "/* identity transformation script for LINCS small molecules */\ntransform column \"$.'Small Mol HMS LINCS ID'\" to \"Small Mol HMS LINCS ID\";\ntransform column \"$.'Small Mol Name'\" to \"Small Mol Name\";\ntransform column \"$.'Alternative Names'\" to \"Alternative Names\";\ntransform column \"$.'LINCS ID'\" to \"LINCS ID\";\ntransform column \"$.'PubChem CID'\" to \"PubChem CID\";\ntransform column \"$.'Datarecord ID'\" to \"Datarecord ID\";\ntransform column \"$.'Salt ID'\" to \"Salt ID\";\ntransform column \"$.'ChEMBL ID'\" to \"ChEMBL ID\";\ntransform column \"$.'ChEBI ID'\" to \"ChEBI ID\";\ntransform column \"$.'InChi'\" to \"InChi\";\ntransform column \"$.'InChi Key'\" to \"InChi Key\";\ntransform column \"$.'SMILES'\" to \"SMILES\";\ntransform column \"$.'Molecular Mass'\" to \"Molecular Mass\";\ntransform column \"$.'Molecular Formula'\" to \"Molecular Formula\";",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "CSV",
+    "ingestURL": "http://lincs.hms.harvard.edu/db/sm/?search=&output_type=.csv",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "escapeCharacter": "&#092;",
+    "locale": "en_US",
+    "ignoreLines": "1",
+    "delimiter": ",",
+    "textQuote": "&#034;",
+    "headerLine": "1",
+    "keepMissing": "false"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'Small Mol Name'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

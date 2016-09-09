@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Transfomation Script Builder</title>
+   <link rel="stylesheet" href="css/themes/default/style.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<div id="trsPanel">/* transformation script goes here */</div>
+
+<div id="docTreePanel" class="dtpanel"></div>
+
+ <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <script src="js/jstree.min.js"></script>
+ <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+   var trsEditor = ace.edit('trsPanel');
+   trsEditor.setTheme("ace/theme/monokai");
+   trsEditor.getSession().setMode("ace/mode/javascript");
+   trsEditor.resize();
+
+   var jst = $('#docTreePanel').jstree({
+     'core': {
+       'data': {
+          "url": "./root.json",
+          "dataType": "json"}
+     }
+     });
+     
+    jst.on('select_node.jstree', function(node, selected, e) {
+         //console.dir(node);
+         //console.dir(selected);
+         var selectedNode = selected.node;
+         
+         function toJSONPath(aNode) {
+            var idx,text = aNode.text;
+            if (!text) {
+               return null;
+            }
+            idx = text.lastIndexOf(':');
+            if (idx !== -1) {
+               return '"' + $.trim(text.substring(0,idx)) + '"';
+            } else {
+               if ($.isNumeric(text)) {
+                  return text;
+               } else {
+                return '"' + text + '"'; 
+               }
+            }
+         }
+         var pn,jpFrag,i, idx,s = '$.', len = selectedNode.parents.length;
+         var instance = $('#docTreePanel').jstree(true);
+         for(i = len -2; i >= 0; --i) {
+            pn = instance.get_node(selectedNode.parents[i]);
+            if (pn) {
+               jpFrag = toJSONPath(pn);
+               if (jpFrag) {
+                  if ($.isNumeric(jpFrag)) {
+                     idx =  s.lastIndexOf('[]');
+                     if (idx !== -1) {
+                        s = s.substring(0,idx) + '[' + jpFrag + ']' + s.substring(idx + 2);
+                     }
+                  } else {
+                     s += jpFrag + '.';
+                  }
+               }
+            }
+         }
+         s += toJSONPath(selectedNode);
+         console.log(s);
+         var session = trsEditor.getSession();
+         session.insert({row:session.getLength(), column:0},"\n" + s);
+  });
+
+</script>
+</body>
+</html>
+

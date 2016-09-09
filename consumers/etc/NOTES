@@ -1,0 +1,9 @@
+Ingestors with sampleMode
+1) NIFXMLIngestor
+2) NIFCSVIngestor
+3) RsyncIngestor
+4) FTPIngestor
+5) ResourceIngestor
+6) AsperaIngestor
+7) RSSIngestor
+

@@ -1,0 +1,43 @@
+{
+  "name": "disco",
+  "params": [
+    {
+      "name": "jdbcURL",
+      "desc": "The JDBC url for the DISCO crawler database",
+      "required": "true",
+      "default":""
+    },
+    {
+      "name": "dbUser",
+      "desc": "The username for the DISCO database connection",
+      "required": "true"
+    },
+    {
+      "name": "dbPassword",
+      "desc": "The password for the DISCO database connection",
+      "required": "true"
+    },
+    {
+      "name": "tableName",
+      "desc": "The view table name in the DISCO to ingest from",
+      "required": "false"
+    },
+    {
+      "name": "schemaName",
+      "desc": "The DISCO database schema name",
+      "required": "false",
+      "default": "dvp"
+    },
+    {
+       "name":"tableNames",
+       "desc": "A list of comma-delimited db tables names to join (The first table is considered the main table) (e.g. l2_nlx_55906_study_activation activation,l2_nlx_55906_study_detail study, l2_nlx_55906_study_feature feature) ",
+       "required":"false"
+    },
+    {
+       "name":"joinInfo",
+       "desc": "A list of comma-delimited join statements with optional column value striping (e.g activation.id=study.id, study.id = feature.id::strip)",
+       "required":"false"
+    }
+
+  ]
+}

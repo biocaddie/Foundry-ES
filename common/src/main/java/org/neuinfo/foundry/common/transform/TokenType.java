@@ -1,0 +1,12 @@
+package org.neuinfo.foundry.common.transform;
+
+/**
+ * Created by bozyurt on 4/13/15.
+ */
+public enum TokenType {
+    TRANSFORM, COLUMN, COLUMNS, TO, APPLY, COMMA, DOUBLE_LCB, DOUBLE_RCB,
+    SEMICOLON, SCRIPT, LITERAL, STRING, LEFT_PAREN, RIGHT_PAREN, MAP,
+    COMMENT_START, COMMENT_END, LEFT_RB, RIGHT_RB, PERIOD, ASSIGN, NAME,
+    FROM, UNION, LET, EQUALS,
+    IF, THEN, GT, LT, GTE, LTE, NE, NOT, EXISTS, LIKE, AND, OR
+}

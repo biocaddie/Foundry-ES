@@ -1,0 +1,55 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0001",
+    "name": "RCSB Protein Data Bank",
+    "dataSource": "biocaddie-0001",
+    "repositoryID": "",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:title'.'_$'\" to \"citation.title\";\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:year'.'_$'\" to \"citation.year\";\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:journal_abbrev'.'_$'\" to \"citation.journal\";\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:journal_id_ISSN'.'_$'\" to \"citation.journalISSN\";\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:page_first'.'_$'\" to \"citation.firstPage\";\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:page_last'.'_$'\" to \"citation.lastPage\";\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:pdbx_database_id_PubMed'.'_$'\" to \"citation.PMID\" apply {{ result = 'pmid:' + value }};\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:pdbx_database_id_DOI'.'_$'\" to \"citation.DOI\" apply {{ result = 'doi:' + value }};\ntransform column \"$..'PDBx:citation'[?(@.'@id' = 'primary')].'PDBx:pdbx_database_id_DOI'.'_$'\" to \"citation.count\" apply {{ result = '0' }};\ntransform column \"$.'PDBx:datablock'.'PDBx:citation_authorCategory'.'PDBx:citation_author'[?(@.'@citation_id'='primary')].'@name'\" to \"citation.author.name[]\";\n\n\ntransform column \"$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:formula'.'_$'\" to \"materialEntity[].formula\";\ntransform column \"$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:formula_weight'.'_$'\" to \"materialEntity[].weight\";\ntransform column \"$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:name'.'_$'\" to \"materialEntity[].name\";\ntransform column \"$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:type'.'_$'\" to \"materialEntity[].type\";\ntransform column \"$.'PDBx:datablock'.'PDBx:chem_compCategory'.'PDBx:chem_comp'[*].'PDBx:name'.'_$'\" to \"materialEntity[].role\" apply {{ result = 'chemical component' }};\n\ntransform column \"$..'PDBx:entryCategory'.'PDBx:entry'.'@id'\" to \"dataItem.ID\";\ntransform column \"$..'PDBx:struct'.'PDBx:title'.'_$'\" to \"dataItem.title\";\ntransform column \"$..'PDBx:struct'.'PDBx:pdbx_descriptor'.'_$'\" to \"dataItem.description\";\ntransform column \"$..'PDBx:database_PDB_revCategory'.'PDBx:database_PDB_rev'[?(@.'@num' = '1')].'PDBx:date'.'_$'\" to \"dataItem.releaseDate\";\ntransform column \"$..'PDBx:database_PDB_revCategory'.'PDBx:database_PDB_rev'[?(@.'@num' = '1')].'PDBx:date_original'.'_$'\" to \"dataItem.depositionDate\";\ntransform columns \"$..'PDBx:struct_keywords'.'PDBx:pdbx_keywords'.'_$'\", \"$..'PDBx:struct_keywords'.'PDBx:text'.'_$'\" to \"dataItem.keywords[]\" apply {{\narr=re.split(\"\\s*,\\s*\",value1,)\narr.extend(re.split(\"\\s*,\\s*\",value2))\nresult=arr\n}};\n\n\ntransform columns \"$.'PDBx:datablock'.'PDBx:database_2Category'.'PDBx:database_2'[*].'@database_id'\",\n \"$.'PDBx:datablock'.'PDBx:database_2Category'.'PDBx:database_2'[*].'@database_code'\"  to \"identifiers[].ID\" apply {{\nresult = value1.lower() + ':' + value2\n}};\n\n\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:gene_src_genus'.'_$'\" to \"organism.source[].genus\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:gene_src_species'.'_$'\" to \"organism.source[].species\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:gene_src_strain'.'_$'\" to \"organism.source[].strain\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_gene_src_ncbi_taxonomy_id'.'_$'\" to \"organism.source[].ncbiID\" apply {{ result = 'ncbitax:' + value }};\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_gene_src_scientific_name'.'_$'\" to \"organism.source[].scientificName\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_gene_src_common_name'.'_$'\" to \"organism.source[].commonName\";\n\n\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:host_org_genus'.'_$'\" to \"organism.host[].genus\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:host_org_species'.'_$'\" to \"organism.host[].species\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_host_org_strain'.'_$'\" to \"organism.host[].strain\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_host_org_ncbi_taxonomy_id'.'_$'\" to \"organism.host[].ncbiID\" apply {{ result = 'ncbitax:' + value }};\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_host_org_scientific_name'.'_$'\" to \"organism.host[].scientificName\";\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_host_org_common_name'.'_$'\" to \"organism.host[].commonName\";\n\ntransform column \"$.'PDBx:datablock'.'PDBx:entity_src_genCategory'.'PDBx:entity_src_gen'[*].'PDBx:pdbx_gene_src_gene'.'_$'\" to \"gene[].name\";",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "RSYNC",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "port": "33444",
+    "rysncSource": "rsync.wwpdb.org::ftp_data/structures/divided/XML-noatom/",
+    "fileNamePattern": "+\\.xml\\.gz$",
+    "rsyncDest": "/var/data/foundry-es/cache/data/pdb_rsync",
+    "largeRecords": "true",
+    "fullSet": "false",
+    "documentElement": "datablock"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'PDBx:datablock'.'@datablockName'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "collectionName": "",
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

@@ -1,0 +1,1628 @@
+{
+  "sbml": {
+    "@level": "2",
+    "@metaid": "_978777",
+    "@version": "4",
+    "model": {
+      "@id": "MODEL1204280005",
+      "@name": "Sarma2012 - Interaction topologies of MAPK cascade (M1_K1_PSEQ)",
+      "@metaid": "COPASI1",
+      "notes": {"body": {"div": [
+        {
+          "@class": "dc:title",
+          "_$": "Sarma2012 - Interaction topologies of MAPK cascade (M1_K1_PSEQ)"
+        },
+        {
+          "@class": "dc:description",
+          "p": [
+            {
+              "_$": "The paper presents the various interaction topologies between the kinases and phosphatases of MAPK cascade. They are represented as M1, M2, M3 and M4. The kinases of the cascades are MKKK, MKK and MK, and Phos1, Phos2 and Phos3 are phosphatases of the system. All three kinases in a M1 type network have specific phosphatases Phos1, Phos2 and Phos3 for the dephosphorylation process. In a M2 type system, kinases MKKK and MKK are dephosphorylated by Phos1 and MK is dephosphorylated by Phos2. The architecture of system like M3 is such that MKKK gets dephosphorylated by Phos1, whereas Phos2 dephosphorylates both MKK and MK. Finally, the MAPK cascade exhibiting more complex design of interaction such as M4 is such that MKKK and MKK are dephosphorylated by Phos1 whereas MKK and MK are dephosphorylated by Phos2. In addition, as it is plausible that the kinases can sequester their respective phosphatases by binding to them, this is considered in the design of the systems (PSEQ-sequestrated system; USEQ-Unsequestrated system). The robustness of different interaction designs of the systems is checked, considering both MichaelisMenten type kinetics (K1) and elementary mass action kinetics (K2). In the living systems, the MAPK cascade transmit both short and long duration signals where short duration signals trigger proliferation and long duration signals trigger cell differentiation. These signal variants are considered to interpret the systems behaviour. It is also tested how the robustness and signal response behaviour of K2 models are affected when K2 assumes quasi steady state (QSS). The combinations of the above variants resulted in 40 models (MODEL1204280001-40). All these 40 models are available from        \n            .",
+              "a": {
+                "@href": "http://www.ebi.ac.uk/biomodels",
+                "_$": "BioModels Database"
+              }
+            },
+            {
+              "_$": "Models that correspond to type M4 with mass-action kinetics K2, in four condition 1) USEQ [        \n            - M4_K2_USEQ], 2) PSEQ [        \n            - M4_K2_PSEQ], 3) QSS_USEQ [        \n            - M4_K2_QSS_USEQ] and 4) QSS_PSEQ [        \n            - M4_K2_QSS_PSEQ] are available from the curated branch. The remaining 36 models can be accessed from the non-curated branch.",
+              "a": [
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels/MODEL1204280020",
+                  "_$": "MODEL1204280020"
+                },
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels/MODEL1204280024",
+                  "_$": "MODEL1204280024"
+                },
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels/MODEL1204280036",
+                  "_$": "MODEL1204280036"
+                },
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels/MODEL1204280040",
+                  "_$": "MODEL1204280040"
+                }
+              ]
+            },
+            {
+              "_$": "This model [        \n            - M1_K1_PSEQ] correspond to type M1 with MichaelisMenton type kinetics K1, in PSEQ (sequestrated ) condition. This model can accessed from the non-curated branch of        \n            .",
+              "a": [
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels/MODEL1204280005",
+                  "_$": "MODEL1204280005"
+                },
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels",
+                  "_$": "BioModels Database"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@class": "dc:bibliographicCitation",
+          "p": [
+            {"_$": "This model is described in the article:"},
+            {"_$": "Abstract:"}
+          ],
+          "div": [
+            {
+              "@class": "bibo:title",
+              "a": {
+                "@href": "http://identifiers.org/pubmed/22748295",
+                "@title": "Access to this publication",
+                "_$": "Different designs of kinase-phosphatase interactions and phosphatase sequestration shapes the robustness and signal flow in the MAPK cascade."
+              }
+            },
+            {
+              "@class": "bibo:authorList",
+              "_$": "Sarma U, Ghosh I."
+            },
+            {
+              "@class": "bibo:Journal",
+              "_$": "BMC Syst Biol. 2012 Jul 2;6(1):82."
+            },
+            {
+              "@class": "bibo:abstract",
+              "p": {"_$": "ABSTRACT:\n\nBACKGROUND: The three layer mitogen activated protein kinase (MAPK) signaling cascade exhibits different designs of interactions between its kinases and phosphatases. While the sequential interactions between the three kinases of the cascade are tightly preserved, the phosphatases of the cascade, such as MKP3 and PP2A, exhibit relatively diverse interactions with their substrate kinases. Additionally, the kinases of the MAPK cascade can also sequester their phosphatases. Thus, each topologically distinct interaction design of kinases and phosphatases could exhibit unique signal processing characteristics, and the presence of phosphatase sequestration may lead to further fine tuning of the propagated signal.\nRESULTS:\n\nWe have built four models of the MAPK cascade, each model with identical kinase-kinase interactions but unique kinases-phosphatases interactions. Our simulations unravelled that MAPK cascade's robustness to external perturbations is a function of nature of interaction between its kinases and phosphatases. The cascade's output robustness was enhanced when phosphatases were sequestrated by their target kinases. We uncovered a novel implicit/hidden negative feedback loop from the phosphatase MKP3 to its upstream kinase Raf-1, in a cascade resembling the B cell MAPK cascade. Notably, strength of the feedback loop was reciprocal to the strength of phosphatases' sequestration and stronger sequestration abolished the feedback loop completely. An experimental method to verify the presence of the feedback loop is also proposed. We further showed, when the models were activated by transient signal, memory (total time taken by the cascade output to reach its unstimulated level after removal of signal) of a cascade was determined by the specific designs of interaction among its kinases and phosphatases.\nCONCLUSIONS:\n\nDifferences in interaction designs among the kinases and phosphatases can differentially shape the robustness and signal response behaviour of the MAPK cascade and phosphatase sequestration dramatically enhances the robustness to perturbations in each of the cascade. An implicit negative feedback loop was uncovered from our analysis and we found that strength of the negative feedback loop is reciprocally related to the strength of phosphatase sequestration. Duration of output phosphorylation in response to a transient signal was also found to be determined by the individual cascade's kinase-phosphatase interaction design."}
+            }
+          ]
+        },
+        {
+          "@class": "dc:publisher",
+          "p": [
+            {
+              "_$": "This model is hosted on        \n            and identified by:        \n            .",
+              "a": [
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels",
+                  "_$": "BioModels Database"
+                },
+                {
+                  "@href": "http://www.ebi.ac.uk/biomodels/MODEL1204280005",
+                  "_$": "MODEL1204280005"
+                }
+              ]
+            },
+            {
+              "_$": "To cite BioModels Database, please use: BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. PMID:        \n            .",
+              "a": {
+                "@href": "http://identifiers.org/pubmed/20587024",
+                "_$": "20587024"
+              }
+            }
+          ]
+        },
+        {
+          "@class": "dc:license",
+          "p": {"_$": "To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to [CC0 Public Domain Dedication>http://creativecommons.org/publicdomain/zero/1.0/] for more information."}
+        }
+      ]}},
+      "annotation": {
+        "COPASI": {"rdf:RDF": {"rdf:Description": {
+          "@rdf:about": "#COPASI1",
+          "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T15:39:03Z"}}}
+        }}},
+        "rdf:RDF": {"rdf:Description": {
+          "@rdf:about": "#COPASI1",
+          "bqmodel:is": {"rdf:Bag": {"rdf:li": {"@rdf:resource": "http://identifiers.org/biomodels.db/MODEL1204280005"}}},
+          "bqmodel:isDescribedBy": {"rdf:Bag": {"rdf:li": {"@rdf:resource": "http://identifiers.org/pubmed/22748295"}}}
+        }}
+      },
+      "listOfFunctionDefinitions": {"functionDefinition": [
+        {
+          "@id": "function_10",
+          "@name": "10",
+          "@metaid": "COPASI29",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI29",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:09:47Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k10"}},
+              {"ci": {"_$": "MK_P"}},
+              {"ci": {"_$": "K10"}},
+              {"ci": {"_$": "MK_PP"}},
+              {"ci": {"_$": "MK"}},
+              {"ci": {"_$": "P3"}},
+              {"ci": {"_$": "K9"}},
+              {"ci": {"_$": "Kse3"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k10"},
+                      {"_$": "P3"},
+                      {"_$": "MK_P"}
+                    ]
+                  },
+                  "ci": {"_$": "K10"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK"},
+                        {"_$": "K9"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK_P"},
+                        {"_$": "K10"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK_PP"},
+                        {"_$": "Kse3"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_1",
+          "@name": "1",
+          "@metaid": "COPASI30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI30",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:10:07Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "MKKK"}},
+              {"ci": {"_$": "K1"}},
+              {"ci": {"_$": "k1"}},
+              {"ci": {"_$": "Sig"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "times": {},
+                  "ci": [
+                    {"_$": "k1"},
+                    {"_$": "Sig"},
+                    {"_$": "MKKK"}
+                  ]
+                },
+                {
+                  "plus": {},
+                  "ci": [
+                    {"_$": "K1"},
+                    {"_$": "MKKK"}
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_2",
+          "@name": "2",
+          "@metaid": "COPASI31",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI31",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:11:15Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "MKKK_P"}},
+              {"ci": {"_$": "K2"}},
+              {"ci": {"_$": "k2"}},
+              {"ci": {"_$": "P1"}},
+              {"ci": {"_$": "MKKK"}},
+              {"ci": {"_$": "Kse1"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k2"},
+                      {"_$": "P1"},
+                      {"_$": "MKKK_P"}
+                    ]
+                  },
+                  "ci": {"_$": "K2"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKKK_P"},
+                        {"_$": "K2"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKKK"},
+                        {"_$": "Kse1"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_3",
+          "@name": "3",
+          "@metaid": "COPASI32",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI32",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:12:20Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k3"}},
+              {"ci": {"_$": "MKKK_P"}},
+              {"ci": {"_$": "MKK"}},
+              {"ci": {"_$": "K3"}},
+              {"ci": {"_$": "MKK_P"}},
+              {"ci": {"_$": "K4"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k3"},
+                      {"_$": "MKKK_P"},
+                      {"_$": "MKK"}
+                    ]
+                  },
+                  "ci": {"_$": "K3"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK"},
+                        {"_$": "K3"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK_P"},
+                        {"_$": "K4"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_4",
+          "@name": "4",
+          "@metaid": "COPASI33",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI33",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:16:53Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k4"}},
+              {"ci": {"_$": "MKKK_P"}},
+              {"ci": {"_$": "MKK_P"}},
+              {"ci": {"_$": "K4"}},
+              {"ci": {"_$": "MKK"}},
+              {"ci": {"_$": "K3"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k4"},
+                      {"_$": "MKKK_P"},
+                      {"_$": "MKK_P"}
+                    ]
+                  },
+                  "ci": {"_$": "K4"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK"},
+                        {"_$": "K3"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK_P"},
+                        {"_$": "K4"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_5",
+          "@name": "5",
+          "@metaid": "COPASI34",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI34",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:19:38Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k5"}},
+              {"ci": {"_$": "MKK_PP"}},
+              {"ci": {"_$": "K5"}},
+              {"ci": {"_$": "MKK_P"}},
+              {"ci": {"_$": "MKK"}},
+              {"ci": {"_$": "P2"}},
+              {"ci": {"_$": "K6"}},
+              {"ci": {"_$": "Kse2"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k5"},
+                      {"_$": "P2"},
+                      {"_$": "MKK_PP"}
+                    ]
+                  },
+                  "ci": {"_$": "K5"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK_PP"},
+                        {"_$": "K5"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK_P"},
+                        {"_$": "K6"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK"},
+                        {"_$": "Kse2"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_6",
+          "@name": "6",
+          "@metaid": "COPASI35",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI35",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:21:51Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k6"}},
+              {"ci": {"_$": "MKK_P"}},
+              {"ci": {"_$": "K6"}},
+              {"ci": {"_$": "MKK_PP"}},
+              {"ci": {"_$": "MKK"}},
+              {"ci": {"_$": "P2"}},
+              {"ci": {"_$": "K5"}},
+              {"ci": {"_$": "Kse2"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k6"},
+                      {"_$": "P2"},
+                      {"_$": "MKK_P"}
+                    ]
+                  },
+                  "ci": {"_$": "K6"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK_PP"},
+                        {"_$": "K5"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK_P"},
+                        {"_$": "K6"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MKK"},
+                        {"_$": "Kse2"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_7",
+          "@name": "7",
+          "@metaid": "COPASI36",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI36",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:24:53Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k7"}},
+              {"ci": {"_$": "MKK_PP"}},
+              {"ci": {"_$": "MK"}},
+              {"ci": {"_$": "K7"}},
+              {"ci": {"_$": "MK_P"}},
+              {"ci": {"_$": "K8"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k7"},
+                      {"_$": "MKK_PP"},
+                      {"_$": "MK"}
+                    ]
+                  },
+                  "ci": {"_$": "K7"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK"},
+                        {"_$": "K7"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK_P"},
+                        {"_$": "K8"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_8",
+          "@name": "8",
+          "@metaid": "COPASI37",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI37",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:29:07Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k7"}},
+              {"ci": {"_$": "MKK_PP"}},
+              {"ci": {"_$": "MK_P"}},
+              {"ci": {"_$": "K8"}},
+              {"ci": {"_$": "MK"}},
+              {"ci": {"_$": "K7"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k7"},
+                      {"_$": "MKK_PP"},
+                      {"_$": "MK_P"}
+                    ]
+                  },
+                  "ci": {"_$": "K8"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK"},
+                        {"_$": "K7"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK_P"},
+                        {"_$": "K8"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        },
+        {
+          "@id": "function_9",
+          "@name": "9",
+          "@metaid": "COPASI38",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI38",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:30:05Z"}}}
+          }}}},
+          "math": {"lambda": {
+            "bvar": [
+              {"ci": {"_$": "k9"}},
+              {"ci": {"_$": "MK_PP"}},
+              {"ci": {"_$": "K9"}},
+              {"ci": {"_$": "MK_P"}},
+              {"ci": {"_$": "MK"}},
+              {"ci": {"_$": "P3"}},
+              {"ci": {"_$": "K10"}},
+              {"ci": {"_$": "Kse3"}}
+            ],
+            "apply": {
+              "divide": {},
+              "apply": [
+                {
+                  "divide": {},
+                  "apply": {
+                    "times": {},
+                    "ci": [
+                      {"_$": "k9"},
+                      {"_$": "P3"},
+                      {"_$": "MK_PP"}
+                    ]
+                  },
+                  "ci": {"_$": "K9"}
+                },
+                {
+                  "plus": {},
+                  "cn": {"_$": "1"},
+                  "apply": [
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK"},
+                        {"_$": "K9"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK_P"},
+                        {"_$": "K10"}
+                      ]
+                    },
+                    {
+                      "divide": {},
+                      "ci": [
+                        {"_$": "MK_PP"},
+                        {"_$": "Kse3"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }}
+        }
+      ]},
+      "listOfUnitDefinitions": {"unitDefinition": [
+        {
+          "@id": "volume",
+          "@name": "volume",
+          "@metaid": "_978790",
+          "listOfUnits": {"unit": {
+            "@scale": "-3",
+            "@metaid": "_978802",
+            "@kind": "litre"
+          }}
+        },
+        {
+          "@id": "substance",
+          "@name": "substance",
+          "@metaid": "_978814",
+          "listOfUnits": {"unit": {
+            "@scale": "-9",
+            "@metaid": "_978826",
+            "@kind": "mole"
+          }}
+        }
+      ]},
+      "listOfCompartments": {"compartment": {
+        "@id": "compartment_1",
+        "@name": "compartment",
+        "@metaid": "_978838",
+        "@size": "1"
+      }},
+      "listOfSpecies": {"species": [
+        {
+          "@id": "species_1",
+          "@initialConcentration": "299.999971106626",
+          "@name": "MKKK",
+          "@metaid": "_978850",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_2",
+          "@initialConcentration": "0",
+          "@name": "MKKK_P",
+          "@metaid": "_978862",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_3",
+          "@initialConcentration": "1199.9998844265",
+          "@name": "MKK",
+          "@metaid": "_978874",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_4",
+          "@initialConcentration": "0",
+          "@name": "MKK_P",
+          "@metaid": "_978886",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_5",
+          "@initialConcentration": "0",
+          "@name": "MKK_PP",
+          "@metaid": "_978898",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_6",
+          "@initialConcentration": "1199.9998844265",
+          "@name": "MK",
+          "@metaid": "COPASI2",
+          "@compartment": "compartment_1",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI2",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:46:42Z"}}}
+          }}}}
+        },
+        {
+          "@id": "species_7",
+          "@initialConcentration": "0",
+          "@name": "MK_P",
+          "@metaid": "COPASI3",
+          "@compartment": "compartment_1",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI3",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-08-25T16:07:34Z"}}}
+          }}}}
+        },
+        {
+          "@id": "species_8",
+          "@initialConcentration": "0",
+          "@name": "MK_PP",
+          "@metaid": "_978910",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_9",
+          "@initialConcentration": "99.9999951844376",
+          "@name": "P1",
+          "@metaid": "COPASI4",
+          "@compartment": "compartment_1",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI4",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-22T09:59:08Z"}}}
+          }}}}
+        },
+        {
+          "@id": "species_10",
+          "@initialConcentration": "99.9999951844376",
+          "@name": "P2",
+          "@metaid": "COPASI5",
+          "@compartment": "compartment_1",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI5",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T18:03:40Z"}}}
+          }}}}
+        },
+        {
+          "@id": "species_11",
+          "@initialConcentration": "199.999990368875",
+          "@name": "P3",
+          "@metaid": "_978922",
+          "@compartment": "compartment_1"
+        },
+        {
+          "@id": "species_12",
+          "@initialConcentration": "9.99999951844375",
+          "@name": "Sig",
+          "@metaid": "_978934",
+          "@compartment": "compartment_1"
+        }
+      ]},
+      "listOfParameters": {"parameter": [
+        {
+          "@id": "parameter_1",
+          "@name": "K1",
+          "@metaid": "COPASI6",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI6",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T10:42:16Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_2",
+          "@name": "K2",
+          "@metaid": "COPASI7",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI7",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T10:43:22Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_3",
+          "@name": "Kse1",
+          "@metaid": "COPASI8",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI8",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T10:56:15Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_4",
+          "@name": "Kse2",
+          "@metaid": "COPASI9",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI9",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T10:59:22Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_5",
+          "@name": "Kse3",
+          "@metaid": "COPASI10",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI10",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T10:59:32Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_6",
+          "@name": "K3",
+          "@metaid": "COPASI11",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI11",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:22:20Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_7",
+          "@name": "K4",
+          "@metaid": "COPASI12",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI12",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:22:31Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_8",
+          "@name": "K5",
+          "@metaid": "COPASI13",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI13",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:22:39Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_9",
+          "@name": "K6",
+          "@metaid": "COPASI14",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI14",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:22:48Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_10",
+          "@name": "K7",
+          "@metaid": "COPASI15",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI15",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:22:54Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_11",
+          "@name": "K8",
+          "@metaid": "COPASI16",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI16",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:23:03Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_12",
+          "@name": "K9",
+          "@metaid": "COPASI17",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI17",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:23:10Z"}}}
+          }}}}
+        },
+        {
+          "@id": "parameter_13",
+          "@name": "K10",
+          "@metaid": "COPASI18",
+          "@value": "30",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI18",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T13:23:19Z"}}}
+          }}}}
+        }
+      ]},
+      "listOfReactions": {"reaction": [
+        {
+          "@id": "reaction_1",
+          "@name": "1",
+          "@metaid": "COPASI19",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI19",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T15:41:12Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_1",
+            "@metaid": "_978946"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_2",
+            "@metaid": "_978958"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_12",
+              "@metaid": "_978970"
+            },
+            {
+              "@species": "species_1",
+              "@metaid": "_867389"
+            },
+            {
+              "@species": "species_12",
+              "@metaid": "_867401"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_978982",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_1"},
+                {"_$": "species_1"},
+                {"_$": "parameter_1"},
+                {"_$": "k1"},
+                {"_$": "species_12"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k1",
+              "@name": "k1",
+              "@metaid": "_978994",
+              "@value": "0.2"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_2",
+          "@name": "2",
+          "@metaid": "COPASI20",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI20",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:11:12Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_2",
+            "@metaid": "_979006"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_1",
+            "@metaid": "_979018"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_9",
+              "@metaid": "_979030"
+            },
+            {
+              "@species": "species_1",
+              "@metaid": "_979042"
+            },
+            {
+              "@species": "species_2",
+              "@metaid": "_867413"
+            },
+            {
+              "@species": "species_9",
+              "@metaid": "_867425"
+            },
+            {
+              "@species": "species_1",
+              "@metaid": "_867437"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979054",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_2"},
+                {"_$": "species_2"},
+                {"_$": "parameter_2"},
+                {"_$": "k2"},
+                {"_$": "species_9"},
+                {"_$": "species_1"},
+                {"_$": "parameter_3"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k2",
+              "@name": "k2",
+              "@metaid": "_979066",
+              "@value": "0.01"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_4",
+          "@name": "4",
+          "@metaid": "COPASI21",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI21",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:16:51Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_4",
+            "@metaid": "_979078"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_5",
+            "@metaid": "_979090"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_2",
+              "@metaid": "_979102"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_979114"
+            },
+            {
+              "@species": "species_2",
+              "@metaid": "_867449"
+            },
+            {
+              "@species": "species_4",
+              "@metaid": "_867461"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_867473"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979126",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_4"},
+                {"_$": "k4"},
+                {"_$": "species_2"},
+                {"_$": "species_4"},
+                {"_$": "parameter_7"},
+                {"_$": "species_3"},
+                {"_$": "parameter_6"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k4",
+              "@name": "k4",
+              "@metaid": "_979138",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_5",
+          "@name": "5",
+          "@metaid": "COPASI22",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI22",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:19:35Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_5",
+            "@metaid": "_979150"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_4",
+            "@metaid": "_979162"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_4",
+              "@metaid": "_979174"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_979186"
+            },
+            {
+              "@species": "species_10",
+              "@metaid": "_979198"
+            },
+            {
+              "@species": "species_5",
+              "@metaid": "_867485"
+            },
+            {
+              "@species": "species_4",
+              "@metaid": "_867497"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_867510"
+            },
+            {
+              "@species": "species_10",
+              "@metaid": "_867522"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979210",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_5"},
+                {"_$": "k5"},
+                {"_$": "species_5"},
+                {"_$": "parameter_8"},
+                {"_$": "species_4"},
+                {"_$": "species_3"},
+                {"_$": "species_10"},
+                {"_$": "parameter_9"},
+                {"_$": "parameter_4"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k5",
+              "@name": "k5",
+              "@metaid": "_979222",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_6",
+          "@name": "6",
+          "@metaid": "COPASI23",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI23",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:21:49Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_4",
+            "@metaid": "_979234"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_3",
+            "@metaid": "_979246"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_5",
+              "@metaid": "_979258"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_979270"
+            },
+            {
+              "@species": "species_10",
+              "@metaid": "_979282"
+            },
+            {
+              "@species": "species_4",
+              "@metaid": "_867534"
+            },
+            {
+              "@species": "species_5",
+              "@metaid": "_867546"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_867558"
+            },
+            {
+              "@species": "species_10",
+              "@metaid": "_867570"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979294",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_6"},
+                {"_$": "k6"},
+                {"_$": "species_4"},
+                {"_$": "parameter_9"},
+                {"_$": "species_5"},
+                {"_$": "species_3"},
+                {"_$": "species_10"},
+                {"_$": "parameter_8"},
+                {"_$": "parameter_4"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k6",
+              "@name": "k6",
+              "@metaid": "_979306",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_7",
+          "@name": "7",
+          "@metaid": "COPASI24",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI24",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:24:50Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_6",
+            "@metaid": "_979318"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_7",
+            "@metaid": "_979330"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_5",
+              "@metaid": "_979342"
+            },
+            {
+              "@species": "species_7",
+              "@metaid": "_979354"
+            },
+            {
+              "@species": "species_5",
+              "@metaid": "_867582"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_867594"
+            },
+            {
+              "@species": "species_7",
+              "@metaid": "_867606"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979366",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_7"},
+                {"_$": "k7"},
+                {"_$": "species_5"},
+                {"_$": "species_6"},
+                {"_$": "parameter_10"},
+                {"_$": "species_7"},
+                {"_$": "parameter_11"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k7",
+              "@name": "k7",
+              "@metaid": "_979378",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_8",
+          "@name": "8",
+          "@metaid": "COPASI25",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI25",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:29:05Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_7",
+            "@metaid": "_979390"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_8",
+            "@metaid": "_979402"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_5",
+              "@metaid": "_979414"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_979426"
+            },
+            {
+              "@species": "species_5",
+              "@metaid": "_867618"
+            },
+            {
+              "@species": "species_7",
+              "@metaid": "_867630"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_867642"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979438",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_8"},
+                {"_$": "k7"},
+                {"_$": "species_5"},
+                {"_$": "species_7"},
+                {"_$": "parameter_11"},
+                {"_$": "species_6"},
+                {"_$": "parameter_10"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k7",
+              "@name": "k7",
+              "@metaid": "_979450",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_9",
+          "@name": "9",
+          "@metaid": "COPASI26",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI26",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:30:03Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_8",
+            "@metaid": "_979462"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_7",
+            "@metaid": "_979474"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_7",
+              "@metaid": "_979486"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_979498"
+            },
+            {
+              "@species": "species_11",
+              "@metaid": "_979510"
+            },
+            {
+              "@species": "species_8",
+              "@metaid": "_867654"
+            },
+            {
+              "@species": "species_7",
+              "@metaid": "_867666"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_867678"
+            },
+            {
+              "@species": "species_11",
+              "@metaid": "_867690"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979522",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_9"},
+                {"_$": "k9"},
+                {"_$": "species_8"},
+                {"_$": "parameter_12"},
+                {"_$": "species_7"},
+                {"_$": "species_6"},
+                {"_$": "species_11"},
+                {"_$": "parameter_13"},
+                {"_$": "parameter_5"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k9",
+              "@name": "k9",
+              "@metaid": "_979534",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_10",
+          "@name": "10",
+          "@metaid": "COPASI27",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI27",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-07-20T16:43:10Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_7",
+            "@metaid": "_979546"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_6",
+            "@metaid": "_979558"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_8",
+              "@metaid": "_979570"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_979582"
+            },
+            {
+              "@species": "species_11",
+              "@metaid": "_979594"
+            },
+            {
+              "@species": "species_7",
+              "@metaid": "_867702"
+            },
+            {
+              "@species": "species_8",
+              "@metaid": "_867715"
+            },
+            {
+              "@species": "species_6",
+              "@metaid": "_867727"
+            },
+            {
+              "@species": "species_11",
+              "@metaid": "_867739"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979606",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_10"},
+                {"_$": "k10"},
+                {"_$": "species_7"},
+                {"_$": "parameter_13"},
+                {"_$": "species_8"},
+                {"_$": "species_6"},
+                {"_$": "species_11"},
+                {"_$": "parameter_12"},
+                {"_$": "parameter_5"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k10",
+              "@name": "k10",
+              "@metaid": "_979618",
+              "@value": "0.1"
+            }}
+          }
+        },
+        {
+          "@id": "reaction_3",
+          "@name": "3",
+          "@metaid": "COPASI28",
+          "@reversible": "false",
+          "annotation": {"COPASI": {"rdf:RDF": {"rdf:Description": {
+            "@rdf:about": "#COPASI28",
+            "dcterms:created": {"rdf:Description": {"dcterms:W3CDTF": {"_$": "2011-12-21T11:04:00Z"}}}
+          }}}},
+          "listOfReactants": {"speciesReference": {
+            "@species": "species_3",
+            "@metaid": "_979630"
+          }},
+          "listOfProducts": {"speciesReference": {
+            "@species": "species_4",
+            "@metaid": "_979642"
+          }},
+          "listOfModifiers": {"modifierSpeciesReference": [
+            {
+              "@species": "species_2",
+              "@metaid": "_979654"
+            },
+            {
+              "@species": "species_4",
+              "@metaid": "_979666"
+            },
+            {
+              "@species": "species_2",
+              "@metaid": "_867751"
+            },
+            {
+              "@species": "species_3",
+              "@metaid": "_867763"
+            },
+            {
+              "@species": "species_4",
+              "@metaid": "_867775"
+            }
+          ]},
+          "kineticLaw": {
+            "@metaid": "_979678",
+            "math": {"apply": {
+              "times": {},
+              "ci": {"_$": "compartment_1"},
+              "apply": {"ci": [
+                {"_$": "function_3"},
+                {"_$": "k3"},
+                {"_$": "species_2"},
+                {"_$": "species_3"},
+                {"_$": "parameter_6"},
+                {"_$": "species_4"},
+                {"_$": "parameter_7"}
+              ]}
+            }},
+            "listOfParameters": {"parameter": {
+              "@id": "k3",
+              "@name": "k3",
+              "@metaid": "_979690",
+              "@value": "0.1"
+            }}
+          }
+        }
+      ]}
+    }
+  },
+  "_@default": "http://www.sbml.org/sbml/level2/version4",
+  "_@xml": "http://www.w3.org/XML/1998/namespace"
+}

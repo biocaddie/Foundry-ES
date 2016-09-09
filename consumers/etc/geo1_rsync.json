@@ -1,0 +1,53 @@
+{
+  "sourceInformation": {
+    "resourceID": "nif-0000-00135",
+    "name": "GEO Platforms",
+    "dataSource": "nif-0000-00135",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformationScript":"",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "aspera",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "publicKeyFile":"/home/bozyurt/.aspera/connect/etc/asperaweb_id_dsa.openssh", 
+    "arguments":"-k1 -Tr -l200m",
+    "filenamePattern": ".+\\.xml\\.gz$",
+    "source": "anonftp@ftp.ncbi.nlm.nih.gov:/geo/platforms/",
+    "dest": "/var/data/geo",
+    "largeRecords": "true",
+    "documentElement": "datablock"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'PDBx:datablock'.'@datablockName'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

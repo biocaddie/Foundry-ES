@@ -1,0 +1,10 @@
+/*
+if "$.'record'.'header'.'datestamp'" exists then transform column "$.'record'.'header'.'identifier'.'_$'" to "record.header.identifier";
+*/
+if "$.'record'.'header'.'identifier'.'_$'" like "oai%" then
+   transform column "$.'record'.'header'.'identifier'.'_$'" to "record.header.identifier";
+transform column "$.'record'.'header'.'setSpec'[*].'_$'" to "record.header.setSpec[]"; 
+transform column "$.'record'.'header'.'repository'.'_$'" to "record.header.repository";
+transform column "$.'record'.'header'.'setName'.'_$'" to "record.header.setName";
+transform column "$.'record'.'header'.'fetchURL'.'_$'" to "record.header.fetchURL";
+

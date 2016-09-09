@@ -1,0 +1,207 @@
+<!-- transformation tab panel contents -->
+<br/>
+<div class="panel panel-primary">
+    <div class="panel-heading">Data Transformation Setup</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="sourceCB">Source</label>
+
+                    <div class="col-md-8">
+                        <select id="sourceCB" class="form-control input-sm" ng-model="state.selSourceId"
+                                ng-change="sourceChanged()">
+                            <option ng-repeat="source in ssList" value="{{source.id}}">{{source.sourceID + ' (' +
+                                source.name + ')'}}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" id="sampleDataBut"
+                                ng-click="sample()" ng-show="state.selSourceId != -1">Sample Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mainPanel">
+            <div class="row">
+                <div class="col-mod-12">
+                    <fieldset class="params-border" id="pkPanel">
+                        <legend class="params-border">Primary Key Definition</legend>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">PK Field</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm"
+                                           id="pkLocInput" ng-model="pkJsonPathFirst"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <button href="#" class="btn btn-primary " id="pkFieldAddBut"
+                                            ng-click="addPKJsonPath()" ng-show="hasSelectedSource()">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Field
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pk-path"
+                             ng-repeat="pkJsonPath in selectedSource.primaryKeyJSONPath | startFrom : 1">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">PK Field</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control input-sm" ng-model="pkJsonPath"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary pk-del" ng-click="deletePKJsonPath($index)">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="trEditPanel">
+                <div id="trsPanel" ui-ace="{useWrapMode:true, theme:'twilight', mode:'jsontl', onLoad: aceLoaded}"
+                     ng-model="trScript"></div>
+
+                <div class="row" style="margin-top:5px; margin-bottom: 5px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary" id="toRuleBuilderBut"
+                                        ng-click="rule2Builder()" ng-show="hasSelectedSource()"
+                                        title="Select all the lines of a rule to show at the transformation rule builder panel">
+                                    Selection to Rule Builder
+                                </button>
+                                &nbsp;
+
+                                <button class="btn btn-primary" ng-click="append2TrScript()"
+                                        title="Append the transformation rule from rule builder to the end of the transformation script"
+                                        ng-show="hasSelectedSource()">Append
+                                </button>
+                                &nbsp;
+                                <button type="button" class="btn btn-primary" id="testTrScriptBut"
+                                        ng-click="testTransformation()"
+                                        title="Applies the transformation rules in the editor to the sampled data and shows the resulting JSON document"
+                                        ng-show="hasSelectedSource()">Test Transformation Script
+                                </button>
+                                &nbsp;
+                                <button type="button" class="btn btn-primary" id="updateResourceBut"
+                                        title="Saves changes done to the transformation rules in the editor"
+                                        ng-click="updateSource()" ng-show="hasSelectedSource()">Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="trResultPanel" ui-ace="{useWrapMode:true, theme:'twilight',mode:'json'}" readonly
+                     style="margin-top:5px;" ng-show="trResultJson" ng-model="trResultJson"></div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Transformation Rule Builder
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="row entry">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="control-label input-sm">Source Path</label>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control input-sm" type="text"
+                                           ng-model="srcJsonPath1">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary btn-sm"
+                                            title="Create a path expression from the selected nodes from the source tree"
+                                            ng-click="populateFromSrcTree(0)">Populate
+                                    </button>
+                                    <button class="btn btn-primary btn-sm"
+                                            title="Show selected paths in the source document"
+                                            ng-click="showSelInSrcTree(0)">Show
+                                    </button>
+                                    <button href="#" class="btn btn-primary btn-sm"
+                                            ng-click="addRuleColumn()" ng-show="hasSelectedSource()">
+                                        <span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row entry" ng-repeat="srcJsonPath in srcJsonPaths | startFrom : 1">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="control-label input-sm">Source Path</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control input-sm" type="text"
+                                           ng-model="srcJsonPath">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary btn-sm"
+                                            title="Create a path expression from the selected nodes from the source tree"
+                                            ng-click="populateFromSrcTree($index)">Populate
+                                    </button>
+                                    <button class="btn btn-primary btn-sm"
+                                            title="Show selected paths in the source document"
+                                            ng-click="showSelInSrcTree($index + 1)">Show
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" ng-click="deleteRuleColumn($index)">
+                                        <span class="glyphicon glyphicon-trash"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row entry">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 input-sm" for="destPath">Destination Path</label>
+                                <div class="col-md-6">
+                                    <input id="destPath" class="form-control input-sm" type="text"
+                                           name="destPath" ng-model="destPath">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary input-sm" ng-click="testRule()">Test</button>
+                                    <a ng-click="showJSONTLHelp()"><span class="glyphicon glyphicon-question-sign"/></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row entry">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="control-label input-sm" for="ruleTrScript">Script</label>
+                                    <a ng-click="showApplyHelp()"><span class="glyphicon glyphicon-question-sign"/></a>
+                                </div>
+                                <div class="col-md-10">
+                                     <textarea id="ruleTrScript" class="form-control input-sm" name=""
+                                               cols="30" rows="3" ng-model="ruleScript"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:1em;">
+                            <div class="col-md-7">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Source</div>
+                                    <div class="panel-body">
+                                        <div id="jst1" style="overflow-y: auto" src-tree></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Destination</div>
+                                    <div class="panel-body">
+                                        <div id="jst2" style="overflow-y: auto" dest-tree></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

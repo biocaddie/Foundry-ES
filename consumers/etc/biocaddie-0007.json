@@ -1,0 +1,54 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0007",
+    "name": "Gemma",
+    "dataSource": "biocaddie-0007",
+    "repositoryID": "",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform column \"$.'GemmaDsId'\" to \"dataItem.ID\";\ntransform column \"$.'Name'\" to \"dataItem.title\";\ntransform column \"$.'Description'\" to \"dataItem.description\";\ntransform column \"$.'taxon'\" to \"organism.source[0].commonName\";\ntransform columns \"$.'Source'\" , \"$.'SourceAccession'\" to \"identifiers[0].ID\" apply {{ result = value1 + ':' + value2 }};",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "CSV",
+    "ingestURL": "http://www.chibi.ubc.ca/Gemma/datasetdownload/4.20.2011/DatasetSummary.view.txt.gz",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "ignoreLines": "1",
+    "delimiter": "\t",
+    "textQuote": "&#034;",
+    "headerLine": "1",
+    "keepMissing": "false"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.GemmaDsId"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "collectionName": "",
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

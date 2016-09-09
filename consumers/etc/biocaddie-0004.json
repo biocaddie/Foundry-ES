@@ -1,0 +1,54 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0004",
+    "name": "LINCS Datasets Summary",
+    "dataSource": "biocaddie-0004",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform column \"$.'HMS Dataset ID'\" to \"HMS Dataset ID\";\ntransform column \"$.'Dataset Title'\" to \"Dataset Title\";\ntransform column \"$.'Publication(s) Using Dataset'\" to \"Publication(s) Using Dataset\";\ntransform column \"$.'Project Summary Page(s)'\" to \"Project Summary Page(s)\";\ntransform column \"$.'Assay Description'\" to \"Assay Description\";\ntransform column \"$.'Assay Protocol Reference'\" to \"Assay Protocol Reference\";\ntransform column \"$.'HMS Dataset Type'\" to \"HMS Dataset Type\";\ntransform column \"$.'Usage Message'\" to \"Usage Message\";\ntransform column \"$.'Date Publicly Available'\" to \"Date Publicly Available\" apply toStandardDate(\"yyyy-MM-dd\");\ntransform column \"$.'Most Recent Update'\" to \"Most Recent Update\";",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "CSV",
+    "ingestURL": "http://lincs.hms.harvard.edu/db/datasets/?search=&output_type=.csv",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "escapeCharacter": "&#092;",
+    "locale": "en_US",
+    "ignoreLines": "1",
+    "delimiter": ",",
+    "textQuote": "&#034;",
+    "headerLine": "1",
+    "keepMissing": "false"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'HMS Dataset ID'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

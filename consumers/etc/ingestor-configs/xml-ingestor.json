@@ -1,0 +1,35 @@
+{
+  "name": "xml",
+  "params": [
+    {
+      "name": "ingestURL",
+      "desc": "e.g. ",
+      "required": "true"
+    },
+    {
+      "name": "topElement",
+      "desc": "The XML element under which the records are contained",
+      "required": "true"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record",
+      "required": "true"
+    },
+    {
+      "name": "limitParam",
+      "desc": "URL query parameter name to set a limit on how many items will be returned per call",
+      "required": "false"
+    },
+    {
+      "name": "limitValue",
+      "desc": "The maximum number of records that will be returned at each call to the original resource",
+      "required": "false"
+    },
+    {
+      "name": "offsetParam",
+      "desc": "URL query parameter name to specify from which record to start in subsequent calls to the original resource",
+      "required": "false"
+    }
+  ]
+}

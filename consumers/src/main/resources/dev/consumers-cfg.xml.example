@@ -1,0 +1,96 @@
+<consumers-cfg>
+    <mongo-config db="discotest" collection="nifRecords">
+        <servers>
+            <server host="localhost" port="27017"/>
+        </servers>
+    </mongo-config>
+    <activemq-config>
+        <brokerURL>tcp://localhost:61616</brokerURL>
+    </activemq-config>
+    <pluginDir>/home/bozyurt/etc/foundry_plugins/plugins</pluginDir>
+    <libDir>/home/bozyurt/etc/foundry_plugins/lib</libDir>
+    <consumers>
+        <consumer-cfg name="uuidGen.1" type="generic" listeningQueueName="foundry.uuid.1"
+                      inStatus="new.1" outStatus="id_assigned.1">
+            <pluginClass>org.neuinfo.foundry.consumers.jms.consumers.plugins.DocIDAssigner</pluginClass>
+        </consumer-cfg>
+
+        <consumer-cfg name="transform.1" type="generic" listeningQueueName="foundry.transform.1"
+                      inStatus="id_assigned.1" outStatus="transformed.1">
+            <pluginClass>org.neuinfo.foundry.consumers.jms.consumers.plugins.TransformationEnhancer</pluginClass>
+            <params>
+                <param name="addResourceInfo" value="true"></param>
+            </params>
+        </consumer-cfg>
+
+        <consumer-cfg name="index.1" type="generic" listeningQueueName="foundry.index.1"
+                      inStatus="transformed.1" outStatus="finished">
+            <pluginClass>org.neuinfo.foundry.consumers.jms.consumers.plugins.ElasticSearchIndexer</pluginClass>
+            <params>
+                <param name="serverURL" value="http://localhost:9200"/>
+                <param name="indexPath" value="/nif/record"/>
+            </params>
+        </consumer-cfg>
+
+<!--
+        <consumer-cfg name="index.1" type="generic" listeningQueueName="foundry.index.1"
+                      inStatus="transformed.1" outStatus="finished" collection="nifRecords">
+            <pluginClass>org.neuinfo.foundry.consumers.jms.consumers.plugins.ElasticSearchIndexer</pluginClass>
+            <params>
+                <param name="serverURL" value="http://172.21.51.125:8080"/>
+                <param name="indexPath" value="/biocaddie/pdb"/>
+            </params>
+        </consumer-cfg>
+-->
+        <!--
+           <consumer-cfg name="uuidGen.2" type="native" listeningQueueName="foundry.uuid.2"
+                         inStatus="new.2" outStatus="id_assigned.2" collection="nifRecords">
+           </consumer-cfg>
+
+           <consumer-cfg name="ner.1" type="generic" listeningQueueName="foundry.extraction.1"
+                         inStatus="id_assigned.1" outStatus="annotated.1" collection="nifRecords">
+               <pluginClass>org.neuinfo.consumers.ResourceNER</pluginClass>
+           </consumer-cfg>
+
+           <consumer-cfg name="index.1" type="generic" listeningQueueName="foundry.index.1"
+                         inStatus="annotated.1" outStatus="finished" collection="nifRecords">
+               <pluginClass>org.neuinfo.consumers.ElasticSearchIndexDocWithResourcePreparer</pluginClass>
+               <params>
+                   <param name="serverURL" value="http://localhost:9200"/>
+                   <param name="indexPath" value="/nif/record"/>
+               </params>
+           </consumer-cfg>
+
+           <consumer-cfg name="index.2" type="generic" listeningQueueName="foundry.index.2"
+                         inStatus="id_assigned.2" outStatus="finished" collection="nifRecords">
+               <pluginClass>org.neuinfo.consumers.ElasticSearchIndexDocWithResourcePreparer</pluginClass>
+               <params>
+                   <param name="serverURL" value="http://localhost:9200"/>
+                   <param name="indexPath" value="/nif/record"/>
+               </params>
+           </consumer-cfg>
+
+
+           <consumer-cfg name="harvest-iso" type="cli" listeningQueueName="foundry.new"
+                         successMessageQueueName="foundry.harvested"
+                         failureMessageQueueName="foundry.error">
+               <handlers>
+                   <handler-cfg name="iso-to-cinergi" version="0.0.1">
+                       <handler>iso-to-cinergi</handler>
+                       <description></description>
+                       <params>
+                           <param name="no-args" value="2"/>
+                           <param name="arg1-type" value="file"/>
+                           <param name="arg1-format" value="xml"/>
+                           <param name="arg1-name" value="-f"/>
+                           <param name="arg2-type" value="file"/>
+                           <param name="arg2-name" value="-o"/>
+                           <param name="arg2-format" value="json"/>
+                       </params>
+                   </handler-cfg>
+               </handlers>
+           </consumer-cfg>
+           -->
+    </consumers>
+</consumers-cfg>
+

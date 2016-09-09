@@ -1,0 +1,81 @@
+{
+  "name": "resource",
+  "params": [
+    {
+      "name": "sourceURL",
+      "desc": "an URL for previously ingested resource content to the Foundry e.g.ds:biocaddie-0004::HMS Dataset ID",
+      "required": "true"
+    },
+    {
+      "name": "urlTemplate",
+      "desc": "A templatized URL to get data from using the  sourceURL defined source field values e.g. http://lincs.hms.harvard.edu/db/datasets/${HMS Dataset ID}/results?search=&output_type=.csv",
+      "required": "true"
+    },
+    {
+      "name": "fileType",
+      "desc": "The format of the downloaded data. Currently only csv and xml format is supported",
+      "required": "true",
+      "default": "csv",
+      "choices": ["csv","xml"]
+    },
+    {
+      "name": "fieldsToAdd",
+      "desc": "A comma separated list of fields (with optional : seperated name mapping) from the ingested and transformed source record to be included in the newly ingested data record e.g. HMS Dataset ID:hmsDatasetID",
+      "required": "false"
+    },
+    {
+      "name": "ignoreLines",
+      "desc": "",
+      "required": "true",
+      "default": "1",
+      "fileType": "csv"
+    },
+    {
+      "name": "headerLine",
+      "desc": "The line number for the line containing the header columns",
+      "required": "true",
+      "default":"1",
+      "fileType": "csv"
+    },
+    {
+      "name": "delimiter",
+      "desc": "The character that delimits the fields in a line",
+      "required": "true",
+      "default": ",",
+      "fileType": "csv"
+    },
+    {
+      "name": "textQuote",
+      "desc": "",
+      "required": "true",
+      "default": "&#034;",
+      "fileType": "csv"
+    },
+    {
+      "name": "escapeCharacter",
+      "desc": "",
+      "required": "true",
+      "default": "&#092;",
+      "fileType": "csv"
+    },
+    {
+      "name": "locale",
+      "desc": "",
+      "required": "true",
+      "default": "en_US",
+      "fileType": "csv"
+    },
+    {
+      "name": "topElement",
+      "desc": "The XML element under which the records are contained",
+      "required": "true",
+      "fileType": "xml"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record",
+      "required": "true",
+      "fileType": "xml"
+    },
+  ]
+}

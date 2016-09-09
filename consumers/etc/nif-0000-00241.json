@@ -1,0 +1,54 @@
+{
+  "sourceInformation": {
+    "resourceID": "nif-0000-00241",
+    "name": "Bloomington Drosophila Stock Center",
+    "dataSource": "nif-0000-00241",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform columns \"$.Donor\",\"$.'Donor\\'s source'\" to \"Donor's Source\" apply {{result=value1 if not value2 else value2}};\ntransform columns \"$.'Donor'\",\"$.'Donor\\'s source'\" to \"Donor\" apply {{result=value2 if not value2 and not value1 else ''}};\ntransform column \"$.'Stk #'\" to \"ID\" apply {{result='BDSC:' + value}};\ntransform column \"$.'Stk #'\" to \"CatalogID\";\ntransform column \"$.'Stk #'\" to \"Stocknumber\";\ntransform column \"$.'Stk #'\" to \"URL\" apply {{result='http://flystocks.bio.indiana.edu/Reports/' + value + '.html'}};\ntransform column \"$.'Breakpts/Insertion'\" to \"breakpoints\";\ntransform column \"$.'Stk #'\" to \"Species\" apply {{result='Fruit Fly'}};\ntransform column \"$.'Genotype'\" to \"Name\";\ntransform column \"$.'Comments'\" to \"Notes\";\ntransform column \"$.'Date added'\" to \"Date Added\";\ntransform column \"$.'Stk #'\" to \"CURIE\" apply {{result='BDSC:' + value}};\ntransform column \"$.'Ch # all'\" to \"Background\" apply {{result='Wild Type' if value.lower() == 'wt' else 'Mutant'}};\ntransform column \"$.'Ch # all'\" to \"Affected Gene\" apply {{result='Chromosome:' + 'NULL' if value.lower() == 'wt' else value}};",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "CSV",
+    "ingestURL": "http://flystocks.bio.indiana.edu/bloomington.csv",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "escapeCharacter": "&#092;",
+    "locale": "en_US",
+    "ignoreLines": "1",
+    "delimiter": ",",
+    "textQuote": "&#034;",
+    "headerLine": "1",
+    "keepMissing": "false"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'Stk #'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

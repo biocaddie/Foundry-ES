@@ -1,0 +1,41 @@
+{
+  "name": "oai",
+  "params": [
+    {
+      "name": "ingestURL",
+      "desc": "The data source URL for the download ",
+      "required": "true"
+    },
+    {
+      "name": "sourceName",
+      "desc": "The name of the data source",
+      "required": "true"
+    },
+    {
+      "name": "topElement",
+      "desc": "The XML element under which the records are contained",
+      "required": "true"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record",
+      "required": "true"
+    },
+    {
+      "name": "useCache",
+      "desc": "If set true and cached data exists from previous ingestion that will be used",
+      "required": "false",
+      "default": "true"
+    },
+    {
+      "name": "metadataPrefix",
+      "desc": "OAI metadata prefix",
+      "required": "false"
+    },
+    {
+      "name": "allowedSetSpecs",
+      "desc": "Comma separated list of set spec names",
+      "required": "false"
+    }
+  ]
+}

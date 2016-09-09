@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+    <display-name>foundry</display-name>
+
+    <listener>
+        <listener-class>org.neuinfo.foundry.ws.ManagementWSServletContextListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>JerseyServlet</servlet-name>
+        <servlet-class>
+            org.glassfish.jersey.servlet.ServletContainer
+        </servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>org.neuinfo.foundry.ws.ManagementWSApp</param-value>
+        </init-param>
+
+    </servlet>
+
+    <!--
+   <filter>
+       <filter-name>ExpiresFilter</filter-name>
+       <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+       <init-param>
+           <param-name>ExpiresDefault</param-name>
+           <param-value>access plus 0 seconds</param-value>
+       </init-param>
+   </filter>
+
+   <filter-mapping>
+       <filter-name>ExpiresFilter</filter-name>
+       <url-pattern>/api/*</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+   </filter-mapping>
+
+    <servlet-mapping>
+      <servlet-name>default</servlet-name>
+      <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+    -->
+
+    <servlet-mapping>
+        <servlet-name>JerseyServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+</web-app>
+				
+

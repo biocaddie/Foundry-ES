@@ -1,0 +1,56 @@
+{
+  "name": "ftp",
+  "params": [
+    {
+      "name": "ftpHost",
+      "desc": "The ftp server from which to download excluding the remotePath",
+      "required": "true"
+    },
+    {
+      "name": "remotePath",
+      "desc": "The path of the data on the FTP server e.g. /pub/databases/biomodels/weekly_archives/2015/BioModels-Database-weekly-2015-03-23-sbmls.tar.bz2",
+      "required": "false"
+    },
+    {
+      "name": "outDir",
+      "desc": "The local directory where the downloaded file(s) from the FTP site will be put",
+      "required": "true"
+    },
+    {
+      "name":"fileNamePattern",
+      "desc":"Regular expression to select files to be downloaded by name e.g. \"MODEL\\d+\\.xml\"",
+      "required": "true"
+    },
+    {
+      "name":"pathPattern",
+      "desc":"The path of the data on the FTP server with embedded regular expressions (up to two) to select most current data. e.g \"/pub/databases/biomodels/weekly_archives/%[\\d{4,4}]%/BioModels-Database-weekly-%[\\d+\\-\\d\\d\\-\\d\\d]%-sbmls.tar.bz2\"",
+      "required": "false"
+    },
+    {
+      "name": "pattern1Type",
+      "desc": "Date format for the first regular expression in the pathPattern (if specified) in Java SimpleDate format (e.g. \"date_yyyy\")",
+      "required": "false"
+    },
+    {
+      "name": "pattern2Type",
+      "desc": "Date format for the second regular expression in the pathPattern (if specified) in Java SimpleDate format (e.g. \"date_yyyy-MM-dd\")",
+      "required": "false"
+    },
+    {
+      "name": "recursive",
+      "desc": "If true and remotePath is specified recursively download all matching files under remotePath",
+      "required": "true",
+      "default": "false"
+    },
+    {
+      "name": "documentElement",
+      "desc": "The XML element of the record",
+      "required": "true"
+    },
+    {
+       "name": "topElement",
+       "desc": "The XML element surrounding the record elements",
+       "required": "false"    
+    }
+  ]
+}

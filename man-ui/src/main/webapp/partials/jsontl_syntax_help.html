@@ -1,0 +1,83 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Transformation Language Syntax And Examples</h3>
+    </div>
+    <div class="modal-body">
+
+        <p>The syntax of transformation rules is shown below;</p>
+<pre ng-non-bindable>
+<span class="jsontl">TRANSFORM COLUMN</span> &lt;sourceJSONPath&gt; <span class="jsontl">TO</span> &lt;destJSONPath&gt;
+    [<span class="jsontl">ASSIGN NAME FROM</span> &lt;sourceJSONPath&gt;]  [<span class="jsontl">APPLY {{</span>transformScript&gt;<span
+        class="jsontl">}}</span>]<span class="jsontl">;</span>
+<span class="jsontl">TRANSFORM COLUMNS</span> &lt;sourceJSONPath1,...sourceJSONPathN&gt;
+    <span class="jsontl">TO</span> &lt;destJSONPath&gt; [<span
+        class="jsontl">APPLY {{</span>&lt;transformScript&gt;<span class="jsontl">}}</span>]<span
+        class="jsontl">;</span>
+<span class="jsontl">LET</span>  &lt;destJSONPath&gt; <span class="jsontl">=</span> &lt;constant-string&gt;<span class="jsontl">;</span>
+</pre>
+        <p>
+            Here the keywords are shown in bold. Optional sections are shown in square brackets. The optional APPLY
+            construct can take any valid Python 2.7 code and used if the value of source field(s) needs to be
+            transformed to a new value before being saved to the destination JSON path. The source and
+            destination JSON paths have slightly different syntax due to the nature of their usage.
+        </p>
+        <p>
+            A source JSON Path always starts with <code>$.</code> indicating the root of the JSON document and each
+            field in the JSON document hierarchy is represented starting from root (<code>$.</code>) by dot notation.
+            Field names are wrapped around by single quotes and the whole JSON path is wrapped with double quotes.
+            A valid source JSON Path is shown below
+        </p>
+        <pre>"$.'record'.'metadata'.'oai_dc:dc'.'dc:description'.'_$'"</pre>
+        <p>If there are arrays within the path to the field(s) of interest, you can use
+            <code>[&lt;index&gt;]</code> or wildcard <code>[*]</code> construct for a JSON array.
+            Wildcard operation allows all the members of a source JSON array to be transformed at once.
+            You can use wildcard (<code>[*]</code>) operation as many times as you like within a source JSON path. For each
+            wildcard in the source JSON path you need a corresponding <code>[]</code> in the destination JSON path.
+            A valid source JSON Path with wildcard array operation is shown below;</p>
+        <pre>"$.'record'.'metadata'.'oai_dc:dc'.'dc:subject'[*].'_$'"</pre>
+        <p>This source JSON Path matches both "Darwin’s finches" and "beaks" from the JSON doc below</p>
+<pre>
+{
+  "record": {
+    "metadata": {
+      "oai_dc:dc": {
+        "dc:title": {"_$": "Morphological Measurements of Galapagos Finches"},
+         "dc:creator": {"_$": "Lack, David L."},
+         "dc:subject": [
+           {"_$": "Darwin's finches"},
+           {"_$": "beak"}
+         ],
+      }
+    }
+  }
+}
+</pre>
+        The destination JSON Paths does not start with <code>$.</code> construct. They start with the top field
+        of the transformed JSON. Each field in the JSON document hierarchy is represented starting from by dot
+        notation. An array is represented via <code>[]</code> construct. The whole JSON path is also wrapped
+        with double quotes as the source JSON Path. Unlike source JSON paths, the destination JSON paths are
+        used for creating the transformed document. Any missing hierarchy within the destination JSON path
+        is created dynamically. A valid destination JSON path to create an array of keywords is shown below;
+        <pre>"record.metadata.keywords[]"</pre>
+        <p> A complete transformation rule mapping an array of dc_subject values to an keywords array for Dryad
+            is shown below;
+        </p>
+        <pre>transform column "$.'record'.'metadata'.'oai_dc:dc'.'dc:subject'[*].'_$'" "record.metadata.keywords[]";</pre>
+
+        <p>Transformation language has currently three built in date transformation functions to transform
+            date strings to standard Elasticsearch date formats,
+            namely <code>toStandardDate()</code>, <code>toStandardTime()</code> and
+            <code>toStandardDateTime()</code>.
+            Each of these functions take the source date format string (in Java SimpleDateFormat).
+            Below is an example transformation rule converting an array of date strings in ISO 8601
+            format to standard ElasticSearch date format.</p>
+
+<pre>
+transform column "$.'record'.'metadata'.'oai_dc:dc'.'dc:date'[*].'_$'"
+to "record.metadata.dates[]" apply toStandardDate("yyyy-MM-dd'T'HH:mm:ssZ");
+</pre>
+        </pre>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+        </div>
+    </div>

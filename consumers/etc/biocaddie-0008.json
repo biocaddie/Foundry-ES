@@ -1,0 +1,53 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0008",
+    "name": "Bioproject",
+    "dataSource": "biocaddie-0008",
+    "repositoryID": "",
+    "description": ""
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform column \"$.'Package'.'Project'.'Project'.'ProjectID'.'ArchiveID'.'@accession'\" to \"dataItem.ID\";\ntransform columns \"$.'Package'.'Project'.'Project'.'ProjectDescr'.'Name'.'_$'\", \"$.'Package'.'Project'.'Project'.'ProjectDescr'.'Title'.'_$'\"  to \"dataItem.title\" apply {{ result = value1 + ' : ' + value2; }};\ntransform column \"$.'Package'.'Project'.'Project'.'ProjectDescr'.'Description'.'_$'\" to \"dataItem.description\" apply {{ result = re.compile(r'<.*?>').sub('',value) }};\ntransform column \"$.'Package'.'Project'.'Project'.'ProjectDescr'.'ProjectReleaseDate'.'_$'\" to \"dataItem.releaseDate\";\ntransform column \"$.'Package'.'Project'.'Project'.'ProjectType'.'ProjectTypeSubmission'.'Target'.'Organism'.'OrganismName'.'_$'\" to \"organism.target[0].species\";\ntransform column \"$.'Package'.'Project'.'Project'.'ProjectType'.'ProjectTypeSubmission'.'Target'.'Organism'.'Strain'.'_$'\" to \"organism.target[0].strain\";\ntransform column \"$.'Package'.'Project'.'Project'.'ProjectType'.'ProjectTypeSubmission'.'Target'.'Organism'.'@taxID'\" to \"organism.target[0].ncbiID\" apply {{ result = 'ncbitax:' + value }}; \ntransform column \"$.'Package'.'Project'.'Project'.'ProjectType'.'ProjectTypeSubmission'.'ProjectDataTypeSet'.'DataType'.'_$'\" to \"dataItem.keywords[0]\";\ntransform column \"$.'Package'.'Project'.'Project'.'ProjectID'.'ArchiveID'.'@accession'\" to \"citation.count\" apply {{ result = '0' }};",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "FTP",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "remotePath": "bioproject/bioproject.xml",
+    "outDir": "/var/data/foundry-es/cache/data",
+    "topElement": "PackageSet",
+    "ftpHost": "ftp.ncbi.nlm.nih.gov",
+    "documentElement": "Package"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'Package'.'Project'.'Project'.'ProjectID'.'ArchiveID'.'@accession'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "collectionName": "",
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/themes/default/style.min.css"/>
+    <link rel="stylesheet" href="css/validationEngine.jquery.css" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="js/jstree.min.js"></script>
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+    <style>
+        fieldset.params-border {
+            border: 1px groove #ddd !important;
+            padding: 0 1.4em 1.4em 1.4em !important;
+            margin: 1em;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        legend.params-border {
+            border: 1px solid #ddd;
+            width: inherit;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-header">
+    <h1 style="text-align: center;">Foundry Management UI</h1>
+</div>
+
+<div id="loginPanel" style="width:400px; margin-left:auto; margin-right: auto;">
+    <div class="jumbotron" style="padding:10px;">
+        <form role="form" id="loginForm">
+            <div class="form-group">
+                <label for="loginId">Username</label>
+                <input class="form-control" type="text" id="loginId" name="loginId" placeholder="User">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" type="password" name="password" placeholder="Password"/>
+            </div>
+            <button class="btn btn-default" id="loginBut">Submit</button>
+        </form>
+    </div>
+</div>
+
+<nav class="navbar navbar-default" id="mainNavBar" style="display: none; padding-right:10px;">
+    <div class="container-fluid">
+        <button type="button" class="btn btn-default navbar-btn navbar-right" id="logoutBut">Logout</button>
+    </div>
+</nav>
+<ul class="nav nav-tabs" role="tablist" id="navTabs" style="display: none">
+    <li role="presentation" class="active"><a id="siTabLink" href="#sourceIngestion" role="tab" data-toggle="tab">Source
+        Ingestion Description</a></li>
+    <li role="presentation"><a id="trTabLink" href="#transformations" role="tab" data-toggle="tab">Transformation</a>
+    </li>
+</ul>
+<!-- tab panels -->
+<div class="tab-content" style="display: none" id="tabContent">
+    <div role="tabpanel" class="tab-pane active" id="sourceIngestion">
+        <h3><span class="label label-primary">Source Ingestion Description</span></h3>
+
+        <div class="row" style="margin-bottom: 5px; margin-top: 5px;">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-md-1" for="siSourceCB">Source</label>
+
+                    <div class="col-md-7">
+                        <select id="siSourceCB" class="form-control input-sm">
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary btn-sm" id="updateSourceBut">Update</button>
+                        <button type="button" class="btn btn-primary btn-sm" id="newSourceBut">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;New Source</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="form-horizontal" id="sdForm">
+            <input type="hidden" id="source" name="source" value=""/>
+
+            <div class="row ">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="sourceID">Source ID</label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm validate[required]" id="sourceID"
+                                   size="15"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="sourceName">Resource Name</label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm validate[required]" id="sourceName"
+                                   size="15"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="dataSource">Data Source</label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" id="dataSource" size="15"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ingestorTypeCB">Ingestors</label>
+
+                        <div class="col-md-8">
+                            <select id="ingestorTypeCB" class="form-control input-sm">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">`
+                <div class="col-mod-12">
+                    <fieldset class="params-border" id="paramsPanel">
+                        <legend class="params-border">Parameters</legend>
+
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row" style="margin-top:5px; margin-bottom: 5px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary" id="saveSourceBut">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="transformations">
+        <br/>
+
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="sourceCB">Source</label>
+
+                        <div class="col-md-8">
+                            <select id="sourceCB" class="form-control input-sm">
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" id="sampleDataBut">Sample Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mainPanel">
+                <div class="row">
+                    <div class="col-mod-12">
+                        <fieldset class="params-border" id="pkPanel">
+                            <legend class="params-border">Primary Key Definition</legend>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">PK Field</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control input-sm" id="pkLocInput"/>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="btn btn-primary " id="pkFieldAddBut">
+                                            <span class="glyphicon glyphicon-plus"></span> Add Field</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div id="trEditPanel" style="width:800px;">
+                    <div id="trsPanel">/* transformation script goes here */</div>
+                    <div class="row" style="margin-top:5px; margin-bottom: 5px;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" id="testTrScriptBut">Test
+                                        Transformation Script
+                                    </button>
+                                    &nbsp;
+                                    <button type="button" class="btn btn-primary" id="updateResourceBut">Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="trResultPanel" style="display: none; margin-top:5px;"></div>
+                    <div id="docTreePanel" class="dtpanel"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="paramTemplate" style="display: none">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-4"></label>
+
+            <div class="col-md-8">
+                <input type="text" class="form-control input-sm"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="selectParamTemplate1" style="display: none">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-4"></label>
+            <div class="col-md-8">
+                <select class="form-control"></select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pkElemTemplate" style="display: none;">
+    <div class="col-md-12 pk-path">
+        <div class="form-group">
+            <label class="control-label col-md-2">PK Field</label>
+
+            <div class="col-md-8">
+                <input type="text" class="form-control input-sm"/>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="btn btn-primary pk-del">
+                    <span class="glyphicon glyphicon-trash"></span> Remove</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        var ui = foundry.uiModule;
+
+        ui.startup();
+        /*
+         $('#siTabLink').on('click', function (evt) {
+         evt.preventDefault();
+         $('#transformations').removeClass('active');
+         $('#sourceIngestion').addClass('active');
+         $('#trTabLink').closest('li').removeClass('active');
+         $(this).closest('li').addClass('active');
+         ui.prepSourceIngestTab();
+         }).trigger('click');
+         $('#trTabLink').on('click', function (evt) {
+         evt.preventDefault();
+         $('#sourceIngestion').removeClass('active');
+         $('#transformations').addClass('active');
+         $('#siTabLink').closest('li').removeClass('active');
+         $(this).closest('li').addClass('active');
+         ui.prepTrTab();
+         });
+         */
+        // ui.prepare($('#ingestorTypeCB'), $('#paramTemplate'), $('#paramsPanel'));
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "name": "csv",
+  "params": [
+    {
+      "name": "ingestURL",
+      "desc": "an URL for CSV content e.g. http://lincs.hms.harvard.edu/db/datasets/?search=&output_type=.csv",
+      "required": "true"
+    },
+    {
+      "name": "ignoreLines",
+      "desc": "",
+      "required": "true",
+      "default": "1"
+    },
+    {
+      "name": "headerLine",
+      "desc": "The line number for the line containing the header columns",
+      "required": "true",
+      "default":"1"
+    },
+    {
+      "name": "delimiter",
+      "desc": "The character that delimits the fields in a line",
+      "required": "true",
+      "default": ","
+    },
+    {
+      "name": "textQuote",
+      "desc": "",
+      "required": "true",
+      "default": "&#034;"
+    },
+    {
+      "name": "escapeCharacter",
+      "desc": "",
+      "required": "true",
+      "default": "&#092;"
+    },
+    {
+      "name": "locale",
+      "desc": "",
+      "required": "true",
+      "default": "en_US"
+    },
+    {
+      "name": "useCache",
+      "desc": "If set true and cached data exists from previous ingestion that will be used",
+      "required": "false",
+      "default": "true"
+    }
+  ]
+}

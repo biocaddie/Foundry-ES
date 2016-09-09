@@ -1,0 +1,139 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Source Ingestion Description</div>
+
+    <div class="panel-body" ng-cloak>
+        <div class="row" style="margin-bottom: 5px; margin-top: 5px;">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-md-1" for="siSourceCB">Source</label>
+
+                    <div class="col-md-7">
+                        <select id="siSourceCB" name="siSourceCB" class="form-control input-sm"
+                                ng-model="state.selSourceId" ng-change="sourceChanged()">
+                            <option ng-repeat="source in ssList" value="{{source.id}}">{{source.sourceID + ' (' +
+                                source.name + ')'}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <!--
+                        <button type="button" class="btn btn-primary btn-sm" id="updateSourceBut">Update</button>
+                        -->
+                        <button type="button" class="btn btn-primary btn-sm" id="newSourceBut"
+                                ng-click="prepNewSource()">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;New Source</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form name="sourceForm">
+            <input type="hidden" id="source" name="source" value=""/>
+
+            <div class="row ">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="sourceID">Source ID</label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" id="sourceID"
+                                   name="sourceID" ng-model="ss.sourceID" ng-required="true" size="15"/>
+                        <span class="text-danger bg-danger"
+                              ng-show="sourceForm.sourceID.$dirty && sourceForm.sourceID.$error.required">Source ID is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="sourceName">Resource Name</label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" id="sourceName" name="sourceName"
+                                   ng-model="ss.name" ng-required="true" size="15"/>
+                        <span class="text-danger bg-danger"
+                              ng-show="sourceForm.sourceName.$dirty && sourceForm.sourceName.$error.required">Resource Name is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="dataSource">Data Source</label>
+
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" id="dataSource"
+                                   ng-model="ss.dataSource" size="15"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="resourceID" class="control-label col-md-4">Resource ID</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" id="resourceID"
+                                   ng-model="ss.resourceID" size="15"
+                                   title="The NIF/Scicrunch ID (if any) of the resource from the Registry">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ingestorTypeCB">Ingestors</label>
+
+                        <div class="col-md-8">
+                            <select id="ingestorTypeCB" class="form-control input-sm"
+                                    ng-model="state.selHarvestId" ng-change="ingestorTypeChanged()">
+                                <option ng-repeat="ingestor in icConfigs" value="{{ingestor.name}}">{{ingestor.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">`
+                <div class="col-mod-12">
+                    <fieldset class="params-border" id="paramsPanel">
+                        <legend class="params-border">Parameters</legend>
+                        <div class="row" ng-repeat="param in selectedIC.params">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">{{param.name}}</label>
+
+                                    <div class="col-md-8">
+                                        <input type="text" id="{{param.name}}" name="{{param.name}}"
+                                               class="form-control input-sm" title="{{param.desc}}"
+                                               ng-model="ss.params[param.name]"
+                                               ng-hide="param.choices" ng-required="{{param.required}}"/>
+                                        <select id="{{param.name}}" name="{{param.name}}"
+                                                class="form-control" title="{{param.desc}}"
+                                                ng-model="ss.params[param.name]"
+                                                ng-show="param.choices">
+                                            <option ng-repeat="choice in param.choices" value="{{choice}}">{{choice}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row" style="margin-top:5px; margin-bottom: 5px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary" id="saveSourceBut" ng-click="saveSource()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

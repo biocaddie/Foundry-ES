@@ -1,0 +1,56 @@
+{
+  "sourceInformation": {
+    "resourceID": "biocaddie-0006",
+    "name": "GEO Datasets",
+    "dataSource": "biocaddie-0006",
+    "description": "",
+    "repositoryID":"nif-0000-00142"
+  },
+  "schema": "",
+  "transformationInfo": {
+    "transformScript": "transform column \"$.'dataset_title'\" to \"dataItem.title\";\n\ntransform column \"$.'dataset_description'\" to \"dataItem.description\";\ntransform column \"$.'subset_dataset_id'\" to \"dataItem.ID\";\n\ntransform column \"$.'dataset_pubmed_id'\" to \"citation.PMID\" apply {{ result = 'pmid:' + value }};\ntransform column \"$.'dataset_pubmed_id'\" to \"citation.count\" apply {{ result = '0' }};\n\ntransform column \"$.'dataset_update_date'\" to \"dataItem.releaseDate\" apply toStandardDate(\"MMM dd yyyy\");\n\ntransform column \"$.'dataset_type'\" to \"dataItem.type\";\ntransform column \"$.'dataset_platform'\" to \"dataItem.platform\";\ntransform column \"$.'dataset_technology'\" to \"dataItem.platformTechnology\";\ntransform column \"$.'dataset_feature_count'\" to \"dataItem.featureCount\";\n\ntransform column \"$.'dataset_platform_organism'\" to \"organism.platform.species\";\ntransform column \"$.'dataset_sample_organism'\" to \"organism.sample.species\";\n  \ntransform column \"$.'subset_dataset_id'\" to \"identifiers.ID\" apply {{ result = 'GEO:' + value }};\n \ntransform column \"$.'dataset_reference_series'\" to \"dataItem.referenceSeries\";\ntransform column \"$.'subset_sample_id'\" to \"dataItem.sampleIDs[]\" apply {{ result=re.split(\"\\s*,\\s*\",value) }};",
+    "mappingScript": ""
+  },
+  "provenance": "",
+  "ingestConfiguration": {
+    "ingestMethod": "ASPERA",
+    "allowDuplicates": "false",
+    "crawlFrequency": {
+      "crawlType": "Frequency",
+      "hours": "48",
+      "minutes": "0",
+      "startDays": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "startTime": "0:00",
+      "operationEndTime": "24:00"
+    }
+  },
+  "contentSpecification": {
+    "xmlFileNamePattern": "\\.xml$",
+    "parserType": "geo",
+    "filenamePattern": "\\d\\.soft\\.gz$",
+    "arguments": "-k1 -Tr -l200m",
+    "dest": "/var/data/geo",
+    "source": "anonftp@ftp.ncbi.nlm.nih.gov:/geo/datasets/ ",
+    "publicKeyFile": "/var/home/bozyurt/.aspera/connect/etc/asperaweb_id_dsa.openssh",
+    "fullSet": "true",
+    "documentElement": "MINiML"
+  },
+  "originalRecordIdentifierSpec": {
+    "fields": ["$.'subset_dataset_id'"],
+    "delimiter": [":"],
+    "method": "Value"
+  },
+  "documentProcessing": [
+    "UUID Generation",
+    "Index"
+  ],
+  "batchInfos": []
+}
