@@ -1,0 +1,7 @@
+disco.dbURL=
+disco.user=
+disco.password=
+
+cache.root=/var/data/foundry-es/cache/data
+staging.root=/var/data/foundry-es/cache/data/staging
+ingest.cache.db.file=/var/data/foundry-es/cache/ingestion_map.db
