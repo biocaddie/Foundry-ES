@@ -46,6 +46,29 @@ $HOME/Foundry-ES/dispatcher/src/main/resources
 When you use `-Pdev` argument, configuration file from the `dev` directory is 
 included in the jar file.
 
+All subsystem configuration files are generated from a master configuration file in YAML format. 
+An example master configuration file can be found at `$HOME/Foundry-ES/bin/config.yml.example`.
+Once you create a master config file named say `config.yml` run the following to generate all configuration files for the subsystems (for dev profile)
+
+```
+cd $HOME/Foundry-ES/bin
+./config_gen.sh -c config.yml  -f $HOME/Foundry-ES -p dev
+
+```
+
+```
+./config_gen.sh -h 
+usage: ConfigGenerator
+ -c <cfg-spec-file>         Full path to the Foundry-ES config spec YAML
+                            file
+ -f <foundry-es-root-dir>
+ -h                         print this message
+ -p <profile>               Maven profile ([dev]|prod)
+
+```
+After each configuration file generation you need to run maven to move the configs to their target locations
+
+    mvn -Pdev install 
 
 MongoDB
 --------
@@ -94,7 +117,7 @@ usage: SourceIngestorCLI
  -u                      update the source given by the source-json-file
 ```
 
-The currently available source descriptors are under `$HOME/Foundry_ES/consumers/etc`.
+Example source descriptors are under `$HOME/Foundry_ES/consumers/etc`.
 An example usage for inserting PDB source descriptor document to the `sources` collection is show below
 
 ```
@@ -188,26 +211,5 @@ Foundry:>>
 
 ```
 
-## Source Management
-
-To add a new resource to be processed to the system, you need to create a harvest description JSON file. Examples of these files for NIF and Cinergi can be found in 
-`$HOME/Foundry-ES/consumers/etc` directory.
-
-The script for source management `ingest_src_cli.sh` is located in 
-`$HOME/Foundry_ES/bin`. 
-By default, it uses `ingestor-cfg.xml` file for the profile specified 
-during the build. To create a new source use `-j` option and provide 
-the full path to the harvest source description file you want to add to the MongoDB.
-To delete a source add `-d` flag.
-
-```
-./ingest_src_cli.sh -h
-usage: SourceIngestorCLI
- -c <config-file>        config-file e.g. ingestor-cfg.xml (default)
- -d                      delete the source given by the source-json-file
- -h                      print this message
- -j <source-json-file>   harvest source description file
- -u                      update the source given by the source-json-file
-```
 
 
