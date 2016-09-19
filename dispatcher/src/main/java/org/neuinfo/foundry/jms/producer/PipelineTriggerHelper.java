@@ -5,14 +5,11 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
-import org.neuinfo.foundry.common.config.ServerInfo;
+import org.neuinfo.foundry.common.config.*;
 import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService;
 import org.neuinfo.foundry.common.ingestion.DocumentIngestionService;
 import org.neuinfo.foundry.common.model.Source;
 import org.neuinfo.foundry.common.util.*;
-import org.neuinfo.foundry.common.config.ConfigLoader;
-import org.neuinfo.foundry.common.config.Configuration;
-import org.neuinfo.foundry.common.config.WorkflowMapping;
 import org.neuinfo.foundry.jms.common.Constants;
 
 import javax.jms.Connection;
@@ -73,6 +70,13 @@ public class PipelineTriggerHelper {
         } catch (JMSException x) {
             logger.error("shutdown", x);
             x.printStackTrace();
+        }
+    }
+
+
+    public void showWS() {
+        for(Workflow wf: this.config.getWorkflows()) {
+            System.out.println(wf.toString());
         }
     }
 

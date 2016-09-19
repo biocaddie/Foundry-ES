@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 /**
  * Created by bozyurt on 10/30/14.
  */
@@ -57,6 +58,10 @@ public class ManagementService {
         return ElasticSearchUtils.sendDeleteRequest(client, uri);
     }
 
+    void showWorkflows() {
+        this.helper.showWS();
+    }
+
     void showProcessingStats(String sourceID) {
         List<SourceStats> processingStats = this.helper.getProcessingStats();
         if (sourceID == null) {
@@ -75,25 +80,26 @@ public class ManagementService {
 
     void showSourceStats(SourceStats ss) {
         StringBuilder sb = new StringBuilder(128);
-        sb.append(ss.getSourceID()).append("\t");
+        sb.append(StringUtils.rightPad(ss.getSourceID(), 15)).append(" ");
         Map<String, Integer> statusCountMap = ss.getStatusCountMap();
         int totCount = 0;
         for (Integer count : statusCountMap.values()) {
             totCount += count;
         }
-        sb.append("total:").append(StringUtils.leftPad(String.valueOf(totCount), 10)).append("\t");
+        sb.append("total:").append(StringUtils.leftPad(String.valueOf(totCount), 10)).append(" ");
         Integer finishedCount = statusCountMap.get("finished");
         Integer errorCount = statusCountMap.get("error");
         finishedCount = finishedCount == null ? 0 : finishedCount;
         errorCount = errorCount == null ? 0 : errorCount;
-        sb.append("finished:").append(StringUtils.leftPad(finishedCount.toString(), 10)).append("\t");
-        sb.append("error:").append(StringUtils.leftPad(errorCount.toString(), 10)).append("\t");
+        sb.append("finished:").append(StringUtils.leftPad(finishedCount.toString(), 10)).append(" ");
+        sb.append("error:").append(StringUtils.leftPad(errorCount.toString(), 8)).append("  ");
         for (String status : statusCountMap.keySet()) {
             if (status.equals("finished") || status.equals("error")) {
                 continue;
             }
             Integer statusCount = statusCountMap.get(status);
-            sb.append(status).append(':').append(StringUtils.leftPad(statusCount.toString(), 10)).append("\t");
+            String s = StringUtils.leftPad(status+":",15)  + StringUtils.leftPad(statusCount.toString(), 10);
+            sb.append(s).append(" ");
         }
         System.out.println(sb.toString().trim());
     }
@@ -110,6 +116,7 @@ public class ManagementService {
         System.out.println("\tindex <sourceID> <status-2-match> <url> (e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)");
         System.out.println("\tlist - lists all of the existing sources.");
         System.out.println("\tstatus [<sourceID>] - show processing status of data source(s)");
+        System.out.println("\tws - show configured workflow(s)");
         System.out.println("\texit - exits the management client.");
     }
 
@@ -128,6 +135,8 @@ public class ManagementService {
         }
         return false;
     }
+
+
 
     public static void main(String[] args) throws Exception {
         Option help = new Option("h", "print this message");
@@ -155,8 +164,10 @@ public class ManagementService {
             configFile = line.getOptionValue('c');
         }
 
+
         ManagementService ms = new ManagementService("foundry.consumer.head");
         Set<String> history = new LinkedHashSet<String>();
+        String lastCommand = null;
         try {
             ms.startup(configFile);
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -165,8 +176,14 @@ public class ManagementService {
                 System.out.print("Foundry:>> ");
                 String ans = in.readLine();
                 ans = ans.trim();
+                if (ans.equals("!!") && lastCommand != null) {
+                    ans = lastCommand;
+                    System.out.println("running command:" + ans);
+                }
                 if (ans.equals("help")) {
                     showHelp();
+                } if (ans.equals("ws")) {
+                    ms.showWorkflows();
                 } else if (ans.startsWith("ingest")) {
                     String[] toks = ans.split("\\s+");
                     if (toks.length == 2) {
@@ -175,6 +192,7 @@ public class ManagementService {
                         Source source = ms.helper.findSource(srcNifId);
                         JSONObject json = ms.helper.prepareMessageBody("ingest", source);
                         ms.helper.sendMessage(json);
+                        lastCommand = ans;
 
                     }
                 } else if (ans.startsWith("trigger")) {
@@ -184,7 +202,7 @@ public class ManagementService {
                         String status2Match = toks[2];
                         String toQueue = toks[3];
                         String newStatus = null;
-                        if (toks.length == 5) {
+                        if (toks.length >= 5) {
                             newStatus = toks[4];
                         }
                         String newOutStatus = null;
@@ -195,6 +213,7 @@ public class ManagementService {
                         Assertion.assertNotNull(source);
                         ms.helper.triggerPipeline(source, status2Match, toQueue, newStatus, newOutStatus);
                         history.add(ans);
+                        lastCommand = ans;
                     }
                 } else if (ans.startsWith("index")) {
                     String[] toks = ans.split("\\s+");
@@ -211,6 +230,7 @@ public class ManagementService {
                         String[] urlParts = Utils.splitServerURLAndPath(urlStr);
                         ms.helper.index2ElasticSearchBulk(source, status2Match, urlParts[1], urlParts[0], apiKey);
                         history.add(ans);
+                        lastCommand = ans;
                     }
                 } else if (ans.startsWith("status")) {
                     String[] toks = ans.split("\\s+");
@@ -221,6 +241,8 @@ public class ManagementService {
                         } else {
                             ms.showProcessingStats(null);
                         }
+                        history.add(ans);
+                        lastCommand = ans;
                     }
                 } else if (ans.equals("history") || ans.equals("h")) {
                     for (String h : history) {
@@ -253,6 +275,7 @@ public class ManagementService {
                     for (Source source : sources) {
                         System.out.println(String.format("%s - (%s)", source.getResourceID(), source.getName()));
                     }
+                    lastCommand = ans;
                 } else if (ans.equals("exit")) {
                     break;
                 }
