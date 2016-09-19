@@ -29,12 +29,7 @@ public class TransformationEnhancerTests extends TestCase {
         Helper helper = new Helper("");
         try {
             helper.startup("consumers-cfg.xml");
-            // register built-in functions
-       //     TransformationFunctionRegistry tfRegistry = TransformationFunctionRegistry.getInstance();
 
-         //   tfRegistry.registerFunction("toStandardDate",
-          //          new TransformationFunctionRegistry.TransformationFunctionConfig(
-          //                  "org.neuinfo.foundry.common.transform.ToStandardDateTransformation"));
             DocumentIngestionService dis = new DocumentIngestionService();
             try {
                 dis.start(helper.getConfig());
@@ -53,7 +48,9 @@ public class TransformationEnhancerTests extends TestCase {
                 dis.shutdown();
             }
             //List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0006");
-            List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0011", 100);
+            // List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0011", 100);
+            //List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0026", 100);
+            List<BasicDBObject> docWrappers = helper.getDocWrappers("ks-0001", 100);
             IPlugin plugin = new TransformationEnhancer();
             Map<String,String> options = new HashMap<String, String>(3);
             options.put("addResourceInfo","false");
@@ -66,7 +63,7 @@ public class TransformationEnhancerTests extends TestCase {
                     System.out.println("handling doc " + count);
                     Result result = plugin.handle(docWrapper);
                     count++;
-                    if (count > 100) {
+                    if (count > 0) {
                         break;
                     }
                 }

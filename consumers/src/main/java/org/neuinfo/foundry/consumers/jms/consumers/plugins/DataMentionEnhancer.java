@@ -47,6 +47,7 @@ public class DataMentionEnhancer implements IPlugin {
         con = DriverManager.getConnection(dbURL, config);
         sourceNameMap.put("NCBI GEO DataSets","GEO Data Sets");
         sourceNameMap.put("RCSB Protein Data Bank","PDB");
+        sourceNameMap.put("World Wide Protein Data Bank","PDB");
     }
 
     @Override

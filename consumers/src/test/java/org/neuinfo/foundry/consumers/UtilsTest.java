@@ -15,10 +15,7 @@ import java.util.List;
 /**
  * Created by bozyurt on 7/1/15.
  */
-public class UtilsTest extends TestCase {
-    public UtilsTest(String name) {
-        super(name);
-    }
+public class UtilsTest  {
 
     public void testTransformedExtraction() throws Exception {
         File outDir = new File("/tmp/biocaddie_pdb");

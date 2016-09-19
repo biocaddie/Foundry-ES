@@ -21,10 +21,7 @@ import org.neuinfo.foundry.consumers.plugin.IPlugin;
 import org.neuinfo.foundry.consumers.plugin.Result;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by bozyurt on 5/5/15.
@@ -136,6 +133,13 @@ public class TransformationEnhancer implements IPlugin {
             System.out.println("==========================");
             System.out.println(transformedJson.toString(2));
             System.out.println("==========================");
+            BasicDBObject trDBO = (BasicDBObject) data.get("transformedRec");
+            if (trDBO != null) {
+                JSONObject oldTransformedJson = JSONUtils.toJSON(trDBO, false);
+                merge(oldTransformedJson, transformedJson);
+                transformedJson = oldTransformedJson;
+            }
+
             data.put("transformedRec", JSONUtils.encode(transformedJson, true));
             return new Result(docWrapper, Result.Status.OK_WITH_CHANGE);
         } catch (Throwable t) {
@@ -147,13 +151,30 @@ public class TransformationEnhancer implements IPlugin {
         }
     }
 
+
+    private void merge(JSONObject oldTransformedJson, JSONObject newTransformedJson) {
+        Set<String> exceptionSet = new HashSet<String>();
+        // For Biocaddie Pipeline
+        exceptionSet.add("citationInfo");
+        exceptionSet.add("NLP_Fields");
+        List<String> oldKeys = new ArrayList<String>(oldTransformedJson.keySet());
+        for(String oldKey: oldKeys) {
+            if (!exceptionSet.contains(oldKey)) {
+                oldTransformedJson.remove(oldKey);
+            }
+        }
+        for(String newKey : newTransformedJson.keySet()) {
+            oldTransformedJson.put(newKey, newTransformedJson.get(newKey));
+        }
+    }
+
     private JSONObject prepProvenance(Source source) {
         JSONObject json = new JSONObject();
         JSONObject ingestConfiguration = source.getIngestConfiguration();
         JSONObject contentSpec = source.getContentSpecification();
         String ingestMethod = ingestConfiguration.getString("ingestMethod");
         String ingestTarget = null;
-        String filePattern = null;
+        String filePattern;
         if (ingestConfiguration.has("ingestURL")) {
             ingestTarget = ingestConfiguration.getString("ingestURL");
         }

@@ -1,6 +1,5 @@
 package org.neuinfo.foundry.consumers.ingestors;
 
-import junit.framework.TestCase;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.transform.TransformMappingUtils;
 import org.neuinfo.foundry.common.transform.TransformationEngine;
@@ -19,7 +18,7 @@ import java.util.Map;
 /**
  * Created by bozyurt on 4/3/15.
  */
-public class IngestorTest extends TestCase {
+public class IngestorTest extends BaseTestCase {
     public IngestorTest(String name) {
         super(name);
     }
@@ -429,7 +428,7 @@ public class IngestorTest extends TestCase {
     public void testIngestFromDisco8() throws Exception {
         // ingestSampleFromDisco("pr_nif_0000_03266_2", "/tmp/peptide_atlas_record.json", 5);
         ingestSampleFromDiscoWithTransform("pr_nif_0000_03266_2", "/tmp/peptide_atlas_record.json",
-                5,"dvp","peptideatlas.trs");
+                5, "dvp", "peptideatlas.trs");
     }
 
     public void testIngestFromDisco9() throws Exception {
@@ -709,22 +708,7 @@ public class IngestorTest extends TestCase {
         ingest(ingestor, "/tmp/allen_record.json", 5);
     }
 
-    private void ingest(Ingestor ingestor, String outFile, int sampleSize) throws Exception {
-        try {
-            ingestor.startup();
-            int count = 0;
-            while (ingestor.hasNext()) {
-                String jsonFile = outFile.replaceFirst("\\.json$", "_" + (count + 1) + ".json");
-                processPayload(ingestor, jsonFile);
-                count++;
-                if (count >= sampleSize) {
-                    break;
-                }
-            }
-        } finally {
-            ingestor.shutdown();
-        }
-    }
+
     private void ingestAndTransform(Ingestor ingestor, String outFile, int sampleSize, String transformScriptName) throws Exception {
         try {
             ingestor.startup();
@@ -745,6 +729,7 @@ public class IngestorTest extends TestCase {
             ingestor.shutdown();
         }
     }
+
     public void testIngestOAI() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("ingestURL", "http://www.datadryad.org/oai/request");
@@ -789,13 +774,6 @@ public class IngestorTest extends TestCase {
         ingest(ingestor, "/tmp/icpsr_sample_record.json", 5);
     }
 
-    public void processPayload(Ingestor ingestor, String outFile) throws IOException {
-        Result result = ingestor.prepPayload();
-        assertNotNull(result);
-        assertTrue(result.getStatus() != Result.Status.ERROR);
-        Utils.saveText(result.getPayload().toString(2), outFile);
-        System.out.println("saved file:" + outFile);
-    }
 
     public void processPayloadWithTransformation(Ingestor ingestor, String outFile, TransformationEngine trEngine) throws IOException {
         Result result = ingestor.prepPayload();
@@ -850,7 +828,7 @@ public class IngestorTest extends TestCase {
         NIFXMLIngestor ingestor = new NIFXMLIngestor();
         ingestor.initialize(options);
 
-        ingest(ingestor,"/tmp/ae/array_express_record.json",5000);
+        ingest(ingestor, "/tmp/ae/array_express_record.json", 5000);
     }
 
     public void testIngestDataverse() throws Exception {
