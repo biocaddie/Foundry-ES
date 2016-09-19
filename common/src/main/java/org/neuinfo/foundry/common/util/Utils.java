@@ -596,6 +596,25 @@ public class Utils {
         return matcher.find();
     }
 
+    public static void stream2File(String fromClassPath, String outPath) throws IOException {
+        BufferedReader bin = null;
+        BufferedWriter out = null;
+        try {
+            out = Utils.newUTF8CharSetWriter(outPath);
+            bin = new BufferedReader(
+                    new InputStreamReader(Utils.class.getClassLoader().getResourceAsStream(fromClassPath), Charset.forName("UTF-8")));
+            String line;
+            while( (line = bin.readLine())  != null) {
+                out.write(line);
+                out.newLine();
+            }
+
+        } finally {
+            Utils.close(bin);
+            Utils.close(out);
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         System.out.println(handleLike("abab", "%ba%"));

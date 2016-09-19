@@ -1,6 +1,6 @@
 package org.neuinfo.foundry.common.util;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 import org.python.core.PyList;
 import org.python.core.PyObject;
 import org.python.core.PyString;
@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 /**
  * Created by bozyurt on 5/11/15.
  */
-public class JythonTest extends TestCase {
+public class ITJythonTests {
 
-    public JythonTest(String name) {
-        super(name);
-    }
 
+    @Test
     public void testArrayReturn() throws Exception {
         PythonInterpreter interpreter = new PythonInterpreter();
         interpreter.exec("import sys");
@@ -33,9 +33,11 @@ public class JythonTest extends TestCase {
             for (Iterator<Object> it = list.iterator(); it.hasNext(); ) {
                 resultList.add(it.next().toString());
             }
+            assertFalse(resultList.isEmpty());
+            assertEquals(resultList.size(), 4);
             System.out.println(resultList);
-
         } else {
+            fail();
             String resultStr = result.asString();
             System.out.println("result:" + resultStr);
         }

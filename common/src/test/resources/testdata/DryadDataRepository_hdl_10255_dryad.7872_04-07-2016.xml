@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<ListRecords xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+<record xmlns="http://www.openarchives.org/OAI/2.0/">
+  <header>
+    <identifier>oai:datadryad.org:10255/dryad.40381</identifier>
+    <datestamp>2012-06-15T21:06:09Z</datestamp>
+    <setSpec>hdl_10255_dryad.7872</setSpec>
+    <repository xmlns="">Dryad Data Repository</repository>
+    <setName xmlns="">DryadLab Activities</setName>
+    <fetchURL xmlns="">http://www.datadryad.org/oai/request?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=hdl_10255_dryad.7872</fetchURL>
+    <recNum xmlns="">0</recNum>
+  </header>
+  <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>BIRDD: Molecular Evolution</dc:title>
+      <dc:creator>Jenkins, Kristin</dc:creator>
+      <dc:date>2012-06-15T15:03:33Z</dc:date>
+      <dc:date>2012-06-15T21:06:09Z</dc:date>
+      <dc:date>2012-06-15</dc:date>
+      <dc:type>Activity</dc:type>
+      <dc:identifier>doi:10.5061/dryad.qc524</dc:identifier>
+      <dc:identifier>http://hdl.handle.net/10255/dryad.40381</dc:identifier>
+    </oai_dc:dc>
+  </metadata>
+</record>
+<record xmlns="http://www.openarchives.org/OAI/2.0/">
+  <header>
+    <identifier>oai:datadryad.org:10255/dryad.40382</identifier>
+    <datestamp>2012-06-15T21:05:51Z</datestamp>
+    <setSpec>hdl_10255_dryad.7872</setSpec>
+    <repository xmlns="">Dryad Data Repository</repository>
+    <setName xmlns="">DryadLab Activities</setName>
+    <fetchURL xmlns="">http://www.datadryad.org/oai/request?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=hdl_10255_dryad.7872</fetchURL>
+    <recNum xmlns="">1</recNum>
+  </header>
+  <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>Survivorship in the natural world</dc:title>
+      <dc:creator>Alberts, Susan C.</dc:creator>
+      <dc:creator>Ward, Dan</dc:creator>
+      <dc:creator>Lapp, Hilmar</dc:creator>
+      <dc:subject>survivorship</dc:subject>
+      <dc:subject>life history</dc:subject>
+      <dc:subject>population ecology</dc:subject>
+      <dc:subject>demography</dc:subject>
+      <dc:subject>life tables</dc:subject>
+      <dc:subject>age structure</dc:subject>
+      <dc:description>Real-life data from seven wild primate populations provide examples of real survivorship curves.</dc:description>
+      <dc:date>2012-06-15T15:03:34Z</dc:date>
+      <dc:date>2012-06-15T21:05:51Z</dc:date>
+      <dc:date>2012-06-15</dc:date>
+      <dc:type>Activity</dc:type>
+      <dc:format>Flexible: If in a lab, 2 - 2.5 hours for presentation of background, computation, preparation of graphs and discussion is plenty. If in a lecture, presentation of example, with background, might take 20 - 40 minutes. Then homework could be expandable depending on how much background you request from them. If in a tutorial, could be done in 1.25 hours.</dc:format>
+      <dc:identifier>doi:10.5061/dryad.qc524/1</dc:identifier>
+      <dc:identifier>http://hdl.handle.net/10255/dryad.40382</dc:identifier>
+      <dc:relation>Excel or comparable spreadsheet program such as Google Spreadsheet, Apple Numbers, etc. Could be done by hand but would be tedious.</dc:relation>
+      <dc:rights>http://creativecommons.org/licenses/by/3.0/</dc:rights>
+    </oai_dc:dc>
+  </metadata>
+</record>
+<record xmlns="http://www.openarchives.org/OAI/2.0/">
+  <header>
+    <identifier>oai:datadryad.org:10255/dryad.40383</identifier>
+    <datestamp>2012-06-15T21:05:36Z</datestamp>
+    <setSpec>hdl_10255_dryad.7872</setSpec>
+    <repository xmlns="">Dryad Data Repository</repository>
+    <setName xmlns="">DryadLab Activities</setName>
+    <fetchURL xmlns="">http://www.datadryad.org/oai/request?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=hdl_10255_dryad.7872</fetchURL>
+    <recNum xmlns="">2</recNum>
+  </header>
+  <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>A walk through the woods: data analysis of structural adaptations in wood</dc:title>
+      <dc:creator>DeSaix, Jean S.</dc:creator>
+      <dc:creator>Feinstein, Elena M.</dc:creator>
+      <dc:creator>Zanne, Amy E.</dc:creator>
+      <dc:subject>hypothesis formulation</dc:subject>
+      <dc:subject>hypothesis testing</dc:subject>
+      <dc:subject>data visualization</dc:subject>
+      <dc:subject>graphing</dc:subject>
+      <dc:subject>adaptation</dc:subject>
+      <dc:subject>environmental pressures</dc:subject>
+      <dc:subject>wood structure and function</dc:subject>
+      <dc:subject>ecology</dc:subject>
+      <dc:subject>botany</dc:subject>
+      <dc:subject>forestry</dc:subject>
+      <dc:subject>climate change</dc:subject>
+      <dc:description>Students will 1) form hypotheses about the influence of environmental variables on wood structure, 2) test their hypotheses using wood structure data, 3) interpret their results in light of environmental pressures and physiological function and 4) revise hypotheses as necessary.</dc:description>
+      <dc:date>2012-06-15T15:03:34Z</dc:date>
+      <dc:date>2012-06-15T21:05:36Z</dc:date>
+      <dc:date>2012-06-15</dc:date>
+      <dc:type>Activity</dc:type>
+      <dc:format>Fifteen to thirty minute in-class lesson with one hour homework assignment, which can be adapted and/or extended as an in-class lab. Suggestions for further extension activities are included, as well as extra background information for the instructor.</dc:format>
+      <dc:identifier>doi:10.5061/dryad.qc524/2</dc:identifier>
+      <dc:identifier>http://hdl.handle.net/10255/dryad.40383</dc:identifier>
+      <dc:relation>For in-class lesson, no additional materials are necessary. For homework assignment or laboratory exercise, students will need computers with Internet connection and spreadsheet software with graphing capabilities (e.g., Excel, Open Office, Google spreadsheet). Students will need to download a data set. For more advanced students, statistical analyses for correlations and summary statistics are possible and thus relevant statistical software would be necessary.</dc:relation>
+      <dc:rights>http://creativecommons.org/licenses/by/3.0/</dc:rights>
+    </oai_dc:dc>
+  </metadata>
+</record>
+<record xmlns="http://www.openarchives.org/OAI/2.0/">
+  <header>
+    <identifier>oai:datadryad.org:10255/dryad.40384</identifier>
+    <datestamp>2012-06-15T21:06:00Z</datestamp>
+    <setSpec>hdl_10255_dryad.7872</setSpec>
+    <repository xmlns="">Dryad Data Repository</repository>
+    <setName xmlns="">DryadLab Activities</setName>
+    <fetchURL xmlns="">http://www.datadryad.org/oai/request?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=hdl_10255_dryad.7872</fetchURL>
+    <recNum xmlns="">3</recNum>
+  </header>
+  <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>Introduction to extinctions and extinction bias</dc:title>
+      <dc:creator>Price, Samantha</dc:creator>
+      <dc:creator>Schaeffer, Peggy</dc:creator>
+      <dc:creator>Thanukos, Anna</dc:creator>
+      <dc:subject>extinction</dc:subject>
+      <dc:subject>data analysis</dc:subject>
+      <dc:subject>graphing</dc:subject>
+      <dc:subject>macroevolution</dc:subject>
+      <dc:subject>ecology</dc:subject>
+      <dc:subject>conservation</dc:subject>
+      <dc:description>Students will be introduced to different factors that might affect extinction risk and will work with data on artiodactyls (even-toed, hoofed mammals, such as cows, sheep, deer, antelope, and giraffes) to investigate some of these hypotheses.</dc:description>
+      <dc:date>2012-06-15T15:03:34Z</dc:date>
+      <dc:date>2012-06-15T21:06:00Z</dc:date>
+      <dc:date>2012-06-15</dc:date>
+      <dc:type>Activity</dc:type>
+      <dc:format>Ideally 1.5 hours in lab or classroom (with possible extension activity as homework), but could also take the form of 15 minute introduction in lecture, plus homework assignment and 5 minute wrap-up discussion in lecture. Download file includes more information on adapting this activity for large lecture classes.</dc:format>
+      <dc:identifier>doi:10.5061/dryad.qc524/3</dc:identifier>
+      <dc:identifier>http://hdl.handle.net/10255/dryad.40384</dc:identifier>
+      <dc:relation>Classroom: &lt;30 students (but modification is available for a large lecture course). Technology: one computer per student group (i.e., 10 for a class of 30), projector, internet access. Software: simple graphing/statistical package (Excel or Google spreadsheets works).</dc:relation>
+      <dc:rights>http://creativecommons.org/licenses/by/3.0/</dc:rights>
+    </oai_dc:dc>
+  </metadata>
+</record>
+</ListRecords>

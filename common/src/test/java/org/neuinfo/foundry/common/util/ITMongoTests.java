@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by bozyurt on 5/28/14.
  */
-public class MongoTests extends TestCase {
+public class ITMongoTests extends TestCase {
     private MongoClient mongoClient;
     private String mongoDbName;
 
-    public MongoTests(String name) {
+    public ITMongoTests(String name) {
         super(name);
     }
 

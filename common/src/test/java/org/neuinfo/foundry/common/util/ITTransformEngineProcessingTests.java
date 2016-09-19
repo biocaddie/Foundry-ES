@@ -1,29 +1,23 @@
 package org.neuinfo.foundry.common.util;
 
-import junit.framework.TestCase;
 import org.jdom2.Element;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.neuinfo.foundry.common.transform.TransformMappingUtils;
 import org.neuinfo.foundry.common.transform.TransformationEngine;
 import org.neuinfo.foundry.common.transform.TransformationFunctionRegistry;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by bozyurt on 5/11/15.
  */
 
-public class TransformEngineProcessingTest extends TestCase {
+public class ITTransformEngineProcessingTests {
     final static String HOME_DIR = System.getProperty("user.home");
 
-    public TransformEngineProcessingTest(String name) {
-        super(name);
-    }
-
-
+    @Test
     public void testPDBTransformation() throws Exception {
         String inJsonFile = HOME_DIR + "/dev/java/Foundry-Data/SampleData/pdb/100d-noatom.json";
         String transformScriptFile = HOME_DIR +
@@ -31,6 +25,7 @@ public class TransformEngineProcessingTest extends TestCase {
         handleTransformation(inJsonFile, transformScriptFile);
     }
 
+    @Test
     public void testGemmaTransformation() throws Exception {
         String inJsonFile = HOME_DIR + "/dev/java/Foundry-Data/SampleData/Gemma/gemma_csv_record_1.json";
         String transformScriptFile = HOME_DIR +
@@ -66,6 +61,7 @@ public class TransformEngineProcessingTest extends TestCase {
         handleTransformation(inJsonFile, transformScriptFile);
     }
 
+    @Test
     public void testNeuroMorphoTransformation() throws Exception {
         String inJsonFile = HOME_DIR +
                 "/dev/java/Foundry-Data/SampleData/neuromorpho/neuromorpho_record_1.json";
@@ -84,6 +80,7 @@ public class TransformEngineProcessingTest extends TestCase {
         handleTransformation(inJsonFile, transformScriptFile);
     }
 
+    @Test
     public void testPDBTransformation2() throws Exception {
         String inJsonFile = HOME_DIR +
                 "/dev/java/Foundry-Data/SampleData/pdb/5amh-noatom.json";

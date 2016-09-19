@@ -1,0 +1,3396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PDBx:datablock datablockName="100D-noatom"
+   xmlns:PDBx="http://pdbml.pdb.org/schema/pdbx-v40.xsd"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://pdbml.pdb.org/schema/pdbx-v40.xsd pdbx-v40.xsd">
+
+   <PDBx:atom_sitesCategory>
+      <PDBx:atom_sites entry_id="100D">
+         <PDBx:fract_transf_matrix11>0.041701</PDBx:fract_transf_matrix11>
+         <PDBx:fract_transf_matrix12>0.000000</PDBx:fract_transf_matrix12>
+         <PDBx:fract_transf_matrix13>0.000000</PDBx:fract_transf_matrix13>
+         <PDBx:fract_transf_matrix21>0.000000</PDBx:fract_transf_matrix21>
+         <PDBx:fract_transf_matrix22>0.024528</PDBx:fract_transf_matrix22>
+         <PDBx:fract_transf_matrix23>0.000000</PDBx:fract_transf_matrix23>
+         <PDBx:fract_transf_matrix31>0.000000</PDBx:fract_transf_matrix31>
+         <PDBx:fract_transf_matrix32>0.000000</PDBx:fract_transf_matrix32>
+         <PDBx:fract_transf_matrix33>0.022302</PDBx:fract_transf_matrix33>
+         <PDBx:fract_transf_vector1>0.00000</PDBx:fract_transf_vector1>
+         <PDBx:fract_transf_vector2>0.00000</PDBx:fract_transf_vector2>
+         <PDBx:fract_transf_vector3>0.00000</PDBx:fract_transf_vector3>
+      </PDBx:atom_sites>
+   </PDBx:atom_sitesCategory>
+   <PDBx:atom_typeCategory>
+      <PDBx:atom_type symbol="O"></PDBx:atom_type>
+      <PDBx:atom_type symbol="C"></PDBx:atom_type>
+      <PDBx:atom_type symbol="N"></PDBx:atom_type>
+      <PDBx:atom_type symbol="P"></PDBx:atom_type>
+   </PDBx:atom_typeCategory>
+   <PDBx:audit_authorCategory>
+      <PDBx:audit_author pdbx_ordinal="1">
+         <PDBx:name>Ban, C.</PDBx:name>
+      </PDBx:audit_author>
+      <PDBx:audit_author pdbx_ordinal="2">
+         <PDBx:name>Ramakrishnan, B.</PDBx:name>
+      </PDBx:audit_author>
+      <PDBx:audit_author pdbx_ordinal="3">
+         <PDBx:name>Sundaralingam, M.</PDBx:name>
+      </PDBx:audit_author>
+   </PDBx:audit_authorCategory>
+   <PDBx:audit_conformCategory>
+      <PDBx:audit_conform dict_name="mmcif_pdbx.dic" dict_version="4.007">
+         <PDBx:dict_location>http://mmcif.pdb.org/dictionaries/ascii/mmcif_pdbx.dic</PDBx:dict_location>
+      </PDBx:audit_conform>
+   </PDBx:audit_conformCategory>
+   <PDBx:cellCategory>
+      <PDBx:cell entry_id="100D">
+         <PDBx:Z_PDB>8</PDBx:Z_PDB>
+         <PDBx:angle_alpha>90.00</PDBx:angle_alpha>
+         <PDBx:angle_beta>90.00</PDBx:angle_beta>
+         <PDBx:angle_gamma>90.00</PDBx:angle_gamma>
+         <PDBx:length_a>23.980</PDBx:length_a>
+         <PDBx:length_b>40.770</PDBx:length_b>
+         <PDBx:length_c>44.840</PDBx:length_c>
+      </PDBx:cell>
+   </PDBx:cellCategory>
+   <PDBx:chem_compCategory>
+      <PDBx:chem_comp id="C">
+         <PDBx:formula>C9 H14 N3 O8 P</PDBx:formula>
+         <PDBx:formula_weight>323.199</PDBx:formula_weight>
+         <PDBx:mon_nstd_flag>y</PDBx:mon_nstd_flag>
+         <PDBx:name>CYTIDINE-5&apos;-MONOPHOSPHATE</PDBx:name>
+         <PDBx:type>RNA linking</PDBx:type>
+      </PDBx:chem_comp>
+      <PDBx:chem_comp id="DC">
+         <PDBx:formula>C9 H14 N3 O7 P</PDBx:formula>
+         <PDBx:formula_weight>307.199</PDBx:formula_weight>
+         <PDBx:mon_nstd_flag>y</PDBx:mon_nstd_flag>
+         <PDBx:name>2&apos;-DEOXYCYTIDINE-5&apos;-MONOPHOSPHATE</PDBx:name>
+         <PDBx:type>DNA linking</PDBx:type>
+      </PDBx:chem_comp>
+      <PDBx:chem_comp id="DG">
+         <PDBx:formula>C10 H14 N5 O7 P</PDBx:formula>
+         <PDBx:formula_weight>347.224</PDBx:formula_weight>
+         <PDBx:mon_nstd_flag>y</PDBx:mon_nstd_flag>
+         <PDBx:name>2&apos;-DEOXYGUANOSINE-5&apos;-MONOPHOSPHATE</PDBx:name>
+         <PDBx:type>DNA linking</PDBx:type>
+      </PDBx:chem_comp>
+      <PDBx:chem_comp id="G">
+         <PDBx:formula>C10 H14 N5 O8 P</PDBx:formula>
+         <PDBx:formula_weight>363.223</PDBx:formula_weight>
+         <PDBx:mon_nstd_flag>y</PDBx:mon_nstd_flag>
+         <PDBx:name>GUANOSINE-5&apos;-MONOPHOSPHATE</PDBx:name>
+         <PDBx:type>RNA linking</PDBx:type>
+      </PDBx:chem_comp>
+      <PDBx:chem_comp id="SPM">
+         <PDBx:formula>C10 H26 N4</PDBx:formula>
+         <PDBx:formula_weight>202.342</PDBx:formula_weight>
+         <PDBx:mon_nstd_flag xsi:nil="true" />
+         <PDBx:name>SPERMINE</PDBx:name>
+         <PDBx:type>non-polymer</PDBx:type>
+      </PDBx:chem_comp>
+      <PDBx:chem_comp id="HOH">
+         <PDBx:formula>H2 O</PDBx:formula>
+         <PDBx:formula_weight>18.015</PDBx:formula_weight>
+         <PDBx:mon_nstd_flag xsi:nil="true" />
+         <PDBx:name>WATER</PDBx:name>
+         <PDBx:type>non-polymer</PDBx:type>
+      </PDBx:chem_comp>
+   </PDBx:chem_compCategory>
+   <PDBx:citationCategory>
+      <PDBx:citation id="primary">
+         <PDBx:country>UK</PDBx:country>
+         <PDBx:journal_abbrev>Nucleic Acids Res.</PDBx:journal_abbrev>
+         <PDBx:journal_id_ASTM>NARHAD</PDBx:journal_id_ASTM>
+         <PDBx:journal_id_CSD>0389</PDBx:journal_id_CSD>
+         <PDBx:journal_id_ISSN>0305-1048</PDBx:journal_id_ISSN>
+         <PDBx:journal_volume>22</PDBx:journal_volume>
+         <PDBx:page_first>5466</PDBx:page_first>
+         <PDBx:page_last>5476</PDBx:page_last>
+         <PDBx:pdbx_database_id_DOI>10.1093/nar/22.24.5466</PDBx:pdbx_database_id_DOI>
+         <PDBx:pdbx_database_id_PubMed>7816639</PDBx:pdbx_database_id_PubMed>
+         <PDBx:title>Crystal structure of the highly distorted chimeric decamer r(C)d(CGGCGCCG)r(G).spermine complex--spermine binding to phosphate only and minor groove tertiary base-pairing.</PDBx:title>
+         <PDBx:year>1994</PDBx:year>
+      </PDBx:citation>
+   </PDBx:citationCategory>
+   <PDBx:citation_authorCategory>
+      <PDBx:citation_author citation_id="primary" name="Ban, C." ordinal="1"></PDBx:citation_author>
+      <PDBx:citation_author citation_id="primary" name="Ramakrishnan, B." ordinal="2"></PDBx:citation_author>
+      <PDBx:citation_author citation_id="primary" name="Sundaralingam, M." ordinal="3"></PDBx:citation_author>
+   </PDBx:citation_authorCategory>
+   <PDBx:computingCategory>
+      <PDBx:computing entry_id="100D">
+         <PDBx:structure_refinement>X-PLOR</PDBx:structure_refinement>
+      </PDBx:computing>
+   </PDBx:computingCategory>
+   <PDBx:database_2Category>
+      <PDBx:database_2 database_code="100D" database_id="PDB"></PDBx:database_2>
+      <PDBx:database_2 database_code="AHJ060" database_id="NDB"></PDBx:database_2>
+   </PDBx:database_2Category>
+   <PDBx:database_PDB_matrixCategory>
+      <PDBx:database_PDB_matrix entry_id="100D">
+         <PDBx:origx11>1.000000</PDBx:origx11>
+         <PDBx:origx12>0.000000</PDBx:origx12>
+         <PDBx:origx13>0.000000</PDBx:origx13>
+         <PDBx:origx21>0.000000</PDBx:origx21>
+         <PDBx:origx22>1.000000</PDBx:origx22>
+         <PDBx:origx23>0.000000</PDBx:origx23>
+         <PDBx:origx31>0.000000</PDBx:origx31>
+         <PDBx:origx32>0.000000</PDBx:origx32>
+         <PDBx:origx33>1.000000</PDBx:origx33>
+         <PDBx:origx_vector1>0.00000</PDBx:origx_vector1>
+         <PDBx:origx_vector2>0.00000</PDBx:origx_vector2>
+         <PDBx:origx_vector3>0.00000</PDBx:origx_vector3>
+      </PDBx:database_PDB_matrix>
+   </PDBx:database_PDB_matrixCategory>
+   <PDBx:database_PDB_revCategory>
+      <PDBx:database_PDB_rev num="1">
+         <PDBx:date>1995-03-31</PDBx:date>
+         <PDBx:date_original>1994-12-05</PDBx:date_original>
+         <PDBx:mod_type>0</PDBx:mod_type>
+         <PDBx:replaces>100D</PDBx:replaces>
+      </PDBx:database_PDB_rev>
+      <PDBx:database_PDB_rev num="2">
+         <PDBx:date>2003-04-01</PDBx:date>
+         <PDBx:mod_type>1</PDBx:mod_type>
+         <PDBx:replaces>100D</PDBx:replaces>
+      </PDBx:database_PDB_rev>
+      <PDBx:database_PDB_rev num="3">
+         <PDBx:date>2009-02-24</PDBx:date>
+         <PDBx:mod_type>1</PDBx:mod_type>
+         <PDBx:replaces>100D</PDBx:replaces>
+      </PDBx:database_PDB_rev>
+   </PDBx:database_PDB_revCategory>
+   <PDBx:database_PDB_rev_recordCategory>
+      <PDBx:database_PDB_rev_record rev_num="2" type="JRNL">
+      </PDBx:database_PDB_rev_record>
+      <PDBx:database_PDB_rev_record rev_num="3" type="VERSN">
+      </PDBx:database_PDB_rev_record>
+   </PDBx:database_PDB_rev_recordCategory>
+   <PDBx:diffrnCategory>
+      <PDBx:diffrn id="1">
+         <PDBx:ambient_temp>263.00</PDBx:ambient_temp>
+         <PDBx:crystal_id>1</PDBx:crystal_id>
+      </PDBx:diffrn>
+   </PDBx:diffrnCategory>
+   <PDBx:diffrn_detectorCategory>
+      <PDBx:diffrn_detector diffrn_id="1">
+         <PDBx:detector>AREA DETECTOR</PDBx:detector>
+         <PDBx:type>SIEMENS-NICOLET</PDBx:type>
+      </PDBx:diffrn_detector>
+   </PDBx:diffrn_detectorCategory>
+   <PDBx:diffrn_radiationCategory>
+      <PDBx:diffrn_radiation diffrn_id="1">
+         <PDBx:pdbx_scattering_type>x-ray</PDBx:pdbx_scattering_type>
+         <PDBx:wavelength_id>1</PDBx:wavelength_id>
+      </PDBx:diffrn_radiation>
+   </PDBx:diffrn_radiationCategory>
+   <PDBx:diffrn_radiation_wavelengthCategory>
+      <PDBx:diffrn_radiation_wavelength id="1">
+         <PDBx:wavelength xsi:nil="true" />
+         <PDBx:wt>1.0</PDBx:wt>
+      </PDBx:diffrn_radiation_wavelength>
+   </PDBx:diffrn_radiation_wavelengthCategory>
+   <PDBx:diffrn_sourceCategory>
+      <PDBx:diffrn_source diffrn_id="1">
+         <PDBx:source>ROTATING ANODE</PDBx:source>
+         <PDBx:type>MACSCIENCE</PDBx:type>
+      </PDBx:diffrn_source>
+   </PDBx:diffrn_sourceCategory>
+   <PDBx:entityCategory>
+      <PDBx:entity id="1">
+         <PDBx:formula_weight>3079.004</PDBx:formula_weight>
+         <PDBx:pdbx_description>DNA/RNA (5&apos;-R(*CP*)-D(*CP*GP*GP*CP*GP*CP*CP*GP*)-R(*G)-3&apos;)</PDBx:pdbx_description>
+         <PDBx:pdbx_number_of_molecules>2</PDBx:pdbx_number_of_molecules>
+         <PDBx:src_method>syn</PDBx:src_method>
+         <PDBx:type>polymer</PDBx:type>
+      </PDBx:entity>
+      <PDBx:entity id="2">
+         <PDBx:formula_weight>202.342</PDBx:formula_weight>
+         <PDBx:pdbx_description>SPERMINE</PDBx:pdbx_description>
+         <PDBx:pdbx_number_of_molecules>1</PDBx:pdbx_number_of_molecules>
+         <PDBx:src_method>syn</PDBx:src_method>
+         <PDBx:type>non-polymer</PDBx:type>
+      </PDBx:entity>
+      <PDBx:entity id="3">
+         <PDBx:formula_weight>18.015</PDBx:formula_weight>
+         <PDBx:pdbx_description>water</PDBx:pdbx_description>
+         <PDBx:pdbx_number_of_molecules>67</PDBx:pdbx_number_of_molecules>
+         <PDBx:src_method>nat</PDBx:src_method>
+         <PDBx:type>water</PDBx:type>
+      </PDBx:entity>
+   </PDBx:entityCategory>
+   <PDBx:entity_polyCategory>
+      <PDBx:entity_poly entity_id="1">
+         <PDBx:nstd_linkage>no</PDBx:nstd_linkage>
+         <PDBx:nstd_monomer>no</PDBx:nstd_monomer>
+         <PDBx:pdbx_seq_one_letter_code>C(DC)(DG)(DG)(DC)(DG)(DC)(DC)(DG)G</PDBx:pdbx_seq_one_letter_code>
+         <PDBx:pdbx_seq_one_letter_code_can>CCGGCGCCGG</PDBx:pdbx_seq_one_letter_code_can>
+         <PDBx:pdbx_strand_id>A,B</PDBx:pdbx_strand_id>
+         <PDBx:type>polydeoxyribonucleotide/polyribonucleotide hybrid</PDBx:type>
+      </PDBx:entity_poly>
+   </PDBx:entity_polyCategory>
+   <PDBx:entity_poly_seqCategory>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="C" num="1">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DC" num="2">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DG" num="3">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DG" num="4">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DC" num="5">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DG" num="6">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DC" num="7">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DC" num="8">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="DG" num="9">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+      <PDBx:entity_poly_seq entity_id="1" mon_id="G" num="10">
+         <PDBx:hetero>n</PDBx:hetero>
+      </PDBx:entity_poly_seq>
+   </PDBx:entity_poly_seqCategory>
+   <PDBx:entryCategory>
+      <PDBx:entry id="100D"></PDBx:entry>
+   </PDBx:entryCategory>
+   <PDBx:exptlCategory>
+      <PDBx:exptl entry_id="100D" method="X-RAY DIFFRACTION">
+      </PDBx:exptl>
+   </PDBx:exptlCategory>
+   <PDBx:exptl_crystalCategory>
+      <PDBx:exptl_crystal id="1"></PDBx:exptl_crystal>
+   </PDBx:exptl_crystalCategory>
+   <PDBx:exptl_crystal_growCategory>
+      <PDBx:exptl_crystal_grow crystal_id="1">
+         <PDBx:method>VAPOR DIFFUSION, HANGING DROP</PDBx:method>
+         <PDBx:pH>7.00</PDBx:pH>
+         <PDBx:pdbx_details>pH 7.00, VAPOR DIFFUSION, HANGING DROP</PDBx:pdbx_details>
+      </PDBx:exptl_crystal_grow>
+   </PDBx:exptl_crystal_growCategory>
+   <PDBx:exptl_crystal_grow_compCategory>
+      <PDBx:exptl_crystal_grow_comp crystal_id="1" id="1">
+         <PDBx:name>WATER</PDBx:name>
+         <PDBx:sol_id>1</PDBx:sol_id>
+      </PDBx:exptl_crystal_grow_comp>
+      <PDBx:exptl_crystal_grow_comp crystal_id="1" id="2">
+         <PDBx:name>MPD</PDBx:name>
+         <PDBx:sol_id>1</PDBx:sol_id>
+      </PDBx:exptl_crystal_grow_comp>
+      <PDBx:exptl_crystal_grow_comp crystal_id="1" id="3">
+         <PDBx:name>NA CACODYLATE</PDBx:name>
+         <PDBx:sol_id>1</PDBx:sol_id>
+      </PDBx:exptl_crystal_grow_comp>
+      <PDBx:exptl_crystal_grow_comp crystal_id="1" id="4">
+         <PDBx:name>SPERMINE_HCL</PDBx:name>
+         <PDBx:sol_id>1</PDBx:sol_id>
+      </PDBx:exptl_crystal_grow_comp>
+      <PDBx:exptl_crystal_grow_comp crystal_id="1" id="5">
+         <PDBx:name>WATER</PDBx:name>
+         <PDBx:sol_id>2</PDBx:sol_id>
+      </PDBx:exptl_crystal_grow_comp>
+      <PDBx:exptl_crystal_grow_comp crystal_id="1" id="6">
+         <PDBx:name>MPD</PDBx:name>
+         <PDBx:sol_id>2</PDBx:sol_id>
+      </PDBx:exptl_crystal_grow_comp>
+   </PDBx:exptl_crystal_grow_compCategory>
+   <PDBx:ndb_struct_conf_naCategory>
+      <PDBx:ndb_struct_conf_na entry_id="100D" feature="a-form double helix"></PDBx:ndb_struct_conf_na>
+   </PDBx:ndb_struct_conf_naCategory>
+   <PDBx:ndb_struct_na_base_pairCategory>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="C" i_label_seq_id="1" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="G" j_label_seq_id="10" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>3.919</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>1</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>20</PDBx:j_auth_seq_id>
+         <PDBx:opening>-0.903</PDBx:opening>
+         <PDBx:pair_name>A_C1:G20_B</PDBx:pair_name>
+         <PDBx:pair_number>1</PDBx:pair_number>
+         <PDBx:shear>0.068</PDBx:shear>
+         <PDBx:stagger>0.037</PDBx:stagger>
+         <PDBx:stretch>-0.095</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DC" i_label_seq_id="2" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DG" j_label_seq_id="9" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>4.832</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>2</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>19</PDBx:j_auth_seq_id>
+         <PDBx:opening>-1.893</PDBx:opening>
+         <PDBx:pair_name>A_DC2:DG19_B</PDBx:pair_name>
+         <PDBx:pair_number>2</PDBx:pair_number>
+         <PDBx:shear>-0.021</PDBx:shear>
+         <PDBx:stagger>-0.062</PDBx:stagger>
+         <PDBx:stretch>-0.169</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DG" i_label_seq_id="3" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DC" j_label_seq_id="8" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>2.657</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>3</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>18</PDBx:j_auth_seq_id>
+         <PDBx:opening>1.384</PDBx:opening>
+         <PDBx:pair_name>A_DG3:DC18_B</PDBx:pair_name>
+         <PDBx:pair_number>3</PDBx:pair_number>
+         <PDBx:shear>-0.348</PDBx:shear>
+         <PDBx:stagger>-0.041</PDBx:stagger>
+         <PDBx:stretch>-0.155</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DG" i_label_seq_id="4" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DC" j_label_seq_id="7" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>-2.069</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>4</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>17</PDBx:j_auth_seq_id>
+         <PDBx:opening>0.439</PDBx:opening>
+         <PDBx:pair_name>A_DG4:DC17_B</PDBx:pair_name>
+         <PDBx:pair_number>4</PDBx:pair_number>
+         <PDBx:shear>-0.240</PDBx:shear>
+         <PDBx:stagger>0.090</PDBx:stagger>
+         <PDBx:stretch>-0.199</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DC" i_label_seq_id="5" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DG" j_label_seq_id="6" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>3.577</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>5</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>16</PDBx:j_auth_seq_id>
+         <PDBx:opening>-0.990</PDBx:opening>
+         <PDBx:pair_name>A_DC5:DG16_B</PDBx:pair_name>
+         <PDBx:pair_number>5</PDBx:pair_number>
+         <PDBx:shear>0.378</PDBx:shear>
+         <PDBx:stagger>0.399</PDBx:stagger>
+         <PDBx:stretch>-0.309</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DG" i_label_seq_id="6" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DC" j_label_seq_id="5" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>-1.641</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>6</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>15</PDBx:j_auth_seq_id>
+         <PDBx:opening>0.002</PDBx:opening>
+         <PDBx:pair_name>A_DG6:DC15_B</PDBx:pair_name>
+         <PDBx:pair_number>6</PDBx:pair_number>
+         <PDBx:shear>-0.161</PDBx:shear>
+         <PDBx:stagger>0.030</PDBx:stagger>
+         <PDBx:stretch>0.050</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DC" i_label_seq_id="7" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DG" j_label_seq_id="4" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>2.693</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>7</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>14</PDBx:j_auth_seq_id>
+         <PDBx:opening>0.662</PDBx:opening>
+         <PDBx:pair_name>A_DC7:DG14_B</PDBx:pair_name>
+         <PDBx:pair_number>7</PDBx:pair_number>
+         <PDBx:shear>0.418</PDBx:shear>
+         <PDBx:stagger>-0.101</PDBx:stagger>
+         <PDBx:stretch>-0.258</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DC" i_label_seq_id="8" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DG" j_label_seq_id="3" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>2.563</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>8</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>13</PDBx:j_auth_seq_id>
+         <PDBx:opening>2.313</PDBx:opening>
+         <PDBx:pair_name>A_DC8:DG13_B</PDBx:pair_name>
+         <PDBx:pair_number>8</PDBx:pair_number>
+         <PDBx:shear>0.529</PDBx:shear>
+         <PDBx:stagger>-0.142</PDBx:stagger>
+         <PDBx:stretch>-0.125</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="DG" i_label_seq_id="9" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="DC" j_label_seq_id="2" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>-3.824</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>9</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>12</PDBx:j_auth_seq_id>
+         <PDBx:opening>0.304</PDBx:opening>
+         <PDBx:pair_name>A_DG9:DC12_B</PDBx:pair_name>
+         <PDBx:pair_number>9</PDBx:pair_number>
+         <PDBx:shear>-0.089</PDBx:shear>
+         <PDBx:stagger>-0.088</PDBx:stagger>
+         <PDBx:stretch>-0.141</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+      <PDBx:ndb_struct_na_base_pair i_label_asym_id="A" i_label_comp_id="G" i_label_seq_id="10" i_symmetry="1_555" j_label_asym_id="B" j_label_comp_id="C" j_label_seq_id="1" j_symmetry="1_555" model_number="1">
+         <PDBx:buckle>-0.154</PDBx:buckle>
+         <PDBx:hbond_type_12>1</PDBx:hbond_type_12>
+         <PDBx:hbond_type_28>19</PDBx:hbond_type_28>
+         <PDBx:i_auth_asym_id>A</PDBx:i_auth_asym_id>
+         <PDBx:i_auth_seq_id>10</PDBx:i_auth_seq_id>
+         <PDBx:j_auth_asym_id>B</PDBx:j_auth_asym_id>
+         <PDBx:j_auth_seq_id>11</PDBx:j_auth_seq_id>
+         <PDBx:opening>-3.321</PDBx:opening>
+         <PDBx:pair_name>A_G10:C11_B</PDBx:pair_name>
+         <PDBx:pair_number>10</PDBx:pair_number>
+         <PDBx:shear>-0.264</PDBx:shear>
+         <PDBx:stagger>-0.028</PDBx:stagger>
+         <PDBx:stretch>-0.410</PDBx:stretch>
+      </PDBx:ndb_struct_na_base_pair>
+   </PDBx:ndb_struct_na_base_pairCategory>
+   <PDBx:ndb_struct_na_base_pair_stepCategory>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="C" i_label_comp_id_2="DC" i_label_seq_id_1="1" i_label_seq_id_2="2" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="G" j_label_comp_id_2="DG" j_label_seq_id_1="10" j_label_seq_id_2="9" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>2.945</PDBx:helical_rise>
+         <PDBx:helical_twist>34.638</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>1</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>2</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>11.038</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>20</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>19</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.311</PDBx:rise>
+         <PDBx:roll>6.534</PDBx:roll>
+         <PDBx:shift>0.040</PDBx:shift>
+         <PDBx:slide>-1.686</PDBx:slide>
+         <PDBx:step_name>AA_C1DC2:DG19G20_BB</PDBx:step_name>
+         <PDBx:step_number>1</PDBx:step_number>
+         <PDBx:tilt>-0.715</PDBx:tilt>
+         <PDBx:tip>1.208</PDBx:tip>
+         <PDBx:twist>34.027</PDBx:twist>
+         <PDBx:x_displacement>-3.803</PDBx:x_displacement>
+         <PDBx:y_displacement>-0.173</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DC" i_label_comp_id_2="DG" i_label_seq_id_1="2" i_label_seq_id_2="3" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DG" j_label_comp_id_2="DC" j_label_seq_id_1="9" j_label_seq_id_2="8" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>2.688</PDBx:helical_rise>
+         <PDBx:helical_twist>29.679</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>2</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>3</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>16.624</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>19</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>18</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.309</PDBx:rise>
+         <PDBx:roll>8.403</PDBx:roll>
+         <PDBx:shift>0.000</PDBx:shift>
+         <PDBx:slide>-1.769</PDBx:slide>
+         <PDBx:step_name>AA_DC2DG3:DC18DG19_BB</PDBx:step_name>
+         <PDBx:step_number>2</PDBx:step_number>
+         <PDBx:tilt>-0.726</PDBx:tilt>
+         <PDBx:tip>1.437</PDBx:tip>
+         <PDBx:twist>28.481</PDBx:twist>
+         <PDBx:x_displacement>-5.108</PDBx:x_displacement>
+         <PDBx:y_displacement>-0.143</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DG" i_label_comp_id_2="DG" i_label_seq_id_1="3" i_label_seq_id_2="4" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DC" j_label_comp_id_2="DC" j_label_seq_id_1="8" j_label_seq_id_2="7" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>3.071</PDBx:helical_rise>
+         <PDBx:helical_twist>38.092</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>3</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>4</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>15.011</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>18</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>17</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.251</PDBx:rise>
+         <PDBx:roll>9.618</PDBx:roll>
+         <PDBx:shift>-1.609</PDBx:shift>
+         <PDBx:slide>-1.437</PDBx:slide>
+         <PDBx:step_name>AA_DG3DG4:DC17DC18_BB</PDBx:step_name>
+         <PDBx:step_number>3</PDBx:step_number>
+         <PDBx:tilt>-8.538</PDBx:tilt>
+         <PDBx:tip>13.325</PDBx:tip>
+         <PDBx:twist>35.932</PDBx:twist>
+         <PDBx:x_displacement>-3.417</PDBx:x_displacement>
+         <PDBx:y_displacement>1.386</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DG" i_label_comp_id_2="DC" i_label_seq_id_1="4" i_label_seq_id_2="5" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DC" j_label_comp_id_2="DG" j_label_seq_id_1="7" j_label_seq_id_2="6" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>2.926</PDBx:helical_rise>
+         <PDBx:helical_twist>32.079</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>4</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>5</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>12.940</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>17</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>16</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.240</PDBx:rise>
+         <PDBx:roll>7.094</PDBx:roll>
+         <PDBx:shift>0.941</PDBx:shift>
+         <PDBx:slide>-0.969</PDBx:slide>
+         <PDBx:step_name>AA_DG4DC5:DG16DC17_BB</PDBx:step_name>
+         <PDBx:step_number>4</PDBx:step_number>
+         <PDBx:tilt>-0.966</PDBx:tilt>
+         <PDBx:tip>1.763</PDBx:tip>
+         <PDBx:twist>31.290</PDBx:twist>
+         <PDBx:x_displacement>-2.972</PDBx:x_displacement>
+         <PDBx:y_displacement>-1.869</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DC" i_label_comp_id_2="DG" i_label_seq_id_1="5" i_label_seq_id_2="6" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DG" j_label_comp_id_2="DC" j_label_seq_id_1="6" j_label_seq_id_2="5" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>1.858</PDBx:helical_rise>
+         <PDBx:helical_twist>35.693</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>5</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>6</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>31.845</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>16</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>15</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.156</PDBx:rise>
+         <PDBx:roll>18.609</PDBx:roll>
+         <PDBx:shift>-0.884</PDBx:shift>
+         <PDBx:slide>-1.643</PDBx:slide>
+         <PDBx:step_name>AA_DC5DG6:DC15DG16_BB</PDBx:step_name>
+         <PDBx:step_number>5</PDBx:step_number>
+         <PDBx:tilt>0.897</PDBx:tilt>
+         <PDBx:tip>-1.535</PDBx:tip>
+         <PDBx:twist>30.581</PDBx:twist>
+         <PDBx:x_displacement>-4.919</PDBx:x_displacement>
+         <PDBx:y_displacement>1.549</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DG" i_label_comp_id_2="DC" i_label_seq_id_1="6" i_label_seq_id_2="7" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DC" j_label_comp_id_2="DG" j_label_seq_id_1="5" j_label_seq_id_2="4" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>3.087</PDBx:helical_rise>
+         <PDBx:helical_twist>35.016</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>6</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>7</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>10.004</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>15</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>14</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.257</PDBx:rise>
+         <PDBx:roll>5.983</PDBx:roll>
+         <PDBx:shift>0.957</PDBx:shift>
+         <PDBx:slide>-1.199</PDBx:slide>
+         <PDBx:step_name>AA_DG6DC7:DG14DC15_BB</PDBx:step_name>
+         <PDBx:step_number>6</PDBx:step_number>
+         <PDBx:tilt>3.304</PDBx:tilt>
+         <PDBx:tip>-5.525</PDBx:tip>
+         <PDBx:twist>34.363</PDBx:twist>
+         <PDBx:x_displacement>-2.875</PDBx:x_displacement>
+         <PDBx:y_displacement>-1.104</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DC" i_label_comp_id_2="DC" i_label_seq_id_1="7" i_label_seq_id_2="8" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DG" j_label_comp_id_2="DG" j_label_seq_id_1="4" j_label_seq_id_2="3" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>3.024</PDBx:helical_rise>
+         <PDBx:helical_twist>28.519</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>7</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>8</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>9.380</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>14</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>13</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.362</PDBx:rise>
+         <PDBx:roll>4.601</PDBx:roll>
+         <PDBx:shift>0.507</PDBx:shift>
+         <PDBx:slide>-1.915</PDBx:slide>
+         <PDBx:step_name>AA_DC7DC8:DG13DG14_BB</PDBx:step_name>
+         <PDBx:step_number>7</PDBx:step_number>
+         <PDBx:tilt>0.387</PDBx:tilt>
+         <PDBx:tip>-0.790</PDBx:tip>
+         <PDBx:twist>28.150</PDBx:twist>
+         <PDBx:x_displacement>-4.919</PDBx:x_displacement>
+         <PDBx:y_displacement>-0.943</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DC" i_label_comp_id_2="DG" i_label_seq_id_1="8" i_label_seq_id_2="9" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DG" j_label_comp_id_2="DC" j_label_seq_id_1="3" j_label_seq_id_2="2" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>3.388</PDBx:helical_rise>
+         <PDBx:helical_twist>23.847</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>8</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>9</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>6.493</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>13</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>12</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.651</PDBx:rise>
+         <PDBx:roll>2.677</PDBx:roll>
+         <PDBx:shift>-0.715</PDBx:shift>
+         <PDBx:slide>-2.331</PDBx:slide>
+         <PDBx:step_name>AA_DC8DG9:DC12DG13_BB</PDBx:step_name>
+         <PDBx:step_number>8</PDBx:step_number>
+         <PDBx:tilt>-0.639</PDBx:tilt>
+         <PDBx:tip>1.549</PDBx:tip>
+         <PDBx:twist>23.690</PDBx:twist>
+         <PDBx:x_displacement>-6.586</PDBx:x_displacement>
+         <PDBx:y_displacement>1.504</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+      <PDBx:ndb_struct_na_base_pair_step i_label_asym_id_1="A" i_label_asym_id_2="A" i_label_comp_id_1="DG" i_label_comp_id_2="G" i_label_seq_id_1="9" i_label_seq_id_2="10" i_symmetry_1="1_555" i_symmetry_2="1_555" j_label_asym_id_1="B" j_label_asym_id_2="B" j_label_comp_id_1="DC" j_label_comp_id_2="C" j_label_seq_id_1="2" j_label_seq_id_2="1" j_symmetry_1="1_555" j_symmetry_2="1_555" model_number="1">
+         <PDBx:helical_rise>3.253</PDBx:helical_rise>
+         <PDBx:helical_twist>30.221</PDBx:helical_twist>
+         <PDBx:i_auth_asym_id_1>A</PDBx:i_auth_asym_id_1>
+         <PDBx:i_auth_asym_id_2>A</PDBx:i_auth_asym_id_2>
+         <PDBx:i_auth_seq_id_1>9</PDBx:i_auth_seq_id_1>
+         <PDBx:i_auth_seq_id_2>10</PDBx:i_auth_seq_id_2>
+         <PDBx:inclination>4.033</PDBx:inclination>
+         <PDBx:j_auth_asym_id_1>B</PDBx:j_auth_asym_id_1>
+         <PDBx:j_auth_asym_id_2>B</PDBx:j_auth_asym_id_2>
+         <PDBx:j_auth_seq_id_1>12</PDBx:j_auth_seq_id_1>
+         <PDBx:j_auth_seq_id_2>11</PDBx:j_auth_seq_id_2>
+         <PDBx:rise>3.408</PDBx:rise>
+         <PDBx:roll>2.100</PDBx:roll>
+         <PDBx:shift>-0.253</PDBx:shift>
+         <PDBx:slide>-1.970</PDBx:slide>
+         <PDBx:step_name>AA_DG9G10:C11DC12_BB</PDBx:step_name>
+         <PDBx:step_number>9</PDBx:step_number>
+         <PDBx:tilt>1.317</PDBx:tilt>
+         <PDBx:tip>-2.528</PDBx:tip>
+         <PDBx:twist>30.122</PDBx:twist>
+         <PDBx:x_displacement>-4.213</PDBx:x_displacement>
+         <PDBx:y_displacement>0.758</PDBx:y_displacement>
+      </PDBx:ndb_struct_na_base_pair_step>
+   </PDBx:ndb_struct_na_base_pair_stepCategory>
+   <PDBx:pdbx_database_statusCategory>
+      <PDBx:pdbx_database_status entry_id="100D">
+         <PDBx:deposit_site>BNL</PDBx:deposit_site>
+         <PDBx:process_site>NDB</PDBx:process_site>
+         <PDBx:status_code>REL</PDBx:status_code>
+         <PDBx:status_code_sf>REL</PDBx:status_code_sf>
+      </PDBx:pdbx_database_status>
+   </PDBx:pdbx_database_statusCategory>
+   <PDBx:pdbx_entity_nonpolyCategory>
+      <PDBx:pdbx_entity_nonpoly entity_id="2">
+         <PDBx:comp_id>SPM</PDBx:comp_id>
+         <PDBx:name>SPERMINE</PDBx:name>
+      </PDBx:pdbx_entity_nonpoly>
+      <PDBx:pdbx_entity_nonpoly entity_id="3">
+         <PDBx:comp_id>HOH</PDBx:comp_id>
+         <PDBx:name>water</PDBx:name>
+      </PDBx:pdbx_entity_nonpoly>
+   </PDBx:pdbx_entity_nonpolyCategory>
+   <PDBx:pdbx_nonpoly_schemeCategory>
+      <PDBx:pdbx_nonpoly_scheme asym_id="C" ndb_seq_num="1">
+         <PDBx:auth_mon_id>SPM</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>21</PDBx:auth_seq_num>
+         <PDBx:entity_id>2</PDBx:entity_id>
+         <PDBx:mon_id>SPM</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>SPM</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>21</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="1">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>25</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>25</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="2">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>28</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>28</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="3">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>29</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>29</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="4">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>30</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>30</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="5">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>31</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>31</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="6">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>32</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>32</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="7">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>34</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>34</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="8">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>36</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>36</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="9">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>37</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>37</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="10">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>39</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>39</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="11">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>40</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>40</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="12">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>41</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>41</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="13">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>42</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>42</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="14">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>43</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>43</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="15">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>44</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>44</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="16">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>46</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>46</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="17">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>50</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>50</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="18">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>54</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>54</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="19">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>55</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>55</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="20">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>56</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>56</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="21">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>58</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>58</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="22">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>60</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>60</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="23">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>62</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>62</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="24">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>63</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>63</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="25">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>64</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>64</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="26">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>66</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>66</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="27">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>67</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>67</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="28">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>68</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>68</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="29">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>73</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>73</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="30">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>74</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>74</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="31">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>75</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>75</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="32">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>80</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>80</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="33">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>81</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>81</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="34">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>82</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>82</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="35">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>83</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>83</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="36">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>84</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>84</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="37">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>86</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>86</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="D" ndb_seq_num="38">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>87</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>87</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="1">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>22</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>22</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="2">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>23</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>23</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="3">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>24</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>24</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="4">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>26</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>26</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="5">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>27</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>27</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="6">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>33</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>33</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="7">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>35</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>35</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="8">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>38</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>38</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="9">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>45</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>45</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="10">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>47</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>47</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="11">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>48</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>48</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="12">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>49</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>49</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="13">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>51</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>51</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="14">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>52</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>52</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="15">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>53</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>53</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="16">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>57</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>57</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="17">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>59</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>59</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="18">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>61</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>61</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="19">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>65</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>65</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="20">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>69</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>69</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="21">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>70</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>70</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="22">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>71</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>71</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="23">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>72</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>72</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="24">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>76</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>76</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="25">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>77</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>77</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="26">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>78</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>78</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="27">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>79</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>79</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="28">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>85</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>85</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+      <PDBx:pdbx_nonpoly_scheme asym_id="E" ndb_seq_num="29">
+         <PDBx:auth_mon_id>HOH</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>88</PDBx:auth_seq_num>
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:mon_id>HOH</PDBx:mon_id>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>HOH</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>88</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_nonpoly_scheme>
+   </PDBx:pdbx_nonpoly_schemeCategory>
+   <PDBx:pdbx_poly_seq_schemeCategory>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="C" seq_id="1">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>1</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>1</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>C</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>1</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DC" seq_id="2">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>2</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>2</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>2</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DG" seq_id="3">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>3</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>3</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>3</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DG" seq_id="4">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>4</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>4</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>4</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DC" seq_id="5">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>5</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>5</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>5</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DG" seq_id="6">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>6</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>6</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>6</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DC" seq_id="7">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>7</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>7</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>7</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DC" seq_id="8">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>8</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>8</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>8</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="DG" seq_id="9">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>9</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>9</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>9</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="A" entity_id="1" mon_id="G" seq_id="10">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>10</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>10</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>G</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>10</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>A</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="C" seq_id="1">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>11</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>1</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>C</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>11</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DC" seq_id="2">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>12</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>2</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>12</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DG" seq_id="3">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>13</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>3</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>13</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DG" seq_id="4">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>14</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>4</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>14</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DC" seq_id="5">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>15</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>5</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>15</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DG" seq_id="6">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>16</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>6</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>16</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DC" seq_id="7">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>17</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>7</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>17</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DC" seq_id="8">
+         <PDBx:auth_mon_id>C</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>18</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>8</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DC</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>18</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="DG" seq_id="9">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>19</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>9</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>DG</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>19</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+      <PDBx:pdbx_poly_seq_scheme asym_id="B" entity_id="1" mon_id="G" seq_id="10">
+         <PDBx:auth_mon_id>G</PDBx:auth_mon_id>
+         <PDBx:auth_seq_num>20</PDBx:auth_seq_num>
+         <PDBx:hetero>n</PDBx:hetero>
+         <PDBx:ndb_seq_num>10</PDBx:ndb_seq_num>
+         <PDBx:pdb_ins_code xsi:nil="true" />
+         <PDBx:pdb_mon_id>G</PDBx:pdb_mon_id>
+         <PDBx:pdb_seq_num>20</PDBx:pdb_seq_num>
+         <PDBx:pdb_strand_id>B</PDBx:pdb_strand_id>
+      </PDBx:pdbx_poly_seq_scheme>
+   </PDBx:pdbx_poly_seq_schemeCategory>
+   <PDBx:pdbx_struct_assemblyCategory>
+      <PDBx:pdbx_struct_assembly id="1">
+         <PDBx:details>author_defined_assembly</PDBx:details>
+         <PDBx:oligomeric_count>2</PDBx:oligomeric_count>
+         <PDBx:oligomeric_details>dimeric</PDBx:oligomeric_details>
+      </PDBx:pdbx_struct_assembly>
+   </PDBx:pdbx_struct_assemblyCategory>
+   <PDBx:pdbx_struct_assembly_genCategory>
+      <PDBx:pdbx_struct_assembly_gen assembly_id="1" asym_id_list="A,C,D,B,E" oper_expression="1"></PDBx:pdbx_struct_assembly_gen>
+   </PDBx:pdbx_struct_assembly_genCategory>
+   <PDBx:pdbx_struct_oper_listCategory>
+      <PDBx:pdbx_struct_oper_list id="1">
+         <PDBx:matrix11>1.0000000000</PDBx:matrix11>
+         <PDBx:matrix12>0.0000000000</PDBx:matrix12>
+         <PDBx:matrix13>0.0000000000</PDBx:matrix13>
+         <PDBx:matrix21>0.0000000000</PDBx:matrix21>
+         <PDBx:matrix22>1.0000000000</PDBx:matrix22>
+         <PDBx:matrix23>0.0000000000</PDBx:matrix23>
+         <PDBx:matrix31>0.0000000000</PDBx:matrix31>
+         <PDBx:matrix32>0.0000000000</PDBx:matrix32>
+         <PDBx:matrix33>1.0000000000</PDBx:matrix33>
+         <PDBx:name>1_555</PDBx:name>
+         <PDBx:symmetry_operation>x,y,z</PDBx:symmetry_operation>
+         <PDBx:type>identity operation</PDBx:type>
+         <PDBx:vector1>0.0000000000</PDBx:vector1>
+         <PDBx:vector2>0.0000000000</PDBx:vector2>
+         <PDBx:vector3>0.0000000000</PDBx:vector3>
+      </PDBx:pdbx_struct_oper_list>
+   </PDBx:pdbx_struct_oper_listCategory>
+   <PDBx:pdbx_validate_planesCategory>
+      <PDBx:pdbx_validate_planes id="1">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>C</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>1</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.067</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+      <PDBx:pdbx_validate_planes id="2">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>3</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.099</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+      <PDBx:pdbx_validate_planes id="3">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>4</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.081</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+      <PDBx:pdbx_validate_planes id="4">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>6</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.066</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+      <PDBx:pdbx_validate_planes id="5">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>C</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>11</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.073</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+      <PDBx:pdbx_validate_planes id="6">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>14</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.093</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+      <PDBx:pdbx_validate_planes id="7">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DC</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>15</PDBx:auth_seq_id>
+         <PDBx:rmsd>0.080</PDBx:rmsd>
+         <PDBx:type>SIDE CHAIN</PDBx:type>
+      </PDBx:pdbx_validate_planes>
+   </PDBx:pdbx_validate_planesCategory>
+   <PDBx:pdbx_validate_rmsd_angleCategory>
+      <PDBx:pdbx_validate_rmsd_angle id="1">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-4.2</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>2</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>2</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>2</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="2">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>3.2</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>2</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>2</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>2</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="3">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>N1</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C2</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>2</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>2</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>2</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="4">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>17.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O5&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>C</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>1</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>2</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>2</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="5">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-5.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>3</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>3</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>3</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="6">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>6.9</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N9</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>3</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>3</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>3</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="7">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>25.6</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O5&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>2</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>3</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>3</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="8">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>2.2</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>5</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>5</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>5</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="9">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>26.2</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O5&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>4</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>5</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>5</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="10">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-16.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>4</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>5</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>5</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="11">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-5.1</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>6</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>6</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>6</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="12">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>7.7</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>5</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>6</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>6</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="13">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>6.8</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>7</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>7</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>7</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="14">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-7.1</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>8</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>8</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>8</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="15">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>2.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>8</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>8</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>8</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="16">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-2.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C4&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C3&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="17">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-6.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="18">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-6.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="19">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>5.6</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N9</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="20">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-3.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C8</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>N9</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C4</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="21">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>12.7</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>8</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="22">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-13.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>8</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>9</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>9</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="23">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-18.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O5&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>G</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>G</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>10</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>10</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="24">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>28.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>G</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>G</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>10</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>10</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="25">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-16.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>A</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>A</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>A</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>G</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>G</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>9</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>10</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>10</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="26">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>12</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>12</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>12</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="27">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>N1</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C2</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>12</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>12</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>12</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="28">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>23.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>C</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>11</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>12</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>12</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="29">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-20.1</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>C</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>11</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>12</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>12</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="30">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>2.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N9</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>13</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>13</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>13</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="31">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>17.9</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O5&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>12</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>13</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>13</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="32">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-4.7</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>14</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>14</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>14</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="33">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>6.8</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>13</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>14</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>14</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="34">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.3</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>15</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>15</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>15</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="35">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>N1</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C2</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>15</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>15</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>15</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="36">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>10.3</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>14</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>15</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>15</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="37">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-8.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C2&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>16</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>16</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>16</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="38">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-8.8</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>C3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>O3&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>P</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>15</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>15</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>16</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="39">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>31.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O5&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>15</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>16</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>16</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="40">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-18.4</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>15</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>16</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>16</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="41">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.8</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C1&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>N1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>17</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>17</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>17</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="42">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-23.7</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>16</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>17</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>17</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="43">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>4.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>N1</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C2</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>O2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>18</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>18</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>18</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="44">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>12.0</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP2</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DC</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>17</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>18</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>18</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="45">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-2.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O4&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C4&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>C3&apos;</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>19</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>19</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>19</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+      <PDBx:pdbx_validate_rmsd_angle id="46">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:angle_deviation>-18.5</PDBx:angle_deviation>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_asym_id_3>B</PDBx:auth_asym_id_3>
+         <PDBx:auth_atom_id_1>O3&apos;</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>P</PDBx:auth_atom_id_2>
+         <PDBx:auth_atom_id_3>OP1</PDBx:auth_atom_id_3>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_comp_id_3>DG</PDBx:auth_comp_id_3>
+         <PDBx:auth_seq_id_1>18</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>19</PDBx:auth_seq_id_2>
+         <PDBx:auth_seq_id_3>19</PDBx:auth_seq_id_3>
+      </PDBx:pdbx_validate_rmsd_angle>
+   </PDBx:pdbx_validate_rmsd_angleCategory>
+   <PDBx:pdbx_validate_rmsd_bondCategory>
+      <PDBx:pdbx_validate_rmsd_bond id="1">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_atom_id_1>P</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>O5&apos;</PDBx:auth_atom_id_2>
+         <PDBx:auth_comp_id_1>DC</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DC</PDBx:auth_comp_id_2>
+         <PDBx:auth_seq_id_1>12</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>12</PDBx:auth_seq_id_2>
+         <PDBx:bond_deviation>0.067</PDBx:bond_deviation>
+      </PDBx:pdbx_validate_rmsd_bond>
+      <PDBx:pdbx_validate_rmsd_bond id="2">
+         <PDBx:PDB_model_num>1</PDBx:PDB_model_num>
+         <PDBx:auth_asym_id_1>B</PDBx:auth_asym_id_1>
+         <PDBx:auth_asym_id_2>B</PDBx:auth_asym_id_2>
+         <PDBx:auth_atom_id_1>N7</PDBx:auth_atom_id_1>
+         <PDBx:auth_atom_id_2>C8</PDBx:auth_atom_id_2>
+         <PDBx:auth_comp_id_1>DG</PDBx:auth_comp_id_1>
+         <PDBx:auth_comp_id_2>DG</PDBx:auth_comp_id_2>
+         <PDBx:auth_seq_id_1>19</PDBx:auth_seq_id_1>
+         <PDBx:auth_seq_id_2>19</PDBx:auth_seq_id_2>
+         <PDBx:bond_deviation>-0.037</PDBx:bond_deviation>
+      </PDBx:pdbx_validate_rmsd_bond>
+   </PDBx:pdbx_validate_rmsd_bondCategory>
+   <PDBx:pdbx_versionCategory>
+      <PDBx:pdbx_version entry_id="100D" major_version="3" minor_version="2" revision_type="Version format compliance">
+         <PDBx:details>compliance with PDB format V.3.15</PDBx:details>
+         <PDBx:revision_date>2008-05-22</PDBx:revision_date>
+      </PDBx:pdbx_version>
+      <PDBx:pdbx_version entry_id="100D" major_version="4" minor_version="0000" revision_type="Version format compliance">
+         <PDBx:details>compliance with PDB Exchange Dictionary V4</PDBx:details>
+         <PDBx:revision_date>2011-07-13</PDBx:revision_date>
+      </PDBx:pdbx_version>
+   </PDBx:pdbx_versionCategory>
+   <PDBx:refineCategory>
+      <PDBx:refine entry_id="100D" pdbx_refine_id="X-RAY DIFFRACTION">
+         <PDBx:ls_R_factor_R_work>0.1450000</PDBx:ls_R_factor_R_work>
+         <PDBx:ls_R_factor_obs>0.1450000</PDBx:ls_R_factor_obs>
+         <PDBx:ls_d_res_high>1.900</PDBx:ls_d_res_high>
+         <PDBx:ls_d_res_low>8.000</PDBx:ls_d_res_low>
+         <PDBx:ls_number_reflns_obs>2314</PDBx:ls_number_reflns_obs>
+         <PDBx:pdbx_diffrn_id>1</PDBx:pdbx_diffrn_id>
+         <PDBx:pdbx_ls_sigma_F>1.000</PDBx:pdbx_ls_sigma_F>
+      </PDBx:refine>
+   </PDBx:refineCategory>
+   <PDBx:refine_B_isoCategory>
+      <PDBx:refine_B_iso class="ALL ATOMS" pdbx_refine_id="X-RAY DIFFRACTION">
+         <PDBx:details>TR</PDBx:details>
+         <PDBx:treatment>isotropic</PDBx:treatment>
+      </PDBx:refine_B_iso>
+      <PDBx:refine_B_iso class="ALL WATERS" pdbx_refine_id="X-RAY DIFFRACTION">
+         <PDBx:details>TR</PDBx:details>
+         <PDBx:treatment>isotropic</PDBx:treatment>
+      </PDBx:refine_B_iso>
+   </PDBx:refine_B_isoCategory>
+   <PDBx:refine_histCategory>
+      <PDBx:refine_hist cycle_id="LAST" pdbx_refine_id="X-RAY DIFFRACTION">
+         <PDBx:d_res_high>1.900</PDBx:d_res_high>
+         <PDBx:d_res_low>8.000</PDBx:d_res_low>
+         <PDBx:number_atoms_solvent>67</PDBx:number_atoms_solvent>
+         <PDBx:number_atoms_total>489</PDBx:number_atoms_total>
+         <PDBx:pdbx_number_atoms_ligand>14</PDBx:pdbx_number_atoms_ligand>
+         <PDBx:pdbx_number_atoms_nucleic_acid>408</PDBx:pdbx_number_atoms_nucleic_acid>
+         <PDBx:pdbx_number_atoms_protein>0</PDBx:pdbx_number_atoms_protein>
+      </PDBx:refine_hist>
+   </PDBx:refine_histCategory>
+   <PDBx:refine_ls_restrCategory>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_bond_d">
+         <PDBx:dev_ideal>0.015</PDBx:dev_ideal>
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_bond_d_na">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_bond_d_prot">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_angle_d">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_angle_d_na">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_angle_d_prot">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_angle_deg">
+         <PDBx:dev_ideal>3.80</PDBx:dev_ideal>
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_angle_deg_na">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_angle_deg_prot">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_dihedral_angle_d">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_dihedral_angle_d_na">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_dihedral_angle_d_prot">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_improper_angle_d">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_improper_angle_d_na">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_improper_angle_d_prot">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_mcbond_it">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_mcangle_it">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_scbond_it">
+      </PDBx:refine_ls_restr>
+      <PDBx:refine_ls_restr pdbx_refine_id="X-RAY DIFFRACTION" type="x_scangle_it">
+      </PDBx:refine_ls_restr>
+   </PDBx:refine_ls_restrCategory>
+   <PDBx:refine_occupancyCategory>
+      <PDBx:refine_occupancy class="ALL ATOMS" pdbx_refine_id="X-RAY DIFFRACTION">
+         <PDBx:treatment>fix</PDBx:treatment>
+      </PDBx:refine_occupancy>
+      <PDBx:refine_occupancy class="ALL WATERS" pdbx_refine_id="X-RAY DIFFRACTION">
+         <PDBx:treatment>fix</PDBx:treatment>
+      </PDBx:refine_occupancy>
+   </PDBx:refine_occupancyCategory>
+   <PDBx:reflnsCategory>
+      <PDBx:reflns pdbx_ordinal="1">
+         <PDBx:d_resolution_high>1.900</PDBx:d_resolution_high>
+         <PDBx:entry_id>100D</PDBx:entry_id>
+         <PDBx:number_all>9305</PDBx:number_all>
+         <PDBx:number_obs>2365</PDBx:number_obs>
+         <PDBx:pdbx_diffrn_id>1</PDBx:pdbx_diffrn_id>
+      </PDBx:reflns>
+   </PDBx:reflnsCategory>
+   <PDBx:softwareCategory>
+      <PDBx:software pdbx_ordinal="1">
+         <PDBx:classification>refinement</PDBx:classification>
+         <PDBx:name>X-PLOR</PDBx:name>
+         <PDBx:version xsi:nil="true" />
+      </PDBx:software>
+   </PDBx:softwareCategory>
+   <PDBx:structCategory>
+      <PDBx:struct entry_id="100D">
+         <PDBx:pdbx_descriptor>5&apos;-R(*CP*)-D(*CP*GP*GP*CP*GP*CP*CP*GP*)-R(*G)-3&apos;</PDBx:pdbx_descriptor>
+         <PDBx:title>CRYSTAL STRUCTURE OF THE HIGHLY DISTORTED CHIMERIC DECAMER R(C)D(CGGCGCCG)R(G)-SPERMINE COMPLEX-SPERMINE BINDING TO PHOSPHATE ONLY AND MINOR GROOVE TERTIARY BASE-PAIRING</PDBx:title>
+      </PDBx:struct>
+   </PDBx:structCategory>
+   <PDBx:struct_asymCategory>
+      <PDBx:struct_asym id="A">
+         <PDBx:entity_id>1</PDBx:entity_id>
+         <PDBx:pdbx_blank_PDB_chainid_flag>N</PDBx:pdbx_blank_PDB_chainid_flag>
+         <PDBx:pdbx_modified>N</PDBx:pdbx_modified>
+      </PDBx:struct_asym>
+      <PDBx:struct_asym id="B">
+         <PDBx:entity_id>1</PDBx:entity_id>
+         <PDBx:pdbx_blank_PDB_chainid_flag>N</PDBx:pdbx_blank_PDB_chainid_flag>
+         <PDBx:pdbx_modified>N</PDBx:pdbx_modified>
+      </PDBx:struct_asym>
+      <PDBx:struct_asym id="C">
+         <PDBx:entity_id>2</PDBx:entity_id>
+         <PDBx:pdbx_blank_PDB_chainid_flag>N</PDBx:pdbx_blank_PDB_chainid_flag>
+         <PDBx:pdbx_modified>N</PDBx:pdbx_modified>
+      </PDBx:struct_asym>
+      <PDBx:struct_asym id="D">
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:pdbx_blank_PDB_chainid_flag>N</PDBx:pdbx_blank_PDB_chainid_flag>
+         <PDBx:pdbx_modified>N</PDBx:pdbx_modified>
+      </PDBx:struct_asym>
+      <PDBx:struct_asym id="E">
+         <PDBx:entity_id>3</PDBx:entity_id>
+         <PDBx:pdbx_blank_PDB_chainid_flag>N</PDBx:pdbx_blank_PDB_chainid_flag>
+         <PDBx:pdbx_modified>N</PDBx:pdbx_modified>
+      </PDBx:struct_asym>
+   </PDBx:struct_asymCategory>
+   <PDBx:struct_biolCategory>
+      <PDBx:struct_biol id="1"></PDBx:struct_biol>
+   </PDBx:struct_biolCategory>
+   <PDBx:struct_connCategory>
+      <PDBx:struct_conn id="hydrog1">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>C</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>1</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N3</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>C</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>1</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>G</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>20</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N1</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>G</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>10</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog2">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>C</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>1</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N4</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>C</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>1</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>G</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>20</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O6</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>G</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>10</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog3">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>C</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>1</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>C</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>1</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>G</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>20</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>G</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>10</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog4">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>2</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N3</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>2</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>19</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N1</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>9</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog5">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>2</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N4</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>2</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>19</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O6</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>9</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog6">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>2</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>2</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>19</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>9</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog7">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>3</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N1</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>3</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>18</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N3</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>8</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog8">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>3</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>3</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>18</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>8</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog9">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>3</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O6</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>3</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>18</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N4</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>8</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog10">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>4</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N1</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>4</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>17</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N3</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>7</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog11">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>4</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>4</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>17</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>7</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog12">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>4</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O6</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>4</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>17</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N4</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>7</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog13">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>5</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N3</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>5</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>16</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N1</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>6</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog14">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>5</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N4</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>5</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>16</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O6</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>6</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog15">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>5</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>5</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>16</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>6</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog16">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>6</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N1</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>6</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>15</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N3</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>5</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog17">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>6</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>6</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>15</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>5</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog18">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>6</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O6</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>6</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>15</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N4</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>5</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog19">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>7</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N3</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>7</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>14</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N1</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>4</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog20">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>7</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N4</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>7</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>14</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O6</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>4</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog21">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>7</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>7</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>14</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>4</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog22">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>8</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N3</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>8</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>13</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N1</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>3</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog23">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>8</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N4</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>8</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>13</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O6</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>3</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog24">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DC</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>8</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DC</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>8</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DG</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>13</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DG</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>3</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog25">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>9</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N1</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>9</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>12</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N3</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>2</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog26">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>9</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>9</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>12</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>2</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog27">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>DG</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>9</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O6</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>DG</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>9</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>DC</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>12</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N4</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>DC</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>2</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog28">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>G</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>10</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N1</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>G</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>10</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>C</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>11</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N3</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>C</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>1</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog29">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>G</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>10</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>N2</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>G</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>10</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>C</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>11</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>O2</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>C</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>1</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+      <PDBx:struct_conn id="hydrog30">
+         <PDBx:conn_type_id>hydrog</PDBx:conn_type_id>
+         <PDBx:details>WATSON-CRICK</PDBx:details>
+         <PDBx:ptnr1_auth_asym_id>A</PDBx:ptnr1_auth_asym_id>
+         <PDBx:ptnr1_auth_comp_id>G</PDBx:ptnr1_auth_comp_id>
+         <PDBx:ptnr1_auth_seq_id>10</PDBx:ptnr1_auth_seq_id>
+         <PDBx:ptnr1_label_asym_id>A</PDBx:ptnr1_label_asym_id>
+         <PDBx:ptnr1_label_atom_id>O6</PDBx:ptnr1_label_atom_id>
+         <PDBx:ptnr1_label_comp_id>G</PDBx:ptnr1_label_comp_id>
+         <PDBx:ptnr1_label_seq_id>10</PDBx:ptnr1_label_seq_id>
+         <PDBx:ptnr1_symmetry>1_555</PDBx:ptnr1_symmetry>
+         <PDBx:ptnr2_auth_asym_id>B</PDBx:ptnr2_auth_asym_id>
+         <PDBx:ptnr2_auth_comp_id>C</PDBx:ptnr2_auth_comp_id>
+         <PDBx:ptnr2_auth_seq_id>11</PDBx:ptnr2_auth_seq_id>
+         <PDBx:ptnr2_label_asym_id>B</PDBx:ptnr2_label_asym_id>
+         <PDBx:ptnr2_label_atom_id>N4</PDBx:ptnr2_label_atom_id>
+         <PDBx:ptnr2_label_comp_id>C</PDBx:ptnr2_label_comp_id>
+         <PDBx:ptnr2_label_seq_id>1</PDBx:ptnr2_label_seq_id>
+         <PDBx:ptnr2_symmetry>1_555</PDBx:ptnr2_symmetry>
+      </PDBx:struct_conn>
+   </PDBx:struct_connCategory>
+   <PDBx:struct_conn_typeCategory>
+      <PDBx:struct_conn_type id="hydrog">
+         <PDBx:criteria>For hydrogen bonding between nucleic acid bases, donor to acceptor distance of 2.2 -3.5 Angstroms was used.</PDBx:criteria>
+      </PDBx:struct_conn_type>
+   </PDBx:struct_conn_typeCategory>
+   <PDBx:struct_keywordsCategory>
+      <PDBx:struct_keywords entry_id="100D">
+         <PDBx:pdbx_keywords>DNA-RNA HYBRID</PDBx:pdbx_keywords>
+         <PDBx:text>A-DNA/RNA, DOUBLE HELIX, DNA-RNA HYBRID</PDBx:text>
+      </PDBx:struct_keywords>
+   </PDBx:struct_keywordsCategory>
+   <PDBx:struct_refCategory>
+      <PDBx:struct_ref id="1">
+         <PDBx:biol_id xsi:nil="true" />
+         <PDBx:db_code>100D</PDBx:db_code>
+         <PDBx:db_name>PDB</PDBx:db_name>
+         <PDBx:entity_id>1</PDBx:entity_id>
+         <PDBx:pdbx_db_accession>100D</PDBx:pdbx_db_accession>
+      </PDBx:struct_ref>
+   </PDBx:struct_refCategory>
+   <PDBx:struct_ref_seqCategory>
+      <PDBx:struct_ref_seq align_id="1">
+         <PDBx:db_align_beg>1</PDBx:db_align_beg>
+         <PDBx:db_align_end>10</PDBx:db_align_end>
+         <PDBx:pdbx_PDB_id_code>100D</PDBx:pdbx_PDB_id_code>
+         <PDBx:pdbx_auth_seq_align_beg>1</PDBx:pdbx_auth_seq_align_beg>
+         <PDBx:pdbx_auth_seq_align_end>10</PDBx:pdbx_auth_seq_align_end>
+         <PDBx:pdbx_db_accession>100D</PDBx:pdbx_db_accession>
+         <PDBx:pdbx_strand_id>A</PDBx:pdbx_strand_id>
+         <PDBx:ref_id>1</PDBx:ref_id>
+         <PDBx:seq_align_beg>1</PDBx:seq_align_beg>
+         <PDBx:seq_align_end>10</PDBx:seq_align_end>
+      </PDBx:struct_ref_seq>
+      <PDBx:struct_ref_seq align_id="2">
+         <PDBx:db_align_beg>11</PDBx:db_align_beg>
+         <PDBx:db_align_end>20</PDBx:db_align_end>
+         <PDBx:pdbx_PDB_id_code>100D</PDBx:pdbx_PDB_id_code>
+         <PDBx:pdbx_auth_seq_align_beg>11</PDBx:pdbx_auth_seq_align_beg>
+         <PDBx:pdbx_auth_seq_align_end>20</PDBx:pdbx_auth_seq_align_end>
+         <PDBx:pdbx_db_accession>100D</PDBx:pdbx_db_accession>
+         <PDBx:pdbx_strand_id>B</PDBx:pdbx_strand_id>
+         <PDBx:ref_id>1</PDBx:ref_id>
+         <PDBx:seq_align_beg>1</PDBx:seq_align_beg>
+         <PDBx:seq_align_end>10</PDBx:seq_align_end>
+      </PDBx:struct_ref_seq>
+   </PDBx:struct_ref_seqCategory>
+   <PDBx:struct_siteCategory>
+      <PDBx:struct_site id="AC1">
+         <PDBx:details>BINDING SITE FOR RESIDUE SPM A 21</PDBx:details>
+         <PDBx:pdbx_evidence_code>SOFTWARE</PDBx:pdbx_evidence_code>
+      </PDBx:struct_site>
+   </PDBx:struct_siteCategory>
+   <PDBx:struct_site_genCategory>
+      <PDBx:struct_site_gen id="1" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DC</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>5</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>A</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>DC</PDBx:label_comp_id>
+         <PDBx:label_seq_id>5</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>1_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="2" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>6</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>A</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>DG</PDBx:label_comp_id>
+         <PDBx:label_seq_id>6</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>1_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="3" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>9</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>A</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>DG</PDBx:label_comp_id>
+         <PDBx:label_seq_id>9</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>3_655</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="4" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>HOH</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>29</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>D</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>HOH</PDBx:label_comp_id>
+         <PDBx:label_seq_id xsi:nil="true" />
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>3_655</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="5" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>HOH</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>46</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>D</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>HOH</PDBx:label_comp_id>
+         <PDBx:label_seq_id xsi:nil="true" />
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>2_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="6" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>HOH</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>56</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>D</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>HOH</PDBx:label_comp_id>
+         <PDBx:label_seq_id xsi:nil="true" />
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>1_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="7" site_id="AC1">
+         <PDBx:auth_asym_id>A</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>HOH</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>87</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>D</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>HOH</PDBx:label_comp_id>
+         <PDBx:label_seq_id xsi:nil="true" />
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>1_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="8" site_id="AC1">
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>13</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>B</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>DG</PDBx:label_comp_id>
+         <PDBx:label_seq_id>3</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>2_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="9" site_id="AC1">
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>14</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>B</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>DG</PDBx:label_comp_id>
+         <PDBx:label_seq_id>4</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>2_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="10" site_id="AC1">
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>DG</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>19</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>B</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>DG</PDBx:label_comp_id>
+         <PDBx:label_seq_id>9</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>1_655</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="11" site_id="AC1">
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>G</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>20</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>B</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>G</PDBx:label_comp_id>
+         <PDBx:label_seq_id>10</PDBx:label_seq_id>
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>1_655</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="12" site_id="AC1">
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>HOH</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>33</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>E</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>HOH</PDBx:label_comp_id>
+         <PDBx:label_seq_id xsi:nil="true" />
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>2_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+      <PDBx:struct_site_gen id="13" site_id="AC1">
+         <PDBx:auth_asym_id>B</PDBx:auth_asym_id>
+         <PDBx:auth_comp_id>HOH</PDBx:auth_comp_id>
+         <PDBx:auth_seq_id>52</PDBx:auth_seq_id>
+         <PDBx:label_alt_id xsi:nil="true" />
+         <PDBx:label_asym_id>E</PDBx:label_asym_id>
+         <PDBx:label_atom_id xsi:nil="true" />
+         <PDBx:label_comp_id>HOH</PDBx:label_comp_id>
+         <PDBx:label_seq_id xsi:nil="true" />
+         <PDBx:pdbx_num_res>13</PDBx:pdbx_num_res>
+         <PDBx:symmetry>2_555</PDBx:symmetry>
+      </PDBx:struct_site_gen>
+   </PDBx:struct_site_genCategory>
+   <PDBx:symmetryCategory>
+      <PDBx:symmetry entry_id="100D">
+         <PDBx:space_group_name_H-M>P 21 21 21</PDBx:space_group_name_H-M>
+      </PDBx:symmetry>
+   </PDBx:symmetryCategory>
+</PDBx:datablock>

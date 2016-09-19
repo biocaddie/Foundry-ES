@@ -152,7 +152,7 @@ public class ProvenanceRec {
         }
 
         public Builder softwareAgent(String localId) {
-            return softwareAgent(localId);
+            return softwareAgent(localId, null);
         }
 
         public Builder softwareAgent(String localId, String... attributes) {
@@ -186,7 +186,7 @@ public class ProvenanceRec {
         }
 
         public Builder docEntity(String localId, String label) {
-            return docEntity(localId, label);
+            return docEntity(localId, label, null);
         }
 
         public Builder docEntity(String localId, String label, String... attributes) {
@@ -223,7 +223,7 @@ public class ProvenanceRec {
         }
 
         public Builder activity(String localId, String type, String startDate, String endDate) {
-            return activity(localId, type, startDate, endDate);
+            return activity(localId, type, startDate, endDate, null);
         }
 
         public Builder activity(String localId, String type, String startDate, String endDate, String... attributes) {

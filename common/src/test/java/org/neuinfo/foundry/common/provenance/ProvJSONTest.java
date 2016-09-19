@@ -1,24 +1,20 @@
 package org.neuinfo.foundry.common.provenance;
 
 
-import junit.framework.TestCase;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.neuinfo.foundry.common.util.JSONUtils;
 import org.openprovenance.prov.json.Converter;
 import org.openprovenance.prov.model.*;
 import org.openprovenance.prov.xml.ProvFactory;
 
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
 
-public class ProvJSONTests extends TestCase {
+import static org.junit.Assert.assertTrue;
 
+public class ProvJSONTest {
 
-    public ProvJSONTests(String name) {
-        super(name);
-    }
 
 
     public void testIt() throws Exception {
@@ -61,9 +57,12 @@ public class ProvJSONTests extends TestCase {
         final Converter convert = new Converter(pFactory);
 
         convert.writeDocument(doc, "/tmp/test_prov.json");
+
+
     }
 
 
+    @Test
     public void testProvenanceRecBuilder() throws Exception {
         ProvenanceRec.Builder builder = new ProvenanceRec.Builder("http://example.org", "foundry");
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
@@ -84,7 +83,6 @@ public class ProvJSONTests extends TestCase {
 
         ProvJSONValidator validator = new ProvJSONValidator();
 
-
         boolean ok = validator.validate("/tmp/doc_id_assigment_prov.json");
         assertTrue(ok);
 
@@ -99,10 +97,9 @@ public class ProvJSONTests extends TestCase {
         final ProvenanceRec prov2 = builder.wasAssociatedWith(activityId, agentId).used(activityId, docId).build();
 
         prov2.save("/tmp/doc_ingestion_prov.json");
-
-
     }
 
+    @Test
     public void testProvenanceRecBuilderMultiple() throws Exception {
         ProvenanceRec.Builder builder = new ProvenanceRec.Builder(
                 "http://example.org", "foundry");
@@ -119,7 +116,7 @@ public class ProvJSONTests extends TestCase {
 
         builder = new ProvenanceRec.Builder("http://example.org", "foundry");
         docId = builder.entityWithAttr("batchId=20140721", "sourceId=nlx_999998", "UUID=1234-4567-8978").getLastGeneratedId();
-        final ProvenanceRec provenanceRec = builder.softwareAgent("docIdAssigner")
+        ProvenanceRec provenanceRec = builder.softwareAgent("docIdAssigner")
                 .activity("assignId", "doc-id-assigment", "2014-07-21T16:05:02",
                         "2014-07-21T16:05:03")
                 .wasAssociatedWith("assignId", "docIdAssigner")
@@ -141,5 +138,9 @@ public class ProvJSONTests extends TestCase {
 
 
         prov2.save("/tmp/doc_ingestion_id_assignment_combined_prov.json");
+        ProvJSONValidator validator = new ProvJSONValidator();
+
+        boolean ok = validator.validate("/tmp/doc_ingestion_id_assignment_combined_prov.json");
+        assertTrue(ok);
     }
 }

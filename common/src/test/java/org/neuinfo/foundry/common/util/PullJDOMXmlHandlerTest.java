@@ -1,18 +1,24 @@
 package org.neuinfo.foundry.common.util;
 
-import junit.framework.TestCase;
 import org.jdom2.Element;
-import org.jdom2.Namespace;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.junit.Test;
+
+import java.io.File;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by bozyurt on 11/6/14.
  */
-public class PullJDOMXmlHandlerTest extends TestCase {
+public class PullJDOMXmlHandlerTest {
 
+    @Test
     public void testDryadParsing() throws Exception {
-        String xmlFile = "/tmp/DryadDataRepository/DryadDataRepository_hdl_10255_dryad.148_11-06-2014.xml";
+        String relPath = "testdata/DryadDataRepository_hdl_10255_dryad.7872_04-07-2016.xml";
+        String xmlFile = "/tmp/" + new File(relPath).getName();
+        Utils.stream2File(relPath, xmlFile);
         PullJDOMXmlHandler xmlHandler = null;
 
         try {
@@ -20,11 +26,12 @@ public class PullJDOMXmlHandlerTest extends TestCase {
             Element el = xmlHandler.nextElementStart();
             assertNotNull(el);
             System.out.println("el:" + el.getName());
-            while( (el = xmlHandler.nextElement("record")) != null ) {
-                System.out.println( toXmlString(el));
+            while ((el = xmlHandler.nextElement("record")) != null) {
+                System.out.println(toXmlString(el));
             }
         } finally {
             xmlHandler.shutdown();
+            new File(xmlFile).delete();
         }
     }
 
