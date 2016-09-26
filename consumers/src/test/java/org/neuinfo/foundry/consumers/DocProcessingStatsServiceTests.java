@@ -41,7 +41,7 @@ public class DocProcessingStatsServiceTests extends TestCase {
             DocProcessingStatsService dpss = new DocProcessingStatsService();
             try {
                 dpss.start(helper.getConfig());
-                List<SourceStats> ssList = dpss.getDocCountsPerStatusPerSource2("nifRecords");
+                List<SourceStats> ssList = dpss.getDocCountsPerStatusPerSource2("nifRecords", null);
                 for (SourceStats ss : ssList) {
                     System.out.println(ss);
                 }

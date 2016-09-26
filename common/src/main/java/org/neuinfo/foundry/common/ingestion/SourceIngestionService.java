@@ -126,38 +126,4 @@ public class SourceIngestionService extends BaseIngestionService {
         }
     }
 
-
-    /*
-    public void updateBatchInfo(String nifId, BatchInfo bi) {
-        DB db = mongoClient.getDB(dbName);
-        DBCollection sources = db.getCollection("sources");
-        BasicDBObject query = new BasicDBObject("SourceInformation.ResourceID", nifId);
-        BasicDBObject keys = new BasicDBObject("batchInfos", 1);
-        final DBCursor cursor = sources.find(query, keys);
-        boolean updated = false;
-        BasicDBList biList = null;
-        try {
-            if (cursor.hasNext()) {
-                DBObject dbObject = cursor.next();
-                biList = (BasicDBList) dbObject.get("batchInfos");
-                for (int i = 0; i < biList.size(); i++) {
-                    final DBObject biDBO = (DBObject) biList.get(i);
-                    final String aBatchId = (String) biDBO.get("batchId");
-                    if (aBatchId.equals(bi.getBatchId())) {
-                        biDBO.put("status", bi.getStatus().getCode());
-                        biDBO.put("submittedCount", bi.getSubmittedCount());
-                        biDBO.put("ingestedCount", bi.getIngestedCount());
-                        updated = true;
-                    }
-                }
-            }
-        } finally {
-            cursor.close();
-        }
-        if (updated) {
-            BasicDBObject update = new BasicDBObject("$set", new BasicDBObject("batchInfos", biList));
-            sources.update(query, update);
-        }
-    }
-    */
 }

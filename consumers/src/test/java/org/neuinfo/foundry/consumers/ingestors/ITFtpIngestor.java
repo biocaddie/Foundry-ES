@@ -1,6 +1,5 @@
 package org.neuinfo.foundry.consumers.ingestors;
 
-import junit.framework.TestCase;
 import org.neuinfo.foundry.consumers.common.FtpClient;
 import org.neuinfo.foundry.consumers.jms.consumers.ingestors.FTPIngestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
@@ -9,13 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 /**
  * Created by bozyurt on 3/26/15.
  */
-public class FtpIngestorTest extends TestCase {
-    public FtpIngestorTest(String name) {
-        super(name);
-    }
+public class ITFtpIngestor {
 
     public void testFtpPDBRecursive() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
@@ -24,7 +23,7 @@ public class FtpIngestorTest extends TestCase {
         options.put("filenamePattern", ".+\\.xml\\.gz$");
         options.put("recursive", "true");
         options.put("outDir", "/tmp/pdb_ftp");
-        options.put("documentElement","datablock");
+        options.put("documentElement", "datablock");
         FTPIngestor ingestor = new FTPIngestor();
         ingestor.setTestMode(true);
         ingestor.initialize(options);

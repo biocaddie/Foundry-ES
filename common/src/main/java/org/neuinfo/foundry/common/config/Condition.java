@@ -66,6 +66,13 @@ public class Condition {
         return cond;
     }
 
+
+    public String getFirstPredicateValue() {
+        LogicalGroup lg = groups.get(0);
+        Predicate predicate = lg.getPredicates().get(0);
+        return predicate.getValue();
+    }
+
     public JSONObject toJSON() throws Exception {
         JSONObject json = new JSONObject();
         if (this.groups.size() == 1 && !groups.get(0).isOrGroup()) {

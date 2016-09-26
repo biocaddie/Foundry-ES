@@ -7,15 +7,15 @@ import org.neuinfo.foundry.consumers.plugin.Result;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by bozyurt on 9/15/16.
  */
-public class BaseTestCase extends TestCase {
-    public BaseTestCase(String name) {
-        super(name);
-    }
+public class TestUtils  {
 
-    protected void ingest(Ingestor ingestor, String outFile, int sampleSize) throws Exception {
+    public static void ingest(Ingestor ingestor, String outFile, int sampleSize) throws Exception {
         try {
             ingestor.startup();
             int count = 0;
@@ -32,7 +32,7 @@ public class BaseTestCase extends TestCase {
         }
     }
 
-    protected void processPayload(Ingestor ingestor, String outFile) throws IOException {
+    public static void processPayload(Ingestor ingestor, String outFile) throws IOException {
         Result result = ingestor.prepPayload();
         assertNotNull(result);
         assertTrue(result.getStatus() != Result.Status.ERROR);

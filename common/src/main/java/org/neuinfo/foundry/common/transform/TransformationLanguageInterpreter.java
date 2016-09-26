@@ -12,10 +12,11 @@ import java.util.*;
 
 /**
  * <pre>
- *     TRANSFORM COLUMN {origColName} TO {newColName} [ASSIGN NAME FROM {columnJsonPath}] [APPLY {{transformScript}}];
- *     TRANSFORM COLUMNS {origColName1,...origColNameN} TO {newColName} [APPLY {{transformScript}}];
- *     TRANSFORM UNION {origColName1,...origColNameN} TO {newColName} [APPLY {{transformScript}}];
- *     LET {newColName} = {Constant};
+ *     [IF {conditional} THEN] TRANSFORM COLUMN {origColName} TO {newColName} [ASSIGN NAME FROM {columnJsonPath}] [APPLY {{transformScript}}];
+ *     [IF {conditional} THEN] TRANSFORM COLUMNS {origColName1,...origColNameN} TO {newColName} [APPLY {{transformScript}}];
+ *     [IF {conditional} THEN] TRANSFORM UNION {origColName1,...origColNameN} TO {newColName} [APPLY {{transformScript}}];
+ *     JOIN {origColName1,...origColNameN} TO {newColName} [APPLY {{transformScript}}];
+ *     [IF {conditional} THEN] LET {newColName} = {Constant};
  *     MAP {refSourceID}[{jsonPath4PK}].{jsonPath} TO {model JSON Path};
  *
  * </pre>
@@ -53,6 +54,10 @@ public class TransformationLanguageInterpreter {
                 case IF:
                     Transformation tr = parseConditionalStatement(tokenizer);
                     transformations.add(tr);
+                    break;
+                case JOIN:
+                    Transformation jr = parseJoinStatement(tokenizer, null);
+                    transformations.add(jr);
             }
         }
     }
@@ -234,6 +239,45 @@ public class TransformationLanguageInterpreter {
         return null;
     }
 
+    Transformation parseJoinStatement(Tokenizer tokenizer, Node condition) {
+        Transformation transformation = new Transformation(condition);
+        transformation.setJoinTransform(true);
+        TokenInfo ti = tokenizer.nextToken();
+        while (ti != null && ti.getType() != TO) {
+            if (ti.getType() == STRING) {
+                transformation.addSourceColumnName(ti.getTokValue());
+            }
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && (ti.getType() == COMMA || ti.getType() == TO),
+                    "',' or keyword 'to' is expected", tokenizer.getLineNo());
+            if (ti.getType() == COMMA) {
+                ti = tokenizer.nextToken();
+            }
+        }
+        errorIfNot(ti != null && ti.getType() == TO, "Keyword 'to' is expected", tokenizer.getLineNo());
+        if (ti.getType() == TO) {
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == STRING, "A string is expected after the keyword 'to'",
+                    tokenizer.getLineNo());
+            transformation.setDestColumnName(ti.getTokValue());
+        }
+        ti = tokenizer.nextToken();
+        errorIfNot(ti != null && (ti.getType() == SEMICOLON || ti.getType() == APPLY) ,
+                "Keyword 'to' or ';' is expected after destination path", tokenizer.getLineNo());
+        if (ti.getType() == APPLY) {
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == DOUBLE_LCB, "'{{' is expected after the keyword 'apply'", tokenizer.getLineNo());
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == SCRIPT, "A Python script is expected after '{{'",
+                    tokenizer.getLineNo());
+            transformation.setScript(ti.getTokValue());
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == DOUBLE_RCB, "'}}' is expected after the Python script", tokenizer.getLineNo());
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == SEMICOLON, "';' is expected after '}}'", tokenizer.getLineNo());
+        }
+        return transformation;
+    }
 
     Transformation parseTransformStatement(Tokenizer tokenizer, Node condition) {
         TokenInfo ti = tokenizer.nextToken();
@@ -460,6 +504,7 @@ public class TransformationLanguageInterpreter {
             typeMap.put("or", OR);
             typeMap.put("if", IF);
             typeMap.put("then", THEN);
+            typeMap.put("join", JOIN);
         }
 
         public void pushBack(TokenInfo ti) {

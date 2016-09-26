@@ -440,11 +440,7 @@ public class TransformationEngine {
                 Result result = transformation.execute(pythonInterpreter, jpNode.getValue());
                 if (result != null) {
                     setJSONField(docJson, transformation, result, jpNode);
-                    /* orig
-                    Assertion.assertTrue(!result.hasMultipleValues());
-                    jpNode.setPayload(result.getValue());
-                    setJSONField(docJson, transformation, jpNode, transform2ParentMap, -1);
-                    */
+
                 }
             } else {
                 JPNode sourceValue = sourceValues.get(0);
@@ -459,22 +455,46 @@ public class TransformationEngine {
                 }
             }
         } else {
-            for (JPNode sourceValue : sourceValues) {
+            if (transformation.isJoinTransform()) {
                 if (transformation.getScript() != null) {
-                    Result result = transformation.execute(pythonInterpreter, sourceValue.getValue());
+                    List<String> joinList = new ArrayList<String>(sourceValues.size());
+                    for (JPNode sourceValue : sourceValues) {
+                        joinList.add(sourceValue.getValue());
+                    }
+                    Result result = transformation.executeJoin(pythonInterpreter, joinList);
                     if (result != null) {
-                        Assertion.assertTrue(!result.hasMultipleValues());
-                        sourceValue.setPayload(result.getValue());
-                        setJSONField(docJson, transformation, sourceValue);
+                        JPNode jsv = new JPNode(sourceValues.get(0));
+                        jsv.setPayload( result.getValue());
+                        setJSONField(docJson, transformation, jsv);
                     }
                 } else {
-                    if (transformation.getTransformationFunction() != null) {
-                        Result result = transformation.getTransformationFunction().execute(sourceValue.getValue());
-                        Assertion.assertTrue(!result.hasMultipleValues());
-                        sourceValue.setPayload(result.getValue());
-                        setJSONField(docJson, transformation, sourceValue);
+                    StringBuilder sb = new StringBuilder(128);
+                    for (JPNode sourceValue : sourceValues) {
+                        sb.append(sourceValue.getValue()).append(' ');
+                    }
+                    String joinedValue = sb.toString().trim();
+                    JPNode jsv = new JPNode(sourceValues.get(0));
+                    jsv.setPayload(joinedValue);
+                    setJSONField(docJson, transformation, jsv);
+                }
+            } else {
+                for (JPNode sourceValue : sourceValues) {
+                    if (transformation.getScript() != null) {
+                        Result result = transformation.execute(pythonInterpreter, sourceValue.getValue());
+                        if (result != null) {
+                            Assertion.assertTrue(!result.hasMultipleValues());
+                            sourceValue.setPayload(result.getValue());
+                            setJSONField(docJson, transformation, sourceValue);
+                        }
                     } else {
-                        setJSONField(docJson, transformation, sourceValue);
+                        if (transformation.getTransformationFunction() != null) {
+                            Result result = transformation.getTransformationFunction().execute(sourceValue.getValue());
+                            Assertion.assertTrue(!result.hasMultipleValues());
+                            sourceValue.setPayload(result.getValue());
+                            setJSONField(docJson, transformation, sourceValue);
+                        } else {
+                            setJSONField(docJson, transformation, sourceValue);
+                        }
                     }
                 }
             }
@@ -544,6 +564,12 @@ public class TransformationEngine {
                 }
             }
         }
+        // constant statements needs special treatment
+         for (Transformation t : interpreter.getTransformations()) {
+             if (t.isConstantTransform() && t.getCondition() != null) {
+                 collectConditionalPaths(t.getCondition(), sourceJsonPathList, uniqSet);
+             }
+         }
         return sourceJsonPathList;
     }
 

@@ -20,7 +20,7 @@ public class DocProcessingStatsJob implements Job {
             MongoService mongoService = MongoService.getInstance();
             dpss.setMongoClient(mongoService.getMongoClient());
             dpss.setDbName(mongoService.getDbName());
-            List<SourceStats> ssList = dpss.getDocCountsPerStatusPerSource2("nifRecords");
+            List<SourceStats> ssList = dpss.getDocCountsPerStatusPerSource2("nifRecords", null);
             CacheManager.getInstance().put("sourceStats", (Serializable) ssList);
 
         } catch (Exception e) {

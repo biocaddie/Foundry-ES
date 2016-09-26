@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.config.*;
 import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService;
+import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService.SourceStats;
 import org.neuinfo.foundry.common.ingestion.DocumentIngestionService;
 import org.neuinfo.foundry.common.model.Source;
 import org.neuinfo.foundry.common.util.*;
@@ -61,21 +62,27 @@ public class PipelineTriggerHelper {
     public void shutdown() {
         if (mongoClient != null) {
             mongoClient.close();
+            logger.debug("closed mongo connection");
         }
         try {
             if (con != null) {
-                logger.info("closing JMS connection");
+                logger.debug("closing JMS connection");
                 con.close();
+                logger.debug("closed JMS connection");
             }
         } catch (JMSException x) {
             logger.error("shutdown", x);
             x.printStackTrace();
         }
+
+        if (docService != null) {
+            docService.shutdown();
+        }
     }
 
 
     public void showWS() {
-        for(Workflow wf: this.config.getWorkflows()) {
+        for (Workflow wf : this.config.getWorkflows()) {
             System.out.println(wf.toString());
         }
     }
@@ -196,6 +203,39 @@ public class PipelineTriggerHelper {
         }
     }
 
+    public void runPipelineSteps(Source source, String status2Match, String stepName, boolean run2TheEnd) throws Exception {
+        Workflow workflow = config.getWorkflows().get(0);
+        List<Route> routes = workflow.getRoutes();
+        Route theRoute = null;
+        for (int i = 0; i < routes.size(); i++) {
+            Route route = routes.get(i);
+            QueueInfo queueInfo = route.getQueueNames().get(0);
+            String queueName = queueInfo.getName();
+            String[] tokens = queueName.split("\\.");
+            if (tokens[1].equals(stepName)) {
+                theRoute = route;
+                break;
+            }
+        }
+
+        if (theRoute == null) {
+            System.err.println("No pipeline step named " + stepName);
+            return;
+        }
+
+        String newStatus = theRoute.getCondition().getFirstPredicateValue();
+        String queue2Send = theRoute.getQueueNames().get(0).getName();
+        if (!run2TheEnd) {
+            String newOutStatus = workflow.getFinishedStatus();
+            System.out.println("status2Match:" + status2Match + " queue2Send:" + queue2Send + " newStatus:" + newStatus
+                    + " newOutStatus:" + newOutStatus);
+            triggerPipeline(source, status2Match, queue2Send, newStatus, newOutStatus);
+        } else {
+            System.out.println("status2Match:" + status2Match + " queue2Send:" + queue2Send + " newStatus:" + newStatus);
+            triggerPipeline(source, status2Match, queue2Send, newStatus, null);
+        }
+    }
+
     public void triggerPipeline(Source source, String status2Match, String queue2Send, String newStatus,
                                 String newOutStatus) throws Exception {
         DB db = mongoClient.getDB(dbName);
@@ -261,11 +301,20 @@ public class PipelineTriggerHelper {
     }
 
 
-    public List<DocProcessingStatsService.SourceStats> getProcessingStats() {
+    public List<SourceStats> getProcessingStats(String sourceID) {
         DocProcessingStatsService dpss = new DocProcessingStatsService();
         dpss.setMongoClient(this.mongoClient);
         dpss.setDbName(this.dbName);
-        return dpss.getDocCountsPerStatusPerSource2(getCollectionName());
+        return dpss.getDocCountsPerStatusPerSource2(getCollectionName(), sourceID);
+    }
+
+    public Map<String, DocProcessingStatsService.WFStatusInfo> getWorkflowStatusInfo(String sourceID, List<SourceStats> ssList) {
+        DocProcessingStatsService dpss = new DocProcessingStatsService();
+        dpss.setMongoClient(this.mongoClient);
+        dpss.setDbName(this.dbName);
+        Workflow workflow = config.getWorkflows().get(0);
+        String finishedStatus = workflow.getFinishedStatus();
+        return dpss.getWorkflowStatusInfo(sourceID, finishedStatus, ssList);
     }
 
     public String getCollectionName() {

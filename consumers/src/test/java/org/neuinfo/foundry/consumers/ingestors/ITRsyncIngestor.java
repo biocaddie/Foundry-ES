@@ -1,13 +1,8 @@
 package org.neuinfo.foundry.consumers.ingestors;
 
 import com.mongodb.*;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import junit.framework.TestCase;
-import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.json.JSONObject;
-import org.neuinfo.foundry.common.config.ServerInfo;
+import org.junit.Test;
 import org.neuinfo.foundry.common.transform.TransformMappingUtils;
 import org.neuinfo.foundry.common.transform.TransformationEngine;
 import org.neuinfo.foundry.common.util.JSONUtils;
@@ -23,15 +18,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by bozyurt on 5/14/15.
  */
-public class RsyncIngestorTest extends TestCase {
+public class ITRsyncIngestor {
 
-    public RsyncIngestorTest(String name) {
-        super(name);
-    }
 
+    @Test
     public void testStartup() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("documentElement", "datablock");
@@ -128,9 +124,9 @@ public class RsyncIngestorTest extends TestCase {
         DBCollection records = test1.getCollection("records");
         BasicDBObject one = (BasicDBObject) records.findOne();
 
-        one.put("status","updated");
+        one.put("status", "updated");
         BasicDBObject query = new BasicDBObject(Constants.MONGODB_ID_FIELD, one.get("_id"));
-        Utils.saveText(JSONUtils.toJSON(one,true).toString(2), "/tmp/x.json");
-       //  records.update(query, one);
+        Utils.saveText(JSONUtils.toJSON(one, true).toString(2), "/tmp/x.json");
+        //  records.update(query, one);
     }
 }

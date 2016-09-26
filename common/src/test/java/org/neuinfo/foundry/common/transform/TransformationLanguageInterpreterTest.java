@@ -41,6 +41,14 @@ public class TransformationLanguageInterpreterTest {
         assertEquals(interpreter.getTransformations().size(), 1);
     }
 
+    @Test
+    public void testJoinStatementParsing() {
+        String ts = "join \"$.'record'.'metadata'.'codeBook'.'stdyDscr'.'dataAccs'.'useStmt'.'conditions'.'p'[*].'_$'\" " +
+                "to \"datasetDistribution[0].license\" apply {{  result= ' '.join(value) }};";
+        TransformationLanguageInterpreter interpreter = getTransformationLanguageInterpreter(ts);
+        assertEquals(interpreter.getTransformations().size(), 1);
+    }
+
     private TransformationLanguageInterpreter getTransformationLanguageInterpreter(String ts) {
         TransformationFunctionRegistry registry = TransformationFunctionRegistry.getInstance();
         TransformationLanguageInterpreter interpreter = new TransformationLanguageInterpreter(registry);

@@ -2,15 +2,13 @@ package org.neuinfo.foundry.common.config;
 
 import org.apache.commons.cli.*;
 import org.jdom2.Element;
+import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.Utils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by bozyurt on 8/8/16.
@@ -118,7 +116,8 @@ public class ConfigGenerator {
         for (ConsumerCfg cc : ccList) {
             ccMap.put(cc.name, cc);
         }
-        prepWorkflow(wfCfg, ccMap, rootEl);
+        String finishedStatus = getFinishedStatus(wfCfg, ccMap);
+        prepWorkflow(wfCfg, ccMap, finishedStatus, rootEl);
         return rootEl;
     }
 
@@ -128,15 +127,25 @@ public class ConfigGenerator {
         for (ConsumerCfg cc : ccList) {
             ccMap.put(cc.name, cc);
         }
+        // String finishedStatus = getFinishedStatus(wfCfg, ccMap);
+        String finishedStatus = "finished";
 
         Element rootEl = new Element("dispatcher-cfg");
         prepDBMQ(cfg, rootEl);
-        prepWorkflow(wfCfg, ccMap, rootEl);
+        prepWorkflow(wfCfg, ccMap, finishedStatus, rootEl);
 
         return rootEl;
     }
 
-    private static void prepWorkflow(WFCfg wfCfg, Map<String, ConsumerCfg> ccMap, Element rootEl) {
+    private static String getFinishedStatus(WFCfg wfCfg, Map<String, ConsumerCfg> ccMap) {
+        // get the last step status
+        String lastStep = wfCfg.steps.get(wfCfg.steps.size() - 1);
+        ConsumerCfg cc = ccMap.get(lastStep);
+        Assertion.assertNotNull(cc);
+        return cc.status;
+    }
+
+    private static void prepWorkflow(WFCfg wfCfg, Map<String, ConsumerCfg> ccMap, String finishedStatus, Element rootEl) {
         String updateOutStatus;
         ConsumerCfg firstCC = ccMap.get(wfCfg.steps.get(0));
         assertTrue(firstCC != null, "Cannot find a consumer named " + wfCfg.steps.get(0));
@@ -152,7 +161,9 @@ public class ConfigGenerator {
 
         Element wfsEl = new Element("workflows");
         rootEl.addContent(wfsEl);
-        Element wfEl = new Element("workflow").setAttribute("name", wfCfg.name);
+        Element wfEl = new Element("workflow").setAttribute("name", wfCfg.name)
+                .setAttribute("finishedStatus", finishedStatus);
+
         wfsEl.addContent(wfEl);
         Element routesEl = new Element("routes");
         wfEl.addContent(routesEl);
@@ -193,7 +204,8 @@ public class ConfigGenerator {
         rootEl.addContent(consumersEl);
         String inStatus = "new.1";
 
-        for (String step : wfCfg.steps) {
+        for (Iterator<String> iter =  wfCfg.steps.iterator(); iter.hasNext();) {
+            String step = iter.next();
             ConsumerCfg cc = ccMap.get(step);
             assertTrue(cc != null, "Cannot find a consumer named " + step);
             Element ccEl = new Element("consumer-cfg");
@@ -202,7 +214,12 @@ public class ConfigGenerator {
             ccEl.setAttribute("type", "generic");
             ccEl.setAttribute("listeningQueueName", "foundry." + cc.name + ".1");
             ccEl.setAttribute("inStatus", inStatus);
-            ccEl.setAttribute("outStatus", cc.status + ".1");
+            if (iter.hasNext()) {
+                ccEl.setAttribute("outStatus", cc.status + ".1");
+            } else {
+                // always make sure that the last step to have outStatus = finished
+                ccEl.setAttribute("outStatus", "finished");
+            }
             ccEl.addContent(new Element("pluginClass").setText(cc.pluginClass));
             if (cc.params != null) {
                 Element paramsEl = new Element("params");

@@ -9,6 +9,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,6 +19,8 @@ import java.util.Map;
  * Created by bozyurt on 7/8/15.
  */
 public class ElasticSearchUtils {
+    private final static Logger logger = Logger.getLogger(ElasticSearchUtils.class);
+
     public static boolean send2ElasticSearch(String jsonDocStr, String docId,
                                              String indexPath, String serverURL) throws Exception {
         return send2ElasticSearch(jsonDocStr, docId, indexPath, serverURL, null);
@@ -53,9 +56,9 @@ public class ElasticSearchUtils {
             StringEntity entity = new StringEntity(sb.toString(), "UTF-8");
             httpPost.setEntity(entity);
             HttpResponse response = client.execute(httpPost);
-            System.out.println(response.getStatusLine());
-            System.out.println(response);
-            System.out.println(EntityUtils.toString(response.getEntity()));
+            logger.info(response.getStatusLine());
+            logger.info(response);
+            logger.info(EntityUtils.toString(response.getEntity()));
 
         } finally {
             if (httpPost != null) {

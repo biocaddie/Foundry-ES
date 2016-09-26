@@ -55,7 +55,7 @@ public class ProcessingDashboardResource {
             DocProcessingStatsService dpss = new DocProcessingStatsService();
             dpss.setMongoClient(mongoService.getMongoClient());
             dpss.setDbName(mongoService.getDbName());
-            ssList = dpss.getDocCountsPerStatusPerSource2("nifRecords");
+            ssList = dpss.getDocCountsPerStatusPerSource2("nifRecords", null);
             CacheManager.getInstance().put("sourceStats", (Serializable) ssList);
 
         }

@@ -6,7 +6,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService;
 import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService.SourceStats;
+import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService.WFStatusInfo;
 import org.neuinfo.foundry.common.model.Source;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.ElasticSearchUtils;
@@ -63,24 +65,23 @@ public class ManagementService {
     }
 
     void showProcessingStats(String sourceID) {
-        List<SourceStats> processingStats = this.helper.getProcessingStats();
-        if (sourceID == null) {
-            for (SourceStats ss : processingStats) {
-                showSourceStats(ss);
-            }
-        } else {
-            for (SourceStats ss : processingStats) {
-                if (ss.getSourceID().equals(sourceID)) {
-                    showSourceStats(ss);
-                    break;
-                }
-            }
+        List<SourceStats> processingStats = this.helper.getProcessingStats(sourceID);
+        Map<String, WFStatusInfo> wfsiMap = this.helper.getWorkflowStatusInfo(sourceID, processingStats);
+        for (SourceStats ss : processingStats) {
+            WFStatusInfo wfsi = wfsiMap.get(ss.getSourceID());
+            showSourceStats(ss, wfsi);
         }
     }
 
-    void showSourceStats(SourceStats ss) {
+    void showSourceStats(SourceStats ss, WFStatusInfo wfStatusInfo) {
         StringBuilder sb = new StringBuilder(128);
         sb.append(StringUtils.rightPad(ss.getSourceID(), 15)).append(" ");
+        if (wfStatusInfo != null) {
+            sb.append(StringUtils.leftPad(wfStatusInfo.getStatus(), 12)).append(" ");
+        } else {
+            sb.append(StringUtils.leftPad("unknown", 12)).append(" ");
+        }
+
         Map<String, Integer> statusCountMap = ss.getStatusCountMap();
         int totCount = 0;
         for (Integer count : statusCountMap.values()) {
@@ -98,7 +99,7 @@ public class ManagementService {
                 continue;
             }
             Integer statusCount = statusCountMap.get(status);
-            String s = StringUtils.leftPad(status+":",15)  + StringUtils.leftPad(statusCount.toString(), 10);
+            String s = StringUtils.leftPad(status + ":", 15) + StringUtils.leftPad(statusCount.toString(), 10);
             sb.append(s).append(" ");
         }
         System.out.println(sb.toString().trim());
@@ -113,6 +114,7 @@ public class ManagementService {
         System.out.println("\tdd <sourceID>  - delete docs for a sourceID");
         System.out.println("\tcdup <sourceID>  - clean duplicate files from GridFS for a sourceID");
         System.out.println("\ttrigger <sourceID> <status-2-match> <queue-2-send> [<new-status> [<new-out-status>]] (e.g. trigger nif-0000-00135 new.1 foundry.uuid.1)");
+        System.out.println("\trun <sourceID> status:<status-2-match> step:<step-name> [on|to_end] (e.g. run nif-0000-00135 status:new.1 step:transform)");
         System.out.println("\tindex <sourceID> <status-2-match> <url> (e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)");
         System.out.println("\tlist - lists all of the existing sources.");
         System.out.println("\tstatus [<sourceID>] - show processing status of data source(s)");
@@ -137,6 +139,32 @@ public class ManagementService {
     }
 
 
+    static void handleRun(String ans, ManagementService ms, Options options) throws Exception {
+        String[] tokens = ans.split("\\s+");
+        int numTokens = tokens.length;
+        if (numTokens < 4) {
+            usage(options);
+        }
+
+        String srcNifId = tokens[1];
+        String status2Match = null;
+        boolean run2TheEnd = false;
+        String stepName = null;
+        for (int i = 2; i < numTokens; i++) {
+            String token = tokens[i];
+            if (token.startsWith("status:")) {
+                status2Match = token.substring(token.indexOf(':') + 1);
+            } else if (token.startsWith("step:")) {
+                stepName = token.substring(token.indexOf(':') + 1);
+            } else if (token.equalsIgnoreCase("on") || token.equalsIgnoreCase("to_end")) {
+                run2TheEnd = true;
+            }
+        }
+        Source source = ms.helper.findSource(srcNifId);
+        Assertion.assertNotNull(source);
+        System.out.println("status2Match:" + status2Match + " stepName:" + stepName + " run2TheEnd:" + run2TheEnd);
+        ms.helper.runPipelineSteps(source, status2Match, stepName, run2TheEnd);
+    }
 
     public static void main(String[] args) throws Exception {
         Option help = new Option("h", "print this message");
@@ -182,7 +210,8 @@ public class ManagementService {
                 }
                 if (ans.equals("help")) {
                     showHelp();
-                } if (ans.equals("ws")) {
+                }
+                if (ans.equals("ws")) {
                     ms.showWorkflows();
                 } else if (ans.startsWith("ingest")) {
                     String[] toks = ans.split("\\s+");
@@ -195,6 +224,9 @@ public class ManagementService {
                         lastCommand = ans;
 
                     }
+                } else if (ans.startsWith("run")) {
+                    handleRun(ans, ms, options);
+
                 } else if (ans.startsWith("trigger")) {
                     String[] toks = ans.split("\\s+");
                     if (toks.length == 4 || toks.length == 5 || toks.length == 6) {
@@ -273,7 +305,11 @@ public class ManagementService {
                 } else if (ans.startsWith("list")) {
                     List<Source> sources = ms.helper.findSources();
                     for (Source source : sources) {
-                        System.out.println(String.format("%s - (%s)", source.getResourceID(), source.getName()));
+                        StringBuilder sb = new StringBuilder(128);
+                        sb.append(StringUtils.rightPad(source.getResourceID(), 16)).append(" - ");
+                        sb.append(source.getName());
+                        System.out.println(sb.toString());
+                        // System.out.println(String.format("%s - (%s)", source.getResourceID(), source.getName()));
                     }
                     lastCommand = ans;
                 } else if (ans.equals("exit")) {

@@ -4,7 +4,7 @@ define(function(require, exports, module) {
    var oop = require("../lib/oop");
    var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
    var JSONTLHighlightRules = function() {
-      var keywords = ("transform|column|columns|union|to|apply|assign|name|from|map|let|if|then|and|or|not|exists|like");
+      var keywords = ("transform|column|columns|union|to|apply|assign|name|from|map|let|if|then|and|or|not|exists|like|join");
       var builtinFunctions = ("toStandardDate|toStandardTime|toStandardDateTime");
       var keywordMapper = this.createKeywordMapper({
          "support.function": builtinFunctions,

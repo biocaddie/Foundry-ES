@@ -22,6 +22,7 @@ public class Transformation {
     String constantValue;
     boolean unionOfSourceColumns = false;
     boolean constantTransform = false;
+    boolean joinTransform = false;
     ITransformationFunction transformationFunction;
     TransformationLanguageInterpreter.Node condition;
 
@@ -104,6 +105,14 @@ public class Transformation {
         this.script = script;
     }
 
+    public boolean isJoinTransform() {
+        return joinTransform;
+    }
+
+    public void setJoinTransform(boolean joinTransform) {
+        this.joinTransform = joinTransform;
+    }
+
     public Result executeNoColName(PythonInterpreter pythonInterpreter, String value) {
         return getResult(pythonInterpreter, value);
     }
@@ -112,6 +121,14 @@ public class Transformation {
         Assertion.assertTrue(sourceColumnNames.size() == 1);
         pythonInterpreter.set("orig_colName", new PyString(sourceColumnNames.get(0)));
         return getResult(pythonInterpreter, value);
+    }
+
+    public Result executeJoin(PythonInterpreter pythonInterpreter, List<String> values) {
+        pythonInterpreter.set("value", new PyList(values));
+        pythonInterpreter.exec(script);
+        PyObject result = pythonInterpreter.get("result");
+        String resultStr = result.asString();
+        return new Result(resultStr);
     }
 
     Result getResult(PythonInterpreter pythonInterpreter, String value) {
