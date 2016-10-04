@@ -1,10 +1,7 @@
 package org.neuinfo.foundry.common.transform;
 
 import org.neuinfo.foundry.common.util.Assertion;
-import org.python.core.PyArray;
-import org.python.core.PyList;
-import org.python.core.PyObject;
-import org.python.core.PyString;
+import org.python.core.*;
 import org.python.util.PythonInterpreter;
 
 import java.util.ArrayList;
@@ -132,7 +129,8 @@ public class Transformation {
     }
 
     Result getResult(PythonInterpreter pythonInterpreter, String value) {
-        pythonInterpreter.set("value", new PyString(value));
+        //pythonInterpreter.set("value", new PyString(value));
+        pythonInterpreter.set("value", Py.newStringOrUnicode(value));
         pythonInterpreter.exec(script);
         PyObject result = pythonInterpreter.get("result");
         if (result instanceof PyList) {

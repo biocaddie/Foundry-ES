@@ -361,7 +361,7 @@ public class ConfigGenerator {
         if (!new File(foundryRootDir).isDirectory()) {
             String fd = System.getenv("FOUNDRY_HOME");
             if (fd == null) {
-                System.err.println("Please provide the root dir for Foundry-ES code vi -f option or via FOUNDRY_HOME environment variable!");
+                System.err.println("Please provide the root dir for Foundry-ES code via -f option or via FOUNDRY_HOME environment variable!");
                 System.exit(1);
             }
             foundryRootDir = fd;

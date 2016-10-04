@@ -1,0 +1,81 @@
+/* Dataset Basic Information */
+transform column "$.'nif_0000_03208_2'.'doi'" to "dataset.ID";
+transform column "$.'nif_0000_03208_2'.'name'" to "dataset.title";
+transform column "$.nif_0000_03208_2.'description'" to "dataset.description";
+transform column "$.nif_0000_03208_2.'tissue_cell_lines'" to "dataset.keywords[]" apply {{
+arr=re.split("\s*,\s*",value,)
+result= [''] if value.lower()  == 'not available' else arr
+}};
+
+/* Dataset Landing Page */
+transform column "$.'nif_0000_03208_2'.'doi'" to "access.landingPage" apply {{ result = 'https://nursa.org/nursa/datasets/dataset.jsf?doi=' + value }};
+
+/* Dataset Creator */
+transform column "$.nif_0000_03208_2.'contributors'" to "dataset.creators[]" apply {{
+arr=re.split("\s*,\s*",value,)
+result= [''] if value.lower()  == 'not available' else arr
+}};
+
+/* Dataset Release Date Information */
+transform column "$.nif_0000_03208_2.'releasedate'" to "dataset.dateReleased" apply toStandardDate("yyyy-MM-dd");
+
+/* Dataset Qualifiers */
+let "dataset.availability" = "available";
+let "dataset.types[0]" = "sequence";
+let "dataset.aggregation" = "instance of dataset";
+let "dataset.privacy" = "not applicable";
+let "dataset.refinement" = "curated";
+
+/* Information on Dataset Distributions */
+/* Dataset Distribution - NURSA */
+let "datasetDistributions[0].format" = "XLS";
+let "datasetDistributions[0].accessType" = "download";
+let "datasetDistributions[0].storedIn" = "Nuclear Receptor Signaling Atlas";
+transform column "$.nif_0000_03208_2.'download_dataset_url'" to "datasetDistributions[0].accessURL";
+let "datasetDistributions[0].authorization" = "none";
+let "datasetDistributions[0].authentication" = "none";
+
+/* Dataset Distribution - GEO */
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then let "datasetDistributions[1].format" = "HTML";
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then let "datasetDistributions[1].storedIn" = "Gene Expression Omnibus";
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then transform column "$.'pr_nlx_152673_1'.'version_gse_url'" to "datasetDistributions[1].accessURL";
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then let "datasetDistributions[1].accesstypes" = "Landing Page";
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then let "datasetDistributions[1].authorization" = "none";
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then let "datasetDistributions[1].authentication" = "none";
+if "$.nif_0000_03208_2.'version_gse_url'" <> "" then let "datasetDistributions[1].primary" = "false";
+
+/* Publications */
+transform column "$.'nif_0000_03208_2'.'assoc_pubmed_id'" to "primaryPublications[].ID";
+
+/* Data Repository Information */
+let "dataRepository.name"  = "Nuclear Receptor Signaling Atlas";
+let "dataRepository.abbreviation" = "NURSA";
+let "dataRepository.ID"  = "SCR:003287";
+let "dataRepository.homePage" = "http://www.nursa.org/";
+
+/* Organization Information */
+let "organization.name"  = "National Institute of Diabetes and Digestive and Kidney Diseases";
+let "organization.abbreviation" = "NIDDK";
+let "organization.ID" = "SCR:012895";
+let "organization.homePage"  = "http://niddk.nih.gov/";
+
+/* Specific Information on Extended Attributes */
+/* Taxonomic Information */
+transform column "$.nif_0000_03208_2.'species'" to "TaxonomicInformation[].name";
+
+/* Data Acquisition Information */
+transform column "$.nif_0000_03208_2.'type'" to "dataAcquisition.name";
+
+/* Items requiring some special formatting/review */
+/*
+transform column "$.'contributors'" to "contributors";
+*/
+
+/* Items not included */
+/*
+transform column "$.'e_uid'" to "e_uid";
+transform column "$.'v_uid'" to "v_uid";
+transform column "$.'v_uuid'" to "v_uuid";
+transform column "$.'v_lastmodified'" to "v_lastmodified";
+transform column "$.nif_0000_03208_2.'reference'" to "publication.description" apply {{ result = '' if value == 'Not Available' else value }};
+*/

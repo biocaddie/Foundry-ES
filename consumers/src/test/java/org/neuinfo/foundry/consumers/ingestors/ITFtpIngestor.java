@@ -1,5 +1,7 @@
 package org.neuinfo.foundry.consumers.ingestors;
 
+import org.apache.commons.net.ftp.FTPFile;
+import org.junit.Test;
 import org.neuinfo.foundry.consumers.common.FtpClient;
 import org.neuinfo.foundry.consumers.jms.consumers.ingestors.FTPIngestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
@@ -37,6 +39,7 @@ public class ITFtpIngestor {
         ingestor.shutdown();
     }
 
+    @Test
     public void testFtp() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("ftpHost", "ftp.ebi.ac.uk");
@@ -60,13 +63,14 @@ public class ITFtpIngestor {
         System.out.println("latestFilePath:" + latestFilePath);
     }
 
+    @Test
     public void testFtpListing() throws Exception {
         FtpClient ftp = new FtpClient("ftp.ebi.ac.uk");
-        List<String> list = ftp.list("/pub/databases/biomodels/weekly_archives");
+        List<FTPFile> list = ftp.list("/pub/databases/biomodels/weekly_archives");
 
         assertFalse(list.isEmpty());
-        for (String s : list) {
-            System.out.println(s);
+        for (FTPFile f : list) {
+            System.out.println(f.getName());
         }
     }
 }

@@ -33,7 +33,7 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
     private String id;
     private String name;
     private ConsumerProcessListener cpListener;
-    private final static Logger logger = Logger.getLogger(JavaPluginConsumer.class);
+    private final static Logger logger = Logger.getLogger(GenericIngestionConsumer.class);
 
     public GenericIngestionConsumer(String queueName) {
         super(queueName);

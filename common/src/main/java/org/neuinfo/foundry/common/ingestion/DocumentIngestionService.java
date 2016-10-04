@@ -63,7 +63,7 @@ public class DocumentIngestionService extends BaseIngestionService {
         BatchInfo bi = new BatchInfo(batchId, Status.IN_PROCESS);
         bi.setIngestedCount(0);
         bi.setSubmittedCount(0);
-        bi.setSubmittedCount(0);
+        bi.setUpdatedCount(0);
         bi.setIngestionStatus(Status.IN_PROCESS);
         bi.setIngestionStartDatetime(new Date());
         sis.addUpdateBatchInfo(source.getResourceID(), source.getDataSource(), bi);

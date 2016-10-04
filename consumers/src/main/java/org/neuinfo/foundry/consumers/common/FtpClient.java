@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.net.PrintCommandListener;
@@ -71,10 +72,8 @@ public class FtpClient {
                 + InetAddress.getLocalHost().getHostName();
     }
 
-    public List<String> list(String remoteDir) {
-        List<String> listing = new ArrayList<String>();
-        final FTPClient ftp;
-        int port = 0;
+    protected FTPClient createFtpClient() {
+        FTPClient ftp;
         if (protocol == null) {
             if (proxyHost != null) {
                 System.out.println("Using HTTP proxy server: " + proxyHost);
@@ -112,6 +111,15 @@ public class FtpClient {
                 ftps.setTrustManager(null);
             }
         }
+        return ftp;
+    }
+
+
+    public List<FTPFile> list(String remoteDir) {
+        List<FTPFile> listing = new LinkedList<FTPFile>();
+        final FTPClient ftp = createFtpClient();
+        int port = 0;
+
         if (printHash) {
             ftp.setCopyStreamListener(createListener());
         }
@@ -193,9 +201,9 @@ public class FtpClient {
                 ftp.configure(config);
             }
 
-            for (String s : ftp.listNames(remoteDir)) {
-                System.out.println(s);
-                listing.add(s);
+            for (FTPFile f : ftp.listFiles(remoteDir)) {
+                System.out.println(f.toFormattedString());
+                listing.add(f);
             }
             ftp.noop(); // check that control connection is working OK
 
@@ -215,47 +223,10 @@ public class FtpClient {
     }
 
     public void transferFile(String local, String remote, boolean isBinary) {
-        final FTPClient ftp;
+        final FTPClient ftp = createFtpClient();
         this.binaryTransfer = isBinary;
         int port = 0;
-        if (protocol == null) {
-            if (proxyHost != null) {
-                System.out.println("Using HTTP proxy server: " + proxyHost);
-                ftp = new FTPHTTPClient(proxyHost, proxyPort, proxyUser,
-                        proxyPassword);
-            } else {
-                ftp = new FTPClient();
-            }
-            // IBO
-            ftp.setBufferSize(33554432); // 32 MB
-            // System.out.println("bufferSize:" + ftp.getBufferSize());
 
-        } else {
-            FTPSClient ftps;
-            if (protocol.equals("true")) {
-                ftps = new FTPSClient(true);
-            } else if (protocol.equals("false")) {
-                ftps = new FTPSClient(false);
-            } else {
-                String prot[] = protocol.split(",");
-                if (prot.length == 1) { // Just protocol
-                    ftps = new FTPSClient(protocol);
-                } else { // protocol,true|false
-                    ftps = new FTPSClient(prot[0],
-                            Boolean.parseBoolean(prot[1]));
-                }
-            }
-            ftp = ftps;
-            if ("all".equals(trustmgr)) {
-                ftps.setTrustManager(TrustManagerUtils
-                        .getAcceptAllTrustManager());
-            } else if ("valid".equals(trustmgr)) {
-                ftps.setTrustManager(TrustManagerUtils
-                        .getValidateServerCertificateTrustManager());
-            } else if ("none".equals(trustmgr)) {
-                ftps.setTrustManager(null);
-            }
-        }
 
         if (printHash) {
             ftp.setCopyStreamListener(createListener());

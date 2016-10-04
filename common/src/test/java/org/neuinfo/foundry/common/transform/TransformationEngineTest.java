@@ -1,7 +1,14 @@
 package org.neuinfo.foundry.common.transform;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.neuinfo.foundry.common.util.Utils;
+
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -41,6 +48,31 @@ public class TransformationEngineTest {
         TransformationEngine trEngine = new TransformationEngine(transformScript);
         JSONObject transformedJson = new JSONObject();
         trEngine.transform(json, transformedJson);
+
         System.out.println(transformedJson.toString(2));
+    }
+
+
+    @Test
+    public void testPythonStringIssue() throws Exception {
+        URL url = TransformationEngineTest.class.getClassLoader().getResource("testdata/nursa_errors.json");
+        String path = url.toURI().getPath();
+        System.out.println(path);
+        String jsonStr = Utils.loadAsString(path);
+        JSONArray jsArr = new JSONArray(jsonStr);
+        JSONObject json = jsArr.getJSONObject(1).getJSONObject("OriginalDoc");
+        String transformationScript = loadAsStringFromClassPath("testdata/nursa_datasets.trs");
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        JSONObject transformedJson = new JSONObject();
+        trEngine.transform(json, transformedJson);
+
+        System.out.println(transformedJson.toString(2));
+
+    }
+
+    public static String loadAsStringFromClassPath(String classpath) throws Exception {
+        URL url = TransformationEngineTest.class.getClassLoader().getResource(classpath);
+        String path = url.toURI().getPath();
+        return Utils.loadAsString(path);
     }
 }

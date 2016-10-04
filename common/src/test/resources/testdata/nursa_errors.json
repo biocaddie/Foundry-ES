@@ -1,0 +1,106 @@
+[
+	{
+		"_id" : "57eee6115152c6109664df7c",
+		"OriginalDoc" : {
+			"nif_0000_03208_2" : {
+				"e_uid" : "10.1621/2ooIJnQYTu",
+				"name" : "Analysis of the androgen receptor (AR) and R1881-regulated transcriptomes in LNCaP cells",
+				"type" : "Transcriptomic",
+				"species" : "Human",
+				"doi" : "10.1621/2ooIJnQYTu",
+				"description" : "(1) Human LNCaP prostatic carcinoma cells at late passage were treated with or without 1 nM R1881 for 6 h. (2) Human LNCaP prostatic carcinoma cells were infected with AR shRNA lentivirus or non-target control lentivirus.",
+				"tissue_cell_lines" : "Male reproductive, prostate, epithelium, LNCaP-LP50 cells",
+				"reference_facet" : "21330406",
+				"reference" : "PMID:21330406",
+				"contributors" : "Trumbly RJ,  Gonit M,  Zhang J,  d’Alincourt Salazara M,  Cui H,  Shatnawi A,  Trumbly R,  Ratnam M ",
+				"releasedate" : "2015-03-28",
+				"download_dataset_url" : "https://www.nursa.org//nursa/rest/transcriptomine/FileManager/getDatasetDump?id=113",
+				"version_gse" : "GEO: GSE22483",
+				"version_gse_url" : "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE22483",
+				"v_uid" : "10.1621/2ooIJnQYTu",
+				"v_uuid" : "17f48dbb-bc08-5009-8d7e-2baaa3ba4c8d",
+				"v_lastmodified" : "2016-09-09 17:08:35.014904",
+				"v_status" : "E",
+				"v_lastmodified_epoch" : 1463576650.494315
+			}
+		}
+	},
+	{
+		"_id" : "57eee6135152c6109664e002",
+		"OriginalDoc" : {
+			"nif_0000_03208_2" : {
+				"e_uid" : "10.1621/s5mvWb7LWD",
+				"name" : "Transcriptomic analysis of all-trans retinoic acid (ATRA)-and 16-keto-estradiol (16KE2) treated human acute promyelocytic cells",
+				"type" : "Transcriptomic",
+				"species" : "Human",
+				"doi" : "10.1621/s5mvWb7LWD",
+				"description" : "Acute promyelocytic cells were isolated from leukopharesis samples from a patient with acute promyelocytic leukemia (APL) who had a t(15;17) and a white blood cell count of 185,000 with 97% myeloblasts at diagnosis. Cells were treated for 5 days with or without (1) 1 µM ATRA; or (2) 70 µM 16KE2.",
+				"tissue_cell_lines" : "Immune, leukocytes, APL, 1° cells",
+				"reference_facet" : "14770183",
+				"reference" : "PMID:14770183",
+				"contributors" : "Ross K,  Stegmaier K,  Ross KN,  Colavito SA,  O'Malley S,  Stockwell BR,  Golub TR,  O’Malley S ",
+				"releasedate" : "2015-03-28",
+				"download_dataset_url" : "https://www.nursa.org//nursa/rest/transcriptomine/FileManager/getDatasetDump?id=263",
+				"version_gse" : "GEO: GSE976",
+				"version_gse_url" : "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE976",
+				"v_uid" : "10.1621/s5mvWb7LWD",
+				"v_uuid" : "0bed63bd-13df-5909-b7dd-83771b0821f8",
+				"v_lastmodified" : "2016-09-09 17:08:35.014904",
+				"v_status" : "E",
+				"v_lastmodified_epoch" : 1463576650.494315
+			}
+		}
+	},
+	{
+		"_id" : "57eee6135152c6109664e00b",
+		"OriginalDoc" : {
+			"nif_0000_03208_2" : {
+				"e_uid" : "10.1621/R3Fq2573TV",
+				"name" : "Analysis of the testosterone (Test)-regulated transcriptome in female mouse liver",
+				"type" : "Transcriptomic",
+				"species" : "House Mouse",
+				"doi" : "10.1621/R3Fq2573TV",
+				"description" : "Livers were isolated from 10-12 week old female C57BL/6 mice treated with or without (1) bi-weekly doses of 0.9 mg Test for 3 weeks; or (2) bi-weekly doses of 0.9 mg Test for 3 weeks followed by discontinuation of Test and vehicle treatments for 12 weeks.  The dose of Test used has been shown to raise the circulating Test concentration in female mice to a level normally found in male mice.",
+				"tissue_cell_lines" : "Metabolic, liver, whole",
+				"reference_facet" : "20600201",
+				"reference" : "PMID:20600201",
+				"contributors" : "Krücken J,  Delić D,  Weiland C,  Vohr H,  Wunderlich F ",
+				"releasedate" : "2015-03-28",
+				"download_dataset_url" : "https://www.nursa.org//nursa/rest/transcriptomine/FileManager/getDatasetDump?id=271",
+				"version_gse" : "GEO: GSE13388",
+				"version_gse_url" : "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13388",
+				"v_uid" : "10.1621/R3Fq2573TV",
+				"v_uuid" : "1e6e3a53-9685-56a9-bb9e-a1c1a26ac6dd",
+				"v_lastmodified" : "2016-09-09 17:08:35.014904",
+				"v_status" : "E",
+				"v_lastmodified_epoch" : 1463576650.494315
+			}
+		}
+	},
+	{
+		"_id" : "57eee6155152c6109664e05f",
+		"OriginalDoc" : {
+			"nif_0000_03208_2" : {
+				"e_uid" : "10.1621/pbcLTrujND",
+				"name" : "Analysis of the oxidative stress-dependent transcriptome in mouse bone marrow-derived macrophages",
+				"type" : "Transcriptomic",
+				"species" : "House Mouse",
+				"doi" : "10.1621/pbcLTrujND",
+				"description" : "Bone marrow derived macrophages from C57Bl/6 mice were treated for 4 h with or without (i) lipopolysaccharide; (ii) oxidative stress-derived extracellular vesicles (stressEVs); or (iii) stressEVs that had undergone the Fenton reaction (stressEVs-FR).",
+				"tissue_cell_lines" : "Immune, leukocytes, macrophages, bone marrow-derived",
+				"reference_facet" : "26082436",
+				"reference" : "PMID:26082436",
+				"contributors" : "Horvat S,  Manček-Keber M,  Frank M,  Hafner-Bratkovič I,  Smole A,  Zorko M,  Pirher N,  Hayer S,  Kralj-Iglič V,  Rozman B,  Ilc N,  Jerala R ",
+				"releasedate" : "2015-12-10",
+				"download_dataset_url" : "https://www.nursa.org//nursa/rest/transcriptomine/FileManager/getDatasetDump?id=382",
+				"version_gse" : "GEO: GSE45234",
+				"version_gse_url" : "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45234",
+				"v_uid" : "10.1621/pbcLTrujND",
+				"v_uuid" : "4c011019-b58c-5a37-a6c8-552cfa9ab2e5",
+				"v_lastmodified" : "2016-09-09 17:08:35.014904",
+				"v_status" : "E",
+				"v_lastmodified_epoch" : 1463576650.494315
+			}
+		}
+	}
+]

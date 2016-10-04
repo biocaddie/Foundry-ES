@@ -448,8 +448,9 @@ public class TransformationEngine {
                     Result result = transformation.getTransformationFunction().execute(
                             sourceValue.getValue());
                     Assertion.assertTrue(!result.hasMultipleValues());
-                    sourceValue.setPayload(result.getValue());
-                    setJSONField(docJson, transformation, sourceValue);
+                    JPNode svCopy = new JPNode(sourceValue);
+                    svCopy.setPayload(result.getValue());
+                    setJSONField(docJson, transformation, svCopy);
                 } else {
                     setJSONField(docJson, transformation, sourceValue);
                 }

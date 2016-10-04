@@ -2,9 +2,11 @@ package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 
 import org.apache.log4j.Logger;
 import org.jdom2.Element;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.FileExpander;
+import org.neuinfo.foundry.common.util.JSONPathProcessor2;
 import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.common.ConsumerUtils;
 import org.neuinfo.foundry.consumers.common.JSONFileIterator;
@@ -13,10 +15,9 @@ import org.neuinfo.foundry.consumers.plugin.Ingestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.*;
 
 /**
  * Created by bozyurt on 12/18/15.
@@ -36,6 +37,12 @@ public class WebIngestor implements Ingestor {
     String offsetParam;
     String limitParam;
     int limitValue = 100;
+
+    String idJsonPath;
+    String mergeIngestURLTemplate;
+    String mergeFieldName;
+    List<String> templateVariables;
+    String mergeDocElName;
 
     boolean sampleMode = false;
     int sampleSize = 1;
@@ -58,6 +65,18 @@ public class WebIngestor implements Ingestor {
         if (options.containsKey("limitValue")) {
             this.limitValue = Utils.getIntValue(options.get("limitValue"), -1);
         }
+
+        if (options.containsKey("mergeIngestURLTemplate")) {
+            mergeIngestURLTemplate = options.get("mergeIngestURLTemplate");
+        }
+        if (options.containsKey("idJsonPath")) {
+            this.idJsonPath = options.get("idJsonPath");
+        }
+        if (options.containsKey("mergeFieldName")) {
+            this.mergeFieldName = options.get("mergeFieldName");
+        }
+        this.mergeDocElName = options.containsKey("mergeDocElName") ? options.get("mergeDocElName") : this.docElName;
+
         this.optionMap = options;
         this.useCache = options.containsKey("useCache") ?
                 Boolean.parseBoolean(options.get("useCache")) : true;
@@ -66,6 +85,15 @@ public class WebIngestor implements Ingestor {
 
         this.sampleSize = Utils.getIntValue(options.get("sampleSize"), 1);
         Assertion.assertTrue(this.parserType.equals("xml") || this.parserType.equals("json"));
+
+        if (mergeIngestURLTemplate != null) {
+            this.templateVariables = IngestorHelper.extractTemplateVariables(this.mergeIngestURLTemplate);
+            Assertion.assertNotNull(this.templateVariables);
+            Assertion.assertTrue(this.templateVariables.size() == 1);
+            Assertion.assertNotNull(this.idJsonPath);
+            Assertion.assertNotNull(this.mergeFieldName);
+            Assertion.assertNotNull(this.mergeDocElName);
+        }
     }
 
     @Override
@@ -148,12 +176,35 @@ public class WebIngestor implements Ingestor {
                 r = ConsumerUtils.convert2JSON(el);
             } else {
                 JSONObject json = jsonFileIterator.next();
+                if (mergeIngestURLTemplate != null) {
+                   mergeRelatedDoc(json);
+                }
+
                 return new Result(json, Result.Status.OK_WITH_CHANGE);
             }
             count++;
             return r;
         } catch (Throwable t) {
             return ConsumerUtils.toErrorResult(t, log);
+        }
+    }
+
+    void mergeRelatedDoc(JSONObject json) throws Exception {
+        JSONPathProcessor2 pathProcessor2 = new JSONPathProcessor2();
+        List<JSONPathProcessor2.JPNode> jpNodes = pathProcessor2.find(this.idJsonPath, json);
+        if (jpNodes != null && !jpNodes.isEmpty()) {
+            String idValue = jpNodes.get(0).getValue();
+            Map<String, String> templateVar2ValueMap = new HashMap<String, String>(3);
+            templateVar2ValueMap.put(templateVariables.get(0), idValue);
+            String url = IngestorHelper.createURL(this.mergeIngestURLTemplate, templateVar2ValueMap);
+            String jsonContent = Utils.sendGetRequest(url);
+            JSONObject js = new JSONObject(jsonContent);
+            pathProcessor2 = new JSONPathProcessor2();
+            List<JSONPathProcessor2.JPNode> jpNodes1 = pathProcessor2.find("$.." + this.mergeDocElName, js);
+            if (jpNodes1 != null && !jpNodes1.isEmpty()) {
+                Object payload = jpNodes1.get(0).getPayload();
+                json.put(this.mergeFieldName, payload);
+            }
         }
     }
 

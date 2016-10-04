@@ -243,16 +243,7 @@ public class RsyncIngestor implements Ingestor {
     public Result prepPayload() {
         try {
             Element el = this.xmlFileIterator.next();
-            /*
-            Element rootEl;
-            if (xmlFile.getName().endsWith(".gz")) {
-                rootEl = Utils.loadGzippedXML(xmlFile.getAbsolutePath());
-            } else {
-                rootEl = Utils.loadXML(xmlFile.getAbsolutePath());
-            }
 
-            Element el = extractXmlRecord(rootEl);
-            */
             XML2JSONConverter converter = new XML2JSONConverter();
             JSONObject json = converter.toJSON(el);
             count++;
