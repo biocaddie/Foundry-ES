@@ -2,7 +2,7 @@ package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.log4j.Logger;
-import org.jdom2.Element;
+import org.apache.tools.ant.util.FileUtils;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.common.*;
@@ -74,12 +74,12 @@ public class FTPIngestor implements Ingestor {
         if (recursive && fileNamePattern != null) {
 
 
-            List<FileInfo> filesMatching = getFilesMatching(this.fileNamePattern, recursive);
+            List<FTPUtils.FileInfo> filesMatching = getFilesMatching(this.fileNamePattern, recursive);
 
             FtpClient client = new FtpClient(ftpHost);
             List<File> localFiles = new ArrayList<File>(filesMatching.size());
             int i = 0;
-            for (FileInfo fi : filesMatching) {
+            for (FTPUtils.FileInfo fi : filesMatching) {
                 String remoteFilePath = fi.getFilePath();
                 Assertion.assertTrue(remoteFilePath.startsWith(remotePath));
                 String relativePath = remoteFilePath.substring(remotePath.length());
@@ -207,31 +207,14 @@ public class FTPIngestor implements Ingestor {
     }
 
 
-    public static class FileInfo {
-        final String filePath;
-        final long size;
-
-        public FileInfo(String filePath, long size) {
-            this.filePath = filePath;
-            this.size = size;
-        }
-
-        public String getFilePath() {
-            return filePath;
-        }
-
-        public long getSize() {
-            return size;
-        }
-    }
-
-    public List<FileInfo> getFilesMatching(String fnamePattern, boolean recurseDirs) throws Exception {
+    public List<FTPUtils.FileInfo> getFilesMatching(String fnamePattern, boolean recurseDirs) throws Exception {
         String remoteDir = this.remotePath;
         FtpClient client = new FtpClient(ftpHost);
         Pattern pattern = Pattern.compile(fnamePattern);
-        List<FileInfo> filteredFiles = new LinkedList<FileInfo>();
+        List<FTPUtils.FileInfo> filteredFiles = new LinkedList<FTPUtils.FileInfo>();
         if (recurseDirs) {
-            recurseRemoteDirs(remoteDir, client, pattern, filteredFiles);
+            FTPUtils.recurseRemoteDirs(remoteDir, client, pattern, filteredFiles,
+                    sampleMode, sampleSize, testMode, maxNumDocs2Ingest);
         } else {
             //TODO
             // List<String> list = client.list(remoteDir);
@@ -240,7 +223,7 @@ public class FTPIngestor implements Ingestor {
         return filteredFiles;
     }
 
-    void recurseLocalDirs(File parentDir, String extension, List<FileInfo> filteredFiles) {
+    void recurseLocalDirs(File parentDir, String extension, List<FTPUtils.FileInfo> filteredFiles) {
         if (testMode && filteredFiles.size() >= maxNumDocs2Ingest) {
             return;
         }
@@ -253,66 +236,14 @@ public class FTPIngestor implements Ingestor {
                 if (testMode && filteredFiles.size() >= maxNumDocs2Ingest) {
                     return;
                 }
-                filteredFiles.add(new FileInfo(f.getAbsolutePath(), f.length()));
+                filteredFiles.add(new FTPUtils.FileInfo(f.getAbsolutePath(), f.length()));
             } else if (f.isDirectory()) {
                 recurseLocalDirs(f, extension, filteredFiles);
             }
         }
     }
 
-    void recurseRemoteDirs(String parentDir, FtpClient client, Pattern pattern, List<FileInfo> filteredFiles) {
-        if (testMode && filteredFiles.size() >= maxNumDocs2Ingest) {
-            return;
-        }
-        if (sampleMode && filteredFiles.size() >= sampleSize) {
-            return;
-        }
-        List<FTPFile> list = client.list(parentDir);
-        if (list.isEmpty()) {
-            return;
-        }
-        for (FTPFile path : list) {
-            if (testMode && filteredFiles.size() >= maxNumDocs2Ingest) {
-                return;
-            }
-            if (sampleMode && filteredFiles.size() >= sampleSize) {
-                return;
-            }
-            Matcher m = pattern.matcher(path.getName());
-            if (m.find()) {
-                String fullPath = toFullPath(path.getName(), parentDir);
-                filteredFiles.add(new FileInfo(fullPath, path.getSize()));
 
-            } else {
-                // anything having no file extension is assumed to be a directory
-                if (path.isDirectory()) {
-                    String fullPath = toFullPath(path.getName(), parentDir);
-                    recurseRemoteDirs(fullPath, client, pattern, filteredFiles);
-                }
-            }
-        }
-    }
-
-    public static String toFullPath(String path, String parentDir) {
-        if (!path.startsWith(parentDir)) {
-            if (parentDir.endsWith("/")) {
-                if (path.startsWith("/")) {
-                    return parentDir + path.substring(1);
-                } else {
-                    return parentDir + path;
-                }
-            } else {
-                if (path.startsWith("/")) {
-                    return parentDir + path;
-                } else {
-                    return parentDir + "/" + path;
-                }
-            }
-        } else {
-            return path;
-        }
-
-    }
 
     private boolean canContinue(int curCount) {
         if (!sampleMode) {

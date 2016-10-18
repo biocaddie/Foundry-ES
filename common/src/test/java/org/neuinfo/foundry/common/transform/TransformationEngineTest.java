@@ -67,7 +67,18 @@ public class TransformationEngineTest {
         trEngine.transform(json, transformedJson);
 
         System.out.println(transformedJson.toString(2));
+    }
 
+    @Test
+    public void testJoinMulti() throws Exception {
+        String jsonStr = loadAsStringFromClassPath("testdata/uniprot_swissprot_record.json");
+        String transformationScript = loadAsStringFromClassPath("testdata/uniport_swissprot.trs");
+        JSONObject json = new JSONObject(jsonStr);
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        JSONObject transformedJson = new JSONObject();
+        trEngine.transform(json, transformedJson);
+
+        System.out.println(transformedJson.toString(2));
     }
 
     public static String loadAsStringFromClassPath(String classpath) throws Exception {

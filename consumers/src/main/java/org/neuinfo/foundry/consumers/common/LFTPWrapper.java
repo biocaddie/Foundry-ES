@@ -66,6 +66,7 @@ public class LFTPWrapper {
         cmdList.add(LFTP);
         cmdList.add("-e");
         StringBuilder sb = new StringBuilder(128);
+        sb.append("set ftp:ssl-allow off; ");
         sb.append("o ").append(sourceURL);
         sb.append(" && mirror --verbose ");
         if (includePattern != null) {
@@ -135,6 +136,7 @@ public class LFTPWrapper {
         cmdList.add(LFTP);
         cmdList.add("-e");
         StringBuilder sb = new StringBuilder(128);
+
         sb.append("o ").append(url);
         if (recursive) {
             sb.append(" && find && quit");

@@ -11,6 +11,7 @@ import org.jdom2.output.XMLOutputter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.StringReader;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class OAIPMHHarvester {
     String sourceName;
     String oaiURL;
     String workDir = "/tmp";
-    int sleepTimeSecs = 1; // 20
+    int sleepTimeSecs = 20; // 1
     String metaDataPrefix = "oai_dc";
     Set<String> allowedSetSpecs = new HashSet<String>(7);
     boolean sampleMode = false;
@@ -188,8 +189,9 @@ public class OAIPMHHarvester {
                             //Clear resumption token on first pass
                             resumptionToken = "";
                         } else {
-                            url = baseURL + resumptionBase + resumptionToken;
+                            url = baseURL + resumptionBase + URLEncoder.encode(resumptionToken, "UTF-8");
                         }
+
                         //Now fetch records from OAI-PMH server
                         logger.info("URL " + fetchCounter + " being processed: " + url);
 

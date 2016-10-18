@@ -58,6 +58,7 @@ public class ConsumerFactory {
         registeredIngestorPluginMap.put("web", WebIngestor.class);
         registeredIngestorPluginMap.put("disco", DISCOIngestor.class);
         registeredIngestorPluginMap.put("json2", TwoStageJSONIngestor.class);
+        registeredIngestorPluginMap.put("pubmed", PubMedIngestor.class);
     }
 
     public IConsumer createHarvester(String type, String ingestorName, String collectionName, Map<String, String> options) throws Exception {

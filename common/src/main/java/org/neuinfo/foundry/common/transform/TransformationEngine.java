@@ -152,7 +152,7 @@ public class TransformationEngine {
     }
 
     void postprocess(JSONObject docJson) {
-        for(String key : new HashSet<String>(docJson.keySet())) {
+        for (String key : new HashSet<String>(docJson.keySet())) {
             Object o = docJson.get(key);
             if (o instanceof JSONObject) {
                 postprocess((JSONObject) o);
@@ -162,7 +162,7 @@ public class TransformationEngine {
                 if (newArr != jsArr) {
                     docJson.put(key, newArr);
                 }
-                for(int i = 0; i < newArr.length(); i++) {
+                for (int i = 0; i < newArr.length(); i++) {
                     Object ao = newArr.get(i);
                     if (ao instanceof JSONObject) {
                         postprocess((JSONObject) ao);
@@ -175,8 +175,8 @@ public class TransformationEngine {
 
     public static JSONArray cleanupJsonArray(JSONArray jsArr) {
         boolean found = false;
-        for(int i = 0; i < jsArr.length(); i++) {
-            if ( jsArr.get(i) == JSONObject.NULL) {
+        for (int i = 0; i < jsArr.length(); i++) {
+            if (jsArr.get(i) == JSONObject.NULL) {
                 found = true;
             }
         }
@@ -184,9 +184,9 @@ public class TransformationEngine {
             return jsArr;
         }
         JSONArray arr = new JSONArray();
-        for(int i = 0; i < jsArr.length(); i++) {
+        for (int i = 0; i < jsArr.length(); i++) {
             if (jsArr.get(i) != JSONObject.NULL) {
-               arr.put(jsArr.get(i));
+                arr.put(jsArr.get(i));
             }
         }
         return arr;
@@ -258,20 +258,48 @@ public class TransformationEngine {
                 throw new RuntimeException("Unsupported transformation!");
             }
         } else {
-            for (List<JPNode> sourceColumnsValue : sourceColumnsValueList) {
+            if (transformation.isJoinTransform()) {
                 if (transformation.getScript() != null) {
-                    List<String> values = new ArrayList<String>(sourceColumnsValue.size());
-                    for (JPNode jpNode : sourceColumnsValue) {
-                        values.add(jpNode.getValue());
+                    List<List<String>> joinListList = new ArrayList<List<String>>(sourceValuesList.size());
+                    JPNode refNode = null;
+                    for (List<JPNode> sourceValues : sourceValuesList) {
+                        List<String> values = new ArrayList<String>(sourceValues.size());
+
+                        for (JPNode jpNode : sourceValues) {
+                            values.add(jpNode.getValue());
+                            if (refNode == null) {
+                                refNode = jpNode;
+                            }
+                        }
+                        joinListList.add(values);
                     }
-                    Result result = transformation.execute(pythonInterpreter, values);
+                    Result result = transformation.executeJoinMulti(pythonInterpreter, joinListList);
                     if (result != null) {
-                        // assumption: use the first source json path match for any array index information
-                        JPNode jpNode = sourceColumnsValue.get(0);
-                        setJSONField(docJson, transformation, result, jpNode);
+                       JPNode jsv = new JPNode(refNode);
+                        jsv.setPayload( result.getValue());
+                        setJSONField(docJson, transformation, jsv);
                     }
-                } else {
+
+                }else {
                     throw new RuntimeException("Unsupported transformation!");
+                }
+
+            } else {
+                for (List<JPNode> sourceColumnsValue : sourceColumnsValueList) {
+                    if (transformation.getScript() != null) {
+                        List<String> values = new ArrayList<String>(sourceColumnsValue.size());
+                        for (JPNode jpNode : sourceColumnsValue) {
+                            values.add(jpNode.getValue());
+                        }
+                        Result result = transformation.execute(pythonInterpreter, values);
+                        if (result != null) {
+                            // assumption: use the first source json path match for any array index information
+                            JPNode jpNode = sourceColumnsValue.get(0);
+                            setJSONField(docJson, transformation, result, jpNode);
+                        }
+                    } else {
+                        throw new RuntimeException("Unsupported transformation!");
+                    }
                 }
             }
         }
@@ -312,11 +340,13 @@ public class TransformationEngine {
             if (transformation.getScript() != null) {
                 Result result = transformation.execute(pythonInterpreter, sourceValues.get(0).getValue());
                 if (result != null) {
-                    setDynamicJSONField(docJson, transformation, result, sourceValues.get(0), assignFromJsonPathValues.get(0).getValue());
+                    setDynamicJSONField(docJson, transformation, result,
+                            sourceValues.get(0), assignFromJsonPathValues.get(0).getValue());
                 }
             } else {
                 if (transformation.getTransformationFunction() != null) {
-                    Result result = transformation.getTransformationFunction().execute(sourceValues.get(0).getValue());
+                    Result result = transformation.getTransformationFunction()
+                            .execute(sourceValues.get(0).getValue());
                     setDynamicJSONField(docJson, transformation, result, sourceValues.get(0),
                             assignFromJsonPathValues.get(0).getValue());
                 } else {
@@ -465,7 +495,7 @@ public class TransformationEngine {
                     Result result = transformation.executeJoin(pythonInterpreter, joinList);
                     if (result != null) {
                         JPNode jsv = new JPNode(sourceValues.get(0));
-                        jsv.setPayload( result.getValue());
+                        jsv.setPayload(result.getValue());
                         setJSONField(docJson, transformation, jsv);
                     }
                 } else {
@@ -536,7 +566,6 @@ public class TransformationEngine {
         if (!result.hasMultipleValues()) {
             JPNode tvn = new JPNode(valueNode);
             tvn.setPayload(result.getValue());
-            // valueNode.setPayload(result.getValue());
             JSONPathUtils.setJSONField2(docJson, transformation.getDestColumnName(), tvn);
         } else {
             for (String value : result.getValues()) {
@@ -566,11 +595,11 @@ public class TransformationEngine {
             }
         }
         // constant statements needs special treatment
-         for (Transformation t : interpreter.getTransformations()) {
-             if (t.isConstantTransform() && t.getCondition() != null) {
-                 collectConditionalPaths(t.getCondition(), sourceJsonPathList, uniqSet);
-             }
-         }
+        for (Transformation t : interpreter.getTransformations()) {
+            if (t.isConstantTransform() && t.getCondition() != null) {
+                collectConditionalPaths(t.getCondition(), sourceJsonPathList, uniqSet);
+            }
+        }
         return sourceJsonPathList;
     }
 

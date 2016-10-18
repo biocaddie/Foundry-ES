@@ -13,6 +13,7 @@ import org.neuinfo.foundry.consumers.common.Parameters;
 
 import java.io.*;
 import java.net.URI;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
@@ -91,16 +92,30 @@ public class ContentLoader {
             HttpClient client = new DefaultHttpClient();
             URIBuilder builder = new URIBuilder(ingestURL);
             URI uri = builder.build();
-            HttpGet httpGet = new HttpGet(uri);
-            try {
-                HttpResponse response = client.execute(httpGet);
-                HttpEntity entity = response.getEntity();
-                if (entity != null) {
-                    return getFile(cacheFile, gzippedFile, entity.getContent());
+            if (uri.getScheme().equalsIgnoreCase("ftp")) {
+                URL url = uri.toURL();
+                InputStream in = null;
+                try {
+                    in = url.openStream();
+                    File file = getFile(cacheFile, gzippedFile, in);
+                    return file;
+
+                } finally {
+                    Utils.close(in);
                 }
-            } finally {
-                if (httpGet != null) {
-                    httpGet.releaseConnection();
+
+            } else {
+                HttpGet httpGet = new HttpGet(uri);
+                try {
+                    HttpResponse response = client.execute(httpGet);
+                    HttpEntity entity = response.getEntity();
+                    if (entity != null) {
+                        return getFile(cacheFile, gzippedFile, entity.getContent());
+                    }
+                } finally {
+                    if (httpGet != null) {
+                        httpGet.releaseConnection();
+                    }
                 }
             }
         }

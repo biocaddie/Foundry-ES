@@ -128,6 +128,19 @@ public class Transformation {
         return new Result(resultStr);
     }
 
+    public Result executeJoinMulti(PythonInterpreter pythonInterpreter, List<List<String>> valuesList) {
+        Assertion.assertEquals(valuesList.size(), sourceColumnNames.size());
+        int idx = 1;
+        for(List<String> values : valuesList) {
+            pythonInterpreter.set("value" + idx, new PyList(values));
+            idx++;
+        }
+        pythonInterpreter.exec(script);
+        PyObject result = pythonInterpreter.get("result");
+        String resultStr = result.asString();
+        return new Result(resultStr);
+    }
+
     Result getResult(PythonInterpreter pythonInterpreter, String value) {
         //pythonInterpreter.set("value", new PyString(value));
         pythonInterpreter.set("value", Py.newStringOrUnicode(value));

@@ -526,9 +526,11 @@ public class Utils {
         try {
             HttpResponse response = client.execute(httpGet);
             HttpEntity entity = response.getEntity();
-            if (entity != null) {
+            if (entity != null && response.getStatusLine().getStatusCode() == 200) {
                 String xmlStr = EntityUtils.toString(entity);
                 return xmlStr;
+            } else if (response.getStatusLine().getStatusCode() == 503) {
+                throw new RuntimeException("503");
             }
 
         } finally {

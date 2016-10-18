@@ -624,7 +624,7 @@ public class TransformationLanguageInterpreter {
                     } else {
                         sb.append(c);
                     }
-                } else if (Character.isSpaceChar(c)) {
+                } else if (Character.isWhitespace(c)) {
                     if (!inString && sb.length() > 0) {
                         String s = sb.toString();
                         TokenType tokenType = typeMap.get(s.toLowerCase());

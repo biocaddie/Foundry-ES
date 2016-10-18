@@ -2,6 +2,7 @@ package org.neuinfo.foundry.consumers.jms.consumers;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -17,9 +18,7 @@ import org.neuinfo.foundry.consumers.common.IDGenerator;
 import org.neuinfo.foundry.consumers.common.ServiceFactory;
 import org.neuinfo.foundry.consumers.jms.consumers.plugins.ProvenanceHelper;
 import org.neuinfo.foundry.consumers.jms.consumers.plugins.ProvenanceHelper.ProvData;
-import org.neuinfo.foundry.consumers.plugin.Ingestable;
-import org.neuinfo.foundry.consumers.plugin.Ingestor;
-import org.neuinfo.foundry.consumers.plugin.Result;
+import org.neuinfo.foundry.consumers.plugin.*;
 
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
@@ -81,6 +80,10 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
         String includeFile = ingestor.getOption("includeFile");
         boolean onlyErrors = ingestor.getOption("onlyErrors") != null ? Boolean.parseBoolean(ingestor.getOption("onlyErrors")) : false;
 
+        String docUpdaterImplClass = ingestor.getOption("docUpdaterImplClass");
+        IDocUpdater docUpdater = null;
+
+
         DocumentIngestionService dis = new DocumentIngestionService();
         GridFSService gridFSService = new GridFSService();
         MessagePublisher messagePublisher = null;
@@ -93,6 +96,14 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
             Source source = dis.findSource(srcNifId, dataSource);
             Assertion.assertNotNull(source, "Cannot find source for sourceID:" + srcNifId);
             dis.setSource(source);
+
+            if (docUpdaterImplClass != null) {
+                Class<?> clazz = Class.forName(docUpdaterImplClass);
+                docUpdater = (IDocUpdater) clazz.getConstructor(MongoClient.class, String.class, String.class, String.class,
+                        MessagePublisher.class, String.class).newInstance(this.mongoClient, this.config.getMongoDBName(),
+                        this.config.getCollectionName(), srcNifId, messagePublisher, getOutStatus());
+
+            }
             int submittedCount = 0;
             int ingestedCount = 0;
             int updatedCount = 0;
@@ -217,6 +228,9 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                     submittedCount++;
                 }
             }
+            if (docUpdater != null) {
+                ((IngestorLifeCycle) ingestor).beforeShutdown(docUpdater);
+            }
 
             dis.endBatch(source, batchId, ingestedCount, submittedCount, updatedCount);
         } finally {
@@ -227,13 +241,11 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                 messagePublisher.close();
             }
         }
-
     }
 
     @Override
     public void setIngestor(Ingestor ingestor) {
         this.ingestor = ingestor;
-
     }
 
     @Override

@@ -1,0 +1,240 @@
+{
+  "entry": {
+    "@version": "24",
+    "@modified": "2015-04-01",
+    "@created": "2011-06-28",
+    "@dataset": "Swiss-Prot",
+    "accession": {"_$": "Q6GZV8"},
+    "name": {"_$": "017L_FRG3G"},
+    "protein": {"recommendedName": {"fullName": {"_$": "Uncharacterized protein 017L"}}},
+    "gene": {"name": {
+      "@type": "ORF",
+      "_$": "FV3-017L"
+    }},
+    "organism": {
+      "name": [
+        {
+          "@type": "scientific",
+          "_$": "Frog virus 3"
+        },
+        {
+          "@type": "common",
+          "_$": "isolate Goorha"
+        },
+        {
+          "@type": "synonym",
+          "_$": "FV-3"
+        }
+      ],
+      "dbReference": {
+        "@id": "654924",
+        "@type": "NCBI Taxonomy"
+      },
+      "lineage": {"taxon": [
+        {"_$": "Viruses"},
+        {"_$": "dsDNA viruses, no RNA stage"},
+        {"_$": "Iridoviridae"},
+        {"_$": "Ranavirus"}
+      ]}
+    },
+    "organismHost": [
+      {
+        "name": [
+          {
+            "@type": "scientific",
+            "_$": "Ambystoma"
+          },
+          {
+            "@type": "common",
+            "_$": "mole salamanders"
+          }
+        ],
+        "dbReference": {
+          "@id": "8295",
+          "@type": "NCBI Taxonomy"
+        }
+      },
+      {
+        "name": [
+          {
+            "@type": "scientific",
+            "_$": "Hyla versicolor"
+          },
+          {
+            "@type": "common",
+            "_$": "chameleon treefrog"
+          }
+        ],
+        "dbReference": {
+          "@id": "30343",
+          "@type": "NCBI Taxonomy"
+        }
+      },
+      {
+        "name": [
+          {
+            "@type": "scientific",
+            "_$": "Lithobates pipiens"
+          },
+          {
+            "@type": "common",
+            "_$": "Northern leopard frog"
+          },
+          {
+            "@type": "synonym",
+            "_$": "Rana pipiens"
+          }
+        ],
+        "dbReference": {
+          "@id": "8404",
+          "@type": "NCBI Taxonomy"
+        }
+      },
+      {
+        "name": [
+          {
+            "@type": "scientific",
+            "_$": "Notophthalmus viridescens"
+          },
+          {
+            "@type": "common",
+            "_$": "Eastern newt"
+          },
+          {
+            "@type": "synonym",
+            "_$": "Triturus viridescens"
+          }
+        ],
+        "dbReference": {
+          "@id": "8316",
+          "@type": "NCBI Taxonomy"
+        }
+      },
+      {
+        "name": [
+          {
+            "@type": "scientific",
+            "_$": "Rana sylvatica"
+          },
+          {
+            "@type": "common",
+            "_$": "Wood frog"
+          }
+        ],
+        "dbReference": {
+          "@id": "45438",
+          "@type": "NCBI Taxonomy"
+        }
+      }
+    ],
+    "reference": {
+      "@key": "1",
+      "citation": {
+        "@last": "84",
+        "@first": "70",
+        "@volume": "323",
+        "@name": "Virology",
+        "@date": "2004",
+        "@type": "journal article",
+        "title": {"_$": "Comparative genomic analyses of frog virus 3, type species of the genus Ranavirus (family Iridoviridae)."},
+        "authorList": {"person": [
+          {"@name": "Tan W.G."},
+          {"@name": "Barkman T.J."},
+          {"@name": "Gregory Chinchar V."},
+          {"@name": "Essani K."}
+        ]},
+        "dbReference": [
+          {
+            "@id": "15165820",
+            "@type": "PubMed"
+          },
+          {
+            "@id": "10.1016/j.virol.2004.02.019",
+            "@type": "DOI"
+          }
+        ]
+      },
+      "scope": {"_$": "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"}
+    },
+    "dbReference": [
+      {
+        "@id": "AY548484",
+        "@type": "EMBL",
+        "property": [
+          {
+            "@value": "AAT09676.1",
+            "@type": "protein sequence ID"
+          },
+          {
+            "@value": "Genomic_DNA",
+            "@type": "molecule type"
+          }
+        ]
+      },
+      {
+        "@id": "YP_031595.1",
+        "@type": "RefSeq",
+        "property": {
+          "@value": "NC_005946.1",
+          "@type": "nucleotide sequence ID"
+        }
+      },
+      {
+        "@id": "2947737",
+        "@type": "GeneID"
+      },
+      {
+        "@id": "vg:2947737",
+        "@type": "KEGG"
+      },
+      {
+        "@id": "UP000008770",
+        "@type": "Proteomes",
+        "property": {
+          "@value": "Genome",
+          "@type": "component"
+        }
+      }
+    ],
+    "proteinExistence": {"@type": "predicted"},
+    "keyword": [
+      {
+        "@id": "KW-0181",
+        "_$": "Complete proteome"
+      },
+      {
+        "@id": "KW-1185",
+        "_$": "Reference proteome"
+      }
+    ],
+    "feature": [
+      {
+        "@description": "Uncharacterized protein 017L",
+        "@id": "PRO_0000410557",
+        "@type": "chain",
+        "location": {
+          "begin": {"@position": "1"},
+          "end": {"@position": "502"}
+        }
+      },
+      {
+        "@description": "Poly-Ala",
+        "@type": "compositionally biased region",
+        "location": {
+          "begin": {"@position": "425"},
+          "end": {"@position": "428"}
+        }
+      }
+    ],
+    "sequence": {
+      "@version": "1",
+      "@modified": "2004-07-19",
+      "@checksum": "A747EE6F952CBAD7",
+      "@mass": "53469",
+      "@length": "502",
+      "_$": "METMSDYSKEVSEALSALRGELSALSAAISNTVRAGSYSAPVAKDCKAGHCDSKAVLKSLSRSARDLDSAVEAVSSNCEWASSGYGKQIARALRDDAVRVKREVESTRDAVDVVTPSCCVQGLAEEAGKLSEMAAVYRCMATVFETADSHGVREMLAKVDGLKQTMSGFKRLLGKTAEIDGLSDSVIRLGRSIGEVLPATEGKAMRDLVKQCERLNGLVVDGSRKVEEQCSKLRDMASQSYVVADLASQYDVLGGKAQEALSASDALEQAAAVALRAKAAADAVAKSLDSLDVKKLDRLLEQASAVSGLLAKKNDLDAVVTSLAGLEALVAKKDELYKICAAVNSVDKSKLELLNVKPDRLKSLTEQTVVVSQMTTALATFNEDKLDSVLGKYMQMHRFLGMATQLKLMSDSLAEFQPAKMAQMAAAASQLKDFLTDQTVSRLEKVSAAVDATDVTKYASAFSDGGMVSDMTKAYETVKAFAAVVNSLDSKKLKLVAECAKK"
+    }
+  },
+  "_@default": "http://uniprot.org/uniprot",
+  "_@xml": "http://www.w3.org/XML/1998/namespace"
+}

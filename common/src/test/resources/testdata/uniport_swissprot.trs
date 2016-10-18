@@ -1,0 +1,16 @@
+join "$.'entry'.'organism'.'name'[*].'@type'",  "$.'entry'.'organism'.'name'[*].'_$'" to "taxonomicInformation[0].name" apply
+{{
+i = value1.index('scientific')
+result = value2[i] if i >= 0  else ''
+}};
+
+join "$.'entry'.'organism'.'name'[*].'@type'", "$.'entry'.'organism'.'name'[*].'_$'" to "taxonomicInformation[0].strain" apply
+{{
+i = value1.index('common')
+result = value2[i] if i >= 0  else ''
+}};
+
+if "$.'entry'.'organism'.'dbReference'.'@type'" like "NCBI%" then transform column "$.'entry'.'organism'.'dbReference'.'@id'" to "taxonomicInformation[0].ID" apply {{ result = 'ncbitax:' + value }};
+
+
+

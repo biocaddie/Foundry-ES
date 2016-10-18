@@ -84,6 +84,8 @@ public class FtpClient {
             }
             // IBO
             ftp.setBufferSize(33554432); // 32 MB
+            ftp.setConnectTimeout(60000);
+            ftp.setDataTimeout(120000);
             // System.out.println("bufferSize:" + ftp.getBufferSize());
         } else {
             FTPSClient ftps;
