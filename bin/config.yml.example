@@ -2,13 +2,13 @@ pluginDir: "/var/data/foundry-es/consumer_plugins/plugins"
 database:
     host: localhost
     port: 27017
-    db: discotest
-    collection: nifRecords
+    db: foundry
+    collection: records
 mq:
     brokerURL: "tcp://localhost:61616"
 
 workflow:
-    "NIF Workflow":
+    "Doc Processing Pipeline":
         - uuidGen
         - transform
 

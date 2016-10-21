@@ -197,16 +197,19 @@ usage: ManagementService
 ```
 Foundry:>> help
 Available commands
-   help - shows this message.
-   ingest <sourceID>
-   h - show all command history
-   delete <url> - [e.g. http://52.32.231.227:9200/geo_20151106]
-   dd <sourceID>  - delete docs for a sourceID
-   cdup <sourceID>  - clean duplicate files from GridFS for a sourceID
-   trigger <sourceID> <status-2-match> <queue-2-send> [<new-status>] (e.g. trigger nif-0000-00135 new.1 foundry.uuid.1)
-   index <sourceID> <status-2-match> <url> (e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)
-   list - lists all of the existing sources.
-   exit - exits the management client.
+	help - shows this message.
+	ingest <sourceID>
+	h - show all command history
+	delete <url> - [e.g. http://52.32.231.227:9200/geo_20151106]
+	dd <sourceID>  - delete docs for a sourceID
+	cdup <sourceID>  - clean duplicate files from GridFS for a sourceID
+	trigger <sourceID> <status-2-match> <queue-2-send> [<new-status> [<new-out-status>]] (e.g. trigger nif-0000-00135 new.1 foundry.uuid.1)
+	run <sourceID> status:<status-2-match> step:<step-name> [on|to_end] (e.g. run nif-0000-00135 status:new.1 step:transform)
+	index <sourceID> <status-2-match> <url> (e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)
+	list - lists all of the existing sources.
+	status [<sourceID>] - show processing status of data source(s)
+	ws - show configured workflow(s)
+	exit - exits the management client.
 Foundry:>> 
 
 ```

@@ -1,6 +1,7 @@
 package org.neuinfo.foundry.consumers.tool;
 
 import org.jdom2.Element;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.transform.TransformMappingUtils;
 import org.neuinfo.foundry.common.transform.TransformationEngine;
@@ -668,6 +669,17 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/lsdb_sample_record.json", 5);
     }
 
+    public static void extractJSONLDRecord() throws IOException {
+        String HOME_DIR = System.getProperty("user.home");
+        String jsonStr  =  Utils.loadAsString(HOME_DIR + "/Downloads/ImmPort.JSON-LD.example.Investigation_18.json");
+        JSONObject json = new JSONObject(jsonStr);
+        JSONArray studies = json.getJSONArray("study");
+        // System.out.println(studies.getJSONObject(0).toString(2));
+        String outFile = "/tmp/jsonld_study_record.json";
+        Utils.saveText(studies.getJSONObject(0).toString(2), outFile);
+        System.out.println("saved file:" + outFile);
+    }
+
     public void sampleFromPubmedIncrementalData() throws Exception {
         String[] refTypes = {"AssociatedDataset", "AssociatedPublication", "CommentOn", "CommentIn", "ErratumIn",
                 "ErratumFor", "PartialRetractionIn", "PartialRetractionOf", "RepublishedFrom", "RepublishedIn",
@@ -708,12 +720,7 @@ public class IngestionSampler {
         while (xmlFileIterator.hasNext()) {
             String jsonFile = outFile.replaceFirst("\\.json$", "_" + (count + 1) + ".json");
             Element element = xmlFileIterator.next();
-            // for TEST
-            /*
-            Element elem = new Element("Deleted");
-            elem.setText("filename");
-            element.addContent(elem);
-            */
+
             try {
                 Result r = ConsumerUtils.convert2JSON(element);
                 String jsonStr = r.getPayload().toString(2);
@@ -747,6 +754,32 @@ public class IngestionSampler {
             }
         }
 
+    }
+
+    public void sampleClinVarFromFTP() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ftpHost", "ftp.ncbi.nlm.nih.gov");
+        options.put("remotePath", "/pub/clinvar/xml/ClinVarFullRelease_00-latest.xml.gz");
+        options.put("outDir", "/var/data/foundry-es/cache/data");
+        options.put("documentElement", "ClinVarSet");
+        options.put("topElement", "ReleaseSet");
+
+        FTPIngestor ingestor = new FTPIngestor();
+        ingestor.initialize(options);
+        ingestor.startup();
+
+        int count = 0;
+
+        while (ingestor.hasNext()) {
+            Result result = ingestor.prepPayload();
+            String suffix = count == 0 ? "" : String.valueOf(count);
+            Utils.saveText(result.getPayload().toString(2),
+                    "/tmp/clinvar_sample" + suffix + ".json");
+            count++;
+            if (count == 10) {
+                break;
+            }
+        }
     }
 
     public void ingestSampleFromDisco(String tableName, String outFile, int sampleSize) throws Exception {
@@ -873,11 +906,13 @@ public class IngestionSampler {
 
         // sampler.sampleArXiv();
 
-        sampler.sampleLSDB();;
+        // sampler.sampleLSDB();;
 
         // sampler.sampleNeuroVaultAtlases();
         // sampler.sampleNeuroVaultNIDM();
         //sampler.sampleNeuroVaultCollections();
 
+       // extractJSONLDRecord();
+        sampler.sampleClinVarFromFTP();
     }
 }

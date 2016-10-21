@@ -2,7 +2,6 @@ package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.log4j.Logger;
-import org.apache.tools.ant.util.FileUtils;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.common.*;
@@ -144,6 +143,18 @@ public class FTPIngestor implements Ingestor {
                     new RemoteFileIterator(Arrays.asList(localFile)),
                     this.topElName, this.docElName);
             return;
+        } else if (basename.endsWith(".gz") && !basename.endsWith("tar.gz")) {
+            Gunzipper gunzipper = new Gunzipper(localFile);
+            gunzipper.execute();
+            String filePath = localFile.getAbsolutePath().replaceFirst("\\.gz$", "");
+            File localExpandedFile = new File(filePath);
+            if (localFile.isFile()) {
+                localFile.delete();
+            }
+            this.xmlFileIterator = new XMLFileIterator(
+                    new RemoteFileIterator(Arrays.asList(localExpandedFile)),
+                    this.topElName, this.docElName);
+            return;
         }
         String extractionDirname = ftpHost.replaceAll("[\\./]+", "_");
         this.extractionDir = new File(outDir, extractionDirname);
@@ -242,7 +253,6 @@ public class FTPIngestor implements Ingestor {
             }
         }
     }
-
 
 
     private boolean canContinue(int curCount) {

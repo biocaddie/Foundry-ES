@@ -1133,6 +1133,7 @@ public class JSONObject implements Serializable {
     public JSONObject putOnce(String key, Object value) throws JSONException {
         if (key != null && value != null) {
             if (this.opt(key) != null) {
+                System.out.println(this); // IBO
                 throw new JSONException("Duplicate key \"" + key + "\"");
             }
             this.put(key, value);
