@@ -79,6 +79,40 @@ public class TransformationEngineTest {
         trEngine.transform(json, transformedJson);
 
         System.out.println(transformedJson.toString(2));
+        assertTrue(transformedJson.getJSONArray("datasetDistributions").getJSONObject(0).has("accessURL"));
+    }
+
+    @Test
+    public void testTransformColumns() throws Exception {
+        String jsonStr = loadAsStringFromClassPath("testdata/openfmri_record_1.json");
+        String transformationScript = loadAsStringFromClassPath("testdata/openfmri.trs");
+        JSONObject json = new JSONObject(jsonStr);
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        JSONObject transformedJson = new JSONObject();
+        trEngine.transform(json, transformedJson);
+
+        System.out.println(transformedJson.toString(2));
+    }
+
+
+    @Test
+    public void testSwissprotIssue() throws Exception {
+        String jsonStr = loadAsStringFromClassPath("testdata/swissprot_errors.json");
+        String transformationScript = loadAsStringFromClassPath("testdata/uniprot_swissprot.trs");
+        JSONArray jsArr = new JSONArray(jsonStr);
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        for (int i = 0; i < jsArr.length(); i++) {
+            System.out.println("=============================");
+            JSONObject json = jsArr.getJSONObject(i);
+
+            JSONObject transformedJson = new JSONObject();
+            trEngine.transform(json, transformedJson);
+
+            System.out.println(transformedJson.toString(2));
+
+        }
+
+
     }
 
     public static String loadAsStringFromClassPath(String classpath) throws Exception {

@@ -89,25 +89,6 @@ public class FTPIngestor implements Ingestor {
                     client.transferFile(localFile.getAbsolutePath(), remoteFilePath, true);
                 }
 
-                /*
-                if (localFile.getName().endsWith(".gz")) {
-                    Gunzipper gunzipper = new Gunzipper(localFile);
-                    gunzipper.execute();
-                    String filePath = localFile.getAbsolutePath().replaceFirst("\\.gz$", "");
-                    File localExpandedFile = new File(filePath);
-                    if (localExpandedFile.isFile()) {
-                        localFiles.add(localExpandedFile);
-                        i++;
-                        if (localFile.isFile()) {
-                            localFile.delete();
-                        }
-                        if (!canContinue(i)) {
-                            break;
-                        }
-                    }
-                } else {
-                }
-                */
                 localFiles.add(localFile);
                 i++;
                 if (!canContinue(i)) {

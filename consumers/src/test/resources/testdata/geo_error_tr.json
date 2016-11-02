@@ -1,0 +1,79 @@
+{
+  "dataset": {
+    "creators": ["NULL"],
+    "availability": "available",
+    "types": ["Expression profiling by array"],
+    "aggregation": "instance of dataset",
+    "privacy": "not applicable",
+    "refinement": "curated",
+    "description": "Analysis of pooled mRNA (2, 4, 6 hours) from A.E7 T cell clones activated in conditions that promote (anti-TCR) or inhibit (anti-TCR + CsA or PKCi or Combo) anergy induction.  Results identify the early growth response gene 2 (Egr-2) and Egr-3 as key positive regulators of T cell anergy induction.",
+    "ID": "GDS1336",
+    "dateReleased": "20121010",
+    "title": "T cell anergy induction regulation by Egr-2 and Egr-3 (MG-U74A)"
+  },
+  "datasetDistributions": [
+    {
+      "format": "SOFT",
+      "storedIn": "Gene Expression Omnibus",
+      "qualifier": "gzip compressed",
+      "accesstypes": "download",
+      "authorization": "none",
+      "authentication": ["none"],
+      "accessURL": "ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1/GDS1336/soft/GDS1336_full.soft.gz"
+    },
+    {
+      "format": "SOFT",
+      "storedIn": "Gene Expression Omnibus",
+      "qualifier": "gzip compressed",
+      "accesstypes": "download",
+      "authorization": "none",
+      "authentication": ["none"],
+      "accessURL": "ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1/GDS1336/soft/GDS1336.soft.gz"
+    }
+  ],
+  "dataRepository": {
+    "ID": "SCR:007303",
+    "name": "Gene Expression Omnibus",
+    "abbreviation": "GEO",
+    "homePage": "http://www.ncbi.nlm.nih.gov/geo/"
+  },
+  "organization": {
+    "ID": "SCR:006472",
+    "name": "National Center for Biotechnology Information",
+    "abbreviation": "NCBI",
+    "homePage": "http://www.ncbi.nih.gov/"
+  },
+  "study": {"ID": [
+    "GSM42997",
+    "GSM42998",
+    "GSM43013"
+  ]},
+  "taxonomicInformation": [
+    {"name": "Mus musculus"},
+    {"name": "Mus musculus"}
+  ],
+  "instrument": {"name": "GPL81"},
+  "primaryPublication": {"ID": ["pmid:15834410"]},
+  "citation": {"count": "0"},
+  "access": {"landingPage": "http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS1336"},
+  "identifiers": [{"ID": "GEO:GDS1336"}],
+  "dataItem": {"dataTypes": [
+    "dataset",
+    "datasetDistributions",
+    "dataRepository",
+    "organization",
+    "study",
+    "taxonomicInformation",
+    "instrument",
+    "primaryPublication",
+    "citation",
+    "access",
+    "identifiers"
+  ]},
+  "provenance": {
+    "ingestMethod": "ASPERA",
+    "ingestTarget": "",
+    "filePattern": "\\.soft\\.gz$",
+    "ingestTime": "20161026T112909-0700"
+  }
+}

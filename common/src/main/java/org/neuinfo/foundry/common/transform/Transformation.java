@@ -131,7 +131,7 @@ public class Transformation {
     public Result executeJoinMulti(PythonInterpreter pythonInterpreter, List<List<String>> valuesList) {
         Assertion.assertEquals(valuesList.size(), sourceColumnNames.size());
         int idx = 1;
-        for(List<String> values : valuesList) {
+        for (List<String> values : valuesList) {
             pythonInterpreter.set("value" + idx, new PyList(values));
             idx++;
         }
@@ -165,10 +165,12 @@ public class Transformation {
         int idx = 1;
         Iterator<String> valueIter = values.iterator();
         for (String colName : sourceColumnNames) {
-            pythonInterpreter.set("orig_colName" + idx, new PyString(colName));
-            pythonInterpreter.set("value" + idx, new PyString(valueIter.next()));
+            pythonInterpreter.set("orig_colName" + idx, Py.newStringOrUnicode(colName));
+            pythonInterpreter.set("value" + idx, Py.newStringOrUnicode(valueIter.next()));
             idx++;
         }
+        System.out.println("script:" + script);
+        System.out.println("values:" + values);
         pythonInterpreter.exec(script);
         PyObject result = pythonInterpreter.get("result");
         if (result instanceof PyList) {

@@ -1,0 +1,129 @@
+/* Dataset Basic Information */
+transform column "$.'entry'.'accession'.'_$'" to "dataset.ID";
+transform column "$.'entry'.'name'.'_$'" to "dataset.title";
+transform column "$.'entry'.'keyword'[*].'_$'" to "dataset.keywords[]";
+join "$.'entry'.'feature'[*].'@description'" to "dataset.description";
+
+/* Dataset Landing Page*/
+transform column "$.'entry'.'accession'.'_$'" to "access.landingPage" apply {{ result='http://www.uniprot.org/uniprot/' + value}};
+
+/* Dataset Creator */
+transform column "$.'entry'.'reference'.'citation'.'authorList'.'person'[*].'@name'" to "dataset.creators[]";
+
+/* Dataset Release Date Information */
+transform column "$.'entry'.'sequence'.'@modified'" to "dataset.dateReleased" apply toStandardDateTime("yyyy-MM-dd");
+transform column "$.'entry'.'sequence'.'@created'" to "dataset.dateCreated" apply toStandardDateTime("yyyy-MM-dd");
+transform column "$.'entry'.'sequence'.'@version'" to "dataset.version";
+
+/* Dataset Qualifiers */
+let "dataset.availability" = "available";
+let "dataset.types[0]" = "sequence";
+let "dataset.aggregation" = "instance of dataset";
+let "dataset.privacy" = "not applicable";
+let "dataset.refinement" = "curated";
+
+/* Information on Dataset Distributions */
+
+/* Dataset Distribution - HTML */
+let "datasetDistributions[0].format" = "HTML";
+let "datasetDistributions[0].storedIn" = "UniProt";
+let "datasetDistributions[0].qualifier" = "not compressed";
+let "datasetDistributions[0].license" = "Creative Commons Attribution-NoDerivs License"
+transform column "$.'entry'.'accession'.'_$'" to "datasetDistributions[0].accessURL" apply {{ result='http://www.uniprot.org/uniprot/' + value}};
+let "datasetDistributions[0].accessType" = "landing page";
+let "datasetDistributions[0].authorization" = "none";
+let "datasetDistributions[0].authentication" = "none";  
+
+/* Dataset Distribution - FASTA */
+let "datasetDistributions[1].format" = "FASTA";
+let "datasetDistributions[1].storedIn" = "UniProt";
+let "datasetDistributions[1].qualifier" = "not compressed";
+let "datasetDistributions[1].license" = "Creative Commons Attribution-NoDerivs License"
+transform column "$.'entry'.'accession'.'_$'" to "datasetDistributions[1].accessURL" apply {{ result='http://www.uniprot.org/uniprot/' + value + '.fasta'}};
+let "datasetDistributions[1].accessType" = "download";
+let "datasetDistributions[1].authorization" = "none";
+let "datasetDistributions[1].authentication" = "none"; 
+
+/* Publication Information */
+transform columns "$.'entry'.'reference'.'citation'.'dbReference'[*].'@type'", 
+ "$.'entry'.'reference'.'citation'.'dbReference'[*].'@id'" to "primaryPublication.ID[]" apply {{ 
+result = value2
+if value1 == 'PubMed':    
+   result = 'pmid:' + value2
+elif value1 == 'DOI':
+   result =  'doi:' + value2
+result
+}};
+
+
+transform column "$.'entry'.'reference'.'title'.'_$'" to "primaryPublication.title";
+transform column "$.'entry'.'reference'.'citation'.'@date'" to "primaryPublication.year";
+transform column "$.'entry'.'reference'.'citation'.'dbReference'[*].'@type'" to "primaryPublication.type[]";
+transform column "$.'entry'.'reference'.'citation'.'authorList'.'person'[*].'@name'" to "primaryPublication.authorsList[]";
+
+/* Data Repository Information */
+let "dataRepository.ID" = "SCR:002380";
+let "dataRepository.name" = "UniProt";
+let "dataRepository.abbreviation" = "UniProt";
+let "dataRepository.homePage"= "http://www.uniprot.org/";
+
+/* Organization Information */
+let "organization.ID" = "SCR:004727";
+let "organization.name" = "European Bioinformatics Institute";
+let "organization.abbreviation" = "EMBL-EBI";
+let "organization.homePage" = "http://www.ebi.ac.uk/";
+
+/* Specific Information on Extended Attributes */
+/* Taxonomic Information */
+join "$.'entry'.'organism'.'name'[*].'@type'",  "$.'entry'.'organism'.'name'[*].'_$'" to "taxonomicInformation[0].name" apply
+{{
+i = value1.index('scientific')
+result = value2[i] if i >= 0  else ''
+}};
+
+join "$.'entry'.'organism'.'name'[*].'@type'", "$.'entry'.'organism'.'name'[*].'_$'" to "taxonomicInformation[0].strain" apply
+{{
+i = value1.index('common')
+result = value2[i] if i >= 0  else ''
+}};
+
+if "$.'entry'.'organism'.'dbReference'.'@type'" like "NCBI%" then transform column "$.'entry'.'organism'.'dbReference'.'@id'" to "taxonomicInformation[0].ID" apply {{ result = 'ncbitax:' + value }};
+
+
+/* Gene Information */
+transform column "$.'entry'.'gene'.'name'.'_$'" to "gene.name";
+
+/* Biological Entity */
+transform column "$.'entry'.'protein'.'recommendedName'.'fullName'.'_$'" to "biologicalEntity[0].name";
+
+/* Items not included */
+
+/*
+transform column "$.'entry'.'dbReference'[*].'@id'" to "entry.dbReference[].@id";
+transform column "$.'entry'.'dbReference'[*].'@type'" to "entry.dbReference[].@type";
+transform column "$.'entry'.'dbReference'[*].'property'[*].'@type'" to "entry.dbReference[].property[].@type";
+transform column "$.'entry'.'dbReference'[*].'property'[*].'@value'" to "entry.dbReference[].property[].@value";
+transform column "$.'entry'.'feature'[*].'@id'" to "entry.feature[].@id";
+transform column "$.'entry'.'feature'[*].'@type'" to "entry.feature[].@type";
+transform column "$.'entry'.'feature'[*].'location'.'begin'.'@position'" to "entry.feature[].location.begin.@position";
+transform column "$.'entry'.'feature'[*].'location'.'end'.'@position'" to "entry.feature[].location.end.@position";
+transform column "$.'entry'.'gene'.'name'.'@type'" to "entry.gene.name.@type";
+transform column "$.'entry'.'keyword'[*].'@id'" to "entry.keyword[].@id";
+transform column "$.'entry'.'organism'.'lineage'.'taxon'[*].'_$'" to "entry.organism.lineage.taxon[]";
+transform column "$.'entry'.'organismHost'[*].'dbReference'.'@id'" to "entry.organismHost[].dbReference.@id";
+transform column "$.'entry'.'organismHost'[*].'dbReference'.'@type'" to "entry.organismHost[].dbReference.@type";
+transform column "$.'entry'.'organismHost'[*].'name'[*].'@type'" to "entry.organismHost[].name[].@type";
+transform column "$.'entry'.'organismHost'[*].'name'[*].'_$'" to "entry.organismHost[].name[]._$";
+transform column "$.'entry'.'proteinExistence'.'@type'" to "entry.proteinExistence.@type";
+transform column "$.'entry'.'reference'.'@key'" to "entry.reference.@key";
+transform column "$.'entry'.'reference'.'citation'.'@first'" to "entry.reference.citation.@first";
+transform column "$.'entry'.'reference'.'citation'.'@last'" to "entry.reference.citation.@last";
+transform column "$.'entry'.'reference'.'citation'.'@name'" to "entry.reference.citation.@name";
+transform column "$.'entry'.'reference'.'citation'.'@type'" to "entry.reference.citation.@type";
+transform column "$.'entry'.'reference'.'citation'.'@volume'" to "entry.reference.citation.@volume";
+transform column "$.'entry'.'reference'.'scope'.'_$'" to "entry.reference.scope";
+transform column "$.'entry'.'sequence'.'@checksum'" to "entry.sequence.@checksum";
+transform column "$.'entry'.'sequence'.'@length'" to "entry.sequence.@length";
+transform column "$.'entry'.'sequence'.'@mass'" to "entry.sequence.@mass";
+transform column "$.'entry'.'sequence'.'_$'" to "entry.sequence._$";
+*/

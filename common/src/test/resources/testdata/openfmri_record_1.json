@@ -1,0 +1,23 @@
+{"pr_nlx_144048_1": {
+  "e_uid": "ds0001212.0.0",
+  "title": "Immaturities in Reward Processing and Its Influence on Inhibitory Control in Adolescence (Ring Reward)",
+  "id": "ds000121",
+  "description": "<p>The nature of immature reward processing and the influence of rewards on basic elements of cognitive control during adolescence are currently not well understood. Here, during functional magnetic resonance imaging, healthy adolescents and adults performed a modified antisaccade task in which trial-by-trial reward contingencies were manipulated. The use of a novel fast, event- related design enabled developmental differences in brain function underlying temporally distinct stages of reward processing and response inhibition to be assessed.&nbsp;<\/p><p>Briefly, our model consisted of 6 orthogonal regressors of interest (reward cue, neutral cue, reward preparation, neutral preparation, reward saccade response, neutral saccade response; &ldquo;correct AS trials only&rdquo;). We also included regressors for reward and neutral error trials (consisting of the entire trial), regressors for baseline, linear, and nonlinear trends, as well as 6 motion parameters included as &ldquo;nuisance&rdquo; regressors. A unique estimated impulse response function (IRF, i.e., hemodynamic response function) for each regressor of interest (reward and neutral cue, preparation, and saccade; &ldquo;correct AS trials only&rdquo;) was determined by a weighted linear sum of 5 sine basis functions multiplied by a data determined least squares&ndash;estimated beta weight. The estimated IRF reflects the estimated BOLD response to a type of stimulus (e.g., the reward cue) after controlling for variations in the BOLD signal due to other regressors. We specified the duration of the estimated response from stimulus onset (time = 0) to 18-s poststimulus onset (13 TR), a sufficient duration for the estimated BOLD response to return to baseline, for each separate epoch of the trial. We made no assumptions about its specific shape beyond using zero as the start point. Several goodness-of-fit statistics were calculated including partial F-statistics for each regressor and t-scores comparing each of the 5 estimated beta weights with zero.<\/p><p>&nbsp;Scripts: <a href=\"https://github.com/LabNeuroCogDevel/openfmri_ring_rew\">https://github.com/LabNeuroCogDevel/openfmri_ring_rew<\/a><\/p><p>&nbsp;ScanSheets: <a href=\"https://docs.google.com/spreadsheets/d/1kzNxuRPnyalaG5K66ADFIavJOYfQl5OXQSmudNwc0Ak/edit?pli=1#gid=896164689\">https://docs.google.com/spreadsheets/d/1kzNxuRPnyalaG5K66ADFIavJOYfQl5OX...<\/a><\/p>",
+  "link": "https://openfmri.org/dataset/ds000121",
+  "cognitive_task_seq_name": "<a class=\"external\" target=\"_blank\" href=\"http://www.cognitiveatlas.org/id/tsk_4a57abb949869\">1 antisaccade<\/a>",
+  "task_name": "antisaccade",
+  "pubmed_id": "<a class=\"external\" target=\"_blank\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/19875675\">PMID:19875675<\/a>",
+  "license": "PDDL",
+  "investigator": "Geier, C. F., R. Terwilliger, T. Teslovich, K. Velanova, B. Luna",
+  "version_num": "2.0.0",
+  "revision_history": " Repackaged in BIDS format",
+  "version_date": "2016-04-01",
+  "organism": "human",
+  "assay": "MRI",
+  "nifid": "nlx_144048",
+  "v_uid": "ds0001212.0.0",
+  "v_uuid": "e9288b4c-1a88-5c22-a79e-cd6e9dd78b82",
+  "v_lastmodified": "2016-10-18 17:01:56.252636",
+  "v_status": "C",
+  "v_lastmodified_epoch": 1.475148811107917E9
+}}

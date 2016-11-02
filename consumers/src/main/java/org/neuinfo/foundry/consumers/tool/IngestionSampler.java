@@ -202,7 +202,7 @@ public class IngestionSampler {
         options.put("dest", "/var/data/geo");
         options.put("publicKeyFile", "/home/bozyurt/.aspera/connect/etc/asperaweb_id_dsa.openssh");
         options.put("arguments", "-k1 -Tr -l200m");
-        options.put("fullSet", "true");
+        options.put("fullSet", "false");
         options.put("xmlFileNamePattern", "\\.xml$");
         options.put("parserType", "geo");
 
@@ -323,6 +323,10 @@ public class IngestionSampler {
 
     public void sampleIntegratedConnectivity() throws Exception {
         ingestSampleFromDisco("pr_nlx_154697_8", "/tmp/integrated_connectivity_record.json", 5);
+    }
+
+    public void ingestNITRC_IR() throws Exception {
+        ingestSampleFromDisco("pr_nlx_18447_1", "/tmp/nitrc_ir_record.json", 5);
     }
 
     public void sampleRGD() throws Exception {
@@ -561,7 +565,7 @@ public class IngestionSampler {
 
     public void sampleLincsWeb() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ingestURL", "http://dev3.ccs.miami.edu:8080/dcic/api/fetchdata?searchTerm=*&limit=500");
+        options.put("ingestURL", "http://lincsportal.ccs.miami.edu/dcic/api/fetchdata?searchTerm=*&limit=500");
         options.put("documentElement", "documents");
         options.put("cacheFilename", "lincs_json");
         options.put("parserType", "json");
@@ -913,6 +917,11 @@ public class IngestionSampler {
         //sampler.sampleNeuroVaultCollections();
 
        // extractJSONLDRecord();
-        sampler.sampleClinVarFromFTP();
+       // sampler.sampleClinVarFromFTP();
+       // sampler.sampleLincsWeb();
+       //  sampler.sampleOpenFMRI();
+        //sampler.sampleGEOByAspera();
+        sampler.ingestNITRC_IR();
+
     }
 }

@@ -1,0 +1,10 @@
+/* Dataset Release Date Information */
+if "$.'pr_nlx_144048_1'.'version_num'" like "1.0.0" then transform column "$.'pr_nlx_144048_1'.'version_date'" to "dataset.dateReleased" apply toStandardDateTime("yyyy-MM-dd");
+
+transform columns  "$.'pr_nlx_144048_1'.'id'", "$.'pr_nlx_144048_1'.'version_num'" to "datasetDistributions[0].accessURL" apply {{ result='http://openfmri.s3.amazonaws.com/tarballs/' + value1 + '_R' + value2 + '_raw.tgz' }};
+let "datasetDistributions[0].accessType" = "download";
+
+transform column "$.'pr_nlx_144048_1'.'cognitive_task_seq_name'" to "dataset.keywords[0]" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'pr_nlx_144048_1'.'pubmed_id'" to "primaryPublications[0].ID" apply {{ result = re.sub('<[^<]+?>', '', value)  }};
+
+

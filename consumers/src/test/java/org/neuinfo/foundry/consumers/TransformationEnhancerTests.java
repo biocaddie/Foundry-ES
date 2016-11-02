@@ -44,31 +44,35 @@ public class TransformationEnhancerTests extends TestCase {
                                 new MappingEngine(source.getMappingScript()));
                     }
                 }
+
+                //List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0006");
+                // List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0011", 100);
+                //List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0026", 100);
+                //List<BasicDBObject> docWrappers = helper.getDocWrappers("ks-0001", 100);
+                List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0027", 100);
+                IPlugin plugin = new TransformationEnhancer();
+                plugin.setDocumentIngestionService(dis);
+                Map<String, String> options = new HashMap<String, String>(3);
+                options.put("addResourceInfo", "false");
+                plugin.initialize(options);
+                int count = 0;
+                for (BasicDBObject docWrapper : docWrappers) {
+                    BasicDBObject procDBO = (BasicDBObject) docWrapper.get("Processing");
+                    String status = (String) procDBO.get("status");
+                    if (status.equals("error")) {
+                        System.out.println("handling doc " + count);
+                        Result result = plugin.handle(docWrapper);
+                        count++;
+                        if (count > 0) {
+                            break;
+                        }
+                    }
+                }
+
+
             } finally {
                 dis.shutdown();
             }
-            //List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0006");
-            // List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0011", 100);
-            //List<BasicDBObject> docWrappers = helper.getDocWrappers("biocaddie-0026", 100);
-            List<BasicDBObject> docWrappers = helper.getDocWrappers("ks-0001", 100);
-            IPlugin plugin = new TransformationEnhancer();
-            Map<String,String> options = new HashMap<String, String>(3);
-            options.put("addResourceInfo","false");
-            plugin.initialize(options);
-            int count = 0;
-            for (BasicDBObject docWrapper : docWrappers) {
-                BasicDBObject procDBO = (BasicDBObject) docWrapper.get("Processing");
-                String status = (String) procDBO.get("status");
-                if (status.equals("error")) {
-                    System.out.println("handling doc " + count);
-                    Result result = plugin.handle(docWrapper);
-                    count++;
-                    if (count > 0) {
-                        break;
-                    }
-                }
-            }
-
         } finally {
             helper.shutdown();
         }

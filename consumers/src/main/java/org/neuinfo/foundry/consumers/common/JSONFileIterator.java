@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -38,22 +39,33 @@ public class JSONFileIterator implements Iterator<JSONObject> {
     void prepHandler() throws Exception {
         this.curFile = jsonFileIterator.next();
         String jsonStr = Utils.loadAsString(this.curFile.getAbsolutePath());
-        JSONObject json = new JSONObject(jsonStr);
-        JSONPathProcessor processor = new JSONPathProcessor();
-        List<Object> list = processor.find("$..'" + docElement + "'", json);
-        Assertion.assertTrue(!list.isEmpty());
-        List<JSONObject> jsList = new ArrayList<JSONObject>();
-        for (Object o : list) {
-            if (o instanceof JSONArray) {
-                JSONArray jsArr = (JSONArray) o;
-                for (int i = 0; i < jsArr.length(); i++) {
-                    Object oe = jsArr.get(i);
-                    if (oe instanceof JSONObject) {
-                        jsList.add((JSONObject) oe);
+        List<JSONObject> jsList;
+        if (docElement == null || docElement.length() == 0) {
+            // assumption a json array is at the root of the document
+            JSONArray jsArr =  new JSONArray(jsonStr);
+            jsList = new ArrayList<JSONObject>(jsArr.length());
+            for(int i = 0; i < jsArr.length(); i++) {
+                JSONObject el = jsArr.getJSONObject(i);
+                jsList.add(el);
+            }
+        } else {
+            JSONObject json = new JSONObject(jsonStr);
+            JSONPathProcessor processor = new JSONPathProcessor();
+            List<Object> list = processor.find("$..'" + docElement + "'", json);
+            Assertion.assertTrue(!list.isEmpty());
+            jsList = new ArrayList<JSONObject>();
+            for (Object o : list) {
+                if (o instanceof JSONArray) {
+                    JSONArray jsArr = (JSONArray) o;
+                    for (int i = 0; i < jsArr.length(); i++) {
+                        Object oe = jsArr.get(i);
+                        if (oe instanceof JSONObject) {
+                            jsList.add((JSONObject) oe);
+                        }
                     }
+                } else if (o instanceof JSONObject) {
+                    jsList.add((JSONObject) o);
                 }
-            } else if (o instanceof JSONObject) {
-                jsList.add((JSONObject) o);
             }
         }
         this.jsonObjectIterator = jsList.iterator();
