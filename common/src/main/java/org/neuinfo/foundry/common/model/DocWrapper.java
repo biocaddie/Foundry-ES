@@ -34,6 +34,7 @@ public class DocWrapper {
     private JSONObject history;
     private ObjectId origFileId;
 
+
     private DocWrapper(Builder builder) {
         this.version = builder.version;
         this.crawlDate = builder.crawlDate;
@@ -171,15 +172,17 @@ public class DocWrapper {
         return origFileId;
     }
 
+
     public static String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         return sdf.format(date);
     }
 
     public static Date getDate(String dateStr) throws ParseException {
-       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         return sdf.parse(dateStr);
     }
+
     public static class Builder {
         private int version;
         private String docId;
@@ -271,6 +274,7 @@ public class DocWrapper {
             this.history = history;
             return this;
         }
+
 
         public Builder provenance(ProvenanceRec provRec) throws IOException {
             org.openprovenance.prov.model.ProvFactory pFactory = new ProvFactory();

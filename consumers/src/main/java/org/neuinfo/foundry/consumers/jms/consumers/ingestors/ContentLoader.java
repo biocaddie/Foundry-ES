@@ -43,7 +43,12 @@ public class ContentLoader {
         }
         String url = uriBuilder.build().toString();
         System.out.println("getting content from " + url);
-        String cachePageFile = cacheFileName + "_" + pageIdx;
+        String cachePageFile;
+        if (cacheFileName == null) {
+            cachePageFile = Utils.fromURL2FileName(ingestURL) + "_" + pageIdx;
+        } else {
+            cachePageFile = cacheFileName + "_" + pageIdx;
+        }
         File f = getContent(url, cachePageFile, useCache);
         ++pageIdx;
         return f;

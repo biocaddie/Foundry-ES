@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.JSONPathProcessor;
+import org.neuinfo.foundry.common.util.JSONPathProcessor2;
 import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.jms.consumers.ingestors.RemoteFileIterator;
 
@@ -23,12 +24,19 @@ public class JSONFileIterator implements Iterator<JSONObject> {
     RemoteFileIterator jsonFileIterator;
     File curFile;
     boolean empty = false;
+    Filter filter;
+    int nonFilterCount = 0;
+
     static Logger logger = Logger.getLogger(JSONFileIterator.class);
     Iterator<JSONObject> jsonObjectIterator;
 
-    public JSONFileIterator(RemoteFileIterator jsonFileIterator, String docElement) throws Exception {
+    public JSONFileIterator(RemoteFileIterator jsonFileIterator, String docElement,
+                            String filterJsonPath, String filterValue) throws Exception {
         this.jsonFileIterator = jsonFileIterator;
         this.docElement = docElement;
+        if (filterJsonPath != null && filterValue != null) {
+            filter = new Filter(filterJsonPath, filterValue);
+        }
         if (jsonFileIterator.hasNext()) {
             prepHandler();
         } else {
@@ -42,11 +50,16 @@ public class JSONFileIterator implements Iterator<JSONObject> {
         List<JSONObject> jsList;
         if (docElement == null || docElement.length() == 0) {
             // assumption a json array is at the root of the document
-            JSONArray jsArr =  new JSONArray(jsonStr);
+            JSONArray jsArr = new JSONArray(jsonStr);
             jsList = new ArrayList<JSONObject>(jsArr.length());
-            for(int i = 0; i < jsArr.length(); i++) {
+            for (int i = 0; i < jsArr.length(); i++) {
                 JSONObject el = jsArr.getJSONObject(i);
-                jsList.add(el);
+                if (filter == null || filter.satisfied(el)) {
+                    jsList.add(el);
+                }
+            }
+            if (filter != null) {
+                this.nonFilterCount = jsArr.length();
             }
         } else {
             JSONObject json = new JSONObject(jsonStr);
@@ -60,15 +73,31 @@ public class JSONFileIterator implements Iterator<JSONObject> {
                     for (int i = 0; i < jsArr.length(); i++) {
                         Object oe = jsArr.get(i);
                         if (oe instanceof JSONObject) {
-                            jsList.add((JSONObject) oe);
+                            JSONObject el = (JSONObject) oe;
+                            if (filter == null || filter.satisfied(el)) {
+                                jsList.add(el);
+                            }
                         }
                     }
+                    if (filter != null) {
+                        this.nonFilterCount += jsArr.length();
+                    }
                 } else if (o instanceof JSONObject) {
-                    jsList.add((JSONObject) o);
+                    JSONObject el = (JSONObject) o;
+                    if (filter == null || filter.satisfied(el)) {
+                        jsList.add(el);
+                    }
+                    if (filter != null) {
+                        this.nonFilterCount++;
+                    }
                 }
             }
         }
         this.jsonObjectIterator = jsList.iterator();
+    }
+
+    public int getNonFilterCount() {
+        return nonFilterCount;
     }
 
     @Override
@@ -81,13 +110,19 @@ public class JSONFileIterator implements Iterator<JSONObject> {
                 return true;
             } else {
                 if (jsonFileIterator.hasNext()) {
-                    prepHandler();
-                    return jsonObjectIterator.hasNext();
+                    do {
+                        prepHandler();
+                        boolean hasNext = jsonObjectIterator.hasNext();
+                        if (hasNext) {
+                            return hasNext;
+                        }
+                    } while(jsonFileIterator.hasNext());
+                    return  false;
                 } else {
                     return false;
                 }
             }
-        } catch(Throwable t) {
+        } catch (Throwable t) {
             t.printStackTrace();
             return false;
         }
@@ -101,5 +136,31 @@ public class JSONFileIterator implements Iterator<JSONObject> {
     @Override
     public void remove() {
         throw new UnsupportedOperationException();
+    }
+
+    public static class Filter {
+        final String filterJsonPath;
+        final String filterValue;
+
+        public Filter(String filterJsonPath, String filterValue) {
+            this.filterJsonPath = filterJsonPath;
+            this.filterValue = filterValue;
+        }
+
+
+        public boolean satisfied(JSONObject json) {
+            JSONPathProcessor2 processor = new JSONPathProcessor2();
+            List<JSONPathProcessor2.JPNode> list;
+            try {
+                list = processor.find(filterJsonPath, json);
+                if (list != null && !list.isEmpty()) {
+                    JSONPathProcessor2.JPNode jpNode = list.get(0);
+                    return jpNode.getValue().equals(filterValue);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+return false;
+        }
     }
 }

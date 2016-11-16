@@ -56,9 +56,11 @@ public class ElasticSearchUtils {
             StringEntity entity = new StringEntity(sb.toString(), "UTF-8");
             httpPost.setEntity(entity);
             HttpResponse response = client.execute(httpPost);
-            logger.info(response.getStatusLine());
+            // logger.info(response.getStatusLine());
             logger.info(response);
-            logger.info(EntityUtils.toString(response.getEntity()));
+            if (logger.isDebugEnabled() || response.getStatusLine().getStatusCode() != 200) {
+                logger.info(EntityUtils.toString(response.getEntity()));
+            }
 
         } finally {
             if (httpPost != null) {

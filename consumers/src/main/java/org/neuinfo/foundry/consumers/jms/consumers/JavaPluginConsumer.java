@@ -82,11 +82,12 @@ public class JavaPluginConsumer extends JMSConsumerSupport implements MessageLis
         super.shutdown();
     }
 
-    void handle(String objectId, String specifiedOutStatus) throws Exception {
+    void handle(String objectId, String specifiedOutStatus, String collectionName4Record) throws Exception {
         getPlugin().setGridFSService(this.gridFSService);
         getPlugin().setDocumentIngestionService(this.dis);
         DB db = mongoClient.getDB(super.mongoDbName);
-        DBCollection collection = db.getCollection(getCollectionName());
+        String colName = collectionName4Record != null ? collectionName4Record : getCollectionName();
+        DBCollection collection = db.getCollection(colName);
         BasicDBObject query = new BasicDBObject(Constants.MONGODB_ID_FIELD, new ObjectId(objectId));
         DBObject theDoc = collection.findOne(query);
         if (theDoc != null) {
@@ -111,21 +112,23 @@ public class JavaPluginConsumer extends JMSConsumerSupport implements MessageLis
                             pi = (DBObject) theDoc.get("Processing");
                             pi.put("status", outStatus);
                             logger.info("updating document");
-                            logger.info(theDoc.toString());
+                            if (logger.isDebugEnabled()) {
+                                logger.info(theDoc.toString());
+                            }
                             // System.out.println(JSONUtils.toJSON((BasicDBObject) theDoc,true).toString(2));
                             collection.update(query, theDoc);
                             logger.info("updated document");
-                            messagePublisher.sendMessage(objectId, outStatus);
+                            messagePublisher.sendMessage(objectId, outStatus, colName);
                         } else if (result.getStatus() == Result.Status.OK_WITHOUT_CHANGE) {
                             pi.put("status", outStatus);
                             logger.info("updating status to " + outStatus);
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, outStatus);
+                            messagePublisher.sendMessage(objectId, outStatus, colName);
                         } else {
                             pi.put("status", "error");
                             logger.info("updating status to error");
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, "error");
+                            messagePublisher.sendMessage(objectId, "error", colName);
                         }
                     } catch (Throwable t) {
                         logger.error("handle", t);
@@ -134,7 +137,7 @@ public class JavaPluginConsumer extends JMSConsumerSupport implements MessageLis
                             pi.put("status", "error");
                             logger.info("updating");
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, "error");
+                            messagePublisher.sendMessage(objectId, "error", colName);
                         }
                     }
                 }
@@ -159,6 +162,10 @@ public class JavaPluginConsumer extends JMSConsumerSupport implements MessageLis
             if (json.has("outStatus")) {
                 outStatus = json.getString("outStatus");
             }
+            String collectionName4Record = null;
+            if (json.has("collectionName")) {
+                collectionName4Record = json.getString("collectionName");
+            }
             if (logger.isInfoEnabled()) {
                 if (outStatus != null) {
                     logger.info(String.format("status:%s objectId:%s outStatus:%s%n", status, objectId, outStatus));
@@ -166,7 +173,7 @@ public class JavaPluginConsumer extends JMSConsumerSupport implements MessageLis
                     logger.info(String.format("status:%s objectId:%s%n", status, objectId));
                 }
             }
-            handle(objectId, outStatus);
+            handle(objectId, outStatus, collectionName4Record);
         } catch (Exception x) {
             logger.error("onMessage", x);
             //TODO proper error handling

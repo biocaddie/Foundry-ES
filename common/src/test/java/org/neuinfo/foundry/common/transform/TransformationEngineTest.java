@@ -79,7 +79,7 @@ public class TransformationEngineTest {
         trEngine.transform(json, transformedJson);
 
         System.out.println(transformedJson.toString(2));
-        assertTrue(transformedJson.getJSONArray("datasetDistributions").getJSONObject(0).has("accessURL"));
+        assertTrue(transformedJson.getJSONArray("taxonomicInformation").getJSONObject(0).has("strain"));
     }
 
     @Test
@@ -111,8 +111,36 @@ public class TransformationEngineTest {
             System.out.println(transformedJson.toString(2));
 
         }
+    }
 
+    @Test
+    public void testSample1() throws Exception {
+        String jsonStr = loadAsStringFromClassPath("testdata/sample1.json");
+        String transformationScript = loadAsStringFromClassPath("testdata/sample1.trs");
+        JSONObject json = new JSONObject(jsonStr);
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        JSONObject transformedJson = new JSONObject();
+        trEngine.transform(json, transformedJson);
 
+        System.out.println(transformedJson.toString(2));
+    }
+
+    @Test
+    public void testLSDB() throws Exception {
+        String jsonStr = loadAsStringFromClassPath("testdata/all_data_LSDB.json");
+        String transformationScript = loadAsStringFromClassPath("testdata/transformation_script_LSDB.trs");
+       // String transformationScript = loadAsStringFromClassPath("testdata/lsdb_test.trs");
+        JSONObject json = new JSONObject(jsonStr);
+        JSONArray jsArr = json.getJSONArray("data");
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        for (int i = 0; i < jsArr.length(); i++) {
+            System.out.println("=============================");
+            json = jsArr.getJSONObject(i);
+            JSONObject transformedJson = new JSONObject();
+            trEngine.transform(json, transformedJson);
+
+            System.out.println(transformedJson.toString(2));
+        }
     }
 
     public static String loadAsStringFromClassPath(String classpath) throws Exception {

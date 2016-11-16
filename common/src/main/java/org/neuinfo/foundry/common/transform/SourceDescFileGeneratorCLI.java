@@ -248,7 +248,7 @@ public class SourceDescFileGeneratorCLI {
         }
 
         Set<String> excludeSet = new HashSet<String>(Arrays.asList("sourceID", "name", "ingestMethod",
-                "repositoryID", "transformScript", "primaryKeyJSONPath", "ingestURL"));
+                "repositoryID", "transformScript", "primaryKeyJSONPath", "ingestURL","collectionName"));
         //System.out.println(descConfig);
         String sourceID = descConfig.get("sourceID");
         String name = descConfig.get("name");
@@ -257,6 +257,7 @@ public class SourceDescFileGeneratorCLI {
         String primaryKeyJSONPath = descConfig.get("primaryKeyJSONPath");
         String ingestURL = descConfig.get("ingestURL");
         String transformScript = descConfig.get("transformScript");
+        String collectionName = descConfig.get("collectionName");
         IngestMethod ingestMethod = IngestMethod.valueOf(ingestMethodStr.toUpperCase());
         Assertion.assertTrue(ingestMethod != null, "Not a supported ingest method:" + ingestMethodStr);
         SourceInfo si = new SourceInfo(sourceID, name, sourceID, ingestMethod);
@@ -266,6 +267,8 @@ public class SourceDescFileGeneratorCLI {
             si.setIngestURL(ingestURL);
         }
         si.setRepositoryID(repositoryID);
+        si.setCollectionName(collectionName);
+
         for (String key : descConfig.keySet()) {
             if (!excludeSet.contains(key)) {
                 String value = descConfig.get(key);
@@ -314,28 +317,6 @@ public class SourceDescFileGeneratorCLI {
         String source = line.getOptionValue('s');
 
         handle(configFile, source);
-        /*
-        if (source.equals("pdb")) {
-            generatePDBSource();
-        } else if (source.equals("sm")) {
-            generateLincsSM();
-        } else if (source.equals("cells")) {
-            generateLincsCells();
-        } else if (source.equals("ds_summary")) {
-            generateLincsDSSummary();
-        } else if (source.equals("ds")) {
-            generateLincsDSResults();
-        } else if (source.equals("geo")) {
-            generateGEODatasetSource();
-        } else if (source.equals("gemma")) {
-            generateGemma();
-        } else if (source.equals("bioproject")) {
-            generateBioproject();
-        } else if (source.equals("arrayexpress")) {
-            generateArrayExpress();
-        } else if (source.equals("neuromorpho")) {
-            generateNeuromorpho();
-        }
-        */
+
     }
 }

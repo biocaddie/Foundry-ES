@@ -43,6 +43,8 @@ public class WebIngestor implements Ingestor {
     String mergeFieldName;
     List<String> templateVariables;
     String mergeDocElName;
+    String filterJsonPath;
+    String filterValue;
 
     boolean sampleMode = false;
     int sampleSize = 1;
@@ -76,6 +78,14 @@ public class WebIngestor implements Ingestor {
             this.mergeFieldName = options.get("mergeFieldName");
         }
         this.mergeDocElName = options.containsKey("mergeDocElName") ? options.get("mergeDocElName") : this.docElName;
+
+        if (options.containsKey("filterJsonPath")) {
+            this.filterJsonPath = options.get("filterJsonPath");
+        }
+        if (options.containsKey("filterValue")) {
+            this.filterValue = options.get("filterValue");
+        }
+
 
         this.optionMap = options;
         this.useCache = options.containsKey("useCache") ?
@@ -119,11 +129,15 @@ public class WebIngestor implements Ingestor {
                     }
                 } else {
                     JSONFileIterator jfi = new JSONFileIterator(new RemoteFileIterator(Arrays.asList(rawData)),
-                            this.docElName);
+                            this.docElName, this.filterJsonPath, this.filterValue);
                     int count = 0;
-                    while (jfi.hasNext()) {
-                        jfi.next();
-                        count++;
+                    if (this.filterValue != null) {
+                        count = jfi.getNonFilterCount();
+                    } else {
+                        while (jfi.hasNext()) {
+                            jfi.next();
+                            count++;
+                        }
                     }
                     loader.incrOffset(count);
                     if (count < limitValue) {
@@ -135,7 +149,8 @@ public class WebIngestor implements Ingestor {
                 this.xmlFileIterator = new XMLFileIterator(new RemoteFileIterator(contentFiles),
                         this.topElName, this.docElName);
             } else {
-                this.jsonFileIterator = new JSONFileIterator(new RemoteFileIterator(contentFiles), this.docElName);
+                this.jsonFileIterator = new JSONFileIterator(new RemoteFileIterator(contentFiles), this.docElName,
+                        this.filterJsonPath, this.filterValue);
             }
 
         } else {
@@ -151,8 +166,8 @@ public class WebIngestor implements Ingestor {
                     this.xmlFileIterator = new XMLFileIterator(new RemoteFileIterator(fileList),
                             this.topElName, this.docElName);
                 } else {
-                    this.jsonFileIterator = new JSONFileIterator(new RemoteFileIterator(fileList), this.docElName);
-                    // throw new RuntimeException("JSON multiple file support is not implemented yet!");
+                    this.jsonFileIterator = new JSONFileIterator(new RemoteFileIterator(fileList),
+                            this.docElName, this.filterJsonPath, this.filterValue);
                 }
             } else if (expandedData.isFile()) {
                 if (parserType.equals("xml")) {
@@ -160,7 +175,7 @@ public class WebIngestor implements Ingestor {
                             this.topElName, this.docElName);
                 } else {
                     this.jsonFileIterator = new JSONFileIterator(new RemoteFileIterator(Arrays.asList(expandedData)),
-                            this.docElName);
+                            this.docElName, this.filterJsonPath, this.filterValue);
                 }
             }
         }
@@ -177,7 +192,7 @@ public class WebIngestor implements Ingestor {
             } else {
                 JSONObject json = jsonFileIterator.next();
                 if (mergeIngestURLTemplate != null) {
-                   mergeRelatedDoc(json);
+                    mergeRelatedDoc(json);
                 }
 
                 return new Result(json, Result.Status.OK_WITH_CHANGE);

@@ -73,9 +73,10 @@ public class CompositeJavaPluginConsumer extends CompositeConsumerSupport implem
         return null;
     }
 
-    void handle(String objectId) throws Exception {
+    void handle(String objectId,String collectionName4Record ) throws Exception {
         DB db = mongoClient.getDB(super.mongoDbName);
-        DBCollection collection = db.getCollection(getCollectionName());
+        String theCollection = collectionName4Record != null ? collectionName4Record : getCollectionName();
+        DBCollection collection = db.getCollection(theCollection);
         BasicDBObject query = new BasicDBObject(Constants.MONGODB_ID_FIELD, new ObjectId(objectId));
         DBObject theDoc = collection.findOne(query);
         if (theDoc != null) {
@@ -110,19 +111,19 @@ public class CompositeJavaPluginConsumer extends CompositeConsumerSupport implem
                             pi.put("status", "error");
                             logger.info("updating status to error");
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, "error");
+                            messagePublisher.sendMessage(objectId, "error", theCollection);
                         } else if (hasChange) {
                             pi = (DBObject) theDoc.get("Processing");
                             pi.put("status", getOutStatus());
                             logger.info("updating document");
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, getOutStatus());
+                            messagePublisher.sendMessage(objectId, getOutStatus(), theCollection);
                         } else {
                             // no changes
                             pi.put("status", getOutStatus());
                             logger.info("updating status to " + getOutStatus());
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, getOutStatus());
+                            messagePublisher.sendMessage(objectId, getOutStatus(), theCollection);
                         }
 
                     } catch (Throwable t) {
@@ -132,7 +133,7 @@ public class CompositeJavaPluginConsumer extends CompositeConsumerSupport implem
                             pi.put("status", "error");
                             logger.info("updating status to error");
                             collection.update(query, theDoc);
-                            messagePublisher.sendMessage(objectId, "error");
+                            messagePublisher.sendMessage(objectId, "error", theCollection);
                         }
 
                     }
@@ -152,10 +153,14 @@ public class CompositeJavaPluginConsumer extends CompositeConsumerSupport implem
             JSONObject json = new JSONObject(payload);
             String status = json.getString("status");
             String objectId = json.getString("oid");
+            String collectionName4Record = null;
+            if (json.has("collectionName")) {
+                collectionName4Record = json.getString("collectionName");
+            }
             if (logger.isInfoEnabled()) {
                 logger.info(String.format("status:%s objectId:%s%n", status, objectId));
             }
-            handle(objectId);
+            handle(objectId, collectionName4Record);
         } catch (Exception x) {
             logger.error("onMessage", x);
             //TODO proper error handling

@@ -162,6 +162,7 @@ public class PipelineTriggerHelper {
                     if ((count % 100) == 0) {
                         ElasticSearchUtils.sendBatch2ElasticSearch(docId2JsonDocStrMap, indexPath, serverURL, apiKey);
                         docId2JsonDocStrMap.clear();
+                        System.out.println("indexed so far:" + count);
                     }
                 } else {
                     System.err.println("No transformedREc for docId:" + docId);
@@ -170,6 +171,7 @@ public class PipelineTriggerHelper {
             if (!docId2JsonDocStrMap.isEmpty()) {
                 ElasticSearchUtils.sendBatch2ElasticSearch(docId2JsonDocStrMap, indexPath, serverURL, apiKey);
             }
+            System.out.println("Total docs indexed:" + count);
         } finally {
             cursor.close();
         }

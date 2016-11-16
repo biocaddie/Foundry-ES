@@ -39,7 +39,7 @@ public class ToStandardDateTimeTransformation implements ITransformationFunction
                 x.printStackTrace();
             }
         }
-        return null;
+        return new Result("");
     }
 
     @Override

@@ -14,7 +14,8 @@ public class ITWebIngestor {
     @Test
     public void testDataCite() throws Exception {
         Map<String,String> options = new HashMap<String, String>();
-        options.put("ingestURL", "http://api.datacite.org/dats?publisher-id=cdl.tcia");
+        //options.put("ingestURL", "http://api.datacite.org/dats?publisher-id=cdl.tcia");
+        options.put("ingestURL", "http://api.datacite.org/dats?publisher-id=bl.bgi");
         options.put("parserType", "json");
         options.put("documentElement","data");
         options.put("offsetParam", "offset");
@@ -24,7 +25,7 @@ public class ITWebIngestor {
 
         WebIngestor ingestor = new WebIngestor();
         ingestor.initialize(options);
-        TestUtils.ingest(ingestor, "/tmp/cia_sample_record.json", 5);
+        TestUtils.ingest(ingestor, "/tmp/bgi_sample_record.json", 5);
     }
 
 

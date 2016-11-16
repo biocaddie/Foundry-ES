@@ -43,7 +43,7 @@ public class JSONPathUtils {
         return child;
     }
 
-   public static Object createOrSetArrayElem(int elIdx, JSONArray parentArr, boolean isNextAnArray, String nextName) {
+    public static Object createOrSetArrayElem(int elIdx, JSONArray parentArr, boolean isNextAnArray, String nextName) {
         int len = parentArr.length();
         if (len > elIdx) {
             Object o = parentArr.get(elIdx);
@@ -119,9 +119,7 @@ public class JSONPathUtils {
                     } else {
                         Assertion.assertTrue(assignedIdx != -1 || value.hasArrays());
                         int elIdx = assignedIdx;
-                        if (assignedIdx == -1) {
-                            elIdx = value.getIndices()[arrayIdx];
-                        }
+                        elIdx = getElIdx(value, arrayIdx, jsArr, assignedIdx, elIdx);
                         parent = createOrSetArrayElem(elIdx, jsArr, isArrayToken(tokens[i + 1]),
                                 extractName(tokens[i + 1]));
                         if (assignedIdx == -1) {
@@ -142,9 +140,7 @@ public class JSONPathUtils {
                         } else {
                             Assertion.assertTrue(assignedIdx != -1 || value.hasArrays());
                             int elIdx = assignedIdx;
-                            if (assignedIdx == -1) {
-                                elIdx = value.getIndices()[arrayIdx];
-                            }
+                            elIdx = getElIdx(value, arrayIdx, arr, assignedIdx, elIdx);
                             parent = createOrSetArrayElem(elIdx, arr, isArrayToken(tokens[i + 1]),
                                     extractName(tokens[i + 1]));
                             parentJSON.put(name, arr);
@@ -182,13 +178,12 @@ public class JSONPathUtils {
                 } else {
                     Assertion.assertTrue(assignedIdx != -1 || value.hasArrays());
                     int elIdx = assignedIdx;
-                    if (assignedIdx == -1) {
-                        elIdx = value.getIndices()[arrayIdx];
-                    }
+                    elIdx = getElIdx(value, arrayIdx, jsArr, assignedIdx, elIdx);
                     jsArr.put(elIdx, value.getValue());
                 }
             } else {
-                throw new RuntimeException("Should not happen!");
+                System.err.println("Should not happen! Field '" + name + "' already exists on parent:" + tokens[tokens.length - 2]);
+                // throw new RuntimeException("Should not happen! Field '" + name + "' already exists on parent:" + tokens[tokens.length - 2]);
             }
         } else {
             if (parent instanceof JSONObject) {
@@ -204,9 +199,7 @@ public class JSONPathUtils {
                     } else {
                         Assertion.assertTrue(assignedIdx != -1 || value.hasArrays());
                         int elIdx = assignedIdx;
-                        if (assignedIdx == -1) {
-                            elIdx = value.getIndices()[arrayIdx];
-                        }
+                        elIdx = getElIdx(value, arrayIdx, arr, assignedIdx, elIdx);
                         arr.put(elIdx, value.getValue());
                         parentJSON.put(name, arr);
                     }
@@ -228,6 +221,20 @@ public class JSONPathUtils {
             }
         }
 
+    }
+
+    private static int getElIdx(JSONPathProcessor2.JPNode value, int arrayIdx, JSONArray jsArr, int assignedIdx, int elIdx) {
+        if (elIdx < 0 && value.hasArrays()) {
+            if (value.getIndices().length <= arrayIdx) {
+                // add to the end of the array
+                elIdx = jsArr.length();
+            } else {
+                if (assignedIdx == -1) {
+                    elIdx = value.getIndices()[arrayIdx];
+                }
+            }
+        }
+        return elIdx;
     }
 
 

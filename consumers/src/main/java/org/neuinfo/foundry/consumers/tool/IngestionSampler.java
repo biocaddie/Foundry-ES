@@ -675,7 +675,7 @@ public class IngestionSampler {
 
     public static void extractJSONLDRecord() throws IOException {
         String HOME_DIR = System.getProperty("user.home");
-        String jsonStr  =  Utils.loadAsString(HOME_DIR + "/Downloads/ImmPort.JSON-LD.example.Investigation_18.json");
+        String jsonStr = Utils.loadAsString(HOME_DIR + "/Downloads/ImmPort.JSON-LD.example.Investigation_18.json");
         JSONObject json = new JSONObject(jsonStr);
         JSONArray studies = json.getJSONArray("study");
         // System.out.println(studies.getJSONObject(0).toString(2));
@@ -784,6 +784,84 @@ public class IngestionSampler {
                 break;
             }
         }
+    }
+
+    public void ingestDataCiteBGI() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=bl.bgi", "/tmp/bgi_sample_record.json");
+    }
+
+    public void ingestDataCiteMendeley() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=bl.mendeley", "/tmp/mendeley_sample_record.json");
+    }
+
+    public void ingestDataCiteGNODE() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=TIB.G-NODE", "/tmp/gnode_sample_record.json", false);
+    }
+
+    public void ingestDataCiteMorphoBank() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.MORPHOBA", "/tmp/morphobank_sample_record.json");
+    }
+
+    public void ingestDataCiteSimTK() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.SIMTK", "/tmp/simtk_sample_record.json");
+    }
+
+    public void ingestDataCiteThieme() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=TIB.THIEME", "/tmp/thieme_sample_record.json");
+    }
+
+    public void ingestDataCiteGMS() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=ZBMED.GMS", "/tmp/gms_sample_record.json");
+    }
+
+    public void ingestDataCiteZenodo() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CERN.ZENODO", "/tmp/zenodo_sample_record.json");
+    }
+
+    public void ingestDataCitePeerj() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.PEERJ", "/tmp/peerj_sample_record.json");
+    }
+
+    public void ingestDataCiteLSHTM() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=BL.LSHTM", "/tmp/lshtm_sample_record.json");
+    }
+
+    public void ingestDataCiteDatabrary() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.DATABRAR", "/tmp/databrary_sample_record.json");
+    }
+
+    public void ingestDataCiteImmport() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.IMMPORT", "/tmp/immport_sample_record.json");
+    }
+
+    public void ingestDataCiteSDSCSG() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.SDSCSG", "/tmp/sdscsg_sample_record.json");
+    }
+
+    public void ingestDataCiteUCBCRCNS() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.UCBCRCNS", "/tmp/ucbcrcns_sample_record.json");
+    }
+
+    void ingestDataCite(String ingestURL, String outFile) throws Exception {
+        ingestDataCite(ingestURL, outFile, true);
+    }
+
+    void ingestDataCite(String ingestURL, String outFile, boolean useFilter) throws Exception {
+        Map<String, String> options = new HashMap<String, String>();
+        options.put("ingestURL", ingestURL);
+        options.put("parserType", "json");
+        options.put("documentElement", "data");
+        options.put("offsetParam", "offset");
+        options.put("limitParam", "rows");
+        options.put("limitValue", "100");
+        options.put("useCache", "false");
+        if (useFilter) {
+            options.put("filterJsonPath", "$.attributes.types[0].information.value.id");
+            options.put("filterValue", "dataset");
+        }
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, outFile, 10);
     }
 
     public void ingestSampleFromDisco(String tableName, String outFile, int sampleSize) throws Exception {
@@ -916,12 +994,29 @@ public class IngestionSampler {
         // sampler.sampleNeuroVaultNIDM();
         //sampler.sampleNeuroVaultCollections();
 
-       // extractJSONLDRecord();
-       // sampler.sampleClinVarFromFTP();
-       // sampler.sampleLincsWeb();
-       //  sampler.sampleOpenFMRI();
+        // extractJSONLDRecord();
+        // sampler.sampleClinVarFromFTP();
+        // sampler.sampleLincsWeb();
+        //  sampler.sampleOpenFMRI();
         //sampler.sampleGEOByAspera();
-        sampler.ingestNITRC_IR();
+        //sampler.ingestNITRC_IR();
+
+        // sampler.ingestDataCiteBGI();
+        //sampler.ingestDataCiteMendeley();
+        // sampler.ingestDataCiteGNODE();
+        // sampler.ingestDataCiteMorphoBank();
+        //sampler.ingestDataCiteSimTK();
+
+        // sampler.ingestDataCiteThieme();
+        // sampler.ingestDataCiteGMS(); // no filter
+        // sampler.ingestDataCiteZenodo();
+        // sampler.ingestDataCitePeerj();
+
+        // sampler.ingestDataCiteLSHTM();
+        //  sampler.ingestDataCiteDatabrary();
+        // sampler.ingestDataCiteImmport();
+        // sampler.ingestDataCiteSDSCSG();
+        sampler.ingestDataCiteUCBCRCNS();
 
     }
 }

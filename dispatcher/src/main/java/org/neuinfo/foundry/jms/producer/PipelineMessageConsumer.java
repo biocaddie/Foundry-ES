@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.config.*;
 import org.neuinfo.foundry.common.util.MongoUtils;
+import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.jms.common.*;
 
 import javax.jms.Connection;
@@ -65,9 +66,13 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
     }
 
 
-    void handle(String objectId, String status) {
+    void handle(String objectId, String status, String collectionName4Record) {
         DB db = mongoClient.getDB(configuration.getMongoDBName());
-        DBCollection collection = db.getCollection(configuration.getCollectionName());
+        String theCollection = configuration.getCollectionName();
+        if (!Utils.isEmpty(collectionName4Record)) {
+            theCollection = collectionName4Record;
+        }
+        DBCollection collection = db.getCollection(theCollection);
         BasicDBObject query = new BasicDBObject(Constants.MONGODB_ID_FIELD, new ObjectId(objectId));
         DBObject theDoc = collection.findOne(query);
         if (theDoc != null) {
@@ -139,10 +144,18 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
             JSONObject json = new JSONObject(payload);
             String status = json.getString("status");
             String objectId = json.getString("oid");
-            if (logger.isInfoEnabled()) {
-                logger.info(String.format("status:%s objectId:%s%n", status, objectId));
+            String collectionName = null;
+            if (json.has("collectionName")) {
+                collectionName = json.getString("collectionName");
             }
-            handle(objectId, status);
+            if (logger.isInfoEnabled()) {
+                if (collectionName == null) {
+                    logger.info(String.format("status:%s objectId:%s%n", status, objectId));
+                } else {
+                    logger.info(String.format("status:%s objectId:%s collection:%s%n", status, objectId, collectionName));
+                }
+            }
+            handle(objectId, status, collectionName);
         } catch (Exception x) {
             logger.error("onMessage", x);
             //TODO proper error handling

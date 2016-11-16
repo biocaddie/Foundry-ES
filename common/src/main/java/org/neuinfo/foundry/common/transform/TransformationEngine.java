@@ -470,7 +470,6 @@ public class TransformationEngine {
                 Result result = transformation.execute(pythonInterpreter, jpNode.getValue());
                 if (result != null) {
                     setJSONField(docJson, transformation, result, jpNode);
-
                 }
             } else {
                 JPNode sourceValue = sourceValues.get(0);
@@ -513,9 +512,12 @@ public class TransformationEngine {
                     if (transformation.getScript() != null) {
                         Result result = transformation.execute(pythonInterpreter, sourceValue.getValue());
                         if (result != null) {
+                                setJSONField(docJson, transformation, result, sourceValue);
+                            /* orig
                             Assertion.assertTrue(!result.hasMultipleValues());
                             sourceValue.setPayload(result.getValue());
                             setJSONField(docJson, transformation, sourceValue);
+                            */
                         }
                     } else {
                         if (transformation.getTransformationFunction() != null) {

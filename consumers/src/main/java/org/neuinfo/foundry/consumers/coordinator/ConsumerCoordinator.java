@@ -2,6 +2,7 @@ package org.neuinfo.foundry.consumers.coordinator;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.commons.cli.*;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.config.ConsumerConfig;
@@ -287,6 +288,7 @@ public class ConsumerCoordinator implements MessageListener {
         Option includeFileOption = Option.builder("i").hasArg().argName("include-file")
                 .desc("a list of urls to be processed rejecting the rest").build();
         Option onlyErrorsOpt = new Option("e", "process only records with errors");
+        Option verboseOpt = new Option("v","if set show detailed logs");
 
         Options options = new Options();
         options.addOption(help);
@@ -298,6 +300,7 @@ public class ConsumerCoordinator implements MessageListener {
         options.addOption(consumerModeOption);
         options.addOption(includeFileOption);
         options.addOption(onlyErrorsOpt);
+        options.addOption(verboseOpt);
 
         CommandLineParser cli = new DefaultParser();
         CommandLine line = null;
@@ -348,6 +351,10 @@ public class ConsumerCoordinator implements MessageListener {
             }
         }
         boolean onlyErrors = line.hasOption('e');
+        boolean verbose = line.hasOption('v');
+        if (verbose) {
+            Logger.getRootLogger().setLevel(Level.DEBUG);
+        }
 
         Configuration config = ConfigLoader.load(configFile);
         ConsumerCoordinator cc = new ConsumerCoordinator(config, configFile, consumerMode, includeFile, onlyErrors);

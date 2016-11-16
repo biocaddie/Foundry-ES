@@ -62,7 +62,7 @@ public abstract class GenericDocumentModifierSupport implements IDocUpdater {
 
     public void sendMessage(String oid) {
         try {
-            messagePublisher.sendMessage(oid, this.outStatus);
+            messagePublisher.sendMessage(oid, this.outStatus, this.collectionName);
         } catch (JMSException e) {
             e.printStackTrace();
         }

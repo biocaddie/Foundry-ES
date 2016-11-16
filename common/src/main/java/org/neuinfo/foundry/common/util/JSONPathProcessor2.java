@@ -43,6 +43,8 @@ public class JSONPathProcessor2 {
             return indices;
         }
 
+
+
         public String[] getNames() {
             return names;
         }

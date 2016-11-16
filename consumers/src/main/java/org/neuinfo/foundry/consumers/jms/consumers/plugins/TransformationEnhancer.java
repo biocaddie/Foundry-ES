@@ -130,9 +130,11 @@ public class TransformationEnhancer implements IPlugin {
             JSONObject provenance = prepProvenance(source);
             transformedJson.put("provenance", provenance);
 
-            System.out.println("==========================");
-            System.out.println(transformedJson.toString(2));
-            System.out.println("==========================");
+            if (log.isDebugEnabled()) {
+                log.info("==========================");
+                log.info(transformedJson.toString(2));
+                log.info("==========================");
+            }
             BasicDBObject trDBO = (BasicDBObject) data.get("transformedRec");
             if (trDBO != null) {
                 JSONObject oldTransformedJson = JSONUtils.toJSON(trDBO, false);

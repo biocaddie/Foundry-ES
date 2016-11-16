@@ -5,8 +5,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService;
 import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService.SourceStats;
 import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService.WFStatusInfo;
 import org.neuinfo.foundry.common.model.Source;
@@ -170,10 +171,11 @@ public class ManagementService {
         Option help = new Option("h", "print this message");
         Option configFileOption = Option.builder("c").argName("config-file")
                 .hasArg().desc("config-file e.g. dispatcher-cfg.xml (default)").build();
-
+        Option verboseOpt = new Option("v", "if set show detailed logs");
         Options options = new Options();
         options.addOption(help);
         options.addOption(configFileOption);
+        options.addOption(verboseOpt);
         CommandLineParser cli = new DefaultParser();
         CommandLine line = null;
         try {
@@ -191,7 +193,11 @@ public class ManagementService {
         if (line.hasOption('c')) {
             configFile = line.getOptionValue('c');
         }
+        boolean verbose = line.hasOption('v');
+        if (verbose) {
+            Logger.getRootLogger().setLevel(Level.DEBUG);
 
+        }
 
         ManagementService ms = new ManagementService("foundry.consumer.head");
         Set<String> history = new LinkedHashSet<String>();

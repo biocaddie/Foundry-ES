@@ -13,6 +13,7 @@ import org.neuinfo.foundry.common.model.PrimaryKeyDef;
 import org.neuinfo.foundry.common.model.Source;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.JSONUtils;
+import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.common.ConsumerProcessListener;
 import org.neuinfo.foundry.consumers.common.IDGenerator;
 import org.neuinfo.foundry.consumers.common.ServiceFactory;
@@ -109,13 +110,18 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
             int updatedCount = 0;
             dis.beginBatch(source, batchId);
 
+            String theCollection = getCollectionName();
+            if (!Utils.isEmpty(source.getCollectionName())) {
+                theCollection = source.getCollectionName();
+            }
+
             while (ingestor.hasNext()) {
                 try {
                     Date startDate = new Date();
                     Result result = ingestor.prepPayload();
                     logger.info("ingesting record " + submittedCount);
                     if (result.getStatus() == Result.Status.OK_WITH_CHANGE) {
-                        BasicDBObject document = dis.findDocument(result.getPayload(), getCollectionName());
+                        BasicDBObject document = dis.findDocument(result.getPayload(), theCollection);
                         if (document != null) {
                             String updateOutStatus = getIngestor().getOption("updateOutStatus");
                             Assertion.assertNotNull(updateOutStatus);
@@ -165,9 +171,9 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                     ProvenanceHelper.saveIngestionProvenance("ingestion",
                                             provData, startDate, dw);
                                     // delete previous record first
-                                    dis.removeDocument(document, getCollectionName());
-                                    ObjectId oid = dis.saveDocument(dw, getCollectionName());
-                                    messagePublisher.sendMessage(oid.toString(), getOutStatus());
+                                    dis.removeDocument(document, theCollection);
+                                    ObjectId oid = dis.saveDocument(dw, theCollection);
+                                    messagePublisher.sendMessage(oid.toString(), getOutStatus(), theCollection);
                                 }
                             } else {
                                 ObjectId originalFileId;
@@ -185,10 +191,10 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                 document.put("CrawlDate", JSONUtils.toBsonDate(new Date()));
                                 pi.put("status", updateOutStatus);
                                 updatedCount++;
-                                dis.updateDocument(document, getCollectionName(), batchId);
+                                dis.updateDocument(document, theCollection, batchId);
                                 String oidStr = document.get("_id").toString();
                                 //
-                                messagePublisher.sendMessage(oidStr, updateOutStatus);
+                                messagePublisher.sendMessage(oidStr, updateOutStatus, theCollection);
                             }
                         } else {
                             ObjectId originalFileId = null;
@@ -216,8 +222,8 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                             ProvenanceHelper.removeProvenance(dw.getPrimaryKey());
                             ProvenanceHelper.saveIngestionProvenance("ingestion",
                                     provData, startDate, dw);
-                            ObjectId oid = dis.saveDocument(dw, getCollectionName());
-                            messagePublisher.sendMessage(oid.toString(), getOutStatus());
+                            ObjectId oid = dis.saveDocument(dw, theCollection);
+                            messagePublisher.sendMessage(oid.toString(), getOutStatus(), theCollection);
                         }
                         ingestedCount++;
                     }

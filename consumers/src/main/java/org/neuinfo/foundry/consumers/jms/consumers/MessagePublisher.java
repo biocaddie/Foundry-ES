@@ -23,7 +23,7 @@ public class MessagePublisher {
         this.factory = new ActiveMQConnectionFactory(brokerURL);
     }
 
-    public void sendMessage(String objectId, String status) throws JMSException, JSONException {
+    public void sendMessage(String objectId, String status, String collectionName) throws JMSException, JSONException {
         Session session = null;
         try {
             session = createSession();
@@ -32,6 +32,9 @@ public class MessagePublisher {
             JSONObject json = new JSONObject();
             json.put("oid", objectId);
             json.put("status", status);
+            if (collectionName != null) {
+                json.put("collectionName", collectionName);
+            }
             String jsonStr = json.toString();
             Message message = session.createObjectMessage(jsonStr);
             logger.info("msg to dispatcher:" + jsonStr);

@@ -110,8 +110,6 @@ public class ConsumerFactory {
             }
             IConsumer consumer = (IConsumer) aClass.getConstructor(String.class).newInstance(config.getListeningQueueName());
 
-            //consumer.setSuccessMessageQueueName(config.getSuccessMessageQueueName());
-            //consumer.setFailureMessageQueueName(config.getFailureMessageQueueName());
             consumer.setCollectionName(config.getCollectionName());
             consumer.setInStatus(config.getInStatus());
             consumer.setOutStatus(config.getOutStatus());
