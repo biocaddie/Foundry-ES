@@ -1,6 +1,7 @@
 package org.neuinfo.foundry.common.transform;
 
 import org.neuinfo.foundry.common.util.Assertion;
+import org.neuinfo.foundry.common.util.Utils;
 
 import javax.xml.bind.DatatypeConverter;
 import java.text.ParseException;
@@ -23,6 +24,11 @@ public class ToStandardDateTransformation implements ITransformationFunction {
     public Result execute(String currentValue) {
         String dateFormat = params.get("param1");
         Assertion.assertNotNull(dateFormat);
+        Date date = Utils.parseDate(currentValue, dateFormat);
+        if (date != null) {
+            return new Result(sdf.format(date));
+        }
+        /*
         if (dateFormat.endsWith("Z")) {
             try {
                 // ISO8601
@@ -39,7 +45,8 @@ public class ToStandardDateTransformation implements ITransformationFunction {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+        */
+        return new Result("");
     }
 
     @Override

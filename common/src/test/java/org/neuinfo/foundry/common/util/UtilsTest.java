@@ -1,8 +1,13 @@
 package org.neuinfo.foundry.common.util;
 
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
 import junit.framework.TestCase;
 import org.jdom2.Element;
 import org.junit.Test;
+
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -49,5 +54,17 @@ public class UtilsTest {
         assertTrue(Utils.handleLike("abab", "%ab"));
         assertFalse(Utils.handleLike("abab", "%c"));
         assertTrue(Utils.handleLike("ab%ab", "%%%ab"));
+    }
+
+
+    @Test
+    public void testNaturalLanguageDateParsing() {
+        Parser parser = new Parser();
+        List<DateGroup> groups = parser.parse("May 19 2016");
+        assertFalse(groups.isEmpty());
+        List<Date> dates = groups.get(0).getDates();
+        assertTrue(dates != null && !dates.isEmpty());
+        assertEquals(1, dates.size());
+        System.out.println(dates.get(0));
     }
 }

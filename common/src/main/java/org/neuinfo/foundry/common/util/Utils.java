@@ -1,5 +1,7 @@
 package org.neuinfo.foundry.common.util;
 
+import com.joestelmach.natty.DateGroup;
+import com.joestelmach.natty.Parser;
 import com.mongodb.util.StringParseUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,7 +15,9 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.neuinfo.foundry.common.transform.Result;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -21,6 +25,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -31,6 +36,43 @@ import java.util.zip.GZIPInputStream;
  * Created by bozyurt on 4/4/14
  */
 public class Utils {
+
+
+    public static Date parseDate(String currentValue, String dateFormat) {
+        if (dateFormat == null || dateFormat.endsWith("Z")) {
+            try {
+                Calendar calendar = DatatypeConverter.parseDate(currentValue);
+                return calendar.getTime();
+            } catch (IllegalArgumentException x) {
+                System.err.println(x.getMessage());
+                // x.printStackTrace();
+            }
+        }
+        if (dateFormat != null) {
+            SimpleDateFormat origDateFormat = new SimpleDateFormat(dateFormat);
+            try {
+                Date date = origDateFormat.parse(currentValue);
+                return date;
+            } catch (ParseException x) {
+                System.err.println(x.getMessage());
+                // x.printStackTrace();
+            }
+        }
+        // as last resort try natural language date parsing
+        return  Utils.extractDate(currentValue);
+
+    }
+    public static Date extractDate(String freeFromDateStr) {
+        Parser parser = new Parser();
+        List<DateGroup> groups = parser.parse(freeFromDateStr);
+        if (!groups.isEmpty()) {
+            List<Date> dates = groups.get(0).getDates();
+            if (!dates.isEmpty()) {
+                return dates.get(0);
+            }
+        }
+        return null;
+    }
 
     public static int numOfCharsIn(String s, char c) {
         int count = 0, len = s.length();

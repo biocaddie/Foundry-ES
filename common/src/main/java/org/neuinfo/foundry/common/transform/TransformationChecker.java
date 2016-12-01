@@ -36,15 +36,18 @@ public class TransformationChecker {
     public static File findMatchingSampleDir(File samplesRootDir, String trName) {
         trName = trName.replace("_", "").toLowerCase();
         File[] files = samplesRootDir.listFiles();
+        File secondCandidate = null;
         for (File f : files) {
             if (f.isDirectory()) {
                 String name = f.getName().replace("_", "").toLowerCase();
-                if (name.equals(trName) || name.indexOf(trName) != -1) {
+                if (name.equals(trName)) {
                     return f;
+                } else if (name.indexOf(trName) != -1) {
+                    secondCandidate = f;
                 }
             }
         }
-        return null;
+        return secondCandidate;
     }
 
     public static File findMatchingTransformationFile(File trRootDir, String trName) {
@@ -139,6 +142,7 @@ public class TransformationChecker {
                 String trScript = Utils.loadAsString(trFile.getAbsolutePath());
                 for (File f : matchingDir.listFiles()) {
                     if (f.getName().endsWith(".json")) {
+                        System.out.println("transforming " + f);
                         if (saveResults) {
                             doTransform(trScript, f, trOutDir);
                         } else {

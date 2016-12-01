@@ -1,0 +1,104 @@
+{
+  "path": "en\/astra\/desc.html",
+  "name": "ASTRA",
+  "alias": "Alternative Splicing and Transcription Archives (ASTRA)",
+  "dbcat_id": [
+    "nbdc00371"
+  ],
+  "doi": "10.18908\/lsdba.nbdc00371-000",
+  "creators": [
+    {
+      "creator_name": "Hideki Nagasaki",
+      "creator_affiliation": "National Institute of Advanced Industrial Science and Technology, AIST. Current affiliation: Kazusa DNA Research Institute",
+      "creator_jglobal_id": "201301021943203731",
+      "creator_researchmap_id": "nagasaki",
+      "creator_orcid": "",
+      "creator_jglobal_jgpn": "201201100231289206",
+      "creator_is_representative": false
+    },
+    {
+      "creator_name": "Osamu Gotoh",
+      "creator_affiliation": "National Institute of Advanced Industrial Science and Technology, AIST",
+      "creator_jglobal_id": "200901010240453294",
+      "creator_researchmap_id": "read0081671",
+      "creator_orcid": "",
+      "creator_jglobal_jgpn": "200901100337614682",
+      "creator_is_representative": false
+    },
+    {
+      "creator_name": "Masanori Arita",
+      "creator_affiliation": "National Institute of Advanced Industrial Science and Technology, AIST. Current affiliation: National Institute of Genetics",
+      "creator_jglobal_id": "200901068111061442",
+      "creator_researchmap_id": "arita",
+      "creator_orcid": "",
+      "creator_jglobal_jgpn": "200901100359062330",
+      "creator_is_representative": false
+    }
+  ],
+  "contact_address": "<p><img alt=\"astra address\" src=\"\/images\/dbarchive_images\/mail_address\/astra_address.png\" height=\"18\" width=\"132\" \/><\/p>",
+  "categories": [
+    "Nucleotide Sequence Databases - Gene structure, introns and exons, splice sites"
+  ],
+  "categories_free_style": [],
+  "organisms": [
+    {
+      "organism_name": "Homo sapiens",
+      "taxonomy_id": "9606"
+    },
+    {
+      "organism_name": "Mus musculus",
+      "taxonomy_id": "10090"
+    },
+    {
+      "organism_name": "Drosophila melanogaster",
+      "taxonomy_id": "7227"
+    },
+    {
+      "organism_name": "Caenorhabditis elegans",
+      "taxonomy_id": "6239"
+    },
+    {
+      "organism_name": "Arabidopsis thaliana",
+      "taxonomy_id": "3702"
+    },
+    {
+      "organism_name": "Oryza sativa",
+      "taxonomy_id": "4530"
+    }
+  ],
+  "organism_free_style": "",
+  "description": "<p>The database represents classified patterns of alternative splicing (AS) and alternative transcriptional initiation (ATI) in six eukaryotic genomes.<\/p>",
+  "features": "<p>This database enables to search and represent alternative splicing\/transcriptional initiation genes and their patterns (ex: cassette) based on mapping results between full-length cDNA and genomic sequences. Furthermore the database output translated sequences of their isoforms.<\/p>",
+  "fundings": [],
+  "funding_free_style": "",
+  "references": [
+    {
+      "reference_title": "Species-specific variation of alternative splicing and transcriptional initiation in six eukaryotes.",
+      "reference_authors": "Nagasaki H, Arita M, Nishizawa T, Suwa M, Gotoh O.",
+      "journal": "Gene. 2005 Dec 30;364:53-62.",
+      "reference_pubmed_id": "16219431",
+      "reference_jglobal_id": "201302256390587758"
+    },
+    {
+      "reference_title": "Automated classification of alternative splicing and transcriptional initiation and construction of visual database of classified patterns.",
+      "reference_authors": "Nagasaki H, Arita M, Nishizawa T, Suwa M, Gotoh O.",
+      "journal": "Bioinformatics. 2006 May 15;22(10):1211-6.",
+      "reference_pubmed_id": "16500940",
+      "reference_jglobal_id": "201002289269382085"
+    }
+  ],
+  "maintenance_site": "<p>National Institute of Advanced Industrial Science and Technology, AIST.<\/p>",
+  "original_sites": [
+    "Closed"
+  ],
+  "operation_start_date": "2005",
+  "last_updated_date": "2006",
+  "upper_level_site": "",
+  "whole_data_download": "",
+  "referenced_site": "",
+  "list_search": "Available",
+  "query_search": "Available",
+  "web_services": "Not available",
+  "webservice_url": "",
+  "user_registration": "Not available"
+}

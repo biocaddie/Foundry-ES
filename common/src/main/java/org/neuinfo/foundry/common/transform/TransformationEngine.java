@@ -30,7 +30,9 @@ public class TransformationEngine {
         // profiler.exitPoint("registry");
         interpreter = new TransformationLanguageInterpreter(registry);
         // profiler.entryPoint("parse");
-        log.info(transformScript);
+        if (log.isDebugEnabled()) {
+            log.info(transformScript);
+        }
         interpreter.parse(transformScript);
         // profiler.exitPoint("parse");
         for (Transformation t : interpreter.getTransformations()) {

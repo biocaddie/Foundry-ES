@@ -673,6 +673,8 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/lsdb_sample_record.json", 5);
     }
 
+
+
     public static void extractJSONLDRecord() throws IOException {
         String HOME_DIR = System.getProperty("user.home");
         String jsonStr = Utils.loadAsString(HOME_DIR + "/Downloads/ImmPort.JSON-LD.example.Investigation_18.json");
@@ -842,9 +844,91 @@ public class IngestionSampler {
         ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.UCBCRCNS", "/tmp/ucbcrcns_sample_record.json");
     }
 
+    public void ingestDataCiteMIMH() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=OSTI.NIMH", "/tmp/mimh_sample_record.json");
+    }
+
+    public void ingestDataCiteCANDI() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.UMMSCAND", "/tmp/candi_sample_record.json");
+    }
+
+    public void ingestDataCiteADA() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=ANDS.CENTRE87", "/tmp/ada_sample_record.json");
+    }
+
+    public void ingestDataCiteCCDC() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=BL.CCDC", "/tmp/ccdc_sample_record.json");
+    }
+
+    public void ingestDataCiteMBFBioscience() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.MBFBIO", "/tmp/mbf_sample_record.json");
+    }
+
+    public void ingestDataCiteFDZ() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=GESIS.DEAS", "/tmp/fdz_sample_record.json");
+    }
+
+    public void ingestDataCiteUKDA() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=BL.UKDA", "/tmp/ukda_sample_record.json");
+    }
+
+    public void ingestDataCiteAdaptive() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.ADAPTIVE", "/tmp/adaptive_sample_record.json");
+    }
+
+    public void ingestDataCiteBroad() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.BROAD", "/tmp/broad_sample_record.json");
+    }
+
+    public void ingestDataCiteJHU() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.JHU", "/tmp/jhu_sample_record.json");
+    }
+
+    public void ingestDataCiteMITLCP() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.MITLCP", "/tmp/mitlcp_sample_record.json");
+    }
+
+    public void ingestDataCiteCTSI() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.UCSFCTSI", "/tmp/ctsi_sample_record.json");
+    }
+
+    public void ingestDataCiteARS() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=FIGSHARE.ARS", "/tmp/ars_sample_record.json");
+    }
+
+    public void ingestDataCiteCXIDB() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=OSTI.CXIDB", "/tmp/cxidb_sample_record.json");
+    }
+
+    public void ingestDataCiteBILS() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=SND.BILS", "/tmp/bils_sample_record.json");
+    }
+
+    public void ingestDataCiteSBGrid() throws Exception {
+        ingestDataCite("http://api.datacite.org/dats?publisher-id=CDL.SBGRID", "/tmp/sbgrid_sample_record.json");
+    }
+
     void ingestDataCite(String ingestURL, String outFile) throws Exception {
         ingestDataCite(ingestURL, outFile, true);
     }
+
+    public void sampleOmics() throws Exception {
+        Map<String, String> options = new HashMap<String, String>();
+        options.put("ingestURL", "http://www.omicsdi.org/ws/dataset/search?query=");
+        options.put("parserType", "json");
+        options.put("documentElement", "datasets");
+        options.put("offsetParam", "start");
+        options.put("limitParam", "size");
+        options.put("limitValue", "100");
+        options.put("useCache", "false");
+        options.put("sampleMode", "true");
+        options.put("sampleSize", "1000");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/omicsdi_sample_record.json", 10);
+    }
+
+
 
     void ingestDataCite(String ingestURL, String outFile, boolean useFilter) throws Exception {
         Map<String, String> options = new HashMap<String, String>();
@@ -855,6 +939,8 @@ public class IngestionSampler {
         options.put("limitParam", "rows");
         options.put("limitValue", "100");
         options.put("useCache", "false");
+        options.put("sampleMode", "true");
+        options.put("sampleSize", "1000");
         if (useFilter) {
             options.put("filterJsonPath", "$.attributes.types[0].information.value.id");
             options.put("filterValue", "dataset");
@@ -1005,10 +1091,10 @@ public class IngestionSampler {
         //sampler.ingestDataCiteMendeley();
         // sampler.ingestDataCiteGNODE();
         // sampler.ingestDataCiteMorphoBank();
-        //sampler.ingestDataCiteSimTK();
+        //    sampler.ingestDataCiteSimTK();
 
         // sampler.ingestDataCiteThieme();
-        // sampler.ingestDataCiteGMS(); // no filter
+        //    sampler.ingestDataCiteGMS(); // no filter
         // sampler.ingestDataCiteZenodo();
         // sampler.ingestDataCitePeerj();
 
@@ -1016,7 +1102,28 @@ public class IngestionSampler {
         //  sampler.ingestDataCiteDatabrary();
         // sampler.ingestDataCiteImmport();
         // sampler.ingestDataCiteSDSCSG();
-        sampler.ingestDataCiteUCBCRCNS();
+        // sampler.ingestDataCiteUCBCRCNS();
 
+        // sampler.ingestDataCiteMIMH();
+        // sampler.ingestDataCiteCANDI();
+
+        // sampler.ingestDataCiteADA();
+        // sampler.ingestDataCiteCCDC();
+        //  sampler.ingestDataCiteMBFBioscience();
+        //  sampler.ingestDataCiteFDZ();
+        // sampler.ingestDataCiteGMS(); // no data sets
+
+        //     sampler.ingestDataCiteUKDA();
+//        sampler.ingestDataCiteAdaptive();
+//        sampler.ingestDataCiteBroad(); // no data sets
+        //       sampler.ingestDataCiteJHU();
+        //      sampler.ingestDataCiteMITLCP();
+        //        sampler.ingestDataCiteCTSI();
+        //  sampler.ingestDataCiteARS();
+        //  sampler.ingestDataCiteCXIDB();
+//        sampler.ingestDataCiteBILS();
+        // sampler.ingestDataCiteSBGrid();
+
+        sampler.sampleOmics();
     }
 }

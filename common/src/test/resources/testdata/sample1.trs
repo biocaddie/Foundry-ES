@@ -1,0 +1,5 @@
+transform column "$.'references'[*].'reference_authors'" to "Publication[].authors.Person[].name" apply
+{{
+arr=re.split("\s*,\s*",value)
+result=arr
+}};

@@ -1,5 +1,7 @@
 package org.neuinfo.foundry.common.transform;
 
+import org.neuinfo.foundry.common.util.Utils;
+
 import javax.xml.bind.DatatypeConverter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,25 +21,12 @@ public class ToStandardTimeTransformation implements ITransformationFunction {
     @Override
     public Result execute(String currentValue) {
         String dateFormat = params.get("param1");
-
-        if (dateFormat == null || dateFormat.endsWith("Z")) {
-            try {
-                // ISO8601
-                Calendar calendar = DatatypeConverter.parseDateTime(currentValue);
-                return new Result(sdf.format(calendar.getTime()));
-            } catch (IllegalArgumentException x) {
-                x.printStackTrace();
-            }
-        } else if (dateFormat != null) {
-            SimpleDateFormat origDateFormat = new SimpleDateFormat(dateFormat);
-            try {
-                Date date = origDateFormat.parse(currentValue);
-                return new Result(sdf.format(date));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        Date date = Utils.parseDate(currentValue, dateFormat);
+        if (date != null) {
+            return new Result(sdf.format(date));
         }
-        return null;
+
+        return new Result("");
     }
 
     @Override

@@ -1,0 +1,3 @@
+transform column "$.'creators'[*].'creator_jglobal_id'" to "dataset.creators.Person[].relatedIdentifier[0].identifier";
+transform column "$.'creators'[*].'creator_jglobal_id'" to "dataset.creators.Person[].relatedIdentifier[0].identifierSource" apply {{ result = 'jglobal id' }};
+transform column "$.'creators'[*].'creator_researchmap_id'" to "dataset.creators.Person[].relatedIdentifier[1].identifier";

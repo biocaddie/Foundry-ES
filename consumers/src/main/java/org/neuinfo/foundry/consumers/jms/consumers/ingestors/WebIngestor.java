@@ -144,6 +144,9 @@ public class WebIngestor implements Ingestor {
                         break;
                     }
                 }
+                if (sampleMode && loader.curOffset >= sampleSize) {
+                    break;
+                }
             }
             if (parserType.equals("xml")) {
                 this.xmlFileIterator = new XMLFileIterator(new RemoteFileIterator(contentFiles),

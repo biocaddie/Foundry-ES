@@ -1,0 +1,51 @@
+transform column "$.'path'" to "access.accessUrl[]";
+transform column "$.'original_sites'[*]" to "access.accessURL[]";
+transform column "$.'whole_data_download'" to "access.accessUrl[]";
+transform column "$.'user_registration'" to "access.authorizations";
+transform column "$.'upper_level_site'" to "access.landingPage";
+transform column "$.'categories'[*]" to "dataset.types[]";
+transform column "$.'categories_free_style'[*]" to "dataset.isAbout[]";
+transform columns "$.'name'", "$.'alias'" to "dataset.title" apply {{ result = value1 + ' ' + value2 }};
+transform column "$.'list_search'" to "dataset.keywords[0]";
+transform column "$.'query_search'" to "dataset.keywords[1]";
+transform column "$.'web_services'" to "dataset.keywords[2]";
+transform column "$.'dbcat_id'[*]" to "dataset.relatedIdentifiers[]";
+transform column "$.'doi'" to "dataset.ID";
+transform column "$.'creators'[*].'creator_name'" to "dataset.creators.Person[].fullname";
+transform column "$.'creators'[*].'creator_affiliation'" to "dataset.creators.Person[].afflication";
+transform column "$.'creators'[*].'creator_jglobal_id'" to "dataset.creators.Person[].relatedIdentifier[0].identifier";
+transform column "$.'creators'[*].'creator_jglobal_id'" to "dataset.creators.Person[].relatedIdentifier[0].identifierSource" apply {{ result = 'jglobal id' }};
+transform column "$.'creators'[*].'creator_researchmap_id'" to "dataset.creators.Person[].relatedIdentifier[1].identifier";
+transform column "$.'creators'[*].'creator_researchmap_id'" to "dataset.creators.Person[].relatedIdentifier[1].identifierSource" apply {{ result = 'researchmap id' }};
+transform column "$.'creators'[*].'creator_orcid'" to "dataset.creators.Person[].relatedIdentifier[2].identifier";
+transform column "$.'creators'[*].'creator_orcid'" to "dataset.creators.Person[].relatedIdentifier[2].identifierSource" apply {{ result = 'orc id' }};
+transform column "$.'creators'[*].'creator_jglobal_jgpn'" to "dataset.creators.Person[].relatedIdentifier[3].identifier";
+transform column "$.'creators'[*].'creator_jglobal_jgpn'" to "dataset.creators.Person[].relatedIdentifier[3].identifierSource" apply {{ result = 'jglobal jgpn' }};
+if "$.'creators'[*].'creator_is_representative'" = "true" then  transform column "$.'creators'[*].'creator_is_representative'" to "dataset.creators.Person[].roles" apply {{result='representative'}};
+transform column "$.'contact_address'" to "organization.postalAddress" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'organisms'[*].'organism_name'" to "taxonomicInformation[].name";
+transform column "$.'organisms'[*].'taxonomy_id'" to "taxonomicInformation[].identifier";
+transform column "$.'organism_free_style'" to "taxonomicInformation[0].extraProperties";
+transform column "$.'description'" to "dataset.description" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'features'" to "dataset.distribution" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'fundings'[*].'funding_name'" to "grant[].name";
+transform column "$.'fundings'[*].'funding_jglobal_id'" to "grant[].relatedIdentifiers[]";
+transform column "$.'fundings'[*].'funding_lsdb_project_id'" to "grant[].relatedIdentifiers[]";
+transform column "$.'funding_free_style'" to "grant[0].extraProperties" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'references'[*].'reference_title'" to "publication[].name" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'references'[*].'reference_authors'" to 
+"publication[].authors.Person[].name" apply
+{{
+arr=re.split("\s*,\s*",value)
+result=arr
+}};
+transform column "$.'references'[*].'journal'" to "publication[].publicationVenue";
+transform column "$.'references'[*].'reference_pubmed_id'" to "publication[].relatedIdentifiers[0].identifier";
+transform column "$.'references'[*].'reference_pubmed_id'" to "publication[].relatedIdentifiers[0].identifierSource" apply {{ result = 'pubmed id' }};
+transform column "$.'references'[*].'reference_jglobal_id'" to "publication[].relatedIdentifiers[1].identifier";
+transform column "$.'references'[*].'reference_jglobal_id'" to "publication[].relatedIdentifiers[1].identifierSource" apply {{ result = 'jglobal id' }};
+transform column "$.'maintenance_site'" to "IdentifiersInformation.identifierSource" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+if "$.'operation_start_date'" <> "" then transform column "$.'operation_start_date'" to "activity.startDate" apply toStandardDateTime("yyyy/MM/dd");
+transform column "$.'last_updated_date'" to "study.dates";
+transform column "$.'referenced_site'" to "dataset.hasPart";
+transform column "$.'webservice_url'" to "dataset.extraProperties";
