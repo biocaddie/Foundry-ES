@@ -13,7 +13,6 @@ import static org.junit.Assert.assertEquals;
 public class JsonPathProcessorTest {
     static String HOME = System.getProperty("user.home");
 
-    @Test
     public void testFindPrimaryKey() throws Exception {
         String s = Utils.loadAsString(HOME + "/dev/biocaddie/data-pipeline/SampleData/pdb/5amh-noatom.json");
         JSONObject js = new JSONObject(s);
@@ -30,7 +29,6 @@ public class JsonPathProcessorTest {
     }
 
 
-    @Test
     public void testPDBPath1() throws Exception {
         /*
         File pdbFile = new File("/var/temp/pdb_rsync/za/1za0-noatom.xml");
