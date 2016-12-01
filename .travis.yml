@@ -1,0 +1,13 @@
+language: java
+ 
+
+before_script:
+  - pushd dependencies
+  - ./install_prov_xml_2mvn.sh
+  - ./install_prov_model_2mvn.sh
+  - ./install_prov_json__2mvn.sh
+  - popd
+jdk:
+    - oraclejdk8
+
+script:mvn test -DskipTests=false -pl common
