@@ -10,4 +10,4 @@ before_script:
 jdk:
     - oraclejdk8
 
-script:mvn test -DskipTests=false -pl common
+script: mvn test -DskipTests=false -pl common
