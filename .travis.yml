@@ -1,7 +1,7 @@
 language: java
  
 
-before_script:
+before_install:
   - pushd dependencies
   - ./install_prov_xml_2mvn.sh
   - ./install_prov_model_2mvn.sh
