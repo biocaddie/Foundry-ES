@@ -1,5 +1,8 @@
 Foundry
 =======
+
+[![Build Status](https://travis-ci.org/biocaddie/Foundry-ES.svg?branch=master)](https://travis-ci.org/biocaddie/Foundry-ES)
+
 Further Documentation
 ---------------------
 
