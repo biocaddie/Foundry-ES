@@ -920,12 +920,12 @@ public class IngestionSampler {
         options.put("offsetParam", "start");
         options.put("limitParam", "size");
         options.put("limitValue", "100");
-        options.put("useCache", "false");
+        options.put("useCache", "true");
         options.put("sampleMode", "true");
         options.put("sampleSize", "1000");
         WebIngestor ingestor = new WebIngestor();
         ingestor.initialize(options);
-        ingest(ingestor, "/tmp/omicsdi_sample_record.json", 10);
+        ingest(ingestor, "/tmp/omicsdi_sample_record.json", 200);
     }
 
 
@@ -1124,6 +1124,7 @@ public class IngestionSampler {
 //        sampler.ingestDataCiteBILS();
         // sampler.ingestDataCiteSBGrid();
 
-        sampler.sampleOmics();
+        // sampler.sampleOmics();
+        sampler.sampleClinicalTrials();
     }
 }

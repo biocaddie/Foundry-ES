@@ -1,7 +1,9 @@
 package org.neuinfo.foundry.consumers.common;
 
+import edu.emory.mathcs.backport.java.util.Collections;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.JSONPathProcessor;
@@ -62,7 +64,14 @@ public class JSONFileIterator implements Iterator<JSONObject> {
                 this.nonFilterCount = jsArr.length();
             }
         } else {
-            JSONObject json = new JSONObject(jsonStr);
+            JSONObject json = null;
+            try {
+                json = new JSONObject(jsonStr);
+            } catch(JSONException x) {
+                logger.error("jsonStr", x);
+                this.jsonObjectIterator = new ArrayList<JSONObject>(0).iterator();
+                return;
+            }
             JSONPathProcessor processor = new JSONPathProcessor();
             List<Object> list = processor.find("$..'" + docElement + "'", json);
             Assertion.assertTrue(!list.isEmpty());

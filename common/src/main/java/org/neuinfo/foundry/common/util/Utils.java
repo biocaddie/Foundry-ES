@@ -2,7 +2,6 @@ package org.neuinfo.foundry.common.util;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
-import com.mongodb.util.StringParseUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -15,7 +14,6 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.neuinfo.foundry.common.transform.Result;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
