@@ -67,4 +67,15 @@ public class UtilsTest {
         assertEquals(1, dates.size());
         System.out.println(dates.get(0));
     }
+
+    @Test
+    public void testOptParser() {
+        String cmdLine = "index biocaddie-0065 finished http://biocaddie.scicrunch.io/eu_clinicaltrials_20161215/dataset " +
+                "-filter dataset.available=True";
+        Utils.OptParser optParser = new Utils.OptParser(cmdLine);
+        assertEquals(4, optParser.getNumOfPositionalParams());
+        assertNotNull(optParser.getOptValue("filter"));
+        assertEquals("dataset.available=True", optParser.getOptValue("filter"));
+
+    }
 }

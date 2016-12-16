@@ -335,6 +335,13 @@ public class IngestionSampler {
         ingestSampleFromDiscoRaw(tableNames, joinInfo, "/tmp/RGD_record.json", 5);
     }
 
+
+    public void sampleEUClinicalTrials() throws  Exception {
+        String tableNames = "l2_nlx_151313_clinicaltrial_summary a, l2_nlx_151313_clinicaltrial_summary_disease b";
+        String joinInfo = "a.eudract_number=b.eudract_number";
+        ingestSampleFromDiscoRaw(tableNames, joinInfo, "/tmp/eu_clinical_trials_record.json", 5);
+    }
+
     public void sampleCellosaurus() throws Exception {
         String tableNames = "l2_scr_013869_cellosaurus_cellosaurus";
         ingestSampleFromDiscoRaw(tableNames, null, "/tmp/cellosaurus_record.json", 5);
@@ -586,6 +593,62 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/clinicaltrials_gov_record.json", 5);
     }
 
+    public void sampleEBI() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///home/bozyurt/Downloads/from_nansu/ebi/all_data_ebi.json");
+        options.put("documentElement", "data");
+        options.put("cacheFilename", "ebi");
+        options.put("useCache", "false");
+        options.put("parserType", "json");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/ebi_record.json", 5);
+    }
+
+    public void sampleGenenetwork() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///home/bozyurt/Downloads/from_nansu/genenetwork/all_data_genenetwork.json");
+        options.put("documentElement", "data");
+        options.put("cacheFilename", "genenetwork");
+        options.put("useCache", "false");
+        options.put("parserType", "json");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/genenetwork_record.json", 5);
+    }
+
+    public void sampleLSDBFromNansu() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///home/bozyurt/Downloads/from_nansu/LSDB/all_data_LSDB.json");
+        options.put("documentElement", "data");
+        options.put("cacheFilename", "lsdb");
+        options.put("useCache", "false");
+        options.put("parserType", "json");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/lsdb_record.json", 5);
+    }
+
+    public void sampleHmps() throws Exception {
+        sampleHmp("hmp_NCBI_reference_genomics", "all_data_hmp_NCBI_reference_genomics.json");
+        sampleHmp("hmp_NCBI_metagenomic_shotgun_sequence", "all_data_hmp_NCBI_shotgun_sequence.json");
+        sampleHmp("hmp_NCBI_metagenomic_16s_sequence", "all_data_hmp_NCBI_Metagenomic_16S_Sequence.json");
+        sampleHmp("hmp_catalog_reference_genomics", "all_data_hmp_catalog_reference_genomics.json");
+        sampleHmp("hmp_catalog_metagenomic_samples", "all_data_hmp_catalog_metagenomic_samples.json");
+    }
+
+    public void sampleHmp(String name, String dataFile) throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///home/bozyurt/Downloads/from_nansu/hmp/" + dataFile);
+        options.put("documentElement", "data");
+        options.put("cacheFilename", name);
+        options.put("useCache", "false");
+        options.put("parserType", "json");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        new File("/tmp/hmp").mkdir();
+        ingest(ingestor, "/tmp/hmp/" + name + "_record.json", 5);
+    }
 
     public void sampleNeuroVaultAtlases() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
@@ -674,7 +737,6 @@ public class IngestionSampler {
     }
 
 
-
     public static void extractJSONLDRecord() throws IOException {
         String HOME_DIR = System.getProperty("user.home");
         String jsonStr = Utils.loadAsString(HOME_DIR + "/Downloads/ImmPort.JSON-LD.example.Investigation_18.json");
@@ -685,6 +747,7 @@ public class IngestionSampler {
         Utils.saveText(studies.getJSONObject(0).toString(2), outFile);
         System.out.println("saved file:" + outFile);
     }
+
 
     public void sampleFromPubmedIncrementalData() throws Exception {
         String[] refTypes = {"AssociatedDataset", "AssociatedPublication", "CommentOn", "CommentIn", "ErratumIn",
@@ -929,7 +992,6 @@ public class IngestionSampler {
     }
 
 
-
     void ingestDataCite(String ingestURL, String outFile, boolean useFilter) throws Exception {
         Map<String, String> options = new HashMap<String, String>();
         options.put("ingestURL", ingestURL);
@@ -1125,6 +1187,13 @@ public class IngestionSampler {
         // sampler.ingestDataCiteSBGrid();
 
         // sampler.sampleOmics();
-        sampler.sampleClinicalTrials();
+          sampler.sampleClinicalTrials();
+
+        // sampler.sampleEBI();
+        // sampler.sampleGenenetwork();
+        // sampler.sampleLSDBFromNansu();
+
+       // sampler.sampleHmps();
+       // sampler.sampleEUClinicalTrials();
     }
 }

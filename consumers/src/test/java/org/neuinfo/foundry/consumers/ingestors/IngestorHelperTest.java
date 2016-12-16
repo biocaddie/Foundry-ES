@@ -24,6 +24,7 @@ public class IngestorHelperTest {
         System.out.println(templateVariables);
     }
 
+    @Test
     public void testCreateURL() throws Exception {
         String urlTemplate = "http://lincs.hms.harvard.edu/db/datasets/${HMS Dataset ID}/results?search=&output_type=.csv";
         Map<String, String> map = new HashMap<String, String>(7);

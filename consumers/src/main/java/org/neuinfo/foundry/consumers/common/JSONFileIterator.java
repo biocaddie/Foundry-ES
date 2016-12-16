@@ -1,21 +1,18 @@
 package org.neuinfo.foundry.consumers.common;
 
-import edu.emory.mathcs.backport.java.util.Collections;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.util.Assertion;
+import org.neuinfo.foundry.common.util.Filter;
 import org.neuinfo.foundry.common.util.JSONPathProcessor;
-import org.neuinfo.foundry.common.util.JSONPathProcessor2;
 import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.jms.consumers.ingestors.RemoteFileIterator;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -46,63 +43,69 @@ public class JSONFileIterator implements Iterator<JSONObject> {
         }
     }
 
+
     void prepHandler() throws Exception {
         this.curFile = jsonFileIterator.next();
-        String jsonStr = Utils.loadAsString(this.curFile.getAbsolutePath());
-        List<JSONObject> jsList;
-        if (docElement == null || docElement.length() == 0) {
-            // assumption a json array is at the root of the document
-            JSONArray jsArr = new JSONArray(jsonStr);
-            jsList = new ArrayList<JSONObject>(jsArr.length());
-            for (int i = 0; i < jsArr.length(); i++) {
-                JSONObject el = jsArr.getJSONObject(i);
-                if (filter == null || filter.satisfied(el)) {
-                    jsList.add(el);
-                }
-            }
-            if (filter != null) {
-                this.nonFilterCount = jsArr.length();
-            }
+        if (this.curFile.length() > 20971520l) {
+            Assertion.assertTrue(filter == null);
+            this.jsonObjectIterator = new JsonRecordIterator(this.curFile, docElement);
         } else {
-            JSONObject json = null;
-            try {
-                json = new JSONObject(jsonStr);
-            } catch(JSONException x) {
-                logger.error("jsonStr", x);
-                this.jsonObjectIterator = new ArrayList<JSONObject>(0).iterator();
-                return;
-            }
-            JSONPathProcessor processor = new JSONPathProcessor();
-            List<Object> list = processor.find("$..'" + docElement + "'", json);
-            Assertion.assertTrue(!list.isEmpty());
-            jsList = new ArrayList<JSONObject>();
-            for (Object o : list) {
-                if (o instanceof JSONArray) {
-                    JSONArray jsArr = (JSONArray) o;
-                    for (int i = 0; i < jsArr.length(); i++) {
-                        Object oe = jsArr.get(i);
-                        if (oe instanceof JSONObject) {
-                            JSONObject el = (JSONObject) oe;
-                            if (filter == null || filter.satisfied(el)) {
-                                jsList.add(el);
-                            }
-                        }
-                    }
-                    if (filter != null) {
-                        this.nonFilterCount += jsArr.length();
-                    }
-                } else if (o instanceof JSONObject) {
-                    JSONObject el = (JSONObject) o;
+            String jsonStr = Utils.loadAsString(this.curFile.getAbsolutePath());
+            List<JSONObject> jsList;
+            if (docElement == null || docElement.length() == 0) {
+                // assumption a json array is at the root of the document
+                JSONArray jsArr = new JSONArray(jsonStr);
+                jsList = new ArrayList<JSONObject>(jsArr.length());
+                for (int i = 0; i < jsArr.length(); i++) {
+                    JSONObject el = jsArr.getJSONObject(i);
                     if (filter == null || filter.satisfied(el)) {
                         jsList.add(el);
                     }
-                    if (filter != null) {
-                        this.nonFilterCount++;
+                }
+                if (filter != null) {
+                    this.nonFilterCount = jsArr.length();
+                }
+            } else {
+                JSONObject json = null;
+                try {
+                    json = new JSONObject(jsonStr);
+                } catch (JSONException x) {
+                    logger.error("jsonStr", x);
+                    this.jsonObjectIterator = new ArrayList<JSONObject>(0).iterator();
+                    return;
+                }
+                JSONPathProcessor processor = new JSONPathProcessor();
+                List<Object> list = processor.find("$..'" + docElement + "'", json);
+                Assertion.assertTrue(!list.isEmpty());
+                jsList = new ArrayList<JSONObject>();
+                for (Object o : list) {
+                    if (o instanceof JSONArray) {
+                        JSONArray jsArr = (JSONArray) o;
+                        for (int i = 0; i < jsArr.length(); i++) {
+                            Object oe = jsArr.get(i);
+                            if (oe instanceof JSONObject) {
+                                JSONObject el = (JSONObject) oe;
+                                if (filter == null || filter.satisfied(el)) {
+                                    jsList.add(el);
+                                }
+                            }
+                        }
+                        if (filter != null) {
+                            this.nonFilterCount += jsArr.length();
+                        }
+                    } else if (o instanceof JSONObject) {
+                        JSONObject el = (JSONObject) o;
+                        if (filter == null || filter.satisfied(el)) {
+                            jsList.add(el);
+                        }
+                        if (filter != null) {
+                            this.nonFilterCount++;
+                        }
                     }
                 }
             }
+            this.jsonObjectIterator = jsList.iterator();
         }
-        this.jsonObjectIterator = jsList.iterator();
     }
 
     public int getNonFilterCount() {
@@ -125,8 +128,8 @@ public class JSONFileIterator implements Iterator<JSONObject> {
                         if (hasNext) {
                             return hasNext;
                         }
-                    } while(jsonFileIterator.hasNext());
-                    return  false;
+                    } while (jsonFileIterator.hasNext());
+                    return false;
                 } else {
                     return false;
                 }
@@ -147,29 +150,4 @@ public class JSONFileIterator implements Iterator<JSONObject> {
         throw new UnsupportedOperationException();
     }
 
-    public static class Filter {
-        final String filterJsonPath;
-        final String filterValue;
-
-        public Filter(String filterJsonPath, String filterValue) {
-            this.filterJsonPath = filterJsonPath;
-            this.filterValue = filterValue;
-        }
-
-
-        public boolean satisfied(JSONObject json) {
-            JSONPathProcessor2 processor = new JSONPathProcessor2();
-            List<JSONPathProcessor2.JPNode> list;
-            try {
-                list = processor.find(filterJsonPath, json);
-                if (list != null && !list.isEmpty()) {
-                    JSONPathProcessor2.JPNode jpNode = list.get(0);
-                    return jpNode.getValue().equals(filterValue);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-return false;
-        }
-    }
 }

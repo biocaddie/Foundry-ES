@@ -116,7 +116,7 @@ public class ManagementService {
         System.out.println("\tcdup <sourceID>  - clean duplicate files from GridFS for a sourceID");
         System.out.println("\ttrigger <sourceID> <status-2-match> <queue-2-send> [<new-status> [<new-out-status>]] (e.g. trigger nif-0000-00135 new.1 foundry.uuid.1)");
         System.out.println("\trun <sourceID> status:<status-2-match> step:<step-name> [on|to_end] (e.g. run nif-0000-00135 status:new.1 step:transform)");
-        System.out.println("\tindex <sourceID> <status-2-match> <url> (e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)");
+        System.out.println("\tindex <sourceID> <status-2-match> <url> [-filter <filter-jsonpath-exp>](e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)");
         System.out.println("\tlist - lists all of the existing sources.");
         System.out.println("\tstatus [<sourceID>] - show processing status of data source(s)");
         System.out.println("\tws - show configured workflow(s)");
@@ -254,19 +254,30 @@ public class ManagementService {
                         lastCommand = ans;
                     }
                 } else if (ans.startsWith("index")) {
-                    String[] toks = ans.split("\\s+");
-                    if (toks.length == 4 || toks.length == 5) {
-                        String srcNifId = toks[1];
-                        String status2Match = toks[2];
-                        String urlStr = toks[3];
+                    Utils.OptParser optParser = new Utils.OptParser(ans);
+                    int noPP = optParser.getNumOfPositionalParams();
+
+                    // String[] toks = ans.split("\\s+");
+                    if (noPP == 4 || noPP == 5) {
+                        String srcNifId =  optParser.getParam(1);// toks[1];
+                        String status2Match = optParser.getParam(2); //  toks[2];
+                        String urlStr = optParser.getParam(3); // toks[3];
                         String apiKey = null;
-                        if (toks.length == 5) {
-                            apiKey = toks[4];
+                        if (noPP == 5) {
+                            apiKey = optParser.getParam(4); // toks[4];
+                        }
+                        String filter = optParser.getOptValue("filter");
+                        if (filter != null){
+                            String[] tokens = filter.split("=");
+                            if (tokens.length != 2) {
+                                throw new RuntimeException("Filter string must be of type <json-path>=<value>");
+                            }
                         }
                         Source source = ms.helper.findSource(srcNifId);
                         Assertion.assertNotNull(source);
                         String[] urlParts = Utils.splitServerURLAndPath(urlStr);
-                        ms.helper.index2ElasticSearchBulk(source, status2Match, urlParts[1], urlParts[0], apiKey);
+                        ms.helper.index2ElasticSearchBulk(source, status2Match,
+                                urlParts[1], urlParts[0], apiKey, filter);
                         history.add(ans);
                         lastCommand = ans;
                     }

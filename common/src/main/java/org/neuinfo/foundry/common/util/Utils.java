@@ -36,6 +36,58 @@ import java.util.zip.GZIPInputStream;
 public class Utils {
 
 
+    public static class Opt {
+        String opt;
+        String value;
+
+        public Opt(String opt, String value) {
+            this.opt = opt;
+            this.value = value;
+        }
+    }
+
+    public static class OptParser {
+        Map<String,Opt> optMap = new HashMap<String, Opt>(11);
+        List<String> positionalParams = new ArrayList<String>(5);
+
+        public OptParser(String cmdLine) {
+            String[] tokens = cmdLine.split("\\s+");
+            int idx = 0;
+            while(idx < tokens.length) {
+                String token = tokens[idx];
+                if (token.startsWith("-")) {
+                    String opt = token.replaceAll("^\\-+","");
+                    if (idx + 1 >= tokens.length) {
+                        throw new RuntimeException("Missing value for command line param " + token);
+                    }
+                    Opt option = new Opt(opt, tokens[idx+1]);
+                    optMap.put(opt, option);
+                    idx += 2;
+                } else {
+                    positionalParams.add(token);
+                    idx++;
+                }
+            }
+        }
+
+        public String getOptValue(String opt) {
+            if (optMap.containsKey(opt)) {
+                return optMap.get(opt).value;
+            }
+            return null;
+        }
+
+        public String getParam(int idx) {
+            return positionalParams.get(idx);
+        }
+        public List<String> getPositionalParams() {
+            return positionalParams;
+        }
+
+        public int getNumOfPositionalParams() {
+            return positionalParams.size();
+        }
+    }
     public static Date parseDate(String currentValue, String dateFormat) {
         if (dateFormat == null || dateFormat.endsWith("Z")) {
             try {

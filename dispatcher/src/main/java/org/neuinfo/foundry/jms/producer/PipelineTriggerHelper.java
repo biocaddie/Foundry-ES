@@ -137,13 +137,21 @@ public class PipelineTriggerHelper {
     }
 
     public void index2ElasticSearchBulk(Source source, String status2Match, String indexPath,
-                                        String serverURL, String apiKey) throws Exception {
+                                        String serverURL, String apiKey, String filterString) throws Exception {
         Map<String, String> docId2JsonDocStrMap = new HashMap<String, String>();
         DB db = mongoClient.getDB(dbName);
         DBCollection records = db.getCollection(this.getCollectionName());
         BasicDBObject query = new BasicDBObject("Processing.status", status2Match)
                 .append("SourceInfo.SourceID", source.getResourceID());
         DBCursor cursor = records.find(query);
+        Filter filter = null;
+        if (filterString != null) {
+            String[] tokens = filterString.split("=");
+            String filterJsonPath = tokens[0];
+            String filterValue = tokens[1];
+            filter = new Filter(filterJsonPath, filterValue);
+        }
+
         int count = 0;
         try {
             while (cursor.hasNext()) {
@@ -156,6 +164,10 @@ public class PipelineTriggerHelper {
                 BasicDBObject transformedRecDBO = (BasicDBObject) data.get("transformedRec");
                 if (transformedRecDBO != null) {
                     JSONObject js = JSONUtils.toJSON(transformedRecDBO, true);
+                    if (filter != null && !filter.satisfied(js)) {
+                        continue;
+                    }
+
                     String jsonDocStr = js.toString();
                     count++;
                     docId2JsonDocStrMap.put(docId, jsonDocStr);
