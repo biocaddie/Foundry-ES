@@ -1134,6 +1134,19 @@ public class IngestionSampler {
         ingestor.initialize(options);
         ingest(ingestor, "/tmp/nsrr_sample_doc.json", 5);
     }
+    
+    public void sampleGDC() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///Users/rliu1/Desktop/GDC_projects.json");
+        options.put("documentElement", "");
+        options.put("cacheFilename", "datameta_en.json");
+        options.put("parserType", "json");
+        options.put("useCache", "true");
+        
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/gdc_sample_doc.json", 5);
+    }
 
     public static void main(String[] args) throws Exception {
         IngestionSampler sampler = new IngestionSampler();
