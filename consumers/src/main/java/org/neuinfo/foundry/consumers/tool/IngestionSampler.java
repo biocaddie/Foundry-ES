@@ -1180,6 +1180,19 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/emdb_record.json", 5);
        
     }
+    
+    public void sampleVectorBase() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///Users/rliu1/Desktop/VectorBase.csv");
+        options.put("ignoreLines", "1");
+        options.put("headerLine", "1");
+        options.put("delimiter", ",");
+        options.put("textQuote", "&#034;");
+        options.put("escapeCharacter", "&#092;");
+        NIFCSVIngestor ingestor = new NIFCSVIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/VectorBase_record.json", 5);
+    }
 
     public static void main(String[] args) throws Exception {
         IngestionSampler sampler = new IngestionSampler();
