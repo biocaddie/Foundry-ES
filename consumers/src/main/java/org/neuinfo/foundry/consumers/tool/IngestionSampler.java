@@ -1193,6 +1193,21 @@ public class IngestionSampler {
         ingestor.initialize(options);
         ingest(ingestor, "/tmp/VectorBase_record.json", 5);
     }
+    
+    
+    public void sampleEpigenomicsCSV() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///Users/rliu1/Downloads/jul2013.roadmapData.qc - Consolidated_EpigenomeIDs_summary_Table.csv");
+        options.put("ignoreLines", "3");
+        options.put("headerLine", "3");
+        options.put("delimiter", ",");
+        options.put("textQuote", "&#034;");
+        options.put("escapeCharacter", "&#092;");
+        NIFCSVIngestor ingestor = new NIFCSVIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/epigenomics/epigenomics.json", 5);
+    }
+    
 
     public static void main(String[] args) throws Exception {
         IngestionSampler sampler = new IngestionSampler();
