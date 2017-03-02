@@ -1160,6 +1160,26 @@ public class IngestionSampler {
         ingestor.initialize(options);
         ingest(ingestor, "/tmp/retina.json", 5);
     }
+    
+    public void sampleIngestEMDBFromFTP() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ftpHost", "ftp.ebi.ac.uk");
+        options.put("remotePath", "/pub/databases/emdb/structures/");
+        options.put("filenamePattern", "emd-.+\\.xml$");
+        options.put("recursive", "true");
+        options.put("outDir", "/var/data/foundry-es/cache/data/emdb_ftp/");
+        options.put("documentElement", "emdEntry");
+        options.put("sampleMode", "true");
+        options.put("maxDocs", "10");
+        
+
+        FTPIngestor ingestor = new FTPIngestor();
+        //ingestor.setTestMode(true);
+        ingestor.initialize(options);
+        
+        ingest(ingestor, "/tmp/emdb_record.json", 5);
+       
+    }
 
     public static void main(String[] args) throws Exception {
         IngestionSampler sampler = new IngestionSampler();
