@@ -4,10 +4,7 @@ import org.apache.log4j.Logger;
 import org.jdom2.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.neuinfo.foundry.common.util.Assertion;
-import org.neuinfo.foundry.common.util.FileExpander;
-import org.neuinfo.foundry.common.util.JSONPathProcessor2;
-import org.neuinfo.foundry.common.util.Utils;
+import org.neuinfo.foundry.common.util.*;
 import org.neuinfo.foundry.consumers.common.ConsumerUtils;
 import org.neuinfo.foundry.consumers.common.JSONFileIterator;
 import org.neuinfo.foundry.consumers.common.XMLFileIterator;
@@ -45,6 +42,7 @@ public class WebIngestor implements Ingestor {
     String mergeDocElName;
     String filterJsonPath;
     String filterValue;
+    boolean normalize = false;
 
     boolean sampleMode = false;
     int sampleSize = 1;
@@ -88,6 +86,7 @@ public class WebIngestor implements Ingestor {
 
 
         this.optionMap = options;
+        this.normalize = options.containsKey("normalize") ? Boolean.parseBoolean(options.get("normalize")) : false;
         this.useCache = options.containsKey("useCache") ?
                 Boolean.parseBoolean(options.get("useCache")) : true;
         this.sampleMode = options.containsKey("sampleMode")
@@ -191,11 +190,14 @@ public class WebIngestor implements Ingestor {
             Result r;
             if (this.parserType.equals("xml")) {
                 Element el = xmlFileIterator.next();
-                r = ConsumerUtils.convert2JSON(el);
+                r = ConsumerUtils.convert2JSON(el, normalize);
             } else {
                 JSONObject json = jsonFileIterator.next();
                 if (mergeIngestURLTemplate != null) {
                     mergeRelatedDoc(json);
+                }
+                if (normalize) {
+                    JSONUtils.normalize(json);
                 }
 
                 return new Result(json, Result.Status.OK_WITH_CHANGE);

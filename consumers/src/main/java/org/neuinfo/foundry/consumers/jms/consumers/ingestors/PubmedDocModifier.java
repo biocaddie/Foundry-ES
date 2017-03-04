@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by bozyurt on 10/13/16.
  */
-public class PubmedDocModifier extends GenericDocumentModifierSupport{
+public class PubmedDocModifier extends GenericDocumentModifierSupport {
 
     public PubmedDocModifier(MongoClient mongoClient, String mongoDbName, String collectionName,
                              String sourceID, MessagePublisher messagePublisher, String outStatus) {
@@ -25,10 +25,12 @@ public class PubmedDocModifier extends GenericDocumentModifierSupport{
         BasicDBObject docDBO = findDocument(primaryKey);
         if (docDBO != null) {
             BasicDBObject origDocDBO = (BasicDBObject) docDBO.get("OriginalDoc");
-            origDocDBO.put("Deleted", new BasicDBObject("_$", filename));
-            saveDocument(docDBO);
-            ObjectId oid = (ObjectId) docDBO.get("_id");
-            sendMessage(oid.toString());
+            if (origDocDBO.get("Deleted") == null) {
+                origDocDBO.put("Deleted", new BasicDBObject("_$", filename));
+                saveDocument(docDBO);
+                ObjectId oid = (ObjectId) docDBO.get("_id");
+                sendMessage(oid.toString());
+            }
         }
     }
 }

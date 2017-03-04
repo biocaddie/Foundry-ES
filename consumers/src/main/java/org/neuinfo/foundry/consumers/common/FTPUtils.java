@@ -2,6 +2,7 @@ package org.neuinfo.foundry.consumers.common;
 
 import org.apache.commons.net.ftp.FTPFile;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +12,27 @@ import java.util.regex.Pattern;
  */
 public class FTPUtils {
 
+
+    public static List<FileInfo> getFiles(String parentDir, FtpClient client, Pattern pattern) {
+        List<FileInfo> filteredFiles = new LinkedList<FileInfo>();
+        List<FTPFile> list = client.list(parentDir);
+
+        if (pattern != null) {
+            for (FTPFile path : list) {
+                Matcher m = pattern.matcher(path.getName());
+                if (m.find()) {
+                    String fullPath = toFullPath(path.getName(), parentDir);
+                    filteredFiles.add(new FileInfo(fullPath, path.getSize()));
+                }
+            }
+        } else {
+            for (FTPFile path : list) {
+                String fullPath = toFullPath(path.getName(), parentDir);
+                filteredFiles.add(new FileInfo(fullPath, path.getSize()));
+            }
+        }
+        return filteredFiles;
+    }
 
     public static void  recurseRemoteDirs(String parentDir, FtpClient client, Pattern pattern, List<FileInfo> filteredFiles,
                            boolean sampleMode, int sampleSize, boolean testMode, int maxNumDocs2Ingest) {
@@ -44,6 +66,11 @@ public class FTPUtils {
                 }
             }
         }
+    }
+
+    public static boolean looksLikeADirectory(String path) {
+        Pattern p = Pattern.compile("\\.\\w+$");
+        return !p.matcher(path).find();
     }
 
     public static String toFullPath(String path, String parentDir) {
@@ -82,6 +109,11 @@ public class FTPUtils {
 
         public long getSize() {
             return size;
+        }
+
+        public String getLastPart() {
+            int idx = filePath.lastIndexOf('/');
+            return filePath.substring(idx+1);
         }
     }
 }

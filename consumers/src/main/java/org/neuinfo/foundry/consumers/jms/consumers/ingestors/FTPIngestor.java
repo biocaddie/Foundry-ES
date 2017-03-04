@@ -71,8 +71,6 @@ public class FTPIngestor implements Ingestor {
     @Override
     public void startup() throws Exception {
         if (recursive && fileNamePattern != null) {
-
-
             List<FTPUtils.FileInfo> filesMatching = getFilesMatching(this.fileNamePattern, recursive);
 
             FtpClient client = new FtpClient(ftpHost);

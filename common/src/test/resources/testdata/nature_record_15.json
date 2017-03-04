@@ -1,0 +1,799 @@
+{
+  "metadata": {},
+  "studies": {
+    "design_descriptors": [
+      {
+        "Study Design Type Term Source REF": "OBI",
+        "Study Design Type Term Accession Number": "OBI:0300311",
+        "Study Design Type": "observation design"
+      },
+      {
+        "Study Design Type Term Source REF": "",
+        "Study Design Type Term Accession Number": "",
+        "Study Design Type": "genome sequencing"
+      },
+      {
+        "Study Design Type Term Source REF": "NCIT",
+        "Study Design Type Term Accession Number": "NCIT:C19646",
+        "Study Design Type": "Shotgun Sequencing"
+      }
+    ],
+    "metadata": {
+      "Study Submission Date": "08/08/2014",
+      "Study Public Release Date": "25/11/2014",
+      "Study Title": "Long-read, whole-genome shotgun sequence data for five model organisms",
+      "Comment[Data Record URI]": "http://www.ncbi.nlm.nih.gov/sra/SRX499318;http://www.ncbi.nlm.nih.gov/sra/SRX669475;http://www.ncbi.nlm.nih.gov/sra/SRX533608;http://www.ncbi.nlm.nih.gov/sra/SRX533607;http://www.ncbi.nlm.nih.gov/sra/SRX533606;http://www.ncbi.nlm.nih.gov/sra/SRX533605;http://www.ncbi.nlm.nih.gov/sra/SRX533604;http://www.ncbi.nlm.nih.gov/sra/SRX533603",
+      "Study Identifier": "10.1038/sdata.2014.45",
+      "Comment[Manuscript Licence]": "CC BY-4.0",
+      "Comment[Subject Keywords]": "Biological sciences/Biotechnology/Genomics;Biological sciences/Biotechnology/Genomics/Genome assembly algorithms;Biological sciences/Biological techniques/Sequencing/DNA sequencing;Biological sciences/Biological techniques/Experimental organisms",
+      "Comment[Data Record Accession]": "SRX499318;SRX669475;SRX533608;SRX533607;SRX533606;SRX533605;SRX533604;SRX533603",
+      "Study Description": "http://www.nature.com/articles/sdata201445#abstract",
+      "Comment[Experimental Metadata Licence]": "CC0",
+      "Comment[Supplementary Information File Name]": "Supplementary Table 1",
+      "Comment[Supplementary Information File URL]": "http://www.nature.com/articles/sdata201445#supplementary-information",
+      "Comment[Supplementary Information File Type]": "vnd.ms-excel",
+      "Comment[Data Repository]": "NCBI Sequence Read Archive;NCBI Sequence Read Archive;NCBI Sequence Read Archive;NCBI Sequence Read Archive;NCBI Sequence Read Archive;NCBI Sequence Read Archive;NCBI Sequence Read Archive;NCBI Sequence Read Archive",
+      "Study File Name": "s_study_Landolin.txt"
+    },
+    "nodes": [
+      {
+        "metadata": {
+          "Comment[strain]": [["ISO1 "]],
+          "Sample Name": ["D. melanogaster ISO1"],
+          "Comment[origin]": [["S. Celniker, Lawrence Berkeley National Laboratory"]],
+          "Source Name": ["Drosophila melanogaster "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Drosophila melanogaster",
+            "NCBITAXON",
+            "NCBITaxon:7227"
+          ]]
+        },
+        "name": "D. melanogaster ISO1",
+        "ntype": "Sample Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["9464 (daughter of W303 strain)"]],
+          "Sample Name": ["S. cerevisiae 9464"],
+          "Comment[origin]": [["J. Li, University of California San Francisco"]],
+          "Source Name": ["Saccharomyces cerevisiae "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Saccharomyces cerevisiae W303",
+            "NCBITAXON",
+            "NCBITaxon:580240"
+          ]]
+        },
+        "name": "Saccharomyces cerevisiae ",
+        "ntype": "Source Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["Ler-0"]],
+          "Sample Name": ["A. thaliana Ler-0"],
+          "Comment[origin]": [["Lehle Seeds, WT-04-19-02"]],
+          "Source Name": ["Arabidopsis thaliana "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Arabidopsis thaliana",
+            "NCBITAXON",
+            "NCBITaxon:3702"
+          ]]
+        },
+        "name": "A. thaliana Ler-0",
+        "ntype": "Sample Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["ISO1 "]],
+          "Sample Name": ["D. melanogaster ISO1"],
+          "Comment[origin]": [["S. Celniker, Lawrence Berkeley National Laboratory"]],
+          "Source Name": ["Drosophila melanogaster "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Drosophila melanogaster",
+            "NCBITAXON",
+            "NCBITaxon:7227"
+          ]]
+        },
+        "name": "Drosophila melanogaster ",
+        "ntype": "Source Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["K12 MG1655 "]],
+          "Sample Name": ["E. coli MG1655"],
+          "Comment[origin]": [["Lofstrand Labs Ltd, cat# L3-4001SP2"]],
+          "Source Name": ["Escherichia coli "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Escherichia coli str. K-12 substr. MG1655",
+            "NCBITAXON",
+            "NCBITaxon:511145"
+          ]]
+        },
+        "name": "E. coli MG1655",
+        "ntype": "Sample Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["9464 (daughter of W303 strain)"]],
+          "Sample Name": ["S. cerevisiae 9464"],
+          "Comment[origin]": [["J. Li, University of California San Francisco"]],
+          "Source Name": ["Saccharomyces cerevisiae "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Saccharomyces cerevisiae W303",
+            "NCBITAXON",
+            "NCBITaxon:580240"
+          ]]
+        },
+        "name": "S. cerevisiae 9464",
+        "ntype": "Sample Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["Ler-0"]],
+          "Sample Name": ["A. thaliana Ler-0"],
+          "Comment[origin]": [["Lehle Seeds, WT-04-19-02"]],
+          "Source Name": ["Arabidopsis thaliana "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Arabidopsis thaliana",
+            "NCBITAXON",
+            "NCBITaxon:3702"
+          ]]
+        },
+        "name": "Arabidopsis thaliana ",
+        "ntype": "Source Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["K12 MG1655 "]],
+          "Sample Name": ["E. coli MG1655"],
+          "Comment[origin]": [["Lofstrand Labs Ltd, cat# L3-4001SP2"]],
+          "Source Name": ["Escherichia coli "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Escherichia coli str. K-12 substr. MG1655",
+            "NCBITAXON",
+            "NCBITaxon:511145"
+          ]]
+        },
+        "name": "Escherichia coli ",
+        "ntype": "Source Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["OR74A "]],
+          "Sample Name": ["N. crassa OR74A"],
+          "Comment[origin]": [["Fungal Genetics Stock Center"]],
+          "Source Name": ["Neurospora crassa "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Neurospora crassa OR74A",
+            "NCBITAXON",
+            "NCBITaxon:367110"
+          ]]
+        },
+        "name": "Neurospora crassa ",
+        "ntype": "Source Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [[" T1 "]],
+          "Sample Name": ["N. crassa T1"],
+          "Comment[origin]": [["D. Catcheside, Flinders University"]],
+          "Source Name": ["Neurospora crassa "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Neurospora crassa",
+            "NCBITAXON",
+            "NCBITaxon:5141"
+          ]]
+        },
+        "name": "N. crassa T1",
+        "ntype": "Sample Name"
+      },
+      {
+        "metadata": {
+          "Comment[strain]": [["OR74A "]],
+          "Sample Name": ["N. crassa OR74A"],
+          "Comment[origin]": [["Fungal Genetics Stock Center"]],
+          "Source Name": ["Neurospora crassa "],
+          "Protocol REF": [
+            ["SMRTbell Library Preparation"],
+            ["DNA extraction"]
+          ],
+          "Characteristics[organism]": [[
+            "Neurospora crassa OR74A",
+            "NCBITAXON",
+            "NCBITaxon:367110"
+          ]]
+        },
+        "name": "N. crassa OR74A",
+        "ntype": "Sample Name"
+      }
+    ],
+    "assays": [{
+      "metadata": {
+        "Study Assay Technology Type Term Accession Number": "OBI:0002012",
+        "Study Assay Technology Type": "PacBio RS II",
+        "Study Assay Measurement Type": "DNA sequencing",
+        "Study Assay Technology Type Term Source REF": "OBI",
+        "Study Assay Measurement Type Term Source REF": "OBI",
+        "Study Assay File Name": "a_assay_Landolin.txt",
+        "Study Assay Measurement Type Term Accession Number": "OBI:0000626",
+        "Study Assay Technology Platform": "PacBio RS II"
+      },
+      "nodes": [
+        {
+          "metadata": {
+            "Sample Name": ["D. melanogaster ISO1"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02614627"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX499318"]]
+          },
+          "name": "D. melanogaster ISO1",
+          "ntype": "Sample Name"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["A. thaliana Ler-0"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02731377"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533608"]]
+          },
+          "name": "A. thaliana Ler-0",
+          "ntype": "Sample Name"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["E. coli MG1655"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02951645"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX669475"]]
+          },
+          "name": "SAMN02951645",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["E. coli MG1655"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02951645"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX669475"]]
+          },
+          "name": "E. coli MG1655",
+          "ntype": "Sample Name"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["S. cerevisiae 9464"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02724977"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533604"]]
+          },
+          "name": "S. cerevisiae 9464",
+          "ntype": "Sample Name"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["N. crassa OR74A"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02724976"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533605"]]
+          },
+          "name": "SAMN02724976",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["N. crassa T1"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02724975"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533606"]]
+          },
+          "name": "SAMN02724975",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["E. coli MG1655"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02731378"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533603"]]
+          },
+          "name": "SAMN02731378",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["S. cerevisiae 9464"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02724977"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533604"]]
+          },
+          "name": "SAMN02724977",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["A. thaliana Ler-0"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02743420 "],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533607"]]
+          },
+          "name": "SAMN02743420 ",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["N. crassa T1"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02724975"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533606"]]
+          },
+          "name": "N. crassa T1",
+          "ntype": "Sample Name"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["A. thaliana Ler-0"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02731377"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533608"]]
+          },
+          "name": "SAMN02731377",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["D. melanogaster ISO1"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02614627"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX499318"]]
+          },
+          "name": "SAMN02614627",
+          "ntype": "Raw Data File"
+        },
+        {
+          "metadata": {
+            "Sample Name": ["N. crassa OR74A"],
+            "Protocol REF": [["DNA Sequencing"]],
+            "Comment[Data Repository]": [["SRA"]],
+            "Raw Data File": ["SAMN02724976"],
+            "Comment[alternate data record]": [["Additional data records can be found at Amazon Web Services, and are listed in Table S1"]],
+            "Comment[Data URL]": [["http://www.ncbi.nlm.nih.gov/sra/?term=SRP040522"]],
+            "Comment[Data Record Accession]": [["SRX533605"]]
+          },
+          "name": "N. crassa OR74A",
+          "ntype": "Sample Name"
+        }
+      ]
+    }],
+    "protocols": [
+      {
+        "Study Protocol Components Type Term Source REF": "",
+        "Study Protocol Components Name": "",
+        "Study Protocol Description": "",
+        "Study Protocol Type": "DNA extraction",
+        "Study Protocol Parameters Name": "DNA extraction protocol; Manufacturer",
+        "Study Protocol Type Term Accession Number": "OBI:0000257",
+        "Study Protocol Version": "",
+        "Study Protocol Components Type Term Accession Number": "",
+        "Study Protocol Type Term Source REF": "ERO",
+        "Study Protocol Name": "DNA extraction",
+        "Study Protocol Parameters Name Term Accession Number": "",
+        "Study Protocol Components Type": "",
+        "Study Protocol Parameters Name Term Source REF": "",
+        "Study Protocol URI": ""
+      },
+      {
+        "Study Protocol Components Type Term Source REF": "",
+        "Study Protocol Components Name": "",
+        "Study Protocol Description": "",
+        "Study Protocol Type": "Genomic Library",
+        "Study Protocol Parameters Name": "Library preparation system; Manufacturer",
+        "Study Protocol Type Term Accession Number": "NCIT:C15241",
+        "Study Protocol Version": "",
+        "Study Protocol Components Type Term Accession Number": "",
+        "Study Protocol Type Term Source REF": "NCIT",
+        "Study Protocol Name": "SMRTbell Library Preparation",
+        "Study Protocol Parameters Name Term Accession Number": "",
+        "Study Protocol Components Type": "",
+        "Study Protocol Parameters Name Term Source REF": "",
+        "Study Protocol URI": ""
+      },
+      {
+        "Study Protocol Components Type Term Source REF": "",
+        "Study Protocol Components Name": "",
+        "Study Protocol Description": "",
+        "Study Protocol Type": "DNA sequencing",
+        "Study Protocol Parameters Name": "Sequencing instrument; Manufacturer; Sequencing chemistry",
+        "Study Protocol Type Term Accession Number": "OBI:0000626",
+        "Study Protocol Version": "",
+        "Study Protocol Components Type Term Accession Number": "",
+        "Study Protocol Type Term Source REF": "OBI",
+        "Study Protocol Name": "DNA Sequencing",
+        "Study Protocol Parameters Name Term Accession Number": "",
+        "Study Protocol Components Type": "",
+        "Study Protocol Parameters Name Term Source REF": "",
+        "Study Protocol URI": ""
+      }
+    ],
+    "contacts": [
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Kim",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Kristi E",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Peluso",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Paul",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Babayan",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Primo",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Flinders University, School of Biological Sciences, PO Box 2100, Adelaide, South Australia 5001, Australia",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Yeadon",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "P. Jane",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Department of Genome Dynamics, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, California 94720, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Yu",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Charles",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Department of Genome Dynamics, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, California 94720, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Fisher",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "William W",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Chin",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Chen-Shan",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Rapicavoli",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Nicole A",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Rank",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "David R",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Department of Microbiology and Immunology, UCSF, San Francisco, California 94158, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Li",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Joachim",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Flinders University, School of Biological Sciences, PO Box 2100, Adelaide, South Australia 5001, Australia",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Catcheside",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "David E. A",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Department of Genome Dynamics, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, California 94720, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Celniker",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Susan E",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "National Biodefense Analysis and Countermeasures Center, 110 Thomas Johnson Drive, Frederick, Maryland 21702, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Phillippy",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Adam M",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Faculty of Life Sciences, University of Manchester, Oxford Road, Manchester M13 9PT, UK",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Bergman",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Casey M",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": ""
+      },
+      {
+        "Study Person Roles Term Accession Number": "",
+        "Study Person Address": "",
+        "Comment[Funder Term Source REF]": "",
+        "Study Person Affiliation": "Pacific Biosciences of California Inc., 1380 Willow Road, Menlo Park, California 94025, USA",
+        "Study Person Roles Term Source REF": "",
+        "Study Person Roles": "",
+        "Study Person Mid Initials": "",
+        "Comment[Grant Identifier]": "",
+        "Comment[Study Person ORCID]": "",
+        "Study Person Last Name": "Landolin",
+        "Comment[FundRef ID]": "",
+        "Study Person Fax": "",
+        "Study Person First Name": "Jane M",
+        "Study Person Phone": "",
+        "Comment[Funder]": "",
+        "Study Person Email": "jlandolin@pacificbiosciences.com"
+      }
+    ],
+    "factors": [],
+    "publications": []
+  },
+  "ontology_refs": [
+    {
+      "Term Source Description": "National Center for Biotechnology Information (NCBI) Organismal Classification",
+      "Term Source Name": "NCBITAXON",
+      "Term Source Version": "2014AA",
+      "Term Source File": "http://data.bioontology.org/ontologies/NCBITAXON"
+    },
+    {
+      "Term Source Description": "Ontology for Biomedical Investigations",
+      "Term Source Name": "OBI",
+      "Term Source Version": "2014-08-18",
+      "Term Source File": "http://data.bioontology.org/ontologies/OBI"
+    },
+    {
+      "Term Source Description": "National Cancer Institute Thesaurus",
+      "Term Source Name": "NCIT",
+      "Term Source Version": "14.08d",
+      "Term Source File": "http://data.bioontology.org/ontologies/NCIT"
+    },
+    {
+      "Term Source Description": "Eagle-I Research Resource Ontology",
+      "Term Source Name": "ERO",
+      "Term Source Version": "2013-08-02",
+      "Term Source File": "http://data.bioontology.org/ontologies/ERO"
+    }
+  ],
+  "ID": "15",
+  "contacts": [],
+  "publications": []
+}

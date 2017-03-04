@@ -1,10 +1,15 @@
 package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.log4j.Logger;
 import org.neuinfo.foundry.common.util.Utils;
@@ -63,6 +68,10 @@ public class ContentLoader {
     }
 
     public static File getContent(String ingestURL, String cacheFileName, boolean useCache) throws Exception {
+        return getContent(ingestURL, cacheFileName, useCache, null, null);
+    }
+
+    public static File getContent(String ingestURL, String cacheFileName, boolean useCache, String username, String pwd) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("getContent for " + ingestURL);
         }
@@ -80,7 +89,7 @@ public class ContentLoader {
             if (cacheFile.isFile()) {
                 return cacheFile;
             }
-            return getFile(cacheFile, gzippedFile, new FileInputStream(new File(filePath)));
+            return getFile(cacheFile, gzippedFile, new FileInputStream(new File(filePath)), false);
         } else {
             // remote file
             if (cacheFileName == null) {
@@ -94,7 +103,13 @@ public class ContentLoader {
                     return cacheFile;
                 }
             }
-            HttpClient client = new DefaultHttpClient();
+            DefaultHttpClient client = new DefaultHttpClient();
+            if (username != null && pwd != null) {
+                client.getCredentialsProvider().setCredentials(new AuthScope(null, -1),
+                        new UsernamePasswordCredentials(username, pwd));
+            }
+
+
             URIBuilder builder = new URIBuilder(ingestURL);
             URI uri = builder.build();
             if (uri.getScheme().equalsIgnoreCase("ftp")) {
@@ -102,7 +117,7 @@ public class ContentLoader {
                 InputStream in = null;
                 try {
                     in = url.openStream();
-                    File file = getFile(cacheFile, gzippedFile, in);
+                    File file = getFile(cacheFile, gzippedFile, in, false);
                     return file;
 
                 } finally {
@@ -115,7 +130,15 @@ public class ContentLoader {
                     HttpResponse response = client.execute(httpGet);
                     HttpEntity entity = response.getEntity();
                     if (entity != null) {
-                        return getFile(cacheFile, gzippedFile, entity.getContent());
+                        Header contentType = entity.getContentType();
+                        boolean binary = false;
+                        if (contentType != null &&
+                                contentType.getValue().indexOf("zip") != -1 ||
+                                contentType.getValue().indexOf("octet") != -1) {
+                            binary = true;
+
+                        }
+                        return getFile(cacheFile, gzippedFile, entity.getContent(), binary);
                     }
                 } finally {
                     if (httpGet != null) {
@@ -127,7 +150,7 @@ public class ContentLoader {
         return null;
     }
 
-    private static File getFile(File cacheFile, boolean gzippedFile, InputStream contentIn) throws IOException {
+    private static File getFile(File cacheFile, boolean gzippedFile, InputStream contentIn, boolean binary) throws IOException {
         if (gzippedFile) {
             BufferedInputStream in = null;
             BufferedOutputStream out = null;
@@ -145,20 +168,38 @@ public class ContentLoader {
                 Utils.close(out);
             }
         } else {
-            BufferedWriter out = null;
-            BufferedReader in = null;
-            try {
-                in = new BufferedReader(new InputStreamReader(contentIn));
-                out = Utils.newUTF8CharSetWriter(cacheFile.getAbsolutePath());
-                String line;
-                while ((line = in.readLine()) != null) {
-                    out.write(line);
-                    out.newLine();
+            if (binary) {
+                BufferedInputStream in = null;
+                BufferedOutputStream out = null;
+                try {
+                    in = new BufferedInputStream(contentIn);
+                    out = new BufferedOutputStream(new FileOutputStream(cacheFile));
+                    byte[] buffer = new byte[4096];
+                    int readBytes = 0;
+                    while ((readBytes = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, readBytes);
+                    }
+                    return cacheFile;
+                } finally {
+                    Utils.close(in);
+                    Utils.close(out);
                 }
-                return cacheFile;
-            } finally {
-                Utils.close(in);
-                Utils.close(out);
+            } else {
+                BufferedWriter out = null;
+                BufferedReader in = null;
+                try {
+                    in = new BufferedReader(new InputStreamReader(contentIn));
+                    out = Utils.newUTF8CharSetWriter(cacheFile.getAbsolutePath());
+                    String line;
+                    while ((line = in.readLine()) != null) {
+                        out.write(line);
+                        out.newLine();
+                    }
+                    return cacheFile;
+                } finally {
+                    Utils.close(in);
+                    Utils.close(out);
+                }
             }
         }
     }

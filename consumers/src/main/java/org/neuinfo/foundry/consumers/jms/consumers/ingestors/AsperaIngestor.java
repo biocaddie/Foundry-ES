@@ -38,6 +38,7 @@ public class AsperaIngestor implements Ingestor {
     int sampleSize = 1;
     boolean fullSet = false;
     String xmlFileNamePattern;
+    List<String> excludesList = new ArrayList<String>(5);
     static Logger log = Logger.getLogger(AsperaIngestor.class);
 
     @Override
@@ -66,6 +67,12 @@ public class AsperaIngestor implements Ingestor {
             this.sampleMode = Boolean.parseBoolean(options.get("sampleMode"));
         }
         this.sampleSize = Utils.getIntValue(options.get("sampleSize"), 1);
+        if (options.containsKey("excludes")) {
+            String[] tokens = options.get("excludes").split(";");
+            for(String token : tokens) {
+                this.excludesList.add(token);
+            }
+        }
     }
 
     @Override
@@ -80,6 +87,12 @@ public class AsperaIngestor implements Ingestor {
         //FIXME
         String HOME_DIR = System.getProperty("user.home");
         cmdList.add(HOME_DIR + "/.aspera/connect/bin/ascp");
+        if (!excludesList.isEmpty()) {
+            for(String ep : excludesList) {
+                cmdList.add("-E");
+                cmdList.add("\"" + ep + "\"");
+            }
+        }
         cmdList.add("-i");
         cmdList.add(this.publicKeyFile);
         if (this.args != null) {

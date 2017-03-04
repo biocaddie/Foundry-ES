@@ -10,6 +10,7 @@ import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService;
 import org.neuinfo.foundry.common.ingestion.DocProcessingStatsService.SourceStats;
 import org.neuinfo.foundry.common.ingestion.DocumentIngestionService;
 import org.neuinfo.foundry.common.model.Source;
+import org.neuinfo.foundry.common.model.SourceProcessStatusInfo;
 import org.neuinfo.foundry.common.util.*;
 import org.neuinfo.foundry.jms.common.Constants;
 
@@ -113,8 +114,49 @@ public class PipelineTriggerHelper {
         return srcList;
     }
 
+    public void saveStatus(Source source) {
+        DB db = mongoClient.getDB(this.dbName);
+        DBCollection collection = db.getCollection("source_prog_infos");
+        BasicDBObject query = new BasicDBObject("sourceID", source.getResourceID())
+                .append("dataSource", source.getDataSource());
+        DBCursor cursor = collection.find(query);
+        BasicDBObject existingDBO = null;
+        try {
+            if (cursor.hasNext()) {
+                existingDBO = (BasicDBObject) cursor.next();
+            }
+        } finally {
+            cursor.close();
+        }
+        Date now = new Date();
+        String processID = Utils.prepBatchId(now);
+        SourceProcessStatusInfo spsi = new SourceProcessStatusInfo(source.getResourceID(), source.getDataSource(),
+                processID);
+        spsi.setStartDate(now);
+        spsi.setIngestionStatus(SourceProcessStatusInfo.RUNNING);
+        spsi.setProcessingStatus(SourceProcessStatusInfo.RUNNING);
+        DBObject dbo = JSONUtils.encode(spsi.toJSON());
+        if (existingDBO == null) {
+            collection.insert(dbo, WriteConcern.SAFE);
+        } else {
+            collection.remove(existingDBO);
+            collection.insert(dbo, WriteConcern.SAFE);
+            //BasicDBObject query2 = new BasicDBObject("_id", existingDBO.getObjectId("_id"));
+            //collection.update(query2, dbo);
+        }
+    }
+
     public void sendMessage(JSONObject messageBody) throws JMSException {
         sendMessage(messageBody, this.queueName);
+    }
+
+
+    public void sendIngestStartMessage(String sourceID, String dataSource) throws JMSException {
+        JSONObject messageBody = new JSONObject();
+        messageBody.put("sourceID", sourceID);
+        messageBody.put("dataSource", dataSource);
+        messageBody.put("ingestionStarted","true");
+        sendMessage(messageBody, org.neuinfo.foundry.common.Constants.PIPELINE_MSG_QUEUE);
     }
 
     private void sendMessage(JSONObject messageBody, String queue2Send) throws JMSException {

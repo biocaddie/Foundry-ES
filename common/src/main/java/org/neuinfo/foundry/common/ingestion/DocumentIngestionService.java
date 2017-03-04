@@ -11,12 +11,15 @@ import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.neuinfo.foundry.common.Constants;
 import org.neuinfo.foundry.common.config.IMongoConfig;
 import org.neuinfo.foundry.common.model.*;
 import org.neuinfo.foundry.common.util.*;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -67,12 +70,49 @@ public class DocumentIngestionService extends BaseIngestionService {
         bi.setIngestionStatus(Status.IN_PROCESS);
         bi.setIngestionStartDatetime(new Date());
         sis.addUpdateBatchInfo(source.getResourceID(), source.getDataSource(), bi);
+
+        // store process status record
+        DB db = mongoClient.getDB(this.dbName);
+        DBCollection collection = db.getCollection(Constants.SOURCE_PROG_COLLECTION);
+        SourceProgressInfo spi = new SourceProgressInfo(source.getResourceID(), source.getDataSource());
+        spi.setIngestionStatus(SourceProgressInfo.RUNNING);
+        spi.setProcessingStatus(SourceProgressInfo.RUNNING);
+        spi.setStartDate(bi.getIngestionStartDatetime());
+        BasicDBObject query = new BasicDBObject("sourceID", source.getResourceID())
+                .append("dataSource", source.getDataSource());
+        BasicDBObject existingDBO = (BasicDBObject) collection.findOne(query);
+        if (existingDBO != null) {
+            BasicDBObject query2 = new BasicDBObject("_id", existingDBO.getObjectId("_id"));
+            collection.update(query2, JSONUtils.encode(spi.toJSON()));
+        } else {
+            collection.insert(JSONUtils.encode(spi.toJSON()));
+        }
+    }
+
+    public void incrNewCount(Source source) {
+        incrCount(source, "newCount");
+    }
+
+    public void incrUpdatedCount(Source source) {
+        incrCount(source, "updatedCount");
     }
 
 
+    public void incrCount(Source source, String fieldName) {
+        DB db = mongoClient.getDB(this.dbName);
+        DBCollection collection = db.getCollection(Constants.SOURCE_PROG_COLLECTION);
+        BasicDBObject query = new BasicDBObject("sourceID", source.getResourceID())
+                .append("dataSource", source.getDataSource());
+        BasicDBObject existingDBO = (BasicDBObject) collection.findOne(query);
+        if (existingDBO != null) {
+            BasicDBObject query2 = new BasicDBObject("_id", existingDBO.getObjectId("_id"));
+            BasicDBObject incValue = new BasicDBObject(fieldName, 1);
+            collection.update(query2, new BasicDBObject("$inc", incValue));
+        }
+    }
 
     public void endBatch(Source source, String batchId,
-                         int ingestedCount, int submittedCount, int updatedCount) {
+                         int ingestedCount, int submittedCount, int updatedCount, int newCount) {
         SourceIngestionService sis = new SourceIngestionService();
         sis.setMongoClient(this.mongoClient);
         sis.setMongoDBName(this.dbName);
@@ -83,6 +123,50 @@ public class DocumentIngestionService extends BaseIngestionService {
         bi.setIngestionStatus(Status.FINISHED);
         bi.setIngestionEndDatetime(new Date());
         sis.addUpdateBatchInfo(source.getResourceID(), source.getDataSource(), bi);
+
+        // update source progress data
+        DB db = mongoClient.getDB(this.dbName);
+        DBCollection collection = db.getCollection(Constants.SOURCE_PROG_COLLECTION);
+        BasicDBObject query = new BasicDBObject("sourceID", source.getResourceID())
+                .append("dataSource", source.getDataSource());
+        BasicDBObject existingDBO = (BasicDBObject) collection.findOne(query);
+        if (existingDBO != null) {
+            BasicDBObject query2 = new BasicDBObject("_id", existingDBO.getObjectId("_id"));
+            BasicDBObject setValues = new BasicDBObject("ingestedCount", ingestedCount)
+                    .append("submittedCount", submittedCount)
+                //    .append("updatedCount", updatedCount)
+                //    .append("newCount", newCount)
+                    .append("ingestionEndDate", SourceProgressInfo.formatDate(new Date()))
+                    .append("ingestionStatus", SourceProgressInfo.FINISHED);
+
+            collection.update(query2, new BasicDBObject("$set", setValues));
+        }
+
+        /*
+        DBCollection collection = db.getCollection("source_prog_infos");
+        BasicDBObject query = new BasicDBObject("sourceID", source.getResourceID())
+                .append("dataSource", source.getDataSource());
+        DBCursor cursor = collection.find(query);
+        BasicDBObject existingDBO = null;
+        try {
+            if (cursor.hasNext()) {
+                existingDBO = (BasicDBObject) cursor.next();
+            }
+        } finally {
+            cursor.close();
+        }
+        if (existingDBO != null) {
+            BasicDBObject query2 = new BasicDBObject("_id", existingDBO.getObjectId("_id"));
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
+            BasicDBObject setValues = new BasicDBObject("ingestedCount", ingestedCount)
+                    .append("submittedCount", submittedCount)
+                    .append("updatedCount", updatedCount)
+                    .append("ingestionEndDate", df.format(new Date()))
+                    .append("ingestionStatus", SourceProcessStatusInfo.FINISHED);
+
+            collection.update(query2, new BasicDBObject("$set", setValues));
+        }
+        */
     }
 
     public Source findSource(String nifId, String dataSource) {

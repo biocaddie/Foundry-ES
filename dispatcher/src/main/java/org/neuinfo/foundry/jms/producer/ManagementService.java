@@ -16,13 +16,12 @@ import org.neuinfo.foundry.common.util.ElasticSearchUtils;
 import org.neuinfo.foundry.common.util.Utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -65,16 +64,16 @@ public class ManagementService {
         this.helper.showWS();
     }
 
-    void showProcessingStats(String sourceID) {
+    void showProcessingStats(String sourceID, boolean showTime) {
         List<SourceStats> processingStats = this.helper.getProcessingStats(sourceID);
         Map<String, WFStatusInfo> wfsiMap = this.helper.getWorkflowStatusInfo(sourceID, processingStats);
         for (SourceStats ss : processingStats) {
             WFStatusInfo wfsi = wfsiMap.get(ss.getSourceID());
-            showSourceStats(ss, wfsi);
+            showSourceStats(ss, wfsi, showTime);
         }
     }
 
-    void showSourceStats(SourceStats ss, WFStatusInfo wfStatusInfo) {
+    void showSourceStats(SourceStats ss, WFStatusInfo wfStatusInfo, boolean showTime ) {
         StringBuilder sb = new StringBuilder(128);
         sb.append(StringUtils.rightPad(ss.getSourceID(), 15)).append(" ");
         if (wfStatusInfo != null) {
@@ -85,8 +84,12 @@ public class ManagementService {
 
         Map<String, Integer> statusCountMap = ss.getStatusCountMap();
         int totCount = 0;
-        for (Integer count : statusCountMap.values()) {
-            totCount += count;
+        if (ss.getStatusCountMap().containsKey("ingested")) {
+           totCount = ss.getStatusCountMap().get("ingested");
+        } else {
+            for (Integer count : statusCountMap.values()) {
+                totCount += count;
+            }
         }
         sb.append("total:").append(StringUtils.leftPad(String.valueOf(totCount), 10)).append(" ");
         Integer finishedCount = statusCountMap.get("finished");
@@ -103,6 +106,16 @@ public class ManagementService {
             String s = StringUtils.leftPad(status + ":", 15) + StringUtils.leftPad(statusCount.toString(), 10);
             sb.append(s).append(" ");
         }
+        if (wfStatusInfo != null && showTime) {
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            if (wfStatusInfo.getStartDate() != null) {
+                sb.append('[').append(sdf.format(wfStatusInfo.getStartDate())).append(" - ");
+                if (wfStatusInfo.getEndDate() != null) {
+                    sb.append(sdf.format(wfStatusInfo.getEndDate()));
+                }
+                sb.append(']');
+            }
+        }
         System.out.println(sb.toString().trim());
     }
 
@@ -118,8 +131,10 @@ public class ManagementService {
         System.out.println("\trun <sourceID> status:<status-2-match> step:<step-name> [on|to_end] (e.g. run nif-0000-00135 status:new.1 step:transform)");
         System.out.println("\tindex <sourceID> <status-2-match> <url> [-filter <filter-jsonpath-exp>](e.g. index biocaddie-0006 transformed.1 http://52.32.231.227:9200/geo_20151106/dataset)");
         System.out.println("\tlist - lists all of the existing sources.");
-        System.out.println("\tstatus [<sourceID>] - show processing status of data source(s)");
+        System.out.println("\tstatus [<sourceID>] [-time <on-off>]- show processing status of data source(s)");
         System.out.println("\tws - show configured workflow(s)");
+        System.out.println("\tsource <script-path> - run a list of commands from a file [currently only index and ingest commands]");
+        ;
         System.out.println("\texit - exits the management client.");
     }
 
@@ -167,6 +182,61 @@ public class ManagementService {
         ms.helper.runPipelineSteps(source, status2Match, stepName, run2TheEnd);
     }
 
+    public static class IndexCommand implements ICommand {
+        ManagementService ms;
+
+        public IndexCommand(ManagementService ms) {
+            this.ms = ms;
+        }
+
+        @Override
+        public void execute(Utils.OptParser optParser) throws Exception {
+            int noPP = optParser.getNumOfPositionalParams();
+            String srcNifId = optParser.getParam(1);
+            String status2Match = optParser.getParam(2);
+            String urlStr = optParser.getParam(3);
+            String apiKey = null;
+            if (noPP == 5) {
+                apiKey = optParser.getParam(4);
+            }
+            String filter = optParser.getOptValue("filter");
+            if (filter != null) {
+                String[] tokens = filter.split("=");
+                if (tokens.length != 2) {
+                    throw new RuntimeException("Filter string must be of type <json-path>=<value>");
+                }
+            }
+            Source source = ms.helper.findSource(srcNifId);
+            Assertion.assertNotNull(source);
+            String[] urlParts = Utils.splitServerURLAndPath(urlStr);
+            ms.helper.index2ElasticSearchBulk(source, status2Match,
+                    urlParts[1], urlParts[0], apiKey, filter);
+
+        }
+    }
+
+    public static class IngestCommand implements ICommand {
+        ManagementService ms;
+
+        public IngestCommand(ManagementService ms) {
+            this.ms = ms;
+        }
+
+        @Override
+        public void execute(Utils.OptParser optParser) throws Exception {
+            String srcNifId = optParser.getParam(1);
+            Source source = ms.helper.findSource(srcNifId);
+            if (source != null) {
+                JSONObject json = ms.helper.prepareMessageBody("ingest", source);
+                ms.helper.saveStatus(source);
+                ms.helper.sendMessage(json);
+            } else {
+                System.err.println("Source not found:" + srcNifId);
+            }
+        }
+    }
+
+
     public static void main(String[] args) throws Exception {
         Option help = new Option("h", "print this message");
         Option configFileOption = Option.builder("c").argName("config-file")
@@ -189,6 +259,7 @@ public class ManagementService {
             usage(options);
         }
 
+
         String configFile = null;
         if (line.hasOption('c')) {
             configFile = line.getOptionValue('c');
@@ -200,6 +271,10 @@ public class ManagementService {
         }
 
         ManagementService ms = new ManagementService("foundry.consumer.head");
+        Map<String, ICommand> commandMap = new HashMap<String, ICommand>(7);
+        commandMap.put("index", new IndexCommand(ms));
+        commandMap.put("ingest", new IngestCommand(ms));
+
         Set<String> history = new LinkedHashSet<String>();
         String lastCommand = null;
         try {
@@ -220,15 +295,17 @@ public class ManagementService {
                 if (ans.equals("ws")) {
                     ms.showWorkflows();
                 } else if (ans.startsWith("ingest")) {
-                    String[] toks = ans.split("\\s+");
-                    if (toks.length == 2) {
+                    Utils.OptParser optParser = new Utils.OptParser(ans);
+                    int noPP = optParser.getNumOfPositionalParams();
+                    if (noPP == 2) {
                         history.add(ans);
-                        String srcNifId = toks[1];
+                        String srcNifId = optParser.getParam(1);
                         Source source = ms.helper.findSource(srcNifId);
                         JSONObject json = ms.helper.prepareMessageBody("ingest", source);
+                        // ms.helper.saveStatus(source);
+                        // ms.helper.sendIngestStartMessage(source.getResourceID(), source.getDataSource());
                         ms.helper.sendMessage(json);
                         lastCommand = ans;
-
                     }
                 } else if (ans.startsWith("run")) {
                     handleRun(ans, ms, options);
@@ -256,10 +333,8 @@ public class ManagementService {
                 } else if (ans.startsWith("index")) {
                     Utils.OptParser optParser = new Utils.OptParser(ans);
                     int noPP = optParser.getNumOfPositionalParams();
-
-                    // String[] toks = ans.split("\\s+");
                     if (noPP == 4 || noPP == 5) {
-                        String srcNifId =  optParser.getParam(1);// toks[1];
+                        String srcNifId = optParser.getParam(1);// toks[1];
                         String status2Match = optParser.getParam(2); //  toks[2];
                         String urlStr = optParser.getParam(3); // toks[3];
                         String apiKey = null;
@@ -267,7 +342,7 @@ public class ManagementService {
                             apiKey = optParser.getParam(4); // toks[4];
                         }
                         String filter = optParser.getOptValue("filter");
-                        if (filter != null){
+                        if (filter != null) {
                             String[] tokens = filter.split("=");
                             if (tokens.length != 2) {
                                 throw new RuntimeException("Filter string must be of type <json-path>=<value>");
@@ -282,13 +357,20 @@ public class ManagementService {
                         lastCommand = ans;
                     }
                 } else if (ans.startsWith("status")) {
+                    Utils.OptParser optParser = new Utils.OptParser(ans);
+                    int noPP = optParser.getNumOfPositionalParams();
                     String[] toks = ans.split("\\s+");
-                    if (toks.length == 1 || toks.length == 2) {
-                        if (toks.length == 2) {
+                    if (noPP == 1 || noPP == 2) {
+                        boolean showTime = false;
+                        if (optParser.getOptValue("time") != null &&
+                                optParser.getOptValue("time").equalsIgnoreCase("on")) {
+                            showTime= true;
+                        }
+                        if (noPP == 2) {
                             String srcNifId = toks[1];
-                            ms.showProcessingStats(srcNifId);
+                            ms.showProcessingStats(srcNifId, showTime);
                         } else {
-                            ms.showProcessingStats(null);
+                            ms.showProcessingStats(null, showTime);
                         }
                         history.add(ans);
                         lastCommand = ans;
@@ -329,6 +411,25 @@ public class ManagementService {
                         // System.out.println(String.format("%s - (%s)", source.getResourceID(), source.getName()));
                     }
                     lastCommand = ans;
+                } else if (ans.startsWith("source")) {
+                    Utils.OptParser optParser = new Utils.OptParser(ans);
+                    int noPP = optParser.getNumOfPositionalParams();
+                    if (noPP == 2) {
+                        String scriptPath = optParser.getParam(1);
+                        if (!new File(scriptPath).isFile()) {
+                            throw new RuntimeException("Not a valid script file path:" + scriptPath);
+                        }
+                        String[] lines = Utils.loadAsString(scriptPath).split("\\n");
+                        for (String aLine : lines) {
+                            Utils.OptParser op = new Utils.OptParser(aLine);
+                            if (op.getNumOfPositionalParams() > 1) {
+                                ICommand command = commandMap.get(op.getParam(0));
+                                if (command != null) {
+                                    command.execute(op);
+                                }
+                            }
+                        }
+                    }
                 } else if (ans.equals("exit")) {
                     break;
                 }

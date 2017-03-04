@@ -4,6 +4,7 @@ import org.neuinfo.foundry.common.util.Utils;
 import org.neuinfo.foundry.consumers.plugin.Ingestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -14,6 +15,10 @@ public class IngestionUtils {
         try {
             ingestor.startup();
             int count = 0;
+            File f = new File(outFile);
+            if (!f.getParentFile().isDirectory()) {
+                f.getParentFile().mkdirs();
+            }
             while (ingestor.hasNext()) {
                 String jsonFile = outFile.replaceFirst("\\.json$", "_" + (count + 1) + ".json");
                 processPayload(ingestor, jsonFile);

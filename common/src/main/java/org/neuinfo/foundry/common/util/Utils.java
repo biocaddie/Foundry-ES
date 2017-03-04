@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.apache.tools.ant.util.FileUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -23,6 +24,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -47,20 +49,20 @@ public class Utils {
     }
 
     public static class OptParser {
-        Map<String,Opt> optMap = new HashMap<String, Opt>(11);
+        Map<String, Opt> optMap = new HashMap<String, Opt>(11);
         List<String> positionalParams = new ArrayList<String>(5);
 
         public OptParser(String cmdLine) {
             String[] tokens = cmdLine.split("\\s+");
             int idx = 0;
-            while(idx < tokens.length) {
+            while (idx < tokens.length) {
                 String token = tokens[idx];
                 if (token.startsWith("-")) {
-                    String opt = token.replaceAll("^\\-+","");
+                    String opt = token.replaceAll("^\\-+", "");
                     if (idx + 1 >= tokens.length) {
                         throw new RuntimeException("Missing value for command line param " + token);
                     }
-                    Opt option = new Opt(opt, tokens[idx+1]);
+                    Opt option = new Opt(opt, tokens[idx + 1]);
                     optMap.put(opt, option);
                     idx += 2;
                 } else {
@@ -80,6 +82,7 @@ public class Utils {
         public String getParam(int idx) {
             return positionalParams.get(idx);
         }
+
         public List<String> getPositionalParams() {
             return positionalParams;
         }
@@ -88,6 +91,7 @@ public class Utils {
             return positionalParams.size();
         }
     }
+
     public static Date parseDate(String currentValue, String dateFormat) {
         if (dateFormat == null || dateFormat.endsWith("Z")) {
             try {
@@ -109,9 +113,10 @@ public class Utils {
             }
         }
         // as last resort try natural language date parsing
-        return  Utils.extractDate(currentValue);
+        return Utils.extractDate(currentValue);
 
     }
+
     public static Date extractDate(String freeFromDateStr) {
         Parser parser = new Parser();
         List<DateGroup> groups = parser.parse(freeFromDateStr);
@@ -285,6 +290,30 @@ public class Utils {
     }
 
 
+    public static List<File> extractFilesFromTar(String tarFilePath, List<String> filenames2Match, File destDirectory) throws Exception {
+        File tarFile = new File(tarFilePath);
+        Assertion.assertTrue(tarFile.isFile());
+        List<File> filteredFiles = new ArrayList<File>(filenames2Match.size());
+        File destDir = null;
+        try {
+            destDir = createTempDirectory();
+            Unpacker unpacker = new Unpacker(tarFile, destDir);
+            unpacker.unpack();
+            List<File> files = Utils.findAllFilesMatching(destDir,
+                    new FileNamesFilter(filenames2Match));
+            for (File f : files) {
+                File destFile = new File(destDirectory, f.getName());
+                f.renameTo(destFile);
+                filteredFiles.add(destFile);
+            }
+            return filteredFiles;
+        } finally {
+            if (destDir != null) {
+                deleteRecursively(destDir);
+            }
+        }
+    }
+
     public static Element extractXMLFromTar(String tarFilePath, String xmlNamePattern) throws Exception {
         File tarFile = new File(tarFilePath);
         Assertion.assertTrue(tarFile.isFile());
@@ -308,6 +337,33 @@ public class Utils {
 
     }
 
+    public static Element extractXMLFromTarWithCleanup(String tarFilePath, String xmlNamePattern) throws Exception {
+        File tarFile = new File(tarFilePath);
+        Assertion.assertTrue(tarFile.isFile());
+        File destDir = null;
+        try {
+            destDir = createTempDirectory();
+            Unpacker unpacker = new Unpacker(tarFile, destDir);
+            unpacker.unpack();
+            List<File> xmlFiles = Utils.findAllFilesMatching(destDir,
+                    new RegexFileNameFilter(xmlNamePattern));
+            if (!xmlFiles.isEmpty()) {
+                Element rootEl = loadXML(xmlFiles.get(0).getAbsolutePath());
+                File destFile = new File(tarFile.getParentFile(), xmlFiles.get(0).getName());
+                xmlFiles.get(0).renameTo(destFile);
+                if (tarFile.isFile()) {
+                    tarFile.delete();
+                }
+                return rootEl;
+            }
+        } finally {
+            if (destDir != null) {
+                deleteRecursively(destDir);
+            }
+        }
+        return null;
+
+    }
 
     public static void deleteRecursively(File dir) {
         if (dir.isFile()) {
@@ -361,6 +417,15 @@ public class Utils {
         SAXBuilder builder = new SAXBuilder();
         Document docEl = builder.build(new StringReader(xmlContent));
         return docEl.getRootElement();
+    }
+
+    public static String loadAsString(BufferedReader in) throws IOException {
+        StringBuilder buf = new StringBuilder(10000);
+        String line;
+        while ((line = in.readLine()) != null) {
+            buf.append(line).append('\n');
+        }
+        return buf.toString();
     }
 
     public static String loadAsString(String textFile) throws IOException {
@@ -559,6 +624,19 @@ public class Utils {
         }
     }
 
+    public static class FileNamesFilter implements FilenameFilter {
+        Set<String> filenameSet;
+
+        public FileNamesFilter(List<String> filenames) {
+            filenameSet = new HashSet<String>(filenames);
+        }
+
+        @Override
+        public boolean accept(File dir, String name) {
+            return filenameSet.contains(name);
+        }
+    }
+
 
     public static String[] splitServerURLAndPath(String urlStr) throws MalformedURLException {
         URL url = new URL(urlStr);
@@ -698,7 +776,7 @@ public class Utils {
             bin = new BufferedReader(
                     new InputStreamReader(Utils.class.getClassLoader().getResourceAsStream(fromClassPath), Charset.forName("UTF-8")));
             String line;
-            while( (line = bin.readLine())  != null) {
+            while ((line = bin.readLine()) != null) {
                 out.write(line);
                 out.newLine();
             }
@@ -706,6 +784,21 @@ public class Utils {
         } finally {
             Utils.close(bin);
             Utils.close(out);
+        }
+    }
+
+    public static Date toDate(Object dateValue) {
+        if (dateValue == null) {
+            return null;
+        } else if (dateValue instanceof Date) {
+            return (Date) dateValue;
+        }
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
+            return df.parse(dateValue.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

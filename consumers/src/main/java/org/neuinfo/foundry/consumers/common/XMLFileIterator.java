@@ -89,10 +89,17 @@ public class XMLFileIterator implements Iterator<Element> {
             curElement = handler.nextElement(this.docElement);
             if (curElement == null) {
                 if (xmlFileIterator.hasNext()) {
-                    cleanup();
-                    prepHandler();
-                    curElement = handler.nextElement(this.docElement);
-                    return curElement != null;
+                    while (xmlFileIterator.hasNext()) {
+                        cleanup();
+                        prepHandler();
+                        try {
+                            curElement = handler.nextElement(this.docElement);
+                        } catch (Throwable t) {
+                            logger.error("XMLFileIterator", t);
+                            continue;
+                        }
+                        return curElement != null;
+                    }
                 } else {
                     cleanup();
                     return false;
@@ -105,6 +112,7 @@ public class XMLFileIterator implements Iterator<Element> {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
 
     @Override

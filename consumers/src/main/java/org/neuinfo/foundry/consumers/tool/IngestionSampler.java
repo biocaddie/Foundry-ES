@@ -110,7 +110,7 @@ public class IngestionSampler {
 
     public void sampleDbGaP() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
-        options.put("rsyncSource", "ftp.ncbi.nlm.nih.gov::dbgap/studies/phs000001/");
+        options.put("rsyncSource", "ftp.ncbi.nlm.nih.gov::dbgap/studies/");
         options.put("rsyncDest", "/var/data/foundry-es/cache/data/dbGaP");
 
         options.put("filenamePattern", "GapExchange_.+\\.xml$");
@@ -211,6 +211,36 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/geo_datasets_soft_record.json", 5);
     }
 
+    public void sampleGEOSeriesByAspera() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("filenamePattern", "\\.xml\\.tgz$");
+        options.put("documentElement", "MINiML");
+        options.put("source", "anonftp@ftp.ncbi.nlm.nih.gov:/geo/series/");
+        options.put("dest", "/var/data/geo_series2");
+        String homeDir = System.getProperty("user.home");
+        options.put("publicKeyFile", homeDir + "/.aspera/connect/etc/asperaweb_id_dsa.openssh");
+        options.put("arguments", "-v -k1 -Tr -l200m");
+        options.put("excludes", "*.gz;*/suppl/*");
+        options.put("fullSet", "true");
+        options.put("xmlFileNamePattern", "\\.xml$");
+        options.put("parserType", "xml");
+
+        AsperaIngestor ingestor = new AsperaIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/geo_series_soft_record.json", 5);
+    }
+
+    public void sampleGeoSeries() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ftpHost", "ftp.ncbi.nlm.nih.gov");
+        options.put("remotePath", "geo/series");
+        options.put("outDir", "/var/data/foundry-es/cache/data/geo_series_test");
+        options.put("xmlFileNamePattern", "\\.xml$");
+        GeoIngestor ingestor = new GeoIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/geo_series_soft_record.json", 1000);
+    }
+
     public void sampleBioproject() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("ftpHost", "ftp.ncbi.nlm.nih.gov");
@@ -246,6 +276,28 @@ public class IngestionSampler {
         ingestor.initialize(options);
         ingestor.startup();
         ingest(ingestor, "/tmp/wired_news_record.json", 5);
+    }
+
+
+    public void sampleXNAT() throws Exception {
+        String pwd = Parameters.getInstance().getParam("xnat.pwd");
+        Map<String, String> options = new HashMap<String, String>();
+        options.put("username", "scicrunch");
+        options.put("password", pwd);
+        options.put("useCache", "true");
+        options.put("joinInfo", "projects::$..row.cell[0].'_$' = subjects::$..row.cell[1].'_$', " +
+                "subjects::$..row.cell[0].'_$' = subject::");
+        options.put("webTableURL.1", "https://www.nitrc.org/ir/data/projects?format=xml");
+        options.put("webTableAlias.1", "projects");
+        options.put("webTableURL.2", "https://www.nitrc.org/ir/data/projects/fcon_1000/subjects?format=xml");
+        options.put("webTableAlias.2", "subjects");
+        options.put("webTableURL.3", "https://www.nitrc.org/ir/data/projects/fcon_1000/subjects/${subject}?format=xml");
+        options.put("webTableAlias.3", "subject");
+        options.put("columnMetaJsonPath", "$.ResultSet.results.columns.column[*].'_$'");
+        WebJoinIngestor ingestor = new WebJoinIngestor();
+        ingestor.initialize(options);
+        ingestor.startup();
+        ingest(ingestor, "/tmp/xnat_record.json", 5);
     }
 
     public void sampleNeuromorpho() throws Exception {
@@ -336,7 +388,7 @@ public class IngestionSampler {
     }
 
 
-    public void sampleEUClinicalTrials() throws  Exception {
+    public void sampleEUClinicalTrials() throws Exception {
         String tableNames = "l2_nlx_151313_clinicaltrial_summary a, l2_nlx_151313_clinicaltrial_summary_disease b";
         String joinInfo = "a.eudract_number=b.eudract_number";
         ingestSampleFromDiscoRaw(tableNames, joinInfo, "/tmp/eu_clinical_trials_record.json", 5);
@@ -626,7 +678,21 @@ public class IngestionSampler {
         options.put("parserType", "json");
         WebIngestor ingestor = new WebIngestor();
         ingestor.initialize(options);
-        ingest(ingestor, "/tmp/lsdb_record.json", 5);
+        ingest(ingestor, "/tmp/lsdb_record.json", 100);
+    }
+
+
+    public void sampleNature() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///var/data/foundry-es/cache/data/all_data_nature.json");
+        options.put("documentElement", "data");
+        options.put("cacheFilename", "nature_dbmi");
+        options.put("useCache", "false");
+        options.put("parserType", "json");
+        options.put("normalize","true");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/nature_record.json", 100);
     }
 
     public void sampleHmps() throws Exception {
@@ -711,17 +777,37 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/uniprot_tremble_record.json", 5);
     }
 
+
     public void sampleFromPubMed() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("ingestURL", "ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline");
-        options.put("topElement", "MedlineCitationSet");
-        options.put("documentElement", "MedlineCitation");
-        options.put("filenamePattern", "\\w+\\.xml\\.gz");
+        options.put("topElement", "PubmedArticleSet");
+        options.put("documentElement", "PubmedArticle");
+        options.put("filenamePattern", "\\w+\\.xml\\.gz$");
+        options.put("sampleMode", "true");
+        options.put("sampleSize", "10");
         PubMedIngestor ingestor = new PubMedIngestor();
         ingestor.initialize(options);
-        ingest(ingestor, "/tmp/pubmed_records.json", 10000);
+        ingest(ingestor, "/tmp/pubmed/pubmed_records.json", 100000);
     }
 
+
+    public void fromPubmedSample() throws Throwable {
+        String HOME_DIR = System.getProperty("user.home");
+        File f = new File(HOME_DIR + "/Downloads/medsample1.xml");
+        RemoteFileIterator rfi = new RemoteFileIterator(Arrays.asList(f));
+        XMLFileIterator xmlFileIterator = new XMLFileIterator(rfi, "PubmedArticleSet", "PubmedArticle");
+        String outFile = "/tmp/pubmed_sample.json";
+        int count = 0;
+        while (xmlFileIterator.hasNext()) {
+            Element el = xmlFileIterator.next();
+            String jsonFile = outFile.replaceFirst("\\.json$", "_" + (count + 1) + ".json");
+            Result r = ConsumerUtils.convert2JSON(el);
+            Utils.saveText(r.getPayload().toString(2), jsonFile);
+            System.out.println("saved file:" + jsonFile);
+            count++;
+        }
+    }
 
     public void sampleLSDB() throws Exception {
         Map<String, String> options = new HashMap<String, String>();
@@ -1012,6 +1098,17 @@ public class IngestionSampler {
         ingest(ingestor, outFile, 10);
     }
 
+
+    public void sampleSimtk() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "https://simtk.org/biositemap_NCBC_Simbios.rdf");
+        options.put("topElement", "rdf:RDF");
+        options.put("documentElement", "desc:Resource_Description");
+        NIFXMLIngestor ingestor = new NIFXMLIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/simtk_record.json", 5);
+    }
+
     public void ingestSampleFromDisco(String tableName, String outFile, int sampleSize) throws Exception {
         ingestSampleFromDisco(tableName, outFile, sampleSize, "dvp");
     }
@@ -1121,95 +1218,8 @@ public class IngestionSampler {
         }
         return count;
     }
-    
-    public void sampleNSRRWeb() throws Exception {
-        Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ingestURL", "file:///Users/rliu1/Desktop/datasets.json");
-        options.put("documentElement", "");
-        options.put("cacheFilename", "datameta_en.json");
-        options.put("parserType", "json");
-        options.put("useCache", "true");
-        
-        WebIngestor ingestor = new WebIngestor();
-        ingestor.initialize(options);
-        ingest(ingestor, "/tmp/nsrr_sample_doc.json", 5);
-    }
-    
-    public void sampleGDC() throws Exception {
-        Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ingestURL", "file:///Users/rliu1/Desktop/GDC_projects.json");
-        options.put("documentElement", "");
-        options.put("cacheFilename", "datameta_en.json");
-        options.put("parserType", "json");
-        options.put("useCache", "true");
-        
-        WebIngestor ingestor = new WebIngestor();
-        ingestor.initialize(options);
-        ingest(ingestor, "/tmp/gdc_sample_doc.json", 5);
-    }
-    
-     public void sampleRetinaCSV() throws Exception {
-        Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ingestURL", "file:///Users/rliu1/Downloads/retina.csv");
-        options.put("ignoreLines", "1");
-        options.put("headerLine", "1");
-        options.put("delimiter", ",");
-        options.put("textQuote", "&#034;");
-        options.put("escapeCharacter", "&#092;");
-        NIFCSVIngestor ingestor = new NIFCSVIngestor();
-        ingestor.initialize(options);
-        ingest(ingestor, "/tmp/retina.json", 5);
-    }
-    
-    public void sampleIngestEMDBFromFTP() throws Exception {
-        Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ftpHost", "ftp.ebi.ac.uk");
-        options.put("remotePath", "/pub/databases/emdb/structures/");
-        options.put("filenamePattern", "emd-.+\\.xml$");
-        options.put("recursive", "true");
-        options.put("outDir", "/var/data/foundry-es/cache/data/emdb_ftp/");
-        options.put("documentElement", "emdEntry");
-        options.put("sampleMode", "true");
-        options.put("maxDocs", "10");
-        
 
-        FTPIngestor ingestor = new FTPIngestor();
-        //ingestor.setTestMode(true);
-        ingestor.initialize(options);
-        
-        ingest(ingestor, "/tmp/emdb_record.json", 5);
-       
-    }
-    
-    public void sampleVectorBase() throws Exception {
-        Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ingestURL", "file:///Users/rliu1/Desktop/VectorBase.csv");
-        options.put("ignoreLines", "1");
-        options.put("headerLine", "1");
-        options.put("delimiter", ",");
-        options.put("textQuote", "&#034;");
-        options.put("escapeCharacter", "&#092;");
-        NIFCSVIngestor ingestor = new NIFCSVIngestor();
-        ingestor.initialize(options);
-        ingest(ingestor, "/tmp/VectorBase_record.json", 5);
-    }
-    
-    
-    public void sampleEpigenomicsCSV() throws Exception {
-        Map<String, String> options = new HashMap<String, String>(17);
-        options.put("ingestURL", "file:///Users/rliu1/Downloads/jul2013.roadmapData.qc - Consolidated_EpigenomeIDs_summary_Table.csv");
-        options.put("ignoreLines", "3");
-        options.put("headerLine", "3");
-        options.put("delimiter", ",");
-        options.put("textQuote", "&#034;");
-        options.put("escapeCharacter", "&#092;");
-        NIFCSVIngestor ingestor = new NIFCSVIngestor();
-        ingestor.initialize(options);
-        ingest(ingestor, "/tmp/epigenomics/epigenomics.json", 5);
-    }
-    
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Throwable {
         IngestionSampler sampler = new IngestionSampler();
 
         // sampler.sampleCVRG();
@@ -1217,7 +1227,6 @@ public class IngestionSampler {
         // sampler.sampleSwissProt();
         // sampler.sampleUniprotTrEMBL();
 
-        //  sampler.sampleFromPubMed();
 
         //sampler.sampleFromPubmedIncrementalData();
 
@@ -1274,13 +1283,27 @@ public class IngestionSampler {
         // sampler.ingestDataCiteSBGrid();
 
         // sampler.sampleOmics();
-          sampler.sampleClinicalTrials();
+        //  sampler.sampleClinicalTrials();
 
         // sampler.sampleEBI();
         // sampler.sampleGenenetwork();
         // sampler.sampleLSDBFromNansu();
 
-       // sampler.sampleHmps();
-       // sampler.sampleEUClinicalTrials();
+        // sampler.sampleHmps();
+        // sampler.sampleEUClinicalTrials();
+
+        // sampler.sampleFromPubMed();
+
+        // sampler.fromPubmedSample();
+
+        // sampler.sampleDbGaP();
+        //  sampler.sampleGEOSeriesByAspera();
+        // sampler.sampleGeoSeries();
+
+        // sampler.sampleXNAT();
+        // sampler.sampleGenenetwork();
+
+        // sampler.sampleNature();
+        sampler.sampleSimtk();
     }
 }

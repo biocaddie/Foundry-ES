@@ -44,7 +44,6 @@ public class JSONPathProcessor2 {
         }
 
 
-
         public String[] getNames() {
             return names;
         }
@@ -140,9 +139,21 @@ public class JSONPathProcessor2 {
     public List<JPNode> find(String jsonPathExpr, JSONObject json) throws Exception {
         JsonPathParser parser = new JsonPathParser(jsonPathExpr);
 
-        final JSONPathProcessor.Path path = parser.parse();
+        JSONPathProcessor.Path path = parser.parse();
         List<JPNode> list = new ArrayList<JPNode>(5);
         AccumulatorGroup ag = new AccumulatorGroup();
+        find(path.start, list, json, null, ag);
+        return list;
+    }
+
+    public JSONPathProcessor.Path compile(String jsonPathExpr) throws Exception {
+        JsonPathParser parser = new JsonPathParser(jsonPathExpr);
+        return parser.parse();
+    }
+
+    public List<JPNode> find(JSONPathProcessor.Path path, JSONObject json) {
+        AccumulatorGroup ag = new AccumulatorGroup();
+        List<JPNode> list = new ArrayList<JPNode>(5);
         find(path.start, list, json, null, ag);
         return list;
     }

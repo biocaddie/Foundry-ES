@@ -1,13 +1,22 @@
 package org.neuinfo.foundry.common.util;
 
+import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.Namespace;
+import org.jdom2.SlimJDOMFactory;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by bozyurt on 11/6/14.
@@ -38,5 +47,26 @@ public class PullJDOMXmlHandlerTest {
     public static String toXmlString(Element el) {
         XMLOutputter xout = new XMLOutputter(Format.getPrettyFormat());
         return xout.outputString(el);
+    }
+
+    public void testRDFParsing() throws Exception{
+        File xmlContentFile = new File("/home/bozyurt/biositemap_NCBC_Simbios.rdf");
+        SAXBuilder builder = new SAXBuilder();
+        builder.setJDOMFactory(new SlimJDOMFactory(true));
+        Document doc = builder.build(xmlContentFile);
+        Element rootEl = doc.getRootElement();
+        List<Namespace> namespacesInScope = rootEl.getNamespacesInScope();
+        Map<String, Namespace> nsMap = new HashMap<String, Namespace>();
+        for(Namespace ns : namespacesInScope) {
+            nsMap.put(ns.getPrefix(), ns);
+        }
+        List<Element> children = rootEl.getChildren();
+        for(Element el : children) {
+            System.out.println(el.getName());
+        }
+
+
+        children = rootEl.getChildren("Resource_Description", nsMap.get("desc"));
+        assertFalse(children.isEmpty());
     }
 }

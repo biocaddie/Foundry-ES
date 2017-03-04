@@ -51,18 +51,24 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
         con.start();
         session = con.createSession(false, Session.AUTO_ACKNOWLEDGE);
         this.publisher = new PipelineMessagePublisher(configuration.getBrokerURL());
-        this.spsMan = new SourceProcessStatusManager(this.mongoClient, configuration.getMongoDBName());
+        // NOT USED IBO
+        //this.spsMan = new SourceProcessStatusManager(this.mongoClient, configuration.getMongoDBName());
         handleMessages(this);
     }
 
     public void shutdown() {
         System.out.println("shutting down the PipelineMessageConsumer...");
+        if (spsMan != null) {
+            System.out.println("shutting down SourceProcessStatusManager...");
+            spsMan.shutdown();
+        }
         if (mongoClient != null) {
             mongoClient.close();
         }
         if (publisher != null) {
             publisher.close();
         }
+        System.out.println("shutdown complete.");
     }
 
 
@@ -79,7 +85,7 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
             Map<String, String> paramsMap = new HashMap<String, String>();
             boolean ok = false;
             // keep count of processed and erred records for pipeline monitoring
-            if (status.equals("finished") || status.equals("error")) {
+            if (spsMan != null && (status.equals("finished") || status.equals("error"))) {
                 try {
                     spsMan.updateStatus(status, theDoc);
                 } catch (Throwable t) {
@@ -109,6 +115,17 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
                     }
                 }
             }
+        }
+    }
+
+    private void handleIngestionStart(String sourceID, String dataSource) {
+        DB db = mongoClient.getDB(configuration.getMongoDBName());
+        DBCollection collection = db.getCollection("sources");
+        BasicDBObject query = new BasicDBObject("sourceID", sourceID)
+                .append("dataSource", dataSource);
+        DBObject source = collection.findOne(query);
+        if (source != null) {
+            spsMan.resetSource(sourceID, dataSource);
         }
     }
 
@@ -142,6 +159,12 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
             String payload = (String) om.getObject();
 
             JSONObject json = new JSONObject(payload);
+            if (json.has("ingestionStarted")) {
+                String sourceID = json.getString("sourceID");
+                String dataSource = json.getString("dataSource");
+                handleIngestionStart(sourceID, dataSource);
+                return;
+            }
             String status = json.getString("status");
             String objectId = json.getString("oid");
             String collectionName = null;
@@ -162,6 +185,7 @@ public class PipelineMessageConsumer implements Runnable, MessageListener {
             x.printStackTrace();
         }
     }
+
 
     public void handleMessages(MessageListener listener) throws JMSException {
         Destination destination = this.session.createQueue(queueName);

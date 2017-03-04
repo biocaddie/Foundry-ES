@@ -1,10 +1,11 @@
 package org.neuinfo.foundry.common.ingestion;
 
 import com.mongodb.*;
-import org.bson.types.ObjectId;
+import org.neuinfo.foundry.common.Constants;
 import org.neuinfo.foundry.common.model.BatchInfo;
+import org.neuinfo.foundry.common.model.SourceProgressInfo;
 import org.neuinfo.foundry.common.model.Status;
-import org.neuinfo.foundry.common.util.Assertion;
+import org.neuinfo.foundry.common.util.JSONUtils;
 
 import java.io.Serializable;
 import java.util.*;
@@ -23,15 +24,54 @@ public class DocProcessingStatsService extends BaseIngestionService {
         super.dbName = dbName;
     }
 
+    public Map<String, SourceStats> getSourceProgressInfos(DB db) {
+        Map<String, SourceStats> ssMap = new HashMap<String, SourceStats>();
+        DBCollection collection = db.getCollection(Constants.SOURCE_PROG_COLLECTION);
+        DBCursor cursor = collection.find();
+        try {
+            while (cursor.hasNext()) {
+                DBObject dbo = cursor.next();
+                SourceProgressInfo spi = SourceProgressInfo.fromJSON(JSONUtils.toJSON((BasicDBObject) dbo, false));
+                SourceStats ss = new SourceStats(spi.getSourceID());
+                ss.put("ingested", spi.getNewCount() + spi.getUpdatedCount());
+                ss.put("new", spi.getNewCount());
+                ss.put("finished", spi.getFinishedCount());
+                ss.put("error", spi.getErrorCount());
+                if (spi.getStartDate() != null) {
+                    ss.setStartDate(spi.getStartDate());
+                }
+                if (spi.getEndDate() != null) {
+                    ss.setEndDate(spi.getEndDate());
+                }
+                if (spi.getIngestionEndDate() != null) {
+                    ss.setIngestionEndDate(spi.getIngestionEndDate());
+                }
+                for (String key : spi.getStageCountMap().keySet()) {
+                    String statusKey = key.replaceFirst("_Count$", "").replace('_', '.');
+                    Integer count = spi.getStageCountMap().get(key);
+                    ss.put(statusKey, count);
+                }
+                ssMap.put(spi.getSourceID(), ss);
+            }
+        } finally {
+            cursor.close();
+        }
+        return ssMap;
+
+    }
+
     public List<SourceStats> getDocCountsPerStatusPerSource2(String collectionName, String theSourceID) {
         DB db = mongoClient.getDB(dbName);
+
+        Map<String, SourceStats> ssMap = getSourceProgressInfos(db);
+
         DBCollection collection = db.getCollection(collectionName);
         List sourceIDs = collection.distinct("SourceInfo.SourceID");
         if (theSourceID != null) {
-            for(Iterator<Object> iter = sourceIDs.iterator(); iter.hasNext();) {
+            for (Iterator<Object> iter = sourceIDs.iterator(); iter.hasNext(); ) {
                 String s = iter.next().toString();
                 if (!s.equals(theSourceID)) {
-                 iter.remove();
+                    iter.remove();
                 }
             }
         }
@@ -39,24 +79,29 @@ public class DocProcessingStatsService extends BaseIngestionService {
         List<SourceStats> ssList = new ArrayList<SourceStats>(sourceIDs.size());
         for (Object sourceID : sourceIDs) {
             // System.out.println(sourceID);
-            SourceStats ss = new SourceStats(sourceID.toString());
-            int totCount = 0;
-            for (Object status : statusList) {
-                BasicDBObject query = new BasicDBObject("SourceInfo.SourceID", sourceID)
-                        .append("Processing.status", status);
-                int count = (int) collection.count(query);
-                String statusStr = status.toString();
-                if (count > 0) {
-                    totCount += count;
-                    ss.put(statusStr, count);
-                } else {
-                    if (statusStr.equals("error")) {
+            if (ssMap.containsKey(sourceID.toString())) {
+                SourceStats ss = ssMap.get(sourceID.toString());
+                ssList.add(ss);
+            } else {
+                SourceStats ss = new SourceStats(sourceID.toString());
+                int totCount = 0;
+                for (Object status : statusList) {
+                    BasicDBObject query = new BasicDBObject("SourceInfo.SourceID", sourceID)
+                            .append("Processing.status", status);
+                    int count = (int) collection.count(query);
+                    String statusStr = status.toString();
+                    if (count > 0) {
+                        totCount += count;
                         ss.put(statusStr, count);
+                    } else {
+                        if (statusStr.equals("error")) {
+                            ss.put(statusStr, count);
+                        }
                     }
                 }
-            }
-            if (totCount > 0) {
-                ssList.add(ss);
+                if (totCount > 0) {
+                    ssList.add(ss);
+                }
             }
         }
         return ssList;
@@ -74,7 +119,7 @@ public class DocProcessingStatsService extends BaseIngestionService {
         DBCursor cursor = sources.find(query, keys);
         Map<String, WFStatusInfo> wdsiMap = new HashMap<String, WFStatusInfo>();
         Map<String, SourceStats> ssMap = new HashMap<String, SourceStats>();
-        for(SourceStats ss : ssList) {
+        for (SourceStats ss : ssList) {
             ssMap.put(ss.getSourceID(), ss);
         }
         try {
@@ -86,6 +131,7 @@ public class DocProcessingStatsService extends BaseIngestionService {
                     DBObject biDBO = (DBObject) biList.get(biList.size() - 1);
                     BatchInfo bi = BatchInfo.fromDbObject(biDBO);
                     String resourceID = siDBO.getString("resourceID");
+
                     // calculate status
                     SourceStats ss = ssMap.get(resourceID);
                     if (ss == null) {
@@ -93,8 +139,12 @@ public class DocProcessingStatsService extends BaseIngestionService {
                     }
                     Map<String, Integer> statusCountMap = ss.getStatusCountMap();
                     int totCount = 0;
-                    for (Integer count : statusCountMap.values()) {
-                        totCount += count;
+                    if (ss.getStatusCountMap().containsKey("ingested")) {
+                        totCount = ss.getStatusCountMap().get("ingested");
+                    } else {
+                        for (Integer count : statusCountMap.values()) {
+                            totCount += count;
+                        }
                     }
                     Integer finishedCount = statusCountMap.get(finishedStatus);
                     if (finishedCount == null) {
@@ -112,11 +162,21 @@ public class DocProcessingStatsService extends BaseIngestionService {
                         status = Status.FINISHED.name().toLowerCase();
                     }
 
-                    WFStatusInfo wfsi = new WFStatusInfo(status, bi.getIngestionStatus().name().toLowerCase());
+                    Date startDate = bi.getIngestionStartDatetime();
+                    Date endDate = bi.getIngestionEndDatetime();
+                    if (ss.getIngestionEndDate() != null) {
+                        startDate = ss.getStartDate();
+                        endDate = ss.getEndDate();
+                        if (totalFinished >= totCount) {
+                            status = Status.FINISHED.name().toLowerCase();
+                        }
+                    }
+
+                    WFStatusInfo wfsi = new WFStatusInfo(status, bi.getIngestionStatus().name().toLowerCase(),
+                            startDate, endDate);
                     wdsiMap.put(resourceID, wfsi);
                 }
             }
-
         } finally {
             cursor.close();
         }
@@ -126,10 +186,14 @@ public class DocProcessingStatsService extends BaseIngestionService {
     public static class WFStatusInfo {
         final String status;
         final String ingestionStatus;
+        final Date startDate;
+        final Date endDate;
 
-        public WFStatusInfo(String status, String ingestionStatus) {
+        public WFStatusInfo(String status, String ingestionStatus, Date startDate, Date endDate) {
             this.status = status;
             this.ingestionStatus = ingestionStatus;
+            this.startDate = startDate;
+            this.endDate = endDate;
         }
 
         public String getStatus() {
@@ -138,6 +202,14 @@ public class DocProcessingStatsService extends BaseIngestionService {
 
         public String getIngestionStatus() {
             return ingestionStatus;
+        }
+
+        public Date getStartDate() {
+            return startDate;
+        }
+
+        public Date getEndDate() {
+            return endDate;
         }
     }
 
@@ -179,6 +251,9 @@ public class DocProcessingStatsService extends BaseIngestionService {
 
     public static class SourceStats implements Serializable {
         final String sourceID;
+        Date startDate;
+        Date endDate;
+        Date ingestionEndDate;
         Map<String, Integer> statusCountMap = new HashMap<String, Integer>(3);
 
         public SourceStats(String sourceID) {
@@ -195,6 +270,30 @@ public class DocProcessingStatsService extends BaseIngestionService {
 
         public Map<String, Integer> getStatusCountMap() {
             return statusCountMap;
+        }
+
+        public Date getStartDate() {
+            return startDate;
+        }
+
+        public void setStartDate(Date startDate) {
+            this.startDate = startDate;
+        }
+
+        public Date getEndDate() {
+            return endDate;
+        }
+
+        public void setEndDate(Date endDate) {
+            this.endDate = endDate;
+        }
+
+        public Date getIngestionEndDate() {
+            return ingestionEndDate;
+        }
+
+        public void setIngestionEndDate(Date ingestionEndDate) {
+            this.ingestionEndDate = ingestionEndDate;
         }
 
         @Override

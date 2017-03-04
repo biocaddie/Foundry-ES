@@ -129,6 +129,8 @@ public class TransformationLanguageInterpreter {
             return parseTransformStatement(tokenizer, condition);
         } else if (ti.getType() == LET) {
             return parseAssignmentStatement(tokenizer, condition);
+        } else if (ti.getType() == JOIN) {
+            return parseJoinStatement(tokenizer, condition);
         }
         return null;
     }
@@ -377,9 +379,7 @@ public class TransformationLanguageInterpreter {
 
     public interface Node {
         Node getLeftOperand();
-
         Node getRightOperand();
-
         LogicalOp getLogicalOp();
     }
 

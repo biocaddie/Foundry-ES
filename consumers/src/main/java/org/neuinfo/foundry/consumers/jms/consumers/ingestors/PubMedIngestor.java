@@ -115,9 +115,10 @@ public class PubMedIngestor implements Ingestor, IngestorLifeCycle {
         });
         RemoteFileIterator rfi = new RemoteFileIterator(localFiles);
         this.xmlFileIterator = new XMLFileIterator(rfi, this.topElName, this.docElName);
-        if (opMode.equals("update")) {
-            prepareDeleteInfos(localFiles);
-        }
+        //if (opMode.equals("update")) {
+        // prepare delete information
+        prepareDeleteInfos(localFiles);
+        //}
     }
 
 
@@ -198,16 +199,17 @@ public class PubMedIngestor implements Ingestor, IngestorLifeCycle {
     public Result prepPayload() {
         try {
             Element element = xmlFileIterator.next();
-            if (opMode.equals("update")) {
-                String pmid = element.getChildTextTrim("PMID");
-                if (diMap.containsKey(pmid)) {
-                    DeleteInfo di = diMap.get(pmid);
-                    Element elem = new Element("Deleted");
-                    elem.setText(di.getFileName());
-                    element.addContent(elem);
-                    diMap.remove(pmid);
-                }
+            // if (opMode.equals("update")) {
+            // check for delete info always
+            String pmid = element.getChildTextTrim("PMID");
+            if (diMap.containsKey(pmid)) {
+                DeleteInfo di = diMap.get(pmid);
+                Element elem = new Element("Deleted");
+                elem.setText(di.getFileName());
+                element.addContent(elem);
+                diMap.remove(pmid);
             }
+            // }
             Result r = ConsumerUtils.convert2JSON(element);
             return r;
         } catch (Throwable t) {
@@ -250,8 +252,8 @@ public class PubMedIngestor implements Ingestor, IngestorLifeCycle {
     @Override
     public void beforeShutdown(IDocUpdater docUpdater) {
         // handle deleted pmids
-        Map<String,String> payload = new HashMap<String, String>(7);
-        for(String pmid : diMap.keySet()) {
+        Map<String, String> payload = new HashMap<String, String>(7);
+        for (String pmid : diMap.keySet()) {
             DeleteInfo di = diMap.get(pmid);
             payload.put("primaryKey", pmid);
             payload.put("filename", di.getFileName());

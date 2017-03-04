@@ -3,14 +3,17 @@ package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 import org.apache.http.client.utils.URIBuilder;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.Namespace;
 import org.jdom2.SlimJDOMFactory;
 import org.jdom2.input.SAXBuilder;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.common.util.Utils;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bozyurt on 2/16/16.
@@ -25,7 +28,7 @@ public class XMLIterator implements Iterator<Element> {
     private int limitValue;
     private String offsetParam;
     private boolean sampleMode;
-    private String totElName;
+    private String topElName;
 
     public XMLIterator(String docElName, String ingestURL, String limitParam,
                        int limitValue, String offsetParam, boolean sampleMode, String totElName) throws Exception {
@@ -35,7 +38,7 @@ public class XMLIterator implements Iterator<Element> {
         this.limitValue = limitValue;
         this.offsetParam = offsetParam;
         this.sampleMode = sampleMode;
-        this.totElName = totElName;
+        this.topElName = totElName;
         getNextBatch(true);
     }
 
@@ -58,21 +61,63 @@ public class XMLIterator implements Iterator<Element> {
         // String xmlContent = Utils.sendGetRequest(url);
         File xmlContentFile = Utils.getContentFromURL(url);
         System.out.println("got xmlContent:" + xmlContentFile);
-
         Document doc = builder.build(xmlContentFile);
+
         System.out.println("to XML");
         Element rootEl = doc.getRootElement();
+        List<Namespace> namespacesInScope = rootEl.getNamespacesInScope();
+        Map<String, Namespace> nsMap = new HashMap<String, Namespace>();
+        for (Namespace ns : namespacesInScope) {
+            nsMap.put(ns.getPrefix(), ns);
+        }
         Element topEl;
-        if (rootEl.getName().equals(totElName)) {
-            topEl = rootEl;
+        String topElPrefix = extractNamespacePrefix(topElName);
+
+        if (topElPrefix != null) {
+            if (rootEl.getName().equals(toLocalName(topElName))) {
+                topEl = rootEl;
+            } else {
+                Assertion.assertNotNull(nsMap.get(topElPrefix));
+                topEl = rootEl.getChild(toLocalName(topElName), nsMap.get(topElPrefix));
+            }
         } else {
-            topEl = rootEl.getChild(totElName);
+            if (rootEl.getName().equals(topElName)) {
+                topEl = rootEl;
+            } else {
+                topEl = rootEl.getChild(topElName);
+            }
         }
         Assertion.assertNotNull(topEl);
-        this.elements = topEl.getChildren(docElName);
+        String docElPrefix = extractNamespacePrefix(docElName);
+        if (docElPrefix != null) {
+            Assertion.assertNotNull(nsMap.get(docElPrefix));
+            this.elements = topEl.getChildren(toLocalName(docElName), nsMap.get(docElPrefix));
+        } else {
+            this.elements = topEl.getChildren(docElName);
+        }
         iter = elements.iterator();
         // remove temp file
         xmlContentFile.delete();
+    }
+
+    public static boolean hasNamespace(String elName) {
+        return elName.indexOf(':') != -1;
+    }
+
+    public static String toLocalName(String elementName) {
+        int idx = elementName.indexOf(':');
+        if (idx != -1) {
+            return elementName.substring(idx + 1);
+        }
+        return elementName;
+    }
+
+    public static String extractNamespacePrefix(String elementName) {
+        int idx = elementName.indexOf(':');
+        if (idx != -1) {
+            return elementName.substring(0, idx);
+        }
+        return null;
     }
 
     @Override

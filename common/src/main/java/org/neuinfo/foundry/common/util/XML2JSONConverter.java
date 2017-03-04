@@ -43,6 +43,7 @@ public class XML2JSONConverter {
     public XML2JSONConverter() {
     }
 
+
     public JSONObject toJSON(Element rootEl) throws JSONException {
         List<Namespace> namespacesInScope = rootEl.getNamespacesInScope();
         for (Namespace ns : namespacesInScope) {

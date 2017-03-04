@@ -89,7 +89,6 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
         GridFSService gridFSService = new GridFSService();
         MessagePublisher messagePublisher = null;
         try {
-            ingestor.startup();
             dis.start(this.config);
             gridFSService.start(this.config);
             messagePublisher = new MessagePublisher(this.config.getBrokerURL());
@@ -105,10 +104,13 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                         this.config.getCollectionName(), srcNifId, messagePublisher, getOutStatus());
 
             }
+
             int submittedCount = 0;
             int ingestedCount = 0;
             int updatedCount = 0;
+            int newCount = 0;
             dis.beginBatch(source, batchId);
+            ingestor.startup();
 
             String theCollection = getCollectionName();
             if (!Utils.isEmpty(source.getCollectionName())) {
@@ -173,6 +175,8 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                     // delete previous record first
                                     dis.removeDocument(document, theCollection);
                                     ObjectId oid = dis.saveDocument(dw, theCollection);
+                                    dis.incrUpdatedCount(source);
+                                    updatedCount++;
                                     messagePublisher.sendMessage(oid.toString(), getOutStatus(), theCollection);
                                 }
                             } else {
@@ -192,6 +196,7 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                 pi.put("status", updateOutStatus);
                                 updatedCount++;
                                 dis.updateDocument(document, theCollection, batchId);
+                                dis.incrUpdatedCount(source);
                                 String oidStr = document.get("_id").toString();
                                 //
                                 messagePublisher.sendMessage(oidStr, updateOutStatus, theCollection);
@@ -216,13 +221,16 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                         batchId, source, getOutStatus());
                             }
                             // save provenance
-                            ProvData provData = new ProvData(dw.getPrimaryKey(), ProvenanceHelper.ModificationType.Ingested);
+                            ProvData provData = new ProvData(dw.getPrimaryKey(),
+                                    ProvenanceHelper.ModificationType.Ingested);
                             provData.setSourceName(dw.getSourceName()).setSrcId(dw.getSourceId());
                             // first cleanup any previous provenance data
                             ProvenanceHelper.removeProvenance(dw.getPrimaryKey());
                             ProvenanceHelper.saveIngestionProvenance("ingestion",
                                     provData, startDate, dw);
                             ObjectId oid = dis.saveDocument(dw, theCollection);
+                            newCount++;
+                            dis.incrNewCount(source);
                             messagePublisher.sendMessage(oid.toString(), getOutStatus(), theCollection);
                         }
                         ingestedCount++;
@@ -238,7 +246,7 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                 ((IngestorLifeCycle) ingestor).beforeShutdown(docUpdater);
             }
 
-            dis.endBatch(source, batchId, ingestedCount, submittedCount, updatedCount);
+            dis.endBatch(source, batchId, ingestedCount, submittedCount, updatedCount, newCount);
         } finally {
             dis.shutdown();
             ingestor.shutdown();

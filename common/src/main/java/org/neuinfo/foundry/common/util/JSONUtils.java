@@ -159,6 +159,48 @@ public class JSONUtils {
         }
     }
 
+    /**
+     * Corrects array inside in single element array kind of JSON generation errors
+     * @param parent
+     * @throws JSONException
+     */
+    public static void normalize(JSONObject parent) throws JSONException {
+        Set<String> keys = new HashSet<String>(parent.keySet());
+        Iterator<String> it = keys.iterator();
+        while (it.hasNext()) {
+            String key = it.next();
+            Object v = parent.get(key);
+            if (v instanceof JSONArray) {
+                JSONArray jsArr = (JSONArray) v;
+                if (jsArr.length() == 1) {
+                    if (jsArr.get(0) instanceof JSONArray) {
+                        JSONArray insideArr = jsArr.getJSONArray(0);
+                        parent.put(key, insideArr);
+                        normalize(insideArr);
+                    } else {
+                        normalize(jsArr);
+                    }
+                } else {
+                    normalize(jsArr);
+                }
+            } else if (v instanceof  JSONObject) {
+                normalize((JSONObject)v);
+            }
+        }
+    }
+
+    static void normalize(JSONArray parent) throws JSONException {
+        int len = parent.length();
+        for (int i = 0; i < len; i++) {
+            Object o = parent.get(i);
+            if (o instanceof JSONObject) {
+                normalize((JSONObject) o);
+            } else if (o instanceof JSONArray) {
+                normalize((JSONArray) o);
+            }
+        }
+    }
+
     public static void unEscapeJson(JSONObject parent) throws JSONException {
         Set<String> keys = new HashSet<String>(parent.keySet());
         final Iterator<String> it = keys.iterator();

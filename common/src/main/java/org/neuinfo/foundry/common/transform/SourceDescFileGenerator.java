@@ -66,7 +66,7 @@ public class SourceDescFileGenerator {
     }
 
     public enum IngestMethod {
-        CSV, XML, FTP, RSS, RSYNC, RESOURCE, ASPERA, DISCO, OAI, WEB, JSON2
+        CSV, XML, FTP, RSS, RSYNC, RESOURCE, ASPERA, DISCO, OAI, WEB, JSON2, GEO, WEBJOIN
     }
 
     public static class SourceInfo {

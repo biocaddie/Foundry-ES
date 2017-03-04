@@ -76,6 +76,6 @@ public class UtilsTest {
         assertEquals(4, optParser.getNumOfPositionalParams());
         assertNotNull(optParser.getOptValue("filter"));
         assertEquals("dataset.available=True", optParser.getOptValue("filter"));
-
     }
+
 }

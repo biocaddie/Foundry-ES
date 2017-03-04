@@ -19,6 +19,7 @@ public class IngestorHelper {
         return srcURL.startsWith("ds:");
     }
 
+
     public static Map<String, List<String>> getSourceData(String srcURL, String collectionName) throws Exception {
         DocumentIngestionService dis = null;
         Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();

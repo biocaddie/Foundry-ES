@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.jdom2.Element;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.util.ElasticSearchUtils;
+import org.neuinfo.foundry.common.util.JSONUtils;
 import org.neuinfo.foundry.common.util.XML2JSONConverter;
 import org.neuinfo.foundry.consumers.plugin.Result;
 
@@ -130,8 +131,15 @@ public class ConsumerUtils {
     }
 
     public static Result convert2JSON(Element el) throws Throwable {
+        return convert2JSON(el, false);
+    }
+
+    public static Result convert2JSON(Element el, boolean normalize) throws Throwable {
         XML2JSONConverter converter = new XML2JSONConverter();
         JSONObject json = converter.toJSON(el);
+        if (normalize) {
+            JSONUtils.normalize(json);
+        }
         return new Result(json, Result.Status.OK_WITH_CHANGE);
     }
 

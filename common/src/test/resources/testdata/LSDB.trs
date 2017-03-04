@@ -1,0 +1,91 @@
+/* Dataset Basic Information */
+transform column "$.'doi'" to "dataset.ID";
+transform columns "$.'name'", "$.'alias'" to "dataset.title" apply {{ result = value1 + ' ' + value2 }};
+transform column "$.'description'" to "dataset.description" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'list_search'" to "dataset.keywords[0]";
+transform column "$.'query_search'" to "dataset.keywords[1]";
+transform column "$.'web_services'" to "dataset.keywords[2]";
+transform column "$.'categories_free_style'[*]" to "dataset.isAbout[]";
+transform column "$.'dbcat_id'[*]" to "dataset.relatedIdentifiers[]";
+transform column "$.'referenced_site'" to "dataset.hasPart";
+transform column "$.'webservice_url'" to "dataset.extraProperties";
+
+/* Dataset Landing Page */
+transform column "$.'upper_level_site'" to "access.landingPage";
+
+/* Dataset Creator */
+transform column "$.'creators'[*].'creator_name'" to "dataset.creators[]";
+
+/* Dataset Release Date Information */
+transform column "$.'last_updated_date'" to "dataset.dateReleased" apply toStandardDateTime("yyyy-MM-dd");
+
+/* Dataset Qualifiers */
+let "dataset.availability" = "available";
+let "dataset.types[0]" = "gene expression";
+let "dataset.aggregation" = "instance of dataset";
+let "dataset.privacy" = "no applicable";
+let "dataset.refinement" = "curated";
+
+/* Information on Dataset Distributions */
+/* path is relative IBO
+transform column "$.'path'" to "access.accessUrl[]";
+*/
+if "$.whole_data_download" = "" then transform columns "$.'original_sites'[*]"  to "access.accessURL[]";
+if "$.whole_data_download" <> "" then transform column "$.'whole_data_download'" to "access.accessURl[0]";
+transform column "$.'user_registration'" to "access.authorizations";
+
+/* TaxonomicInformation */
+transform column "$.'organisms'[*].'organism_name'" to "taxonomicInformation[].name";
+transform column "$.'organisms'[*].'taxonomy_id'" to "taxonomicInformation[].identifier";
+transform column "$.'organism_free_style'" to "taxonomicInformation[0].extraProperties";
+
+/* Grant Information */
+transform column "$.'fundings'[*].'funding_name'" to "grant[].name";
+transform column "$.'fundings'[*].'funding_jglobal_id'" to "grant[].relatedIdentifiers[]";
+transform column "$.'fundings'[*].'funding_lsdb_project_id'" to "grant[].relatedIdentifiers[]";
+transform column "$.'funding_free_style'" to "grant[0].extraProperties" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+
+/* Publication Information */
+
+transform column "$.'references'[*].'reference_title'" to "primaryPublication[].name" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+transform column "$.'references'[*].'reference_authors'" to 
+"primaryPublication.authors[]" apply
+{{
+arr=re.split("\s*,\s*",value)
+result=arr
+}};
+transform column "$.'references'[*].'journal'" to "primaryPublication[].publicationVenue";
+
+/* Data Repository Information */
+let "dataRepository.ID" = "SCR:006730";
+let "dataRepository.name" = "HGVS Locus Specific Mutation Databases";
+let "dataRepository.abbreviation" = "LSDB";
+let "dataRepository.homePage" = "http://www.hgvs.org/dblist/glsdb.htm";
+
+/* Organization Information */
+let "organization.ID"= "SCR:012989";
+let "organization.name" = "Human Genome Variation Society";
+let "organization.abbreviation" = "HGVS";
+let "organization.homePage" = "http://www.hgvs.org";
+
+/* Items not included 
+transform column "$.'references'[*].'reference_pubmed_id'" to "publication[].relatedIdentifiers[0].identifier";
+transform column "$.'references'[*].'reference_pubmed_id'" to "publication[].relatedIdentifiers[0].identifierSource" apply {{ result = 'pubmed id' }};
+transform column "$.'references'[*].'reference_jglobal_id'" to "publication[].relatedIdentifiers[1].identifier";
+transform column "$.'references'[*].'reference_jglobal_id'" to "publication[].relatedIdentifiers[1].identifierSource" apply {{ result = 'jglobal id' }};
+transform column "$.'maintenance_site'" to "IdentifiersInformation.identifierSource" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+if "$.'operation_start_date'" <> "" then transform column "$.'operation_start_date'" to "activity.startDate" apply toStandardDateTime("yyyy/MM/dd");
+transform column "$.'categories'[*]" to "dataset.types[]";
+transform column "$.'creators'[*].'creator_affiliation'" to "dataset.creators.person[].afflication";
+transform column "$.'creators'[*].'creator_jglobal_id'" to "dataset.creators.person[].relatedIdentifier[0].identifier";
+transform column "$.'creators'[*].'creator_jglobal_id'" to "dataset.creators.person[].relatedIdentifier[0].identifierSource" apply {{ result = 'jglobal id' }};
+transform column "$.'creators'[*].'creator_researchmap_id'" to "dataset.creators.person[].relatedIdentifier[1].identifier";
+transform column "$.'creators'[*].'creator_researchmap_id'" to "dataset.creators.person[].relatedIdentifier[1].identifierSource" apply {{ result = 'researchmap id' }};
+transform column "$.'creators'[*].'creator_orcid'" to "dataset.creators.person[].relatedIdentifier[2].identifier";
+transform column "$.'creators'[*].'creator_orcid'" to "dataset.creators.person[].relatedIdentifier[2].identifierSource" apply {{ result = 'orc id' }};
+transform column "$.'creators'[*].'creator_jglobal_jgpn'" to "dataset.creators.person[].relatedIdentifier[3].identifier";
+transform column "$.'creators'[*].'creator_jglobal_jgpn'" to "dataset.creators.person[].relatedIdentifier[3].identifierSource" apply {{ result = 'jglobal jgpn' }};
+if "$.'creators'[*].'creator_is_representative'" = "true" then  transform column "$.'creators'[*].'creator_is_representative'" to "dataset.creators.person[].roles" apply {{result='representative'}};
+transform column "$.'contact_address'" to "organization.postalAddress" apply {{ result = re.sub('<[^<]+?>', '', value) }};
+*/
+

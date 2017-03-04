@@ -122,23 +122,10 @@ public class BatchInfo {
         bi.updatedCount = Utils.getIntValue(dbo.get("updatedCount"), 0);
         int ingestionStatusCode = Utils.getIntValue(dbo.get("ingestionStatus"), 0);
         bi.ingestionStatus = Status.fromCode(ingestionStatusCode);
-        bi.ingestionStartDatetime = toDate(dbo.get("ingestionStartDatetime"));
-        bi.ingestionEndDatetime = toDate(dbo.get("ingestionEndDatetime"));
+        bi.ingestionStartDatetime = Utils.toDate(dbo.get("ingestionStartDatetime"));
+        bi.ingestionEndDatetime = Utils.toDate(dbo.get("ingestionEndDatetime"));
         return bi;
     }
 
-    static Date toDate(Object dateValue) {
-        if (dateValue == null) {
-            return null;
-        } else if (dateValue instanceof Date) {
-            return (Date) dateValue;
-        }
-        try {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
-            return df.parse(dateValue.toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+
 }

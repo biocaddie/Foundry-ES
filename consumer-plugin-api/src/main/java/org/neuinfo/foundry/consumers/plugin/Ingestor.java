@@ -1,20 +1,9 @@
 package org.neuinfo.foundry.consumers.plugin;
 
-import org.json.JSONObject;
-
-import java.util.Map;
-
 /**
  * Created by bozyurt on 10/28/14.
  */
-public interface Ingestor {
-
-    public void initialize(Map<String, String> options) throws Exception;
-
-    public void startup() throws Exception;
-
-    public Result prepPayload();
-
+public interface Ingestor extends IngestorIterable {
     public String getName();
 
     /**
@@ -27,5 +16,4 @@ public interface Ingestor {
 
     public void shutdown();
 
-    public boolean hasNext();
 }

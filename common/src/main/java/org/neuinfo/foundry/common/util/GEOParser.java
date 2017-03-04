@@ -1,5 +1,6 @@
 package org.neuinfo.foundry.common.util;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.model.IDataParser;
 import org.neuinfo.foundry.common.model.InputDataIterator;
@@ -34,7 +35,20 @@ public class GEOParser implements IDataParser {
                 if (idx != -1) {
                     String name = line.substring(1, idx).trim();
                     String value = line.substring(idx + 3).trim();
-                    json.put(name, value);
+                    if (json.has(name)) {
+                        // multi valued
+                        Object o = json.get(name);
+                        if (o instanceof JSONArray) {
+                            ((JSONArray) o).put(value);
+                        } else {
+                            JSONArray jsArr = new JSONArray();
+                            jsArr.put(o);
+                            jsArr.put(value);
+                            json.put(name, jsArr);
+                        }
+                    } else {
+                        json.put(name, value);
+                    }
                 }
             }
         }

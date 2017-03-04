@@ -69,6 +69,43 @@ public class TransformationEngineTest {
         System.out.println(transformedJson.toString(2));
     }
 
+    public void testLSDBIssue() throws Exception {
+        URL url = TransformationEngineTest.class.getClassLoader().getResource("testdata/all_data_LSDB.json");
+        String path = url.toURI().getPath();
+        System.out.println(path);
+        String jsonStr = Utils.loadAsString(path);
+        JSONObject root = new JSONObject(jsonStr);
+        JSONArray jsArr = root.getJSONArray("data");
+
+        String transformationScript = loadAsStringFromClassPath("testdata/LSDB.trs");
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+
+        for (int i = 0; i < jsArr.length(); i++) {
+            JSONObject transformedJson = new JSONObject();
+            JSONObject json = jsArr.getJSONObject(i);
+            trEngine.transform(json, transformedJson);
+
+            System.out.println(transformedJson.toString(2));
+            System.out.println("-------------------------------");
+        }
+    }
+
+    @Test
+    public void testNatureIssue() throws Exception {
+        URL url = TransformationEngineTest.class.getClassLoader().getResource("testdata/nature_record_17.json");
+        String path = url.toURI().getPath();
+        System.out.println(path);
+        String jsonStr = Utils.loadAsString(path);
+        JSONObject json = new JSONObject(jsonStr);
+        String transformationScript = loadAsStringFromClassPath("testdata/nature_test.trs");
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        JSONObject transformedJson = new JSONObject();
+        trEngine.transform(json, transformedJson);
+
+        System.out.println(transformedJson.toString(2));
+        System.out.println("-------------------------------");
+    }
+
     @Test
     public void testJoinMulti() throws Exception {
         String jsonStr = loadAsStringFromClassPath("testdata/uniprot_swissprot_record.json");
@@ -129,7 +166,7 @@ public class TransformationEngineTest {
     public void testLSDB() throws Exception {
         String jsonStr = loadAsStringFromClassPath("testdata/all_data_LSDB.json");
         String transformationScript = loadAsStringFromClassPath("testdata/transformation_script_LSDB.trs");
-       // String transformationScript = loadAsStringFromClassPath("testdata/lsdb_test.trs");
+        // String transformationScript = loadAsStringFromClassPath("testdata/lsdb_test.trs");
         JSONObject json = new JSONObject(jsonStr);
         JSONArray jsArr = json.getJSONArray("data");
         TransformationEngine trEngine = new TransformationEngine(transformationScript);
@@ -141,6 +178,17 @@ public class TransformationEngineTest {
 
             System.out.println(transformedJson.toString(2));
         }
+    }
+
+    @Test
+    public void testMissingIfColumn() throws Exception {
+        JSONObject json = new JSONObject(); // empty data
+        String transformationScript = loadAsStringFromClassPath("testdata/pubmed_test.trs");
+        TransformationEngine trEngine = new TransformationEngine(transformationScript);
+        JSONObject transformedJson = new JSONObject();
+        trEngine.transform(json, transformedJson);
+
+        System.out.println(transformedJson.toString(2));
     }
 
     public static String loadAsStringFromClassPath(String classpath) throws Exception {
