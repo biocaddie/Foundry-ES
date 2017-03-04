@@ -1,2 +1,2 @@
 /* Taxonomic Information */
-transform column "$.'studies'.'nodes'[*].'metadata'.'Characteristics[organism]'[0]" to "taxonomicInformation[].name"
+transform column "$.'studies'.'nodes'[*].'metadata'.'Characteristics[organism]'[0]" to "taxonomicInformation[].name";
