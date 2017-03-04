@@ -1,0 +1,5 @@
+if "$.'PubmedArticle'.'MedlineCitation'.'OtherID'[*].'@Source'" like "NLM%" then join "$.'PubmedArticle'.'MedlineCitation'.'OtherID'[*].'_$'" to "article.pmcid" apply
+{{
+i = value1.index('NLM')
+result = value2[i] if i >= 0  else ''
+}};
