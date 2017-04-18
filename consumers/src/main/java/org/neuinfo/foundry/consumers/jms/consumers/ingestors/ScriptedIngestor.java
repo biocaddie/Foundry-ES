@@ -21,8 +21,9 @@ public class ScriptedIngestor implements Ingestor {
     Map<String, String> optionMap;
     List<IngestCommandInfo> commandInfos;
     IngestorIterable theCursor;
+    //FIXME for debugging
+    boolean useCache = true;
     Map<String, IngestCommandInfo> cmdMap = new HashMap<String, IngestCommandInfo>();
-    Map<String, IngestorIterable> alias2IterMap = new HashMap<String, IngestorIterable>(11);
 
     @Override
     public void initialize(Map<String, String> options) throws Exception {
@@ -32,7 +33,9 @@ public class ScriptedIngestor implements Ingestor {
         interpreter.parse(script);
         this.commandInfos = interpreter.getCommandInfos();
         for (IngestCommandInfo ici : commandInfos) {
-            cmdMap.put(ici.getAlias(), ici);
+            if (!ici.getCommandName().equals("ingest")) {
+                cmdMap.put(ici.getAlias(), ici);
+            }
         }
     }
 
@@ -40,25 +43,42 @@ public class ScriptedIngestor implements Ingestor {
     public void startup() throws Exception {
         List<IngestCommandInfo> downloadCommands = filter(IngestCommandInfo.DOWNLOAD, null);
         List<PathWrapper> downloadList = new ArrayList<PathWrapper>(downloadCommands.size());
+        List<IngestCommandInfo> onDemandDownloads = new ArrayList<IngestCommandInfo>(downloadCommands.size());
         for (IngestCommandInfo ici : downloadCommands) {
-            PathWrapper pw = handleDownload(ici);
-            downloadList.add(pw);
+            if (!IngestorHelper.isParametrized(ici.getPath())) {
+                PathWrapper pw = handleDownload(ici);
+                downloadList.add(pw);
+            } else {
+                onDemandDownloads.add(ici);
+            }
         }
         List<PathWrapper> allExtractedFiles = new ArrayList<PathWrapper>();
         for (PathWrapper bundlePath : downloadList) {
             List<IngestCommandInfo> extractList = filter(IngestCommandInfo.EXTRACT, bundlePath.alias);
             List<PathWrapper> pwList = extractFiles(extractList, bundlePath);
-            allExtractedFiles.addAll(pwList);
+            if (!pwList.isEmpty()) {
+                allExtractedFiles.addAll(pwList);
+            }
+        }
+        // no extraction
+        if (allExtractedFiles.isEmpty()) {
+            allExtractedFiles.addAll(downloadList);
         }
 
-        List<IngestorIterable> cursors = new ArrayList<IngestorIterable>( allExtractedFiles.size());
+        List<IngestorIterable> cursors = new ArrayList<IngestorIterable>(allExtractedFiles.size());
 
         Map<String, IngestorIterable> cursorMap = new HashMap<String, IngestorIterable>();
-        for(PathWrapper source : allExtractedFiles) {
+        for (PathWrapper source : allExtractedFiles) {
             IngestCommandInfo ici = cmdMap.get(source.alias);
             IngestorIterable cursor = prepCursor(source, ici);
             cursors.add(cursor);
             cursorMap.put(source.alias, cursor);
+        }
+        // handle on demand (parametrized) downloads
+        for (IngestCommandInfo ici : onDemandDownloads) {
+            IngestorIterable cursor = prepOnDemandCursor(ici);
+            cursors.add(cursor);
+            cursorMap.put(ici.getAlias(), cursor);
         }
         List<IngestCommandInfo> joins = orderJoins();
         if (joins.isEmpty()) {
@@ -66,9 +86,20 @@ public class ScriptedIngestor implements Ingestor {
             theCursor = cursors.get(0);
         } else {
             LinkedHashMap<String, Joinable> joinCursorMap = new LinkedHashMap<String, Joinable>(7);
-            for(IngestCommandInfo ici : joins) {
-                IngestorIterable cursor = cursorMap.get(ici.getAlias());
-                joinCursorMap.put(ici.getAlias(), (Joinable) cursor);
+            String prevRightAlias = null;
+            for (IngestCommandInfo ici : joins) {
+                IngestorIterable cursor;
+                if (prevRightAlias == null) {
+                    cursor = cursorMap.get(ici.getLeft().getAlias());
+                    Assertion.assertNotNull(cursor);
+                    joinCursorMap.put(ici.getLeft().getAlias(), (Joinable) cursor);
+                } else {
+                    Assertion.assertTrue(ici.getLeft().getAlias().equals(prevRightAlias));
+                }
+                cursor = cursorMap.get(ici.getRight().getAlias());
+                Assertion.assertNotNull(cursor);
+                joinCursorMap.put(ici.getRight().getAlias(), (Joinable) cursor);
+                prevRightAlias = ici.getRight().getAlias();
             }
             JoinCursor joinCursor = new JoinCursor(joins, joinCursorMap);
             joinCursor.startup();
@@ -136,7 +167,7 @@ public class ScriptedIngestor implements Ingestor {
                 boolean found = false;
                 for (IngestCommandInfo ici2 : joins) {
                     if (ici != ici2) {
-                        if (ici.getRight() == ici2.getLeft()) {
+                        if (ici.getLeft() == ici2.getLeft() || ici.getLeft() == ici2.getRight()) {
                             found = true;
                             break;
                         }
@@ -156,7 +187,7 @@ public class ScriptedIngestor implements Ingestor {
                 boolean found = false;
                 for (Iterator<IngestCommandInfo> iterator = joins.iterator(); iterator.hasNext(); ) {
                     IngestCommandInfo ici = iterator.next();
-                    if (n.getLeft() == ici.getRight()) {
+                    if (n.getRight() == ici.getLeft()) {
                         orderedJoins.add(ici);
                         n = ici;
                         iterator.remove();
@@ -174,13 +205,16 @@ public class ScriptedIngestor implements Ingestor {
     }
 
     PathWrapper handleDownload(IngestCommandInfo ici) throws Exception {
-        File file = ContentLoader.getContent(ici.getPath());
+        File file = ContentLoader.getContent(ici.getPath(), null, useCache, ici.getUser(), ici.getPassword());
         PathWrapper pw = new PathWrapper(file.getAbsolutePath(), ici.getAlias());
         return pw;
     }
 
 
     List<PathWrapper> extractFiles(List<IngestCommandInfo> iciList, PathWrapper bundlePath) throws Exception {
+        if (iciList.isEmpty()) {
+            return Collections.emptyList();
+        }
         Parameters parameters = Parameters.getInstance();
         String cacheRoot = parameters.getParam("cache.root");
         String cacheDirName = new File(bundlePath.path).getName().replaceAll("[\\./\\(\\)]", "_") + "_files";
@@ -204,6 +238,24 @@ public class ScriptedIngestor implements Ingestor {
         return pwList;
     }
 
+    IngestorIterable prepOnDemandCursor(IngestCommandInfo ici) throws Exception {
+        Assertion.assertTrue(IngestorHelper.isParametrized(ici.getPath()));
+        Map<String, String> options = new HashMap<String, String>();
+        if (ici.getParamMap() != null) {
+            options = ici.getParamMap();
+        }
+        if (ici.getFileType() == FileType.XML) {
+            options.put("documentElement", ici.getDocElement());
+            options.put("topElement", ici.getTopElement());
+            XMLCursor cursor = new XMLCursor(ici.getAlias(), ici.getUser(), ici.getPassword(), ici.getPath());
+            cursor.initialize(options);
+            cursor.startup();
+            return cursor;
+        } else {
+            throw new UnsupportedOperationException("Only XML cursor supports on demand (parameterized) web access");
+        }
+
+    }
 
     IngestorIterable prepCursor(PathWrapper source, IngestCommandInfo ici) throws Exception {
         Map<String, String> options = new HashMap<String, String>();
@@ -211,6 +263,10 @@ public class ScriptedIngestor implements Ingestor {
             options = ici.getParamMap();
         }
         if (ici.getFileType() == FileType.XML) {
+            options.put("documentElement", ici.getDocElement());
+            if (ici.getTopElement() != null) {
+                options.put("topElement", ici.getTopElement());
+            }
             XMLCursor cursor = new XMLCursor(ici.getAlias(), new File(source.path));
 
             cursor.initialize(options);

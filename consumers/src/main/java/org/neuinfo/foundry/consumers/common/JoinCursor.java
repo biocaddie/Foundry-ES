@@ -2,6 +2,7 @@ package org.neuinfo.foundry.consumers.common;
 
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.ingestion.IngestCommandInfo;
+import org.neuinfo.foundry.common.model.ColumnMeta;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.consumers.common.DoublyLinkedList.Node;
 import org.neuinfo.foundry.consumers.common.WebJoinIterator.WebJoinInfo;
@@ -43,7 +44,7 @@ public class JoinCursor implements IngestorIterable {
     @Override
     public void startup() throws Exception {
         for (IngestCommandInfo joinCmd : joinCommands) {
-            WebJoinInfo wji = WebJoinInfo.fromText(joinCmd.getJoinStr());
+            WebJoinInfo wji = WebJoinInfo.parse(joinCmd.getJoinStr());
             CursorMeta primaryCM = cursorMetaMap.get(wji.getPrimaryAlias());
             Assertion.assertNotNull(primaryCM);
             primaryCM.setJoinInfo(wji);
@@ -156,10 +157,13 @@ public class JoinCursor implements IngestorIterable {
         Node<Joinable> p = tail.getPrev();
         while (p != null) {
             Joinable payload = p.getPayload();
-            // CursorMeta cm = cursorMetaMap.get(payload.getAlias());
+            //CursorMeta cm = cursorMetaMap.get(payload.getAlias());
             String fieldName = payload.getAlias();
             JSONObject js = new JSONObject(payload.peek().toString());
-            json.put(fieldName, js);
+            List<ColumnMeta> columnMetaList = payload.getColumnMetaList();
+            JSONObject copy = new JSONObject(js.toString());
+            copy = CursorUtils.handleExternalColumnNames(copy, columnMetaList);
+            json.put(fieldName, copy);
             p = p.getPrev();
         }
         this.currentRecord = new Result(json, Result.Status.OK_WITH_CHANGE);

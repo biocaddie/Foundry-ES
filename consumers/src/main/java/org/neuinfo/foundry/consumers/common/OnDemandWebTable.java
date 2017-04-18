@@ -88,6 +88,8 @@ public class OnDemandWebTable implements IJoinIterable<JSONObject> {
         if (currentRec == null) {
             return null;
         }
+        return CursorUtils.extractStringValue(currentRec, path);
+        /*
         if (joinValueJsonPath != null) {
             JSONPathProcessor2 processor = new JSONPathProcessor2();
             List<JSONPathProcessor2.JPNode> jpNodes = processor.find(path, currentRec);
@@ -97,6 +99,7 @@ public class OnDemandWebTable implements IJoinIterable<JSONObject> {
             }
         }
         return null;
+        */
     }
 
     @Override

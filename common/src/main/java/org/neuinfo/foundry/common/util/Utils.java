@@ -12,6 +12,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.tools.ant.util.FileUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.SlimJDOMFactory;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -114,7 +115,15 @@ public class Utils {
         }
         // as last resort try natural language date parsing
         return Utils.extractDate(currentValue);
+    }
 
+    public static String parseFormatDate(String currentValue, String dateFormat) {
+        Date date = parseDate(currentValue, dateFormat);
+        if (date == null) {
+            return currentValue;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        return sdf.format(date);
     }
 
     public static Date extractDate(String freeFromDateStr) {
@@ -415,6 +424,7 @@ public class Utils {
 
     public static Element readXML(String xmlContent) throws Exception {
         SAXBuilder builder = new SAXBuilder();
+        builder.setJDOMFactory(new SlimJDOMFactory(true));
         Document docEl = builder.build(new StringReader(xmlContent));
         return docEl.getRootElement();
     }
@@ -688,27 +698,36 @@ public class Utils {
         return null;
     }
 
-    public static String sendGetRequest(String ingestURL) throws URISyntaxException, IOException {
+    public static String sendGetRequest(String ingestURL) throws URISyntaxException, IOException, ServiceUnavailableException {
         HttpClient client = new DefaultHttpClient();
         URIBuilder builder = new URIBuilder(ingestURL);
         URI uri = builder.build();
+        System.out.println(uri);
         HttpGet httpGet = new HttpGet(uri);
+        httpGet.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36");
         try {
             HttpResponse response = client.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null && response.getStatusLine().getStatusCode() == 200) {
-                String xmlStr = EntityUtils.toString(entity);
+                String xmlStr = EntityUtils.toString(entity, "UTF-8");
                 return xmlStr;
             } else if (response.getStatusLine().getStatusCode() == 503) {
-                throw new RuntimeException("503");
+                throw new ServiceUnavailableException("503" + response.getStatusLine().toString());
+            } else if (response.getStatusLine().getStatusCode() == 403) {
+                throw new RuntimeException("403" + response.getStatusLine().toString());
             }
-
         } finally {
             if (httpGet != null) {
                 httpGet.releaseConnection();
             }
         }
         return null;
+    }
+
+    public static class ServiceUnavailableException extends Exception {
+        public ServiceUnavailableException(String message) {
+            super(message);
+        }
     }
 
     public static String loadTextFromClasspath(String textFilePath) {

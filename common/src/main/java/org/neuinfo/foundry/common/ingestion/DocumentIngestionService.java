@@ -93,6 +93,10 @@ public class DocumentIngestionService extends BaseIngestionService {
         incrCount(source, "newCount");
     }
 
+    public void incrErrorCount(Source source) {
+       incrCount(source, "error");
+    }
+
     public void incrUpdatedCount(Source source) {
         incrCount(source, "updatedCount");
     }

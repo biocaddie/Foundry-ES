@@ -175,7 +175,11 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                     // delete previous record first
                                     dis.removeDocument(document, theCollection);
                                     ObjectId oid = dis.saveDocument(dw, theCollection);
-                                    dis.incrUpdatedCount(source);
+                                    if (result.getStatus() == Result.Status.ERROR) {
+                                        dis.incrErrorCount(source);
+                                    } else {
+                                        dis.incrUpdatedCount(source);
+                                    }
                                     updatedCount++;
                                     messagePublisher.sendMessage(oid.toString(), getOutStatus(), theCollection);
                                 }
@@ -196,7 +200,11 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                 pi.put("status", updateOutStatus);
                                 updatedCount++;
                                 dis.updateDocument(document, theCollection, batchId);
-                                dis.incrUpdatedCount(source);
+                                if (result.getStatus() == Result.Status.ERROR) {
+                                    dis.incrErrorCount(source);
+                                } else {
+                                    dis.incrUpdatedCount(source);
+                                }
                                 String oidStr = document.get("_id").toString();
                                 //
                                 messagePublisher.sendMessage(oidStr, updateOutStatus, theCollection);
@@ -230,7 +238,11 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                                     provData, startDate, dw);
                             ObjectId oid = dis.saveDocument(dw, theCollection);
                             newCount++;
-                            dis.incrNewCount(source);
+                            if (result.getStatus() == Result.Status.ERROR) {
+                                dis.incrErrorCount(source);
+                            } else {
+                                dis.incrNewCount(source);
+                            }
                             messagePublisher.sendMessage(oid.toString(), getOutStatus(), theCollection);
                         }
                         ingestedCount++;
@@ -238,6 +250,7 @@ public class GenericIngestionConsumer extends ConsumerSupport implements Ingesta
                 } catch (Throwable t) {
                     logger.error("handle", t);
                     t.printStackTrace();
+                    dis.incrErrorCount(source);
                 } finally {
                     submittedCount++;
                 }

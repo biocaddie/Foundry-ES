@@ -41,7 +41,23 @@ public class JSONWebIterator implements Iterator<JSONObject> {
             uriBuilder.addParameter(offsetParam, String.valueOf(curOffset));
         }
         String url = uriBuilder.build().toString();
-        String content = Utils.sendGetRequest(url);
+        String content = null;
+        // retry upto three times after waiting in between
+        for(int i = 0; i < 3; i++) {
+            try {
+                content = Utils.sendGetRequest(url);
+            } catch (Utils.ServiceUnavailableException sue) {
+                System.out.println(sue.getMessage());
+                try {
+                    Thread.sleep((i + 1) * 2000);
+                } catch(InterruptedException e) {
+                    // no op
+                }
+            }
+        }
+        if (content == null) {
+            return;
+        }
         JSONObject json = new JSONObject(content);
         JSONPathProcessor2 pathProcessor2 = new JSONPathProcessor2();
         List<JSONPathProcessor2.JPNode> jpNodes = pathProcessor2.find(totalParamJsonPath, json);

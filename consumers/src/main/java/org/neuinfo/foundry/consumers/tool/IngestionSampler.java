@@ -26,13 +26,14 @@ public class IngestionSampler {
     public void sampleViaTwoStageJSONIngestor() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("idIngestURL",
-                "https://dataverse.harvard.edu/api/search?key=c856dcf1-7df3-4bbc-82e8-311157d11281&q=*&type=dataset&show_entity_ids=true");
-        options.put("idJsonPath", "$..entity_id");
+                "https://dataverse.harvard.edu/api/search?key=7ba30d59-0736-44a4-b14c-ebfec79d9b05&q=*&type=dataset&show_entity_ids=true");
+        options.put("idJsonPath", "$..global_id");
         options.put("totalParamJsonPath", "$.data.total_count");
         options.put("offsetParam", "start");
         options.put("dataIngestURLTemplate",
-                "https://dataverse.harvard.edu/api/datasets/${id}?key=c856dcf1-7df3-4bbc-82e8-311157d11281");
-        options.put("docJsonPath", "$.data");
+                "https://dataverse.harvard.edu/api/datasets/export?exporter=ddi&persistentId=${id}");
+        options.put("docJsonPath", "$.codeBook");
+        options.put("dataFormat","xml");
         TwoStageJSONIngestor ingestor = new TwoStageJSONIngestor();
         ingestor.initialize(options);
         ingest(ingestor, "/tmp/dataverse2_record.json", 5);
@@ -340,6 +341,9 @@ public class IngestionSampler {
     public void sampleMPD() throws Exception {
         ingestSampleFromDisco("pr_nif_0000_03160_1", "/tmp/mouse_phenome_db_record.json", 5);
     }
+    public void sampleMPDStage() throws Exception {
+        ingestSampleFromDisco("nif_0000_03160_1", "/tmp/mouse_phenome_db_record.json", 5, "dv");
+    }
 
     public void samplePhysiobank() throws Exception {
         ingestSampleFromDisco("pr_nlx_48903_1", "/tmp/physiobank_record.json", 5);
@@ -579,6 +583,16 @@ public class IngestionSampler {
         ingestor.initialize(options);
         ingest(ingestor, "/tmp/icpsr_sample_record.json", 5);
     }
+    public void sampleICPSR2() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("dataIngestURLTemplate", "https://www.icpsr.umich.edu/icpsrweb/neutral/dats/studies/${id}");
+        options.put("dataFormat","json");
+        options.put("lowerBound","1");
+        options.put("upperBound","9999");
+        TwoStageJSONIngestor ingestor = new TwoStageJSONIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/icpsr_sample_record.json", 5);
+    }
 
     public void sampleOSB() throws Exception {
         // nlx_152590 OSB Projects
@@ -619,7 +633,7 @@ public class IngestionSampler {
         options.put("useCache", "false");
         WebIngestor ingestor = new WebIngestor();
         ingestor.initialize(options);
-        ingest(ingestor, "/tmp/dataverse_sample_record.json", 100);
+        ingest(ingestor, "/tmp/dataverse_sample_record.json", 5);
     }
 
     public void sampleLincsWeb() throws Exception {
@@ -657,6 +671,19 @@ public class IngestionSampler {
         ingest(ingestor, "/tmp/ebi_record.json", 5);
     }
 
+    public void sampleGtex() throws Exception {
+        Map<String, String> options = new HashMap<String, String>(17);
+        options.put("ingestURL", "file:///home/bozyurt/test1.json");
+        options.put("documentElement", "data");
+        options.put("cacheFilename", "gtex");
+        options.put("useCache", "false");
+        options.put("parserType", "json");
+        WebIngestor ingestor = new WebIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/gtext_record.json", 5);
+
+    }
+
     public void sampleGenenetwork() throws Exception {
         Map<String, String> options = new HashMap<String, String>(17);
         options.put("ingestURL", "file:///home/bozyurt/Downloads/from_nansu/genenetwork/all_data_genenetwork.json");
@@ -689,7 +716,7 @@ public class IngestionSampler {
         options.put("cacheFilename", "nature_dbmi");
         options.put("useCache", "false");
         options.put("parserType", "json");
-        options.put("normalize","true");
+        options.put("normalize", "true");
         WebIngestor ingestor = new WebIngestor();
         ingestor.initialize(options);
         ingest(ingestor, "/tmp/nature_record.json", 100);
@@ -1219,6 +1246,27 @@ public class IngestionSampler {
         return count;
     }
 
+    public void sampleNeurosynthRaw() throws Exception {
+        String HOME_DIR = System.getProperty("user.home");
+        //String script = "download \"https://github.com/neurosynth/neurosynth-data/raw/master/current_data.tar.gz\" as a;\n" +
+        String script = "download \"file://" + HOME_DIR + "/Downloads/current_data_test.tar.gz\" as a;\n" +
+                "extract csv \"database_test.txt\" as b from a;\n" +
+                "extract csv \"features_test.txt\" as c from a;\n" +
+                "partition b by line;\n" +
+                "partition c by line;\n" +
+                "set \"delimiter\" = \"\t\" for b;\n" +
+                "set \"delimiter\" = \"\t\" for c;\n" +
+                "set \"ignoreValue\" = \"0.0\" for c;\n" +
+                "join b,c by \"b::$.id = c::$.pmid\" as d;\n" +
+                "ingest d;";
+        Map<String, String> options = new HashMap<String, String>(17);
+
+        options.put("script", script);
+        ScriptedIngestor ingestor = new ScriptedIngestor();
+        ingestor.initialize(options);
+        ingest(ingestor, "/tmp/neurosynth_record.json", 5);
+    }
+
     public static void main(String[] args) throws Throwable {
         IngestionSampler sampler = new IngestionSampler();
 
@@ -1304,6 +1352,15 @@ public class IngestionSampler {
         // sampler.sampleGenenetwork();
 
         // sampler.sampleNature();
-        sampler.sampleSimtk();
+        // sampler.sampleSimtk();
+        // sampler.sampleNeurosynthRaw();
+        // sampler.sampleDataverse();
+        //sampler.sampleViaTwoStageJSONIngestor();
+
+        // sampler.sampleMPDStage();
+
+        // sampler.sampleICPSR2();
+
+        sampler.sampleGtex();
     }
 }

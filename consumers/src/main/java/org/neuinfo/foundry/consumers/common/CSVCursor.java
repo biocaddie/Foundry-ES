@@ -1,6 +1,7 @@
 package org.neuinfo.foundry.consumers.common;
 
 import org.json.JSONObject;
+import org.neuinfo.foundry.common.model.ColumnMeta;
 import org.neuinfo.foundry.common.util.JSONPathProcessor;
 import org.neuinfo.foundry.common.util.JSONPathProcessor2;
 import org.neuinfo.foundry.common.util.Utils;
@@ -23,11 +24,13 @@ public class CSVCursor implements IngestorIterable, Joinable {
     String[] headerCols;
     String resetJsonPath;
     String alias;
+    String ignoreValue;
     private String joinValueJsonPath;
     private JSONPathProcessor.Path path;
     List<JSONObject> records;
     JSONObject curRecord;
     Iterator<JSONObject> iterator;
+    Map<String, List<JSONObject>> index = null;
 
     public CSVCursor(String alias, File csvFile) {
         this.alias = alias;
@@ -36,9 +39,13 @@ public class CSVCursor implements IngestorIterable, Joinable {
 
     @Override
     public void initialize(Map<String, String> options) throws Exception {
-        this.ignoreLines = Utils.getIntValue(options.get("ignoreLines"), -1); // one based
-        this.headerLine = Utils.getIntValue(options.get("headerLine"), -1); // one based
+        this.ignoreLines = Utils.getIntValue(options.get("ignoreLines"), 1); // one based
+        this.headerLine = Utils.getIntValue(options.get("headerLine"), 1); // one based
         this.delimiter = options.get("delimiter");
+        if (this.delimiter != null && this.delimiter.equals("<TAB>")) {
+            this.delimiter = "\t";
+        }
+        this.ignoreValue = options.get("ignoreValue");
     }
 
     @Override
@@ -59,8 +66,10 @@ public class CSVCursor implements IngestorIterable, Joinable {
             }
         }
         this.records = new ArrayList<JSONObject>();
+        int count = 0;
         while (csvFileIterator.hasNext()) {
             List<String> row = this.csvFileIterator.next();
+
             if (row != null) {
                 JSONObject json = new JSONObject();
                 int len = row.size();
@@ -69,10 +78,14 @@ public class CSVCursor implements IngestorIterable, Joinable {
                         json.put(headerCols[i], "");
                     } else {
                         String value = row.get(i);
-                        json.put(headerCols[i], value);
+                        if (ignoreValue == null || !value.equals(ignoreValue)) {
+                            json.put(headerCols[i], value);
+                        }
                     }
                 }
                 this.records.add(json);
+                ++count;
+                System.out.println("processed record " + count);
             }
         }
         this.iterator = this.records.iterator();
@@ -86,7 +99,7 @@ public class CSVCursor implements IngestorIterable, Joinable {
 
     @Override
     public boolean hasNext() {
-        return this.csvFileIterator != null && this.csvFileIterator.hasNext();
+        return this.iterator != null && this.iterator.hasNext();
     }
 
     @Override
@@ -96,8 +109,16 @@ public class CSVCursor implements IngestorIterable, Joinable {
                 this.iterator = records.iterator();
             }
         } else {
-            List<JSONObject> list = CursorUtils.filter(refValue, this.resetJsonPath, this.records);
-            this.iterator = list.iterator();
+            if (index == null) {
+                index = CursorUtils.prepHashIndex(this.resetJsonPath, this.records);
+            }
+            List<JSONObject> list = index.get(refValue);
+            // List<JSONObject> list = CursorUtils.filter(refValue, this.resetJsonPath, this.records);
+            if (list == null) {
+                this.iterator = null;
+            } else {
+                this.iterator = list.iterator();
+            }
         }
     }
 
@@ -132,5 +153,22 @@ public class CSVCursor implements IngestorIterable, Joinable {
         this.joinValueJsonPath = joinValueJsonPath;
         JSONPathProcessor2 processor = new JSONPathProcessor2();
         this.path = processor.compile(joinValueJsonPath);
+    }
+
+    @Override
+    public List<ColumnMeta> getColumnMetaList() {
+        return null;
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        Map<String,String> options = new HashMap<String, String>();
+        options.put("delimiter","\t");
+        options.put("ignoreValue","0.0");
+        CSVCursor cursor = new CSVCursor("a", new File("/home/bozyurt/Downloads/neurosynth/features.txt"));
+        cursor.initialize(options);
+        cursor.startup();
+
+
     }
 }

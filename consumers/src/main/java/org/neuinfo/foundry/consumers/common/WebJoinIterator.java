@@ -294,6 +294,28 @@ public class WebJoinIterator implements Iterator<JSONObject> {
             return primaryRecordJsonPath;
         }
 
+
+        public static WebJoinInfo parse(String joinStatement) {
+            String[] tokens = joinStatement.split("\\s*=\\s*");
+            Assertion.assertTrue(tokens.length == 2);
+            String[] parts = tokens[0].split("::");
+            String primaryAlias = parts[0];
+            String primaryJsonPath = parts[1];
+            WebJoinInfo ji;
+            parts = tokens[1].split("::");
+            String secondaryAlias = parts[0];
+            if (parts.length == 2) {
+                String secondaryJsonPath = parts[1];
+                ji = new WebJoinInfo(primaryAlias, secondaryAlias, primaryJsonPath, secondaryJsonPath);
+                ji.primaryRecordJsonPath = primaryJsonPath;
+                ji.secondaryRecordJsonPath = secondaryJsonPath;
+            } else {
+                ji = new WebJoinInfo(primaryAlias, secondaryAlias, primaryJsonPath, null);
+                ji.primaryRecordJsonPath = primaryJsonPath;
+            }
+            return ji;
+        }
+
         public static WebJoinInfo fromText(String joinStatement) {
             String[] tokens = joinStatement.split("\\s*=\\s*");
             Assertion.assertTrue(tokens.length == 2);
@@ -321,9 +343,14 @@ public class WebJoinIterator implements Iterator<JSONObject> {
             String[] result = new String[2];
             int offset = jsonPathStr.startsWith("$..") ? 3 : 2;
             int idx = jsonPathStr.indexOf('.', offset);
-            Assertion.assertTrue(idx != -1);
-            result[0] = jsonPathStr.substring(0, idx);
-            result[1] = "$." + jsonPathStr.substring(idx + 1);
+            if (idx == -1) {
+                result[0] = jsonPathStr;
+                result[1] = jsonPathStr;
+            } else {
+                Assertion.assertTrue(idx != -1);
+                result[0] = jsonPathStr.substring(0, idx);
+                result[1] = "$." + jsonPathStr.substring(idx + 1);
+            }
             return result;
         }
 

@@ -86,7 +86,7 @@ public class ContentLoader {
                 cacheFileName = cacheFileName.replaceAll("[\\./\\(\\)]", "_");
             }
             File cacheFile = new File(cacheRoot, cacheFileName);
-            if (cacheFile.isFile()) {
+            if (cacheFile.isFile() && useCache) {
                 return cacheFile;
             }
             return getFile(cacheFile, gzippedFile, new FileInputStream(new File(filePath)), false);

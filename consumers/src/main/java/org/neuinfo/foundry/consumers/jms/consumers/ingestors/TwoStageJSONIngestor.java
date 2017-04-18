@@ -1,15 +1,11 @@
 package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 
-import com.mongodb.util.JSON;
 import org.apache.log4j.Logger;
 import org.jdom2.Element;
 import org.json.JSONObject;
-import org.neuinfo.foundry.common.transform.JSONPathUtils;
-import org.neuinfo.foundry.common.util.Assertion;
-import org.neuinfo.foundry.common.util.JSONPathProcessor2;
-import org.neuinfo.foundry.common.util.JSONUtils;
-import org.neuinfo.foundry.common.util.Utils;
+import org.neuinfo.foundry.common.util.*;
 import org.neuinfo.foundry.consumers.common.JSONMultiWebIterator;
+import org.neuinfo.foundry.consumers.common.JSONRangeIterator;
 import org.neuinfo.foundry.consumers.common.JSONWebIterator;
 import org.neuinfo.foundry.consumers.plugin.Ingestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
@@ -30,14 +26,18 @@ public class TwoStageJSONIngestor implements Ingestor {
     String idJsonPath;
     String docJsonPath;
     String offsetParam;
+    int lowBound = -1;
+    int uppBound = -1;
+    String idListFile;
     boolean sampleMode = false;
     int sampleSize = 1;
     Map<String, String> optionMap;
-    JSONWebIterator idIterator;
+    Iterator<JSONObject> idIterator;
     JSONMultiWebIterator multiIdIterator;
     List<String> templateVariables;
     List<String> ingestURLTemplateVariables;
     String totalParamJsonPath;
+    String dataFormat = "json";
     static Logger log = Logger.getLogger(TwoStageJSONIngestor.class);
 
     @Override
@@ -62,6 +62,9 @@ public class TwoStageJSONIngestor implements Ingestor {
         Assertion.assertNotNull(this.templateVariables);
         Assertion.assertTrue(this.templateVariables.size() == 1);
 
+        if (options.containsKey("dataFormat")) {
+            this.dataFormat = options.get("dataFormat");
+        }
         this.idIngestURLTemplate = options.get("idIngestURLTemplate");
         this.idIngestURLTemplateParams = options.get("idIngestURLTemplateParams");
         if (idIngestURLTemplate != null) {
@@ -72,6 +75,16 @@ public class TwoStageJSONIngestor implements Ingestor {
             childDocParentIDPath = options.get("childDocParentIDPath");
             Assertion.assertNotNull(parentDocJsonPath);
             Assertion.assertNotNull(childDocParentIDPath);
+        }
+        if (options.containsKey("lowerBound")) {
+            this.lowBound = Utils.getIntValue(options.get("lowerBound"), -1);
+            this.uppBound = Utils.getIntValue(options.get("upperBound"), -1);
+            Assertion.assertTrue(this.lowBound != -1);
+            Assertion.assertTrue(this.uppBound != -1);
+        }
+        if (options.containsKey("idListFile")) {
+            this.idListFile = options.get("idListFile");
+            Assertion.assertExistingPath(this.idListFile, "idListFile");
         }
     }
 
@@ -90,7 +103,14 @@ public class TwoStageJSONIngestor implements Ingestor {
                     parentDocJsonPath, idJsonPath);
 
         } else {
-            this.idIterator = new JSONWebIterator(idIngestURL, offsetParam, totalParamJsonPath, idJsonPath, sampleMode);
+            if (this.uppBound != -1 && this.lowBound != -1) {
+                this.idIterator = new JSONRangeIterator(this.lowBound, this.uppBound);
+            } else if (idListFile != null) {
+                this.idIterator = new JSONRangeIterator(this.idListFile);
+            } else {
+                this.idIterator = new JSONWebIterator(idIngestURL, offsetParam,
+                        totalParamJsonPath, idJsonPath, sampleMode);
+            }
         }
     }
 
@@ -103,14 +123,25 @@ public class TwoStageJSONIngestor implements Ingestor {
                 Map<String, String> templateVar2ValueMap = new HashMap<String, String>(3);
                 templateVar2ValueMap.put(templateVariables.get(0), idValue);
                 String url = IngestorHelper.createURL(this.dataIngestURLTemplate, templateVar2ValueMap);
-                String jsonContent = Utils.sendGetRequest(url);
-                JSONObject json = new JSONObject(jsonContent);
-                JSONPathProcessor2 pathProcessor2 = new JSONPathProcessor2();
-                List<JSONPathProcessor2.JPNode> jpNodes = pathProcessor2.find(docJsonPath, json);
-                Assertion.assertTrue(jpNodes != null && jpNodes.size() == 1);
-                JSONObject docJson = (JSONObject) jpNodes.get(0).getPayload();
+                String content = Utils.sendGetRequest(url);
+                JSONObject json;
+                if (dataFormat.equals("xml")) {
+                    XML2JSONConverter converter = new XML2JSONConverter();
+                    Element rootEl = Utils.readXML(content);
+                    json = converter.toJSON(rootEl);
+                } else {
+                    json = new JSONObject(content);
+                }
+                if (docJsonPath == null) {
+                    return new Result(json, Result.Status.OK_WITH_CHANGE);
+                } else {
+                    JSONPathProcessor2 pathProcessor2 = new JSONPathProcessor2();
+                    List<JSONPathProcessor2.JPNode> jpNodes = pathProcessor2.find(docJsonPath, json);
+                    Assertion.assertTrue(jpNodes != null && jpNodes.size() == 1);
+                    JSONObject docJson = (JSONObject) jpNodes.get(0).getPayload();
 
-                return new Result(docJson, Result.Status.OK_WITH_CHANGE);
+                    return new Result(docJson, Result.Status.OK_WITH_CHANGE);
+                }
             } catch (Throwable t) {
                 log.error("prepPayload", t);
                 t.printStackTrace();
@@ -128,7 +159,7 @@ public class TwoStageJSONIngestor implements Ingestor {
                 if (childDocParentIDPath != null) {
                     List<String> parentIDs = new ArrayList<String>(pji.getParentIDs());
                     Collections.sort(parentIDs);
-                    String prefix = childDocParentIDPath.replaceFirst("\\[\\]$","");
+                    String prefix = childDocParentIDPath.replaceFirst("\\[\\]$", "");
                     for (int i = 0; i < parentIDs.size(); i++) {
                         String parentID = parentIDs.get(i);
                         String leafPath = prefix + "[" + i + "]";

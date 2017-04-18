@@ -1,9 +1,6 @@
 package org.neuinfo.foundry.common.transform;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.Attribute;
-import org.jdom2.Namespace;
+import org.jdom2.*;
 import org.jdom2.filter.Filters;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.xpath.XPathExpression;
@@ -49,6 +46,7 @@ public class XpathFieldExtractor {
     public void extractValue(Element el, String xpathStr, Map<String, List<String>> nameValueMap) {
         XPathExpression<Element> expr = null;
         XPathExpression<Attribute> attrExpr = null;
+        XPathExpression<Text> textExpr = null;
         int idx = xpathStr.lastIndexOf(':');
         if (idx != -1) {
             Namespace ns;
@@ -76,7 +74,11 @@ public class XpathFieldExtractor {
                     expr = xpathFactory.compile(xpathStr, Filters.element());
                 }
             } else {
-                expr = xpathFactory.compile(xpathStr, Filters.element());
+                if (xpathStr.endsWith("text()")) {
+                    textExpr = xpathFactory.compile(xpathStr, Filters.text());
+                } else {
+                    expr = xpathFactory.compile(xpathStr, Filters.element());
+                }
             }
         }
         if (expr != null) {
@@ -86,6 +88,15 @@ public class XpathFieldExtractor {
                 for (Element elem : elements) {
                     values.add(elem.getTextTrim());
                     System.out.println(elem.getTextTrim());
+                }
+                nameValueMap.put(xpathStr, values);
+            }
+        } else if (textExpr != null) {
+            List<Text> texts = textExpr.evaluate(el);
+            if (texts != null && !texts.isEmpty()) {
+                List<String> values = new ArrayList<String>(texts.size());
+                for(Text text : texts) {
+                    values.add(text.getTextTrim());
                 }
                 nameValueMap.put(xpathStr, values);
             }
@@ -105,17 +116,19 @@ public class XpathFieldExtractor {
     public static void main(String[] args) throws Exception {
         SAXBuilder builder = new SAXBuilder();
         //Document doc = builder.build(new File("/tmp/pdb/100d.xml"));
-        Document doc = builder.build(new File("/tmp/pdb_ftp/01/101d.xml"));
+        //Document doc = builder.build(new File("/tmp/pdb_ftp/01/101d.xml"));
+        Document doc = builder.build(new File("/tmp/projects.xml"));
         Element rootEl = doc.getRootElement();
 
         XpathFieldExtractor extractor = new XpathFieldExtractor(rootEl.getNamespacesInScope());
         Map<String, List<String>> nameValueMap = new HashMap<String, List<String>>(7);
 
         //extractor.extractValue(rootEl, "//PDBx:audit_author/PDBx:name", nameValueMap);
-        extractor.extractValue(rootEl, "//PDBx:citation_author[@citation_id='primary']/@name", nameValueMap);
+        //extractor.extractValue(rootEl, "//PDBx:citation_author[@citation_id='primary']/@name", nameValueMap);
         // extractor.extractValue(rootEl, "//PDBx:citation[@id='primary']/PDBx:title", nameValueMap);
         // extractor.extractValue(rootEl, "//PDBx:citation[@id='primary']/PDBx:year", nameValueMap);
-
+        extractor.extractValue(rootEl, "//columns/column/text()", nameValueMap);
+        System.out.println(nameValueMap);
 
     }
 }

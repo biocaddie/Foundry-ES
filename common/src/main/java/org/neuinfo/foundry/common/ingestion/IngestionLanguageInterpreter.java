@@ -9,7 +9,7 @@ import static org.neuinfo.foundry.common.ingestion.TokenType.*;
 /**
  * Created by bozyurt on 2/22/17.
  * <p/>
- * DOWNLOAD {path} AS {alias} [FORMAT {format_type}];
+ * DOWNLOAD {path} AS {alias} [FORMAT {format_type}] [USER {username} PWD {password}];
  * EXTRACT  {format} {path} AS {alias} FROM {alias};
  * PARTITION {alias} BY {line| RE regex|jsonPath} [START {elementName|jsonPath}];
  * SET {param} = {value-string} FOR {alias};
@@ -36,6 +36,8 @@ public class IngestionLanguageInterpreter {
         typeMap.put("for", FOR);
         typeMap.put("set", SET);
         typeMap.put("ingest", INGEST);
+        typeMap.put("user", USER);
+        typeMap.put("pwd", PWD);
         typeMap.put("=", EQUAL);
         typeMap.put(";", SEMICOLON);
         typeMap.put(",", COMMA);
@@ -224,6 +226,7 @@ public class IngestionLanguageInterpreter {
         }
         errorIfNot(ti != null && ti.getType() == LITERAL && rightICI != null,
                 "Expected an already defined alias for JOIN", tokenizer.getLineNo());
+        ici.setRight(rightICI);
         ti = tokenizer.nextToken();
         errorIfNot(ti != null && ti.getType() == BY,
                 "expected BY after the second join alias", tokenizer.getLineNo());
@@ -270,6 +273,22 @@ public class IngestionLanguageInterpreter {
             FormatType ft = FormatType.valueOf(ti.getTokValue().toUpperCase());
 
             ici.setFormatType(ft);
+            FileType fileType = FileType.valueOf(ti.getTokValue().toUpperCase());
+            ici.setFileType(fileType);
+            ti = tokenizer.nextToken();
+        }
+        if (ti != null && ti.getType() == USER) {
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == STRING,
+                    "A username as string is expected after USER for download command", tokenizer.getLineNo());
+            ici.setUser(ti.getTokValue());
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == PWD,
+                    "expected keyword PWD after the  username", tokenizer.getLineNo());
+            ti = tokenizer.nextToken();
+            errorIfNot(ti != null && ti.getType() == STRING,
+                    "A password as string is expected after PWD for download command", tokenizer.getLineNo());
+            ici.setPassword(ti.getTokValue());
             ti = tokenizer.nextToken();
         }
         errorIfNot(ti != null && ti.getType() == SEMICOLON, "A ';' is expected", tokenizer.getLineNo());
@@ -332,7 +351,7 @@ public class IngestionLanguageInterpreter {
                             sb.append(c);
                         } else {
                             inString = false;
-                            return new TokenInfo(sb.toString().trim(), TokenType.STRING);
+                            return new TokenInfo(sb.toString(), TokenType.STRING);
                         }
                     } else if (!inString && !inComment && (c == ';' || c == '"' || c == ',' || c == '=')) {
                         if (c == ';') {
@@ -462,9 +481,18 @@ public class IngestionLanguageInterpreter {
                 "set \"p1\" = \"value1\" for b;\n" +
                 "join b,c by \"b::$.PMID = c::$.PMID\" as d;\n" +
                 "ingest d;";
+        String script1 = "download \"https://github.com/neurosynth/neurosynth-data/raw/master/current_data.tar.gz\" as a;\n" +
+                "extract csv \"database.txt\" as b from a;\n" +
+                "partition b by line;\n" +
+                "set \"delimiter\" = \"\t\" for b;\n" +
+                "ingest b;";
 
         IngestionLanguageInterpreter interpreter = new IngestionLanguageInterpreter();
 
-        interpreter.parse(script);
+        interpreter.parse(script1);
+        List<IngestCommandInfo> commandInfos = interpreter.getCommandInfos();
+        for (IngestCommandInfo ici : commandInfos) {
+            System.out.println(ici);
+        }
     }
 }

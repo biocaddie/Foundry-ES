@@ -19,17 +19,32 @@ public class IngestCommandInfo {
     IngestCommandInfo left;
     IngestCommandInfo right;
     String joinStr;
+    private String user;
+    private String password;
     public final static String DOWNLOAD = "download";
     public final static String EXTRACT = "extract";
     public final static String JOIN = "join";
     public final static String INGEST = "ingest";
-
-
-
     Map<String,String> paramMap = new HashMap<String, String>(17);
 
     public IngestCommandInfo(String commandName) {
         this.commandName = commandName;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFromAlias() {

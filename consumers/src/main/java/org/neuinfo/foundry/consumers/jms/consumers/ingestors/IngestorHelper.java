@@ -27,13 +27,13 @@ public class IngestorHelper {
             dis = ServiceFactory.getInstance().createDocumentIngestionService();
             DataSourceURL dsu = new DataSourceURL(srcURL);
             List<String> fields = new ArrayList<String>(dsu.getColNames().size());
-            for(String colName : dsu.getColNames()) {
+            for (String colName : dsu.getColNames()) {
                 fields.add("OriginalDoc." + colName);
             }
 
             List<BasicDBObject> documents = dis.findDocuments(dsu.getSrcId(), dsu.getDataSource(),
                     collectionName, fields);
-            for(BasicDBObject dbo: documents) {
+            for (BasicDBObject dbo : documents) {
                 System.out.println(dbo);
             }
             for (String colName : dsu.getColNames()) {
@@ -107,6 +107,11 @@ public class IngestorHelper {
             sb.append(urlTemplate.substring(offset));
         }
         return sb.toString();
+    }
+
+    public static boolean isParametrized(String url) {
+        Matcher matcher = templateVarPattern.matcher(url);
+        return matcher.find();
     }
 
     public static class DataSourceURL {
