@@ -148,9 +148,8 @@ An example resource (VectorBase) with a sample of its raw data and corresponding
 transformation file is included in `$HOME/Foundry_ES/example` directory. The resource
 descriptor configuration for the example is in the file `$HOME/Foundry_ES/bin/source-desc-example-cfg.yml`.
 You need to edit this file to adjust the absolute paths for the fields `ingestURL` and `transformationScript` for your Foundry_ES installation directory. 
-Afterwards run the following in `$HOME\Foundry_ES` directory.
+Afterwards run the following in the `$HOME/Foundry_ES` directory.
 
-An example run for dryad is shown below;
 ```
 ./source_desc_gen.sh -s vectorbase -c source-desc-example-cfg.yml
 ```
