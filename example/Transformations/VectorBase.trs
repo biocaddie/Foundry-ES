@@ -1,0 +1,35 @@
+/*dataset basic information*/
+transform column "$.'Description'" to "dataset.description" apply {{ result = 'vectorbase:' + value }};
+transform column "$.'FileName'" to "dataset.title";
+transform column "$.'FileType'" to "dataset.type";
+
+/*dataset taxonomy information*/
+transform column "$.'Organism'" to "taxonomyInformation.name";
+
+/* Dataset Release Date Information */
+transform column "$.'ReleaseDate'" to "dataset.dateReleased" apply toStandardDate("MMMM, yyyy");
+
+
+/* Dataset Distribution Date Information */
+transform column "$.'Size'" to "datasetDistributions.size";
+transform column "$.'FileFormat'" to "datasetDistributions.format";
+
+/* Access information */
+transform column "$.'FileName'" to "access.landingPage" apply {{ result = 'https://www.vectorbase.org/download/' + value }};
+let "access.accesstypes"  = "download";
+let "access.authorization"  = "none";
+let "access.authentication" = "none"; 
+
+
+/*Data Repository Information */
+let "dataRepository.ID" = "";
+let "dataRepository.name" = "VectorBase";
+let "dataRepository.abbreviation" = "Null";
+let "dataRepository.homePage"= "https://www.vectorbase.org/";
+
+
+/* Organization Information */
+let "organization[0].ID" = "";
+let "organization[0].name" = "National Institute of Allergy and Infectious Diseases";
+let "organization[0].abbreviation" = "NIAID";
+let "organization[0].homePage" = "https://www.niaid.nih.gov/";

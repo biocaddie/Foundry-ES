@@ -1,0 +1,12 @@
+{
+  "FileName": "aedes-aegyptiall-pvalsvb-2016-10txtgz",
+  "Url": "https://www.vectorbase.org/download/aedes-aegyptiall-pvalsvb-2016-10txtgz",
+  "Organism": "Aedes aegypti",
+  "Size": "9.96 MB",
+  "Type": "All P-values",
+  "Description": "Gene-averaged expression data, all p-values as shown in the Expression Browser",
+  "Status": "Current",
+  "ReleaseDate": "October, 2016",
+  "FileType": "All P-values",
+  "FileFormat": "TSV"
+}

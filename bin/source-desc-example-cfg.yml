@@ -1,0 +1,15 @@
+vectorbase:
+    sourceID: "vectorbase"
+    name: "VectorBase"
+    ingestMethod: "CSV"
+    primaryKeyJSONPath: "$.'FileName'"
+    ingestURL: "file:///home/bozyurt/dev/biocaddie/Foundry-ES/example/SampleData/VectorBase/VectorBase.csv"
+    transformScript: "/home/bozyurt/dev/biocaddie/Foundry-ES/example/Transformations/VectorBase.trs"
+    keepMissing: "false"
+    ignoreLines: "1"
+    headerLine: "1"
+    delimiter: ","
+    escapeCharacter: "&#092;"
+    textQuote: "&#034;"
+...
+

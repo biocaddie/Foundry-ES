@@ -1,0 +1,12 @@
+{
+  "FileName": "aedes-aegyptibest-pvalsvb-2016-10txtgz",
+  "Url": "https://www.vectorbase.org/download/aedes-aegyptibest-pvalsvb-2016-10txtgz",
+  "Organism": "Aedes aegypti",
+  "Size": "2.54 MB",
+  "Type": "Best P-values",
+  "Description": "Gene-averaged expression data, best p-values as shown in the Expression Browser",
+  "Status": "Current",
+  "ReleaseDate": "October, 2016",
+  "FileType": "Best P-values",
+  "FileFormat": "TSV"
+}

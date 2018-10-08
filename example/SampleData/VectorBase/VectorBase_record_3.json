@@ -1,0 +1,12 @@
+{
+  "FileName": "aedes-aegyptimsm-statsvb-2016-10txtgz",
+  "Url": "https://www.vectorbase.org/download/aedes-aegyptimsm-statsvb-2016-10txtgz",
+  "Organism": "Aedes aegypti",
+  "Size": "15.71 MB",
+  "Type": "Median shifted means",
+  "Description": "Tab-delimited, gene-averaged, median-shifted expression values as used in the Expression Map, plus extra columns containing variances and number of replicates.",
+  "Status": "Current",
+  "ReleaseDate": "October, 2016",
+  "FileType": "Median shifted means",
+  "FileFormat": "TSV"
+}

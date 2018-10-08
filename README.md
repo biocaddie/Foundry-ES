@@ -107,7 +107,7 @@ They are triggered by the manager application.
 
 ## Initial Setup
 
-Before any processing the MongoDB needs to be populated with the source descriptors using
+Before any processing the MongoDB needs to be populated with the (re)source descriptors using
 the `$HOME/Foundry_ES/bin/ingest_src_cli.sh`. 
 
 ```
@@ -120,12 +120,9 @@ usage: SourceIngestorCLI
  -u                      update the source given by the source-json-file
 ```
 
-Example source descriptors are under `$HOME/Foundry_ES/consumers/etc`.
-An example usage for inserting PDB source descriptor document to the `sources` collection is show below
+Resource descriptors are generated from source description configuration YAML file 
+(See `$HOME/Foundry_ES/bin/source-desc-cfg.yml.example` for an example).
 
-```
-./ingest_src_cli.sh -j $HOME/Foundry_ES/consumers/etc/pdb_rsync_gen.json
-```
 ## Resource descriptor JSON file Generation
 
 Once the transformation script is finalized for a resource, its resource descriptor 
@@ -143,11 +140,26 @@ usage: SourceDescFileGeneratorCLI
 ```
 
 where the resource descriptor config params are read from a YAML file. There is an example YAML file (`$HOME/Foundry_ES/bin/source-desc-cfg.yml.example`). You can copy 
-it to `source-desc-cfg.yml` file and change the paths (for transformation script files) there to match your local system. An example run for dryad is shown below;
+it to `source-desc-cfg.yml` file and change the paths (for transformation script files) there to match your local system. 
+
+### Example
+
+An example resource (VectorBase) with a sample of its raw data and corresponding 
+transformation file is included in `$HOME/Foundry_ES/example` directory. The resource
+descriptor configuration for the example is in the file `$HOME/Foundry_ES/bin/source-desc-example-cfg.yml`.
+You need to edit this file to adjust the absolute paths for the fields `ingestURL` and `transformationScript` for your Foundry_ES installation directory. 
+Afterwards run the following in `$HOME\Foundry_ES` directory.
+
+An example run for dryad is shown below;
 ```
-./source_desc_gen.sh -s dryad -c source-desc-cfg.yml
+./source_desc_gen.sh -s vectorbase -c source-desc-example-cfg.yml
 ```
 The generated resource descriptor file is written to `/tmp` directory.
+
+To insert the generated source descriptor document to the `sources` MongoDB collection, use the following
+```
+./ingest_src_cli.sh -j /tmp/vectorbase.json
+```
 
 ## Dispatcher
 
@@ -218,4 +230,6 @@ Foundry:>>
 ```
 
 
+## Ingestion Example
 
+TBD
