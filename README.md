@@ -43,7 +43,7 @@ mkdir -p /var/data/foundry-es/foundry_plugins/plugins /var/data/foundry-es/cache
 
 For the `consumers` subproject, you need to
 copy `consumer.properties.example` in  `$HOME/Foundry-ES/consumers//src/main/resources/dev` (for dev profile) or in `$HOME/Foundry-ES/consumers//src/main/resources/prod` (for prod profile) to `consumer.properties` file. Given that the cache directories `/var/data/foundry-es/cache/data` and `/var/data/foundry-es/cache/data/staging` are created as instructed in previous paragraph, you don't need to
-change `consumer.properties` file for common operation of the system.
+change `consumer.properties` file for the common operation of the system.
 
 The configuration files are located under each sub-project. For example, 
 the configuration files for the dispatcher component are located under
@@ -245,4 +245,14 @@ Foundry:>>
 
 ## Ingestion Example
 
-TBD
+To ingest the previously registered VectorBase resource, start `manager.sh`, the command line management interface to the Foundry system. You can list, ingest, delete and index resources through this interface.
+```
+./manager.sh
+Foundry:>> list
+vectorbase       - VectorBase
+Foundry:>> ingest vectorbase
+Do you want to ingest records for vectorbase? (y/[n])? y
+...
+Foundry:>> status vectorbase
+vectorbase        in_process total:       99 finished:         0 error:       0 
+```
