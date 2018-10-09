@@ -20,6 +20,7 @@ Getting the code
 Building
 --------
 
+
 Before you start the build process, you need to install three libraries 
 from `dependencies` directory to your local maven repository
     
@@ -28,11 +29,21 @@ from `dependencies` directory to your local maven repository
     ./install_prov_model_2mvn.sh
     ./install_prov_json__2mvn.sh
 
-Afterwards
+Afterwards run the following maven command in the `$HOME/Foundry_ES`
 
     mvn -Pdev clean install 
 
 Here dev profile is used. There are production `prod` and `dev` profiles for differrent configurations for development and production environments.
+
+Foundry uses several directories to dynamically load enhancer plugins, to cache ingestion data and save its logs which needs to exists and be readable and writable before running the system. You can create them via
+
+```
+mkdir -p /var/data/foundry-es/foundry_plugins/plugins /var/data/foundry-es/cache /var/data/logs /var/data/foundry-es/cache/data /var/data/foundry-es/cache/data/staging
+```
+
+For the `consumers` subproject, you need to
+copy `consumer.properties.example` in  `$HOME/Foundry-ES/consumers//src/main/resources/dev` (for dev profile) or in `$HOME/Foundry-ES/consumers//src/main/resources/prod` (for prod profile) to `consumer.properties` file. Given that the cache directories `/var/data/foundry-es/cache/data` and `/var/data/foundry-es/cache/data/staging` are created as instructed in previous paragraph, you don't need to
+change `consumer.properties` file for common operation of the system.
 
 The configuration files are located under each sub-project. For example, 
 the configuration files for the dispatcher component are located under
@@ -48,6 +59,8 @@ $HOME/Foundry-ES/dispatcher/src/main/resources
 
 When you use `-Pdev` argument, configuration file from the `dev` directory is 
 included in the jar file.
+
+
 
 All subsystem configuration files are generated from a master configuration file in YAML format. 
 An example master configuration file can be found at `$HOME/Foundry-ES/bin/config.yml.example`.
@@ -72,6 +85,7 @@ usage: ConfigGenerator
 After each configuration file generation you need to run maven to move the configs to their target locations
 
     mvn -Pdev install 
+
 
 MongoDB
 --------

@@ -1,0 +1,21 @@
+pluginDir: "/var/data/foundry-es/foundry_plugins/plugins"
+database:
+    host: localhost
+    port: 27017
+    db: example 
+    collection: records
+mq:
+    brokerURL: "tcp://localhost:61616?wireFormat.maxInactivityDuration=0"
+
+workflow:
+    "Example Workflow":
+        - transform
+
+consumers:
+    - uuidGen:
+         class: org.neuinfo.foundry.consumers.jms.consumers.plugins.DocIDAssigner
+         status: id_assigned
+    - transform:
+         class: org.neuinfo.foundry.consumers.jms.consumers.plugins.TransformationEnhancer
+         status: transformed
+         addResourceInfo: false
