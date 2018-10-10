@@ -10,7 +10,7 @@ dryad:
     topElement: "ListRecords"
     documentElement: "record"
     useCache: "true"
-    transformScript: "/Users/bozyurt/dev/java/Foundry-Data/transformations/dryad.trs"
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/transformations/dryad.trs"
 clinicaltrials:
     sourceID: "biocaddie-0012"
     name: "Clinical Trials"
@@ -21,7 +21,7 @@ clinicaltrials:
     cacheFilename: "clinicaltrials_gov"
     filenamePattern: "\\w+\\.xml"
     useCache: "true"
-    transformScript: "/Users/bozyurt/dev/java/Foundry-Data/transformations/clinicaltrials.trs"
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/transformations/clinicaltrials.trs"
 lincs:
     sourceID: "biocaddie-0013"
     name: "NIH Library of Integrated Network-based Cellular Signatures Program"
@@ -41,14 +41,14 @@ arrayExpress:
     ingestURL: "http://www.ebi.ac.uk/arrayexpress/xml/v2/experiments"
     topElement: "experiments"
     documentElement: "experiment"
-    transformScript: "/Users/bozyurt/dev/java/Foundry-Data/transformations/arrayexpress.trs"
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/transformations/arrayexpress.trs"
 gemma:
     sourceID: "biocaddie-0007"
     name: "Gemma"
     ingestMethod: "CSV"
     primaryKeyJSONPath: "$.GemmaDsId"
     ingestURL: "http://www.chibi.ubc.ca/Gemma/datasetdownload/4.20.2011/DatasetSummary.view.txt.gz"
-    transformScript: "/Users/bozyurt/dev/java/Foundry-Data/transformations/gemma.trs"
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/transformations/gemma.trs"
     keepMissing: "false"
     ignoreLines: "1"
     headerLine: "1"
@@ -67,16 +67,35 @@ pdb:
     port: "33444"
     fullSet: "false"
     documentElement: "datablock"
-    transformScript: "/Users/bozyurt/dev/java/Foundry-Data/transformations/pdb.trs"
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/transformations/pdb.trs"
 bioproject:
     sourceID: "biocaddie-0008"
     name: "Bioproject"
     ingestMethod: "FTP"
     primaryKeyJSONPath: "$.'Package'.'Project'.'Project'.'ProjectID'.'ArchiveID'.'@accession'"
-    transformScript: "/Users/bozyurt/dev/java/Foundry-Data/transformations/bioproject.trs"
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/transformations/bioproject.trs"
     ftpHost: "ftp.ncbi.nlm.nih.gov"
     remotePath: "bioproject/bioproject.xml"
     topElement: "PackageSet"
     documentElement: "Package"
     outDir: "/var/data/foundry-es/cache/data"
+neurosynth:
+    sourceID: "rn-0001"
+    name: "Neurosynth"
+    ingestMethod: "SCRIPT"
+    primaryKeyJSONPath: "$.'b'.'peak_id'"
+    script: |
+        download "https://github.com/neurosynth/neurosynth-data/raw/master/current_data.tar.gz" as a;`
+        extract csv "database.txt" as b from a;
+        extract csv "features.txt" as c from a;
+        partition b by line;
+        partition c by line;
+        set "delimiter" = "<TAB>" for b;
+        set "delimiter" = "<TAB>" for c;
+        set "ignoreValue" = "0.0" for c;
+        set "eva" = "true" for c;
+        join b,c by "b::$.id = c::$.pmid" as d;
+        ingest d;
+    transformScript: "/home/bozyurt/dev/java/Foundry-Data/Transformations/neurosynth.trs"
+
 ...   
