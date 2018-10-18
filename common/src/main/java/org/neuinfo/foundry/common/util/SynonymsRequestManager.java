@@ -5,7 +5,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -41,7 +41,8 @@ public class SynonymsRequestManager {
         if (vi != null) {
             return vi;
         }
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(serverURL);
         builder.setPath("/scigraph/vocabulary/id/" + identifier);
         URI uri = builder.build();

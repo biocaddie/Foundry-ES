@@ -6,21 +6,18 @@ import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Logger;
 import org.neuinfo.foundry.common.util.Utils;
-import org.neuinfo.foundry.consumers.common.Constants;
 import org.neuinfo.foundry.consumers.common.Parameters;
 
 import java.io.*;
 import java.net.URI;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -103,10 +100,18 @@ public class ContentLoader {
                     return cacheFile;
                 }
             }
-            DefaultHttpClient client = new DefaultHttpClient();
+
+            //DefaultHttpClient client = new DefaultHttpClient();
+            CloseableHttpClient client;
             if (username != null && pwd != null) {
-                client.getCredentialsProvider().setCredentials(new AuthScope(null, -1),
+                //client.getCredentialsProvider().setCredentials(new AuthScope(null, -1),
+                //        new UsernamePasswordCredentials(username, pwd));
+                CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+                credentialsProvider.setCredentials(AuthScope.ANY,
                         new UsernamePasswordCredentials(username, pwd));
+                client = HttpClientBuilder.create().setDefaultCredentialsProvider(credentialsProvider).build();
+            } else {
+                client = HttpClientBuilder.create().build();
             }
 
 

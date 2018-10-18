@@ -5,13 +5,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.neuinfo.foundry.common.util.Assertion;
 import org.neuinfo.foundry.consumers.plugin.Ingestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
-import sun.security.krb5.internal.EncTicketPart;
 
 import java.net.URI;
 import java.util.Map;
@@ -51,7 +50,8 @@ public class WebServiceIngestor implements Ingestor {
     }
 
     public String getContent(String ingestURL) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(ingestURL);
         URI uri = builder.build();
         HttpGet httpGet = new HttpGet(uri);
@@ -65,9 +65,9 @@ public class WebServiceIngestor implements Ingestor {
             }
 
         } finally {
-             if (httpGet != null) {
-                 httpGet.releaseConnection();
-             }
+            if (httpGet != null) {
+                httpGet.releaseConnection();
+            }
         }
         return null;
     }

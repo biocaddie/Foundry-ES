@@ -7,7 +7,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
@@ -28,7 +28,8 @@ public class ElasticSearchUtils {
 
     public static void sendBatch2ElasticSearch(Map<String, String> docId2JsonDocStrMap,
                                                String indexPath, String serverURL, String apiKey) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(serverURL);
         builder.setPath("/_bulk");
         if (apiKey != null) {
@@ -71,7 +72,8 @@ public class ElasticSearchUtils {
 
     public static boolean send2ElasticSearch(String jsonDocStr, String docId,
                                              String indexPath, String serverURL, String apiKey) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
 
         URIBuilder builder = new URIBuilder(serverURL);
         // "http://localhost:9200/");

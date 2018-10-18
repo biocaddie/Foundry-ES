@@ -7,11 +7,10 @@ import com.mongodb.DBObject;
 import org.apache.commons.cli.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
@@ -22,7 +21,6 @@ import org.neuinfo.foundry.consumers.common.Constants;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
-import java.io.IOException;
 import java.net.URI;
 
 /**
@@ -101,7 +99,8 @@ public class ElasticSearchIndexerJMSConsumer extends JMSConsumerSupport implemen
     }
 
     boolean deleteIndex(String indexPath) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(serverURL);
         indexPath = ensureIndexPathStartsWithSlash(indexPath);
         builder.setPath(indexPath);
@@ -111,9 +110,9 @@ public class ElasticSearchIndexerJMSConsumer extends JMSConsumerSupport implemen
     }
 
 
-
     private boolean send2ElasticSearch(String jsonDocStr, String docId) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
 
         URIBuilder builder = new URIBuilder(serverURL);
         // "http://localhost:9200/");

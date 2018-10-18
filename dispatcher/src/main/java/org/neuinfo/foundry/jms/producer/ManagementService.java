@@ -4,7 +4,7 @@ import org.apache.commons.cli.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -53,7 +53,8 @@ public class ManagementService {
     }
 
     boolean deleteIndex(String url) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(url);
         URI uri = builder.build();
         System.out.println("uri:" + uri);
@@ -73,7 +74,7 @@ public class ManagementService {
         }
     }
 
-    void showSourceStats(SourceStats ss, WFStatusInfo wfStatusInfo, boolean showTime ) {
+    void showSourceStats(SourceStats ss, WFStatusInfo wfStatusInfo, boolean showTime) {
         StringBuilder sb = new StringBuilder(128);
         sb.append(StringUtils.rightPad(ss.getSourceID(), 15)).append(" ");
         if (wfStatusInfo != null) {
@@ -85,7 +86,7 @@ public class ManagementService {
         Map<String, Integer> statusCountMap = ss.getStatusCountMap();
         int totCount = 0;
         if (ss.getStatusCountMap().containsKey("ingested")) {
-           totCount = ss.getStatusCountMap().get("ingested");
+            totCount = ss.getStatusCountMap().get("ingested");
         } else {
             for (Integer count : statusCountMap.values()) {
                 totCount += count;
@@ -364,7 +365,7 @@ public class ManagementService {
                         boolean showTime = false;
                         if (optParser.getOptValue("time") != null &&
                                 optParser.getOptValue("time").equalsIgnoreCase("on")) {
-                            showTime= true;
+                            showTime = true;
                         }
                         if (noPP == 2) {
                             String srcNifId = toks[1];

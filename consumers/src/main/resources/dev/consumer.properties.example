@@ -1,4 +1,4 @@
-disco.dbURL=
+disco.dbURL=jdbc:postgresql://nif-db.crbs.ucsd.edu:5432/disco_crawler/searchpath=dv
 disco.user=
 disco.password=
 

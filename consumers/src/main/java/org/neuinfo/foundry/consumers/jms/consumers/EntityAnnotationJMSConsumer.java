@@ -10,7 +10,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
@@ -101,7 +101,8 @@ public class EntityAnnotationJMSConsumer extends JMSConsumerSupport implements M
     }
 
     public static void annotateEntities(String contentLocation, String text, Map<String, Keyword> keywordMap) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(serviceURL);
         builder.setParameter("content", text);
         // minLength=4&longestOnly=true&includeAbbrev=false&includeAcronym=false&includeNumbers=false&callback=fn

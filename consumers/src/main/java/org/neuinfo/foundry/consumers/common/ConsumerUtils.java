@@ -5,7 +5,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.jdom2.Element;
@@ -62,7 +62,8 @@ public class ConsumerUtils {
 
     public static void sendBatch2ElasticSearch(Map<String, String> docId2JsonDocStrMap,
                                                String indexPath, String serverURL) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         String[] tokens = indexPath.split("/");
 
         String indexName = tokens[1];
@@ -98,7 +99,8 @@ public class ConsumerUtils {
 
     public static boolean send2ElasticSearch(String jsonDocStr, String docId,
                                              String indexPath, String serverURL) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
 
         URIBuilder builder = new URIBuilder(serverURL);
         // "http://localhost:9200/");

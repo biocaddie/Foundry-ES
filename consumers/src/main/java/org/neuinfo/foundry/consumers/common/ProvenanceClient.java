@@ -4,13 +4,15 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.neuinfo.foundry.common.provenance.ProvenanceRec;
@@ -28,7 +30,8 @@ public class ProvenanceClient {
 
 
     public void getProvenance(String docUUID) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(serverURL).setPath("/provdb/api/foundry/provenance/" + docUUID);
         URI uri = builder.build();
         System.out.println("uri:" + uri);
@@ -52,10 +55,13 @@ public class ProvenanceClient {
     }
 
     public void deleteProvenance(String docUUID) throws Exception {
-        DefaultHttpClient client = new DefaultHttpClient();
-
-        client.getCredentialsProvider().setCredentials(AuthScope.ANY,
+        //DefaultHttpClient client = new DefaultHttpClient();
+        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(AuthScope.ANY,
                 new UsernamePasswordCredentials(user, pwd));
+        HttpClient client = HttpClientBuilder.create().setDefaultCredentialsProvider(credentialsProvider).build();
+        //client.getCredentialsProvider().setCredentials(AuthScope.ANY,
+        //        new UsernamePasswordCredentials(user, pwd));
         URIBuilder builder = new URIBuilder(serverURL).setPath("/provdb/api/foundry/provenance/" + docUUID);
         URI uri = builder.build();
         System.out.println("uri:" + uri);
@@ -74,9 +80,13 @@ public class ProvenanceClient {
     }
 
     public String saveProvenance(ProvenanceRec provRec) throws Exception {
-        DefaultHttpClient client = new DefaultHttpClient();
-        client.getCredentialsProvider().setCredentials(AuthScope.ANY,
+        //DefaultHttpClient client = new DefaultHttpClient();
+        //client.getCredentialsProvider().setCredentials(AuthScope.ANY,
+        //        new UsernamePasswordCredentials(user, pwd));
+        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(AuthScope.ANY,
                 new UsernamePasswordCredentials(user, pwd));
+        HttpClient client = HttpClientBuilder.create().setDefaultCredentialsProvider(credentialsProvider).build();
         URIBuilder builder = new URIBuilder(serverURL).setPath("/provdb/api/provenance/");
         URI uri = builder.build();
         System.out.println("uri:" + uri);

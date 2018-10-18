@@ -7,9 +7,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.apache.tools.ant.util.FileUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.SlimJDOMFactory;
@@ -677,7 +676,8 @@ public class Utils {
 
 
     public static File getContentFromURL(String ingestURL) throws URISyntaxException, IOException {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder(ingestURL);
         URI uri = builder.build();
         HttpGet httpGet = new HttpGet(uri);
@@ -699,7 +699,9 @@ public class Utils {
     }
 
     public static String sendGetRequest(String ingestURL) throws URISyntaxException, IOException, ServiceUnavailableException {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
+
         URIBuilder builder = new URIBuilder(ingestURL);
         URI uri = builder.build();
         System.out.println(uri);

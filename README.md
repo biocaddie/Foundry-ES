@@ -20,7 +20,7 @@ Getting the code
 Building
 --------
 
-
+This project requires Java 1.8 or higher to build.
 Before you start the build process, you need to install three libraries 
 from `dependencies` directory to your local maven repository
     

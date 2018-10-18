@@ -7,7 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -68,7 +68,7 @@ public class EntityMappingEnhancer implements IPlugin {
             DBObject updatedTransformedDBO = JSONUtils.encode(json, true);
             docWrapper.put("transformedRec", updatedTransformedDBO);
 
-            return  new Result(docWrapper, Result.Status.OK_WITH_CHANGE);
+            return new Result(docWrapper, Result.Status.OK_WITH_CHANGE);
         } catch (Throwable t) {
             log.error("handle", t);
             t.printStackTrace();
@@ -94,8 +94,8 @@ public class EntityMappingEnhancer implements IPlugin {
         Map<String, List<EntityMappingInfo>> value2EntityMappingsMap = getEntityMappings(
                 new ArrayList<String>(valueSet), srcID);
 
-        Map<String,List<String>> value2PathsMap = new HashMap<String, List<String>>();
-        for(String path : path2ValueMap.keySet()) {
+        Map<String, List<String>> value2PathsMap = new HashMap<String, List<String>>();
+        for (String path : path2ValueMap.keySet()) {
             String value = path2ValueMap.get(path).toLowerCase();
             List<String> paths = value2PathsMap.get(value);
             if (paths == null) {
@@ -106,7 +106,7 @@ public class EntityMappingEnhancer implements IPlugin {
         }
         JSONObject emJSON = new JSONObject();
         JSONObject synJSON = new JSONObject();
-        for(String valueLC : value2EntityMappingsMap.keySet()) {
+        for (String valueLC : value2EntityMappingsMap.keySet()) {
             List<EntityMappingInfo> emiList = value2EntityMappingsMap.get(valueLC);
             List<String> paths = value2PathsMap.get(valueLC);
             insertEntityMappings(emJSON, emiList, paths);
@@ -117,10 +117,9 @@ public class EntityMappingEnhancer implements IPlugin {
     }
 
 
-
     void insertSynonymns(JSONObject synJSON, List<EntityMappingInfo> emiList, List<String> paths, String valueLC) {
         Map<String, String> leaf2PathMap = getLeaf2PathMap(paths);
-        for(EntityMappingInfo emi : emiList) {
+        for (EntityMappingInfo emi : emiList) {
             if (!emi.relation.equals("exact")) {
                 continue;
             }
@@ -129,19 +128,19 @@ public class EntityMappingEnhancer implements IPlugin {
             if (path != null) {
                 int idx = path.indexOf('.');
                 Assertion.assertTrue(idx != -1);
-                String newPath = path.substring(idx+1);
+                String newPath = path.substring(idx + 1);
                 try {
-                    VocabularyInfo vi =  srm.getSynonyms(emi.identifier);
+                    VocabularyInfo vi = srm.getSynonyms(emi.identifier);
                     if (vi != null && !vi.getSynonyms().isEmpty()) {
                         List<String> synonyms = vi.getSynonyms();
                         idx = newPath.lastIndexOf('.');
                         Assertion.assertTrue(idx != -1);
                         String prefix = newPath.substring(0, idx);
-                        String suffix = newPath.substring(idx+1);
+                        String suffix = newPath.substring(idx + 1);
                         suffix = JSONUtils.extractName(suffix);
                         StringBuilder sb = new StringBuilder(128);
                         int arrIdx = 0;
-                        for(int i = 0; i < synonyms.size(); i++) {
+                        for (int i = 0; i < synonyms.size(); i++) {
                             String synonym = synonyms.get(i);
                             if (synonym.equalsIgnoreCase(valueLC)) {
                                 continue;
@@ -159,9 +158,10 @@ public class EntityMappingEnhancer implements IPlugin {
             }
         }
     }
+
     void insertEntityMappings(JSONObject emJSON, List<EntityMappingInfo> emiList, List<String> paths) {
         Map<String, String> leaf2PathMap = getLeaf2PathMap(paths);
-        for(EntityMappingInfo emi : emiList) {
+        for (EntityMappingInfo emi : emiList) {
             if (!emi.relation.equals("exact")) {
                 continue;
             }
@@ -170,7 +170,7 @@ public class EntityMappingEnhancer implements IPlugin {
             if (path != null) {
                 int idx = path.indexOf('.');
                 Assertion.assertTrue(idx != -1);
-                String newPath = path.substring(idx+1);
+                String newPath = path.substring(idx + 1);
                 JSONUtils.createOrSetFullPath(emJSON, newPath, emi.identifier);
             }
         }
@@ -178,15 +178,15 @@ public class EntityMappingEnhancer implements IPlugin {
 
     private Map<String, String> getLeaf2PathMap(List<String> paths) {
         Map<String, String> leaf2PathMap = new HashMap<String, String>();
-        for(String path : paths) {
+        for (String path : paths) {
             int idx = path.lastIndexOf('.');
             Assertion.assertTrue(idx != -1);
             String prefix = path.substring(0, idx);
-            String leafName = path.substring(idx+1);
+            String leafName = path.substring(idx + 1);
             String tableName = prefix;
             idx = prefix.lastIndexOf('.');
             if (idx != -1) {
-                tableName = prefix.substring(idx+1);
+                tableName = prefix.substring(idx + 1);
             }
             leafName = JSONUtils.extractName(leafName);
             tableName = JSONUtils.extractName(tableName);
@@ -204,7 +204,8 @@ public class EntityMappingEnhancer implements IPlugin {
     }
 
     public static Map<String, List<EntityMappingInfo>> getEntityMappings(List<String> values, String sourceID) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        //HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         URIBuilder builder = new URIBuilder("https://stage.scicrunch.org");
         builder.setPath("/api/1/entitymapping/byvaluelist");
         String list = Utils.join(values, "|");

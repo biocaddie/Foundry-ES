@@ -1,12 +1,5 @@
 package org.neuinfo.foundry.consumers.jms.consumers.ingestors;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.jdom2.input.SAXBuilder;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -19,7 +12,6 @@ import org.neuinfo.foundry.consumers.plugin.Ingestor;
 import org.neuinfo.foundry.consumers.plugin.Result;
 
 import java.io.StringReader;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +34,7 @@ public class WAFIngestor implements Ingestor {
                 Boolean.parseBoolean(options.get("allowDuplicates")) : false;
         this.optionMap = options;
         if (options.containsKey("maxDocs")) {
-            this.maxNumDocs2Ingest = Utils.getIntValue( options.get("maxDocs"), -1);
+            this.maxNumDocs2Ingest = Utils.getIntValue(options.get("maxDocs"), -1);
         }
     }
 
